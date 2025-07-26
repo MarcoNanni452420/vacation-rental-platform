@@ -1,6 +1,6 @@
 {
   "buildCommand": "prisma generate && npm run build",
-  "outputDirectory": ".next",
+  "outputDirectory": ".next", 
   "devCommand": "npm run dev",
   "installCommand": "npm install && prisma generate",
   "framework": "nextjs",
@@ -8,10 +8,5 @@
     "src/app/api/**/*.ts": {
       "maxDuration": 30
     }
-  },
-  "env": {
-    "NEXTAUTH_SECRET": "@nextauth_secret",
-    "NEXTAUTH_URL": "@nextauth_url",
-    "DATABASE_URL": "@database_url"
   }
 }

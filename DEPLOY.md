@@ -18,19 +18,27 @@
 3. Aggiungi nelle environment variables di Vercel
 
 ### 2. **ENVIRONMENT VARIABLES** 🔑
-Configura su Vercel Dashboard → Settings → Environment Variables:
+⚠️ **OBBLIGATORIO:** Configura su Vercel Dashboard → Settings → Environment Variables
 
-```bash
-DATABASE_URL="postgresql://user:password@host:port/database"
-NEXTAUTH_SECRET="genera-una-chiave-sicura-32-caratteri"
-NEXTAUTH_URL="https://tuo-dominio.vercel.app"
-```
+**STEP BY STEP:**
+1. Vai su Vercel Dashboard → Progetto → Settings → Environment Variables
+2. Aggiungi queste variabili una per una:
+
+| Name | Value | Environment |
+|------|-------|-------------|
+| `DATABASE_URL` | `postgresql://user:password@host:port/database` | Production, Preview |
+| `NEXTAUTH_SECRET` | Genera con: `openssl rand -base64 32` | Production, Preview |
+| `NEXTAUTH_URL` | `https://tuo-dominio.vercel.app` | Production, Preview |
+
+**⚠️ IMPORTANTE:** NON usare @ syntax (tipo @nextauth_secret) - usa valori diretti!
 
 ### 3. **NEXTAUTH_SECRET** 🔐
 **Genera una chiave sicura:**
 ```bash
 openssl rand -base64 32
+# Esempio output: llB4CeW8TI3/vmtIgagXphi5DTxpSzk+3bL1OumhkRg=
 ```
+**⚠️ Usa la TUA chiave generata, non l'esempio!**
 
 ### 4. **BUILD COMMANDS** ⚙️
 Configurazione Prisma per Vercel:
