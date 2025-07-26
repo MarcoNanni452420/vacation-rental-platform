@@ -122,9 +122,9 @@ export default function PropertyPage() {
           <img 
             src={property.images[0]}
             alt="Casa Fienaroli Interior"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover image-bright"
           />
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-black/25" />
         </div>
 
         {/* Image Gallery Grid Overlay */}
@@ -136,7 +136,7 @@ export default function PropertyPage() {
         </div>
 
         {/* Property Info Overlay */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-8 z-10">
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/40 to-transparent p-8 z-10">
           <div className="max-w-7xl mx-auto">
             <div className="text-white">
               <div className="flex items-center gap-3 mb-4">

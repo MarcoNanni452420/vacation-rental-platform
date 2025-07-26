@@ -167,8 +167,13 @@
   }
   
   .image-zoom img {
-    @apply transition-transform duration-700 ease-out;
-    @apply hover:scale-110;
+    @apply transition-all duration-700 ease-out;
+    @apply hover:scale-110 hover:brightness-110;
+  }
+
+  /* Brighter images for better visibility */
+  .image-bright {
+    filter: brightness(1.1) contrast(1.05);
   }
 
   /* Modern Grid */

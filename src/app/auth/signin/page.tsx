@@ -165,7 +165,7 @@ export default function SignIn() {
           alt="Casa Fienaroli"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/25" />
         
         {/* Content Overlay */}
         <div className="relative z-10 flex items-end p-12">

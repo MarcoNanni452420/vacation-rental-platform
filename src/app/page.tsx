@@ -18,9 +18,9 @@ export default function HomePage() {
           <img 
             src="/images/villa/bedroom-master.jpg"
             alt="Casa Fienaroli"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover image-bright"
           />
-          <div className="absolute inset-0 bg-black/40 z-10" />
+          <div className="absolute inset-0 bg-black/25 z-10" />
         </div>
 
         {/* Hero Content */}
@@ -45,7 +45,7 @@ export default function HomePage() {
               href="/property" 
               className="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 font-medium text-sm uppercase tracking-wider hover:bg-gray-100 transition-all duration-300"
             >
-              Scopri la Villa
+              Scopri la Casa
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
             
@@ -153,10 +153,10 @@ export default function HomePage() {
               <div className="relative aspect-square overflow-hidden group">
                 <img 
                   src="/images/villa/interior-overview.jpg"
-                  alt="Villa Overview"
+                  alt="Casa Overview"
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-700" />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-700" />
               </div>
             </RevealOnScroll>
             
@@ -171,10 +171,10 @@ export default function HomePage() {
                 <div className="relative aspect-square overflow-hidden group">
                   <img 
                     src={image}
-                    alt={`Villa Interior ${i + 1}`}
+                    alt={`Casa Interior ${i + 1}`}
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-700" />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-700" />
                 </div>
               </RevealOnScroll>
             ))}
@@ -274,7 +274,7 @@ export default function HomePage() {
               {
                 name: "Sofia B.",
                 date: "Giugno 2024",
-                text: "La villa supera ogni aspettativa. Gli interni sono stupendi e la posizione è perfetta per esplorare la costa."
+                text: "La casa supera ogni aspettativa. Gli interni sono stupendi e la posizione è perfetta per esplorare Roma."
               },
               {
                 name: "Alessandro T.",
