@@ -61,17 +61,24 @@ export function Sidebar() {
   return (
     <div className="flex flex-col h-full bg-white border-r border-gray-200">
       {/* Logo */}
-      <div className="flex items-center h-16 px-6 border-b border-gray-200">
-        <Link href="/admin" className="flex items-center space-x-2">
-          <Home className="h-8 w-8 text-primary" />
-          <span className="font-bold text-lg text-gray-900">
-            Admin Panel
-          </span>
+      <div className="flex items-center h-20 px-8 border-b border-border">
+        <Link href="/" className="flex items-center space-x-3">
+          <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+            <Home className="h-6 w-6 text-primary-foreground" />
+          </div>
+          <div>
+            <div className="font-bold text-lg text-foreground">
+              Casa Fienaroli
+            </div>
+            <div className="text-xs uppercase tracking-wider text-muted-foreground">
+              Admin Panel
+            </div>
+          </div>
         </Link>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 px-4 py-6 space-y-2">
+      <nav className="flex-1 px-6 py-8 space-y-3">
         {navigation.map((item) => {
           const isActive = pathname === item.href || (item.href !== "/admin" && pathname.startsWith(item.href))
           
@@ -80,10 +87,10 @@ export function Sidebar() {
               key={item.name}
               href={item.href}
               className={cn(
-                "flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors",
+                "flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200",
                 isActive
-                  ? "bg-primary text-primary-foreground"
-                  : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  ? "bg-primary text-primary-foreground shadow-md"
+                  : "text-muted-foreground hover:bg-gray-100 hover:text-foreground"
               )}
             >
               <item.icon className="w-5 h-5 mr-3" />
@@ -94,10 +101,10 @@ export function Sidebar() {
       </nav>
 
       {/* Bottom Actions */}
-      <div className="p-4 border-t border-gray-200">
+      <div className="p-6 border-t border-border">
         <Button
           variant="ghost"
-          className="w-full justify-start text-gray-700 hover:text-red-600"
+          className="w-full justify-start text-muted-foreground hover:text-red-600 hover:bg-red-50 rounded-xl px-4 py-3"
           onClick={() => signOut()}
         >
           <LogOut className="w-5 h-5 mr-3" />

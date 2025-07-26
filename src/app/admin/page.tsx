@@ -8,9 +8,9 @@ import { InsightsPanel } from "@/components/admin/insights-panel"
 
 export default function AdminDashboard() {
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen bg-gray-50">
       {/* Sidebar */}
-      <div className="w-64 flex-shrink-0">
+      <div className="w-72 flex-shrink-0 bg-white border-r border-border">
         <Sidebar />
       </div>
 
@@ -18,22 +18,30 @@ export default function AdminDashboard() {
       <div className="flex-1 flex flex-col overflow-hidden">
         <AdminHeader />
         
-        <main className="flex-1 overflow-auto p-6">
-          <div className="space-y-6">
+        <main className="flex-1 overflow-auto">
+          <div className="max-w-7xl mx-auto p-8 space-y-8">
             {/* Stats Overview */}
-            <DashboardStats />
+            <section>
+              <DashboardStats />
+            </section>
 
-            {/* Revenue Chart */}
-            <RevenueChart />
-
-            {/* Platform Performance */}
-            <PlatformPerformance />
+            {/* Main Charts Grid */}
+            <section className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+              <div className="xl:col-span-2">
+                <RevenueChart />
+              </div>
+              <div>
+                <PlatformPerformance />
+              </div>
+            </section>
 
             {/* Recent Activity */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <RecentBookings />
-              <InsightsPanel />
-            </div>
+            <section>
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+                <RecentBookings />
+                <InsightsPanel />
+              </div>
+            </section>
           </div>
         </main>
       </div>

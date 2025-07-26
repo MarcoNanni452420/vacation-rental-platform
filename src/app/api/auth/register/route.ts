@@ -5,10 +5,10 @@ import { UserRole } from "@prisma/client"
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, password, role } = await request.json()
+    const { name, email, password } = await request.json()
 
     // Validation
-    if (!name || !email || !password || !role) {
+    if (!name || !email || !password) {
       return NextResponse.json(
         { error: "Tutti i campi sono obbligatori" },
         { status: 400 }
@@ -22,12 +22,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    if (!Object.values(UserRole).includes(role)) {
-      return NextResponse.json(
-        { error: "Ruolo non valido" },
-        { status: 400 }
-      )
-    }
 
     // Check if user already exists
     const existingUser = await prisma.user.findUnique({
@@ -44,13 +38,13 @@ export async function POST(request: NextRequest) {
     // Hash password
     const hashedPassword = await hash(password, 12)
 
-    // Create user
+    // Create user (default role is GUEST)
     const user = await prisma.user.create({
       data: {
         name,
         email,
         password: hashedPassword,
-        role,
+        role: UserRole.GUEST,
       },
       select: {
         id: true,

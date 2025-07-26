@@ -6,16 +6,9 @@ export default withAuth(
     const { pathname } = req.nextUrl
     const { token } = req.nextauth
 
-    // Admin routes protection
+    // Admin routes protection - ONLY admin routes need authentication
     if (pathname.startsWith("/admin")) {
-      if (!token || (token.role !== "HOST" && token.role !== "ADMIN")) {
-        return NextResponse.redirect(new URL("/auth/signin", req.url))
-      }
-    }
-
-    // User account routes protection  
-    if (pathname.startsWith("/account")) {
-      if (!token) {
+      if (!token || token.role !== "ADMIN") {
         return NextResponse.redirect(new URL("/auth/signin", req.url))
       }
     }
@@ -27,20 +20,13 @@ export default withAuth(
       authorized: ({ token, req }) => {
         const { pathname } = req.nextUrl
 
-        // Public routes that don't require authentication
-        if (
-          pathname === "/" ||
-          pathname.startsWith("/properties") ||
-          pathname.startsWith("/auth") ||
-          pathname.startsWith("/api/auth") ||
-          pathname.startsWith("/_next") ||
-          pathname.startsWith("/public")
-        ) {
-          return true
+        // Only admin routes require authentication - all others are public
+        if (pathname.startsWith("/admin")) {
+          return !!token && token.role === "ADMIN"
         }
 
-        // All other routes require authentication
-        return !!token
+        // All other routes are public
+        return true
       },
     },
   }
@@ -48,6 +34,7 @@ export default withAuth(
 
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|public).*)",
+    // Only protect admin routes
+    "/admin/:path*"
   ],
 }

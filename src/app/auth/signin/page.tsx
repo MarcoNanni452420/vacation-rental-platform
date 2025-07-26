@@ -6,8 +6,7 @@ import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Home, Eye, EyeOff } from "lucide-react"
+import { ArrowLeft, Eye, EyeOff } from "lucide-react"
 
 export default function SignIn() {
   const [email, setEmail] = useState("")
@@ -35,10 +34,10 @@ export default function SignIn() {
         // Get the updated session to check user role
         const session = await getSession()
         
-        if (session?.user?.role === "HOST" || session?.user?.role === "ADMIN") {
+        if (session?.user?.role === "ADMIN") {
           router.push("/admin")
         } else {
-          router.push("/account")
+          router.push("/")
         }
       }
     } catch (error) {
@@ -49,130 +48,137 @@ export default function SignIn() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        {/* Logo */}
-        <div className="text-center">
-          <Link href="/" className="flex items-center justify-center space-x-2">
-            <Home className="h-10 w-10 text-primary" />
-            <span className="text-2xl font-bold text-gray-900">
-              VacationRental Pro
-            </span>
-          </Link>
-          <h2 className="mt-6 text-3xl font-bold text-gray-900">
-            Accedi al tuo account
-          </h2>
-          <p className="mt-2 text-sm text-gray-600">
-            Non hai un account?{" "}
-            <Link
-              href="/auth/signup"
-              className="font-medium text-primary hover:text-primary/80"
-            >
-              Registrati qui
-            </Link>
-          </p>
-        </div>
-
-        {/* Form */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Accesso</CardTitle>
-            <CardDescription>
-              Inserisci le tue credenziali per accedere
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {error && (
-                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
-                  {error}
-                </div>
-              )}
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                  Email
-                </label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="mt-1"
-                  placeholder="tua@email.com"
-                />
+    <div className="min-h-screen bg-white flex">
+      {/* Left Column - Form */}
+      <div className="flex-1 flex items-center justify-center px-8 lg:px-12">
+        <div className="max-w-md w-full">
+          <div className="animate-fade-up">
+              {/* Header */}
+              <div className="mb-12">
+                <Link 
+                  href="/" 
+                  className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors mb-8"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  Torna alla Home
+                </Link>
+                
+                <h1 className="text-4xl md:text-5xl font-bold mb-4">
+                  Bentornato
+                </h1>
+                <p className="text-lg text-muted-foreground">
+                  Accedi al tuo account Casa Fienaroli
+                </p>
               </div>
 
-              <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                  Password
-                </label>
-                <div className="relative mt-1">
-                  <Input
-                    id="password"
-                    type={showPassword ? "text" : "password"}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    placeholder="La tua password"
-                  />
-                  <button
-                    type="button"
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                    onClick={() => setShowPassword(!showPassword)}
-                  >
-                    {showPassword ? (
-                      <EyeOff className="h-4 w-4 text-gray-400" />
-                    ) : (
-                      <Eye className="h-4 w-4 text-gray-400" />
-                    )}
-                  </button>
-                </div>
-              </div>
+              {/* Form */}
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {error && (
+                  <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg text-sm animate-fade-up">
+                    {error}
+                  </div>
+                )}
 
-              <div className="flex items-center justify-between">
-                <div className="text-sm">
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      Email
+                    </label>
+                    <Input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      className="h-12"
+                      placeholder="inserisci@email.com"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      Password
+                    </label>
+                    <div className="relative">
+                      <Input
+                        type={showPassword ? "text" : "password"}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        className="h-12 pr-12"
+                        placeholder="La tua password"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        {showPassword ? (
+                          <EyeOff className="h-5 w-5" />
+                        ) : (
+                          <Eye className="h-5 w-5" />
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-lg"
+                >
+                  {isLoading ? "Accesso in corso..." : "Accedi"}
+                </Button>
+              </form>
+
+              {/* Sign up link */}
+              <div className="mt-8 text-center">
+                <p className="text-muted-foreground">
+                  Non hai ancora un account?{" "}
                   <Link
-                    href="/auth/forgot-password"
-                    className="font-medium text-primary hover:text-primary/80"
+                    href="/auth/signup"
+                    className="font-medium text-foreground hover:underline"
                   >
-                    Password dimenticata?
+                    Registrati qui
                   </Link>
-                </div>
-              </div>
-
-              <Button
-                type="submit"
-                className="w-full"
-                disabled={isLoading}
-              >
-                {isLoading ? "Accedendo..." : "Accedi"}
-              </Button>
-            </form>
-
-            <div className="mt-6">
-              <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-gray-300" />
-                </div>
-                <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-white text-gray-500">Account Demo</span>
-                </div>
-              </div>
-
-              <div className="mt-4 text-sm text-gray-600 bg-gray-50 p-4 rounded-lg">
-                <p className="font-medium">Prova la demo:</p>
-                <p className="mt-1">
-                  <strong>Host:</strong> host@demo.com / password123
-                </p>
-                <p>
-                  <strong>Ospite:</strong> guest@demo.com / password123
                 </p>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+
+              {/* Demo Credentials */}
+              <div className="mt-12 p-6 bg-gray-50 rounded-lg">
+                <h3 className="font-semibold text-sm uppercase tracking-wider text-muted-foreground mb-3">
+                  Account Demo
+                </h3>
+                <div className="space-y-2 text-sm">
+                  <p><strong>Admin:</strong> admin@vacationrental.com / admin123</p>
+                  <p><strong>Guest:</strong> guest@demo.com / password123</p>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Right Column - Hero Image */}
+      <div className="hidden lg:flex flex-1 relative">
+        <img 
+          src="/images/villa/bedroom-elegant.jpg"
+          alt="Casa Fienaroli"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+        
+        {/* Content Overlay */}
+        <div className="relative z-10 flex items-end p-12">
+          <div className="text-white animate-fade-up">
+            <h2 className="text-4xl font-bold mb-4">
+              Casa Fienaroli
+            </h2>
+            <p className="text-lg text-white/90 max-w-md">
+              Il tuo rifugio esclusivo nel cuore di Roma. 
+              Gestisci le tue prenotazioni e scopri l'esperienza del lusso autentico.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   )
