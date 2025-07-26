@@ -42,10 +42,11 @@ openssl rand -base64 32
 
 ### 4. **BUILD COMMANDS** ⚙️
 Configurazione Prisma per Vercel:
-- Build Command: `prisma generate && npm run build`
-- Install Command: `npm install && prisma generate`
+- Build Command: `npx prisma generate && npm run build`
+- Install Command: `npm install && npx prisma generate`
 - Framework: Next.js
 - ✅ Già configurato in package.json e vercel.json
+- ⚠️ **Importante:** Usa `npx prisma` (non solo `prisma`)
 
 ### 5. **PRISMA MIGRATIONS** 📊
 Dopo il deploy iniziale:
