@@ -1,0 +1,169 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  password      String?
+  name          String?
+  role          UserRole  @default(GUEST)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  bookings      Booking[]
+  reviews       Review[]
+  properties    Property[] @relation("PropertyOwner")
+
+  @@map("users")
+}
+
+model Property {
+  id            String    @id @default(cuid())
+  title         String
+  description   String
+  address       String
+  city          String
+  country       String
+  pricePerNight Int       // in cents
+  maxGuests     Int
+  bedrooms      Int
+  bathrooms     Int
+  amenities     String // JSON string
+  images        String // JSON string
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  ownerId       String
+  owner         User      @relation("PropertyOwner", fields: [ownerId], references: [id])
+  bookings      Booking[]
+  reviews       Review[]
+  availabilities Availability[]
+
+  @@map("properties")
+}
+
+model Booking {
+  id            String        @id @default(cuid())
+  checkIn       DateTime
+  checkOut      DateTime
+  guests        Int
+  totalAmount   Int           // in cents
+  status        BookingStatus @default(PENDING)
+  stripePaymentId String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  // Relations
+  guestId       String
+  guest         User          @relation(fields: [guestId], references: [id])
+  propertyId    String
+  property      Property      @relation(fields: [propertyId], references: [id])
+  reviews       Review[]
+
+  @@map("bookings")
+}
+
+model Availability {
+  id            String    @id @default(cuid())
+  date          DateTime
+  isAvailable   Boolean   @default(true)
+  price         Int?      // override default price for this date
+  
+  // Relations
+  propertyId    String
+  property      Property  @relation(fields: [propertyId], references: [id])
+
+  @@unique([propertyId, date])
+  @@map("availabilities")
+}
+
+model Review {
+  id            String    @id @default(cuid())
+  rating        Int       // 1-5
+  comment       String?
+  createdAt     DateTime  @default(now())
+
+  // Relations
+  guestId       String
+  guest         User      @relation(fields: [guestId], references: [id])
+  propertyId    String
+  property      Property  @relation(fields: [propertyId], references: [id])
+  bookingId     String
+  booking       Booking   @relation(fields: [bookingId], references: [id])
+
+  @@map("reviews")
+}
+
+// Analytics models for dashboard
+model PlatformMetrics {
+  id            String    @id @default(cuid())
+  platform      Platform
+  date          DateTime
+  views         Int       @default(0)
+  clicks        Int       @default(0)
+  bookings      Int       @default(0)
+  revenue       Int       @default(0) // in cents
+  propertyId    String
+
+  @@unique([platform, date, propertyId])
+  @@map("platform_metrics")
+}
+
+model AdCampaign {
+  id            String    @id @default(cuid())
+  platform      AdPlatform
+  campaignId    String
+  name          String
+  status        CampaignStatus @default(ACTIVE)
+  budget        Int       // in cents
+  spend         Int       @default(0) // in cents
+  impressions   Int       @default(0)
+  clicks        Int       @default(0)
+  conversions   Int       @default(0)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@map("ad_campaigns")
+}
+
+enum UserRole {
+  GUEST
+  HOST
+  ADMIN
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+enum Platform {
+  AIRBNB
+  BOOKING
+  DIRECT
+}
+
+enum AdPlatform {
+  GOOGLE_ADS
+  META_ADS
+}
+
+enum CampaignStatus {
+  ACTIVE
+  PAUSED
+  COMPLETED
+}
