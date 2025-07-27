@@ -203,7 +203,7 @@ export default function HomePage() {
             
             <div className="relative h-[600px] bg-gray-100 rounded-lg overflow-hidden">
               <Image
-                src={`https://maps.googleapis.com/maps/api/staticmap?center=41.8914,12.4678&zoom=17&size=1200x600&markers=color:orange%7Clabel:F%7C41.8919,12.4686&markers=color:red%7Clabel:M%7C41.8909,12.4675&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
+                src={`https://maps.googleapis.com/maps/api/staticmap?center=41.8898,12.4712&zoom=17&size=1200x600&markers=color:orange%7Clabel:F%7C41.8885,12.4719&markers=color:red%7Clabel:M%7C41.8911,12.4705&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
                 alt="Mappa Trastevere - Casa Fienaroli (F) e Casa Moro (M)"
                 fill
                 sizes="(max-width: 768px) 100vw, 80vw"
