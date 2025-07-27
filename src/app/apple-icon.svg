@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <!-- Background -->
+  <rect width="180" height="180" fill="#C17A5B" rx="40"/>
+  
+  <!-- House Icon (larger for apple touch icon) -->
+  <g fill="white">
+    <!-- Main House Structure -->
+    <path d="M90 40 L45 75 L45 130 L135 130 L135 75 Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+    
+    <!-- Roof -->
+    <path d="M35 80 L90 30 L145 80 L135 80 L90 40 L45 80 Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+    
+    <!-- Door -->
+    <rect x="80" y="100" width="20" height="30" fill="#A65B5B"/>
+    
+    <!-- Windows -->
+    <rect x="55" y="85" width="20" height="20" fill="#A65B5B"/>
+    <rect x="105" y="85" width="20" height="20" fill="#A65B5B"/>
+  </g>
+  
+  <!-- "TLH" text -->
+  <text x="90" y="155" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="white">TLH</text>
+</svg>

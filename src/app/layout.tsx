@@ -9,6 +9,12 @@ import {getMessages} from 'next-intl/server';
 export const metadata: Metadata = {
   title: "Trastevere Luxury Homes - Case Vacanza Roma",
   description: "Case vacanza di lusso nel cuore di Trastevere, Roma. Casa Fienaroli e Casa Moro - esperienze uniche nella città eterna.",
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/favicon.svg',
+  },
 };
 
 export default async function RootLayout({
