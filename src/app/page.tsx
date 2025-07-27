@@ -1,389 +1,250 @@
 "use client"
 
-import { useRef, useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
-import Image from "next/image"
-import { ArrowRight, Calendar, Users, ChevronDown } from "lucide-react"
-import { ClientOnly } from "@/components/ui/client-only"
+import { getAllProperties } from "@/lib/properties-data"
+import { ArrowRight, MapPin, Users, Bed, Bath, Star } from "lucide-react"
+import { useTranslations } from 'next-intl'
 
 export default function HomePage() {
-  const heroRef = useRef<HTMLDivElement>(null)
+  const properties = getAllProperties()
+  const [hoveredProperty, setHoveredProperty] = useState<string | null>(null)
+  const t = useTranslations('home')
+
+  // Reset theme on homepage
+  useEffect(() => {
+    document.documentElement.removeAttribute('data-theme')
+  }, [])
 
   return (
     <main className="bg-white overflow-hidden">
-      {/* Hero Section - Full Height with Video/Image Background */}
-      <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="/images/villa/bedroom-master.jpg"
-            alt="Casa Fienaroli"
-            className="w-full h-full object-cover image-bright"
-          />
-          <div className="absolute inset-0 bg-black/25 z-10" />
-        </div>
-
-        {/* Hero Content */}
-        <div className="relative z-20 text-center text-white max-w-6xl mx-auto px-6">
-          <div className="animate-fade-up">
-            <h6 className="text-sm uppercase tracking-[0.3em] mb-6 font-medium">
-              Trastevere, Roma
-            </h6>
-          </div>
-          
-          <h1 className="text-edge mb-8 animate-fade-up" style={{ animationDelay: '0.2s' }}>
-            Casa Fienaroli
+      {/* Hero Section - Minimal with brand */}
+      <section className="h-screen relative flex items-center justify-center">
+        <div className="text-center z-10">
+          <h6 className="text-sm uppercase tracking-[0.3em] mb-6 font-medium text-gray-600">
+            {t('subtitle')}
+          </h6>
+          <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold mb-8 tracking-tight">
+            {t('title')}
           </h1>
-          
-          <p className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto font-light text-white/90 animate-fade-up" style={{ animationDelay: '0.4s' }}>
-            Un rifugio esclusivo dove il lusso incontra la tradizione italiana, 
-            nel cuore di Roma, tra i vicoli storici di Trastevere
+          <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto font-light">
+            {t('description')}
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-fade-up" style={{ animationDelay: '0.6s' }}>
-            <Link 
-              href="/property" 
-              className="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 font-medium text-sm uppercase tracking-wider hover:bg-gray-100 transition-all duration-300"
-            >
-              Scopri la Casa
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            
-            <Link 
-              href="#availability" 
-              className="inline-flex items-center gap-3 border-2 border-white text-white px-8 py-4 font-medium text-sm uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-300"
-            >
-              Verifica Disponibilità
-            </Link>
-          </div>
         </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white animate-bounce">
-          <ChevronDown className="w-6 h-6" />
+        
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+          <div className="w-[1px] h-16 bg-gray-300 mx-auto animate-pulse" />
         </div>
       </section>
 
-      {/* Introduction Section */}
-      <Section className="bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-            <RevealOnScroll>
-              <div className="space-y-8">
-                <h6 className="text-sm uppercase tracking-[0.3em] text-muted-foreground">
-                  Benvenuti
-                </h6>
-                <h2 className="text-edge">
-                  Un'esperienza di lusso autentico sulla costa amalfitana
-                </h2>
-                <div className="space-y-6 text-lg text-muted-foreground">
-                  <p>
-                    Casa Fienaroli rappresenta l'essenza del vivere romano, 
-                    dove ogni dettaglio è stato curato per offrire un'esperienza 
-                    indimenticabile.
-                  </p>
-                  <p>
-                    Quattro camere da letto elegantemente arredate, tre bagni in 
-                    marmo di Carrara, e spazi living che si aprono su terrazze 
-                    panoramiche con vista sui tetti di Roma.
-                  </p>
-                </div>
-                <Link 
-                  href="/property" 
-                  className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider underline-link"
-                >
-                  Esplora gli interni
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </RevealOnScroll>
-            
-            <RevealOnScroll delay={0.2}>
-              <div className="relative aspect-[4/5] overflow-hidden">
-                <div className="absolute inset-0 bg-gray-200" />
-                <div className="absolute bottom-0 right-0 bg-white p-8 w-48">
-                  <p className="text-6xl font-light mb-2">450€</p>
-                  <p className="text-sm text-muted-foreground uppercase tracking-wider">A notte</p>
-                </div>
-              </div>
-            </RevealOnScroll>
-          </div>
-        </div>
-      </Section>
-
-      {/* Features Grid - Modern Asymmetric Layout */}
-      <Section className="bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <RevealOnScroll>
-            <div className="text-center mb-20">
-              <h6 className="text-sm uppercase tracking-[0.3em] text-muted-foreground mb-6">
-                Caratteristiche
-              </h6>
-              <h2 className="text-edge max-w-4xl mx-auto">
-                Tutto ciò che serve per una vacanza perfetta
-              </h2>
-            </div>
-          </RevealOnScroll>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200">
-            {[
-              { title: "8 Ospiti", desc: "Spazio per tutta la famiglia" },
-              { title: "4 Camere", desc: "Ognuna con vista sui tetti" },
-              { title: "3 Bagni", desc: "In marmo di Carrara" },
-              { title: "Piscina Privata", desc: "Riscaldata tutto l'anno" },
-              { title: "Cucina Gourmet", desc: "Completamente attrezzata" },
-              { title: "WiFi Veloce", desc: "In tutta la proprietà" }
-            ].map((feature, index) => (
-              <RevealOnScroll key={index} delay={index * 0.1}>
-                <div className="bg-white p-12 hover:bg-gray-50 transition-colors duration-300">
-                  <h4 className="text-2xl mb-2">{feature.title}</h4>
-                  <p className="text-muted-foreground">{feature.desc}</p>
-                </div>
-              </RevealOnScroll>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* Gallery Preview - Editorial Style */}
-      <Section className="bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            <RevealOnScroll className="col-span-2 row-span-2">
-              <div className="relative aspect-square overflow-hidden group">
-                <img 
-                  src="/images/villa/interior-overview.jpg"
-                  alt="Casa Overview"
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-700" />
-              </div>
-            </RevealOnScroll>
-            
-            {[
-              "/images/villa/kitchen-1.jpg",
-              "/images/villa/bathroom-1.jpg", 
-              "/images/villa/bedroom-elegant.jpg",
-              "/images/villa/bedroom-rustic.jpg",
-              "/images/villa/bedroom-master.jpg"
-            ].map((image, i) => (
-              <RevealOnScroll key={i} delay={i * 0.1}>
-                <div className="relative aspect-square overflow-hidden group">
-                  <img 
-                    src={image}
-                    alt={`Casa Interior ${i + 1}`}
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-700" />
-                </div>
-              </RevealOnScroll>
-            ))}
-          </div>
-          
-          <div className="text-center mt-16">
-            <Link 
-              href="/property#gallery" 
-              className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider underline-link"
+      {/* Properties Grid Section */}
+      <section className="min-h-screen bg-white">
+        <div className="grid grid-cols-1 lg:grid-cols-2 h-screen">
+          {properties.map((property) => (
+            <Link
+              key={property.slug}
+              href={`/property/${property.slug}`}
+              className="relative group overflow-hidden"
+              onMouseEnter={() => setHoveredProperty(property.slug)}
+              onMouseLeave={() => setHoveredProperty(null)}
             >
-              Vedi tutte le foto
+              {/* Background Image */}
+              <div className="absolute inset-0">
+                <img 
+                  src={property.images[0]}
+                  alt={property.name}
+                  className={`w-full h-full object-cover transition-all duration-700 ${
+                    hoveredProperty === property.slug ? 'scale-110' : 'scale-100'
+                  }`}
+                />
+                <div className={`absolute inset-0 bg-black transition-opacity duration-700 ${
+                  hoveredProperty === property.slug ? 'opacity-40' : 'opacity-20'
+                }`} />
+              </div>
+
+              {/* Property Info */}
+              <div className="relative h-full flex flex-col justify-end p-12 lg:p-16">
+                {/* Bottom - Details */}
+                <div className="text-white">
+                  {/* Text with enhanced readability */}
+                  <div className="bg-black/40 backdrop-blur-sm rounded-lg p-6 mb-6">
+                    <h2 className="text-4xl lg:text-5xl font-bold mb-3 text-white drop-shadow-lg">
+                      {property.name}
+                    </h2>
+                    
+                    <p className="text-base mb-4 text-white/95 max-w-md leading-relaxed drop-shadow-md">
+                      {property.shortDesc}
+                    </p>
+                  </div>
+
+                  {/* Features with better contrast */}
+                  <div className="flex items-center gap-6 mb-8 text-sm text-white/90 drop-shadow-md">
+                    <div className="flex items-center gap-2">
+                      <Users className="w-4 h-4" />
+                      <span>{property.maxGuests} {t('guests')}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Bed className="w-4 h-4" />
+                      <span>{property.bedrooms} {t('bedrooms')}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Bath className="w-4 h-4" />
+                      <span>{property.bathrooms} {t('bathrooms')}</span>
+                    </div>
+                  </div>
+
+                  {/* Price and CTA with better visibility */}
+                  <div className="flex items-center justify-between">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3">
+                      <p className="text-2xl font-light text-white drop-shadow-lg">€{property.price}</p>
+                      <p className="text-xs text-white/80">{t('perNight')}</p>
+                    </div>
+                    
+                    <div className={`inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider transition-all duration-300 text-white drop-shadow-lg ${
+                      hoveredProperty === property.slug ? 'translate-x-2' : ''
+                    }`}>
+                      {t('explore')}
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </div>
+
+                  {/* Rating */}
+                  <div className="absolute top-12 right-12 flex items-center gap-2 text-white">
+                    <Star className="w-4 h-4 fill-current" />
+                    <span className="text-sm">{property.rating}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Theme Preview Line */}
+              <div 
+                className={`absolute bottom-0 left-0 right-0 h-1 transition-all duration-700 ${
+                  hoveredProperty === property.slug ? 'h-2' : 'h-1'
+                }`}
+                style={{
+                  backgroundColor: property.theme === 'fienaroli' 
+                    ? '#C17A5B' // Soft Terracotta for Fienaroli
+                    : '#A65B5B' // Muted Burgundy for Moro
+                }}
+              />
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section className="py-32 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <h6 className="text-sm uppercase tracking-[0.3em] mb-6 font-medium text-gray-600">
+            {t('aboutSectionLabel')}
+          </h6>
+          <h2 className="text-5xl md:text-6xl font-bold mb-8">
+            {t('aboutTitle')}
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12">
+            {t('aboutDescription')}
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+            <div className="text-center">
+              <div className="text-4xl font-bold mb-2">2</div>
+              <p className="text-gray-600">{t('stats.properties')}</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold mb-2">10+</div>
+              <p className="text-gray-600">{t('stats.experience')}</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold mb-2">200+</div>
+              <p className="text-gray-600">{t('stats.guests')}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Location Section */}
+      <section className="py-32 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h6 className="text-sm uppercase tracking-[0.3em] mb-6 font-medium text-gray-600">
+                {t('locationSectionLabel')}
+              </h6>
+              <h2 className="text-5xl md:text-6xl font-bold mb-8">
+                {t('locationTitle')}
+              </h2>
+              <p className="text-xl text-gray-600 mb-6">
+                {t('locationDescription')}
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <MapPin className="w-5 h-5 text-gray-400 mt-1" />
+                  <div>
+                    <p className="font-medium">{t('walkingDistances.santaMaria')}</p>
+                    <p className="text-gray-600">{t('walkingDistances.santaMariaLocation')}</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <MapPin className="w-5 h-5 text-gray-400 mt-1" />
+                  <div>
+                    <p className="font-medium">{t('walkingDistances.piazzaNavona')}</p>
+                    <p className="text-gray-600">{t('walkingDistances.piazzaNavonaLocation')}</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <MapPin className="w-5 h-5 text-gray-400 mt-1" />
+                  <div>
+                    <p className="font-medium">{t('walkingDistances.fontanaTrevi')}</p>
+                    <p className="text-gray-600">{t('walkingDistances.fontanaTreviLocation')}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="relative h-[600px] bg-gray-100 rounded-lg overflow-hidden">
+              <iframe
+                src="https://maps.google.com/maps?q=41.8918,12.4684&z=17&output=embed&markers=color:orange%7Clabel:F%7C41.8919,12.4686&markers=color:red%7Clabel:M%7C41.8917,12.4682"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Mappa Trastevere - Casa Fienaroli e Casa Moro"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-32 bg-black text-white">
+        <div className="max-w-4xl mx-auto text-center px-6">
+          <h2 className="text-5xl md:text-6xl font-bold mb-8">
+            {t('ctaTitle')}
+          </h2>
+          <p className="text-xl opacity-90 mb-12">
+            {t('ctaDescription')}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <Link 
+              href="/property/fienaroli"
+              className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 font-medium text-sm uppercase tracking-wider hover:bg-gray-100 transition-all duration-300"
+            >
+              Casa Fienaroli
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link 
+              href="/property/moro"
+              className="inline-flex items-center gap-3 border-2 border-white text-white px-8 py-4 font-medium text-sm uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-300"
+            >
+              Casa Moro
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
-      </Section>
-
-      {/* Availability Section */}
-      <Section id="availability" className="bg-black text-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <RevealOnScroll>
-            <h6 className="text-sm uppercase tracking-[0.3em] text-gray-400 mb-6">
-              Prenota il tuo soggiorno
-            </h6>
-            <h2 className="text-edge mb-12">
-              Verifica la disponibilità
-            </h2>
-          </RevealOnScroll>
-
-          <RevealOnScroll delay={0.2}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              <div className="space-y-3">
-                <label className="text-sm uppercase tracking-wider text-gray-400">Check-in</label>
-                <div className="relative">
-                  <input 
-                    type="date" 
-                    className="w-full bg-white/10 border border-white/20 text-white px-6 py-4 focus:outline-none focus:border-white transition-colors"
-                  />
-                </div>
-              </div>
-              
-              <div className="space-y-3">
-                <label className="text-sm uppercase tracking-wider text-gray-400">Check-out</label>
-                <div className="relative">
-                  <input 
-                    type="date" 
-                    className="w-full bg-white/10 border border-white/20 text-white px-6 py-4 focus:outline-none focus:border-white transition-colors"
-                  />
-                </div>
-              </div>
-              
-              <div className="space-y-3">
-                <label className="text-sm uppercase tracking-wider text-gray-400">Ospiti</label>
-                <div className="relative">
-                  <select className="w-full bg-white/10 border border-white/20 text-white px-6 py-4 focus:outline-none focus:border-white transition-colors appearance-none">
-                    <option value="1">1 Ospite</option>
-                    <option value="2">2 Ospiti</option>
-                    <option value="3">3 Ospiti</option>
-                    <option value="4">4 Ospiti</option>
-                    <option value="5">5 Ospiti</option>
-                    <option value="6">6 Ospiti</option>
-                    <option value="7">7 Ospiti</option>
-                    <option value="8">8 Ospiti</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <button className="bg-white text-black px-12 py-5 font-medium text-sm uppercase tracking-wider hover:bg-gray-100 transition-colors duration-300">
-              Verifica Disponibilità
-            </button>
-          </RevealOnScroll>
-        </div>
-      </Section>
-
-      {/* Testimonials - Modern Cards */}
-      <Section className="bg-white">
-        <div className="max-w-7xl mx-auto">
-          <RevealOnScroll>
-            <div className="text-center mb-20">
-              <h6 className="text-sm uppercase tracking-[0.3em] text-muted-foreground mb-6">
-                Recensioni
-              </h6>
-              <h2 className="text-edge max-w-3xl mx-auto">
-                Cosa dicono i nostri ospiti
-              </h2>
-            </div>
-          </RevealOnScroll>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Marco R.",
-                date: "Luglio 2024",
-                text: "Un'esperienza incredibile. La vista dalla terrazza è qualcosa che non dimenticherò mai. Servizio impeccabile."
-              },
-              {
-                name: "Sofia B.",
-                date: "Giugno 2024",
-                text: "La casa supera ogni aspettativa. Gli interni sono stupendi e la posizione è perfetta per esplorare Roma."
-              },
-              {
-                name: "Alessandro T.",
-                date: "Maggio 2024",
-                text: "Lusso e comfort in ogni dettaglio. La piscina privata e gli spazi esterni sono semplicemente magnifici."
-              }
-            ].map((review, index) => (
-              <RevealOnScroll key={index} delay={index * 0.1}>
-                <div className="border-t pt-8">
-                  <div className="flex justify-between items-start mb-6">
-                    <div>
-                      <p className="font-medium">{review.name}</p>
-                      <p className="text-sm text-muted-foreground">{review.date}</p>
-                    </div>
-                    <div className="flex gap-1">
-                      {[...Array(5)].map((_, i) => (
-                        <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                      ))}
-                    </div>
-                  </div>
-                  <p className="text-muted-foreground leading-relaxed">
-                    "{review.text}"
-                  </p>
-                </div>
-              </RevealOnScroll>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* Final CTA */}
-      <Section className="bg-gray-50">
-        <div className="max-w-4xl mx-auto text-center">
-          <RevealOnScroll>
-            <h2 className="text-edge mb-8">
-              Pronto per un'esperienza indimenticabile?
-            </h2>
-            <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-              Prenota il tuo soggiorno a Casa Fienaroli e vivi la magia di Roma
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link 
-                href="/property" 
-                className="inline-flex items-center gap-3 bg-black text-white px-8 py-4 font-medium text-sm uppercase tracking-wider hover:bg-gray-900 transition-colors"
-              >
-                Prenota Ora
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link 
-                href="/contact" 
-                className="inline-flex items-center gap-3 border-2 border-black text-black px-8 py-4 font-medium text-sm uppercase tracking-wider hover:bg-black hover:text-white transition-colors"
-              >
-                Contattaci
-              </Link>
-            </div>
-          </RevealOnScroll>
-        </div>
-      </Section>
+      </section>
     </main>
-  )
-}
-
-// Section Component with consistent padding
-function Section({ children, className = "", ...props }: { children: React.ReactNode; className?: string; id?: string }) {
-  return (
-    <section className={`section-padding ${className}`} {...props}>
-      <div className="container-padding">
-        {children}
-      </div>
-    </section>
-  )
-}
-
-// Reveal on Scroll Component  
-function RevealOnScroll({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
-  const ref = useRef(null)
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.unobserve(entry.target)
-        }
-      },
-      { threshold: 0.1, rootMargin: "-100px" }
-    )
-
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  return (
-    <div 
-      ref={ref}
-      className={`transition-all duration-1000 ease-out ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-      } ${className}`}
-      style={{ 
-        transitionDelay: isVisible ? `${delay * 100}ms` : '0ms'
-      }}
-    >
-      {children}
-    </div>
   )
 }

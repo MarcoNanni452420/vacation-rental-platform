@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils"
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   // Extending base HTML input props with size omitted to avoid conflicts
+  size?: 'sm' | 'md' | 'lg'
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(

@@ -8,7 +8,7 @@ interface NoSSRProps {
   fallback?: ReactNode
 }
 
-function NoSSRComponent({ children, fallback = null }: NoSSRProps) {
+function NoSSRComponent({ children }: NoSSRProps) {
   return <>{children}</>
 }
 

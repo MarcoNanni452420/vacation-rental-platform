@@ -1,0 +1,79 @@
+{
+  "nav": {
+    "fienaroli": "Casa Fienaroli",
+    "moro": "Casa Moro", 
+    "contact": "Contatti",
+    "bookNow": "Prenota Ora"
+  },
+  "home": {
+    "subtitle": "Houses in Rome",
+    "title": "Trastevere Luxury",
+    "description": "Due proprietà esclusive nel cuore storico di Roma, dove il design contemporaneo incontra la tradizione",
+    "explore": "Esplora",
+    "perNight": "per notte",
+    "guests": "ospiti",
+    "bedrooms": "camere",
+    "bathrooms": "bagni",
+    "aboutSectionLabel": "L'esperienza",
+    "aboutTitle": "Vivi Roma come un local",
+    "aboutDescription": "Nel cuore di Trastevere, a pochi passi dalla movida ma in angoli tranquilli, le nostre case offrono il perfetto equilibrio tra comfort moderno e autenticità romana. Passeggia per i vicoli storici, gusta la vera cucina romana nelle trattorie tradizionali, e raggiungi facilmente Piazza Navona, il Pantheon e tutte le meraviglie di Roma.",
+    "stats": {
+      "properties": "Proprietà esclusive",
+      "experience": "Anni di esperienza", 
+      "guests": "Ospiti soddisfatti"
+    },
+    "locationSectionLabel": "Posizione",
+    "locationTitle": "Il cuore di Trastevere",
+    "locationDescription": "Entrambe le proprietà si trovano nel quartiere più caratteristico di Roma, dove l'atmosfera bohémien si mescola con la storia millenaria della città eterna.",
+    "walkingDistances": {
+      "santaMaria": "5 minuti a piedi",
+      "santaMariaLocation": "Santa Maria in Trastevere",
+      "piazzaNavona": "10 minuti a piedi", 
+      "piazzaNavonaLocation": "Piazza Navona e Pantheon",
+      "fontanaTrevi": "15 minuti a piedi",
+      "fontanaTreviLocation": "Fontana di Trevi e Piazza di Spagna"
+    },
+    "ctaTitle": "Scegli la tua casa a Roma",
+    "ctaDescription": "Design contemporaneo o fascino storico? Scopri quale delle nostre proprietà fa per te."
+  },
+  "property": {
+    "backToProperties": "Torna alle proprietà",
+    "reviews": "recensioni",
+    "guests": "Ospiti",
+    "bedrooms": "Camere", 
+    "bathrooms": "Bagni",
+    "surface": "Superficie",
+    "propertyTitle": "La Proprietà",
+    "servicesTitle": "Servizi",
+    "galleryTitle": "Galleria",
+    "locationTitle": "Posizione",
+    "locationDescription": "Nel cuore storico di Roma, a pochi passi dalle principali attrazioni",
+    "ctaTitle": "Pronto per il tuo soggiorno a Roma?",
+    "ctaDescription": "Prenota {propertyName} e vivi un'esperienza unica nel cuore di Trastevere",
+    "contactUs": "Contattaci",
+    "seeOtherProperties": "Vedi altre proprietà",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out", 
+    "guestsLabel": "Ospiti",
+    "bookNow": "Prenota Ora",
+    "noChargeNow": "Non verrà addebitato alcun importo in questo momento",
+    "viewAllPhotos": "Vedi tutte le foto",
+    "image": "Immagine"
+  },
+  "footer": {
+    "brandName": "Trastevere Luxury Homes",
+    "description": "Due proprietà esclusive nel cuore storico di Roma, dove il design contemporaneo incontra la tradizione. Vivi un'esperienza autentica nel quartiere più caratteristico della città eterna.",
+    "quickLinks": "Link Utili",
+    "allProperties": "Tutte le Proprietà",
+    "aboutUs": "Chi Siamo", 
+    "contactUs": "Contattaci",
+    "hostDashboard": "Dashboard Host",
+    "contacts": "Contatti",
+    "email": "info@trastivereiluxury.com",
+    "phone": "+39 06 123 4567",
+    "address": "Trastevere, Roma",
+    "copyright": "© 2025 Trastevere Luxury Homes. Tutti i diritti riservati.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Termini di Servizio"
+  }
+}

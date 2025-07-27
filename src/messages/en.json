@@ -1,0 +1,79 @@
+{
+  "nav": {
+    "fienaroli": "Casa Fienaroli",
+    "moro": "Casa Moro",
+    "contact": "Contact", 
+    "bookNow": "Book Now"
+  },
+  "home": {
+    "subtitle": "Houses in Rome",
+    "title": "Trastevere Luxury",
+    "description": "Two exclusive properties in the historic heart of Rome, where contemporary design meets tradition",
+    "explore": "Explore",
+    "perNight": "per night",
+    "guests": "guests",
+    "bedrooms": "bedrooms", 
+    "bathrooms": "bathrooms",
+    "aboutSectionLabel": "The Experience",
+    "aboutTitle": "Live Rome like a local",
+    "aboutDescription": "In the heart of Trastevere, steps away from the nightlife but in quiet corners, our houses offer the perfect balance between modern comfort and Roman authenticity. Walk through historic alleys, taste true Roman cuisine in traditional trattorias, and easily reach Piazza Navona, the Pantheon and all the wonders of Rome.",
+    "stats": {
+      "properties": "Exclusive properties",
+      "experience": "Years of experience",
+      "guests": "Satisfied guests"
+    },
+    "locationSectionLabel": "Location",
+    "locationTitle": "The heart of Trastevere", 
+    "locationDescription": "Both properties are located in Rome's most characteristic neighborhood, where bohemian atmosphere blends with the millenary history of the eternal city.",
+    "walkingDistances": {
+      "santaMaria": "5 minutes walk",
+      "santaMariaLocation": "Santa Maria in Trastevere",
+      "piazzaNavona": "10 minutes walk", 
+      "piazzaNavonaLocation": "Piazza Navona and Pantheon",
+      "fontanaTrevi": "15 minutes walk",
+      "fontanaTreviLocation": "Trevi Fountain and Spanish Steps"
+    },
+    "ctaTitle": "Choose your home in Rome",
+    "ctaDescription": "Contemporary design or historic charm? Discover which of our properties is right for you."
+  },
+  "property": {
+    "backToProperties": "Back to properties",
+    "reviews": "reviews",
+    "guests": "Guests",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms", 
+    "surface": "Surface",
+    "propertyTitle": "The Property",
+    "servicesTitle": "Amenities",
+    "galleryTitle": "Gallery",
+    "locationTitle": "Location",
+    "locationDescription": "In the historic heart of Rome, steps away from major attractions",
+    "ctaTitle": "Ready for your stay in Rome?",
+    "ctaDescription": "Book {propertyName} and live a unique experience in the heart of Trastevere",
+    "contactUs": "Contact us",
+    "seeOtherProperties": "See other properties",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "guestsLabel": "Guests", 
+    "bookNow": "Book Now",
+    "noChargeNow": "No charge will be made at this time",
+    "viewAllPhotos": "View all photos",
+    "image": "Image"
+  },
+  "footer": {
+    "brandName": "Trastevere Luxury Homes",
+    "description": "Two exclusive properties in the historic heart of Rome, where contemporary design meets tradition. Experience authentic living in the eternal city's most characteristic neighborhood.",
+    "quickLinks": "Quick Links",
+    "allProperties": "All Properties",
+    "aboutUs": "About Us", 
+    "contactUs": "Contact Us",
+    "hostDashboard": "Host Dashboard",
+    "contacts": "Contact",
+    "email": "info@trastivereiluxury.com",
+    "phone": "+39 06 123 4567",
+    "address": "Trastevere, Rome",
+    "copyright": "© 2025 Trastevere Luxury Homes. All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  }
+}

@@ -4,10 +4,13 @@ import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { useState, useEffect } from "react"
 import { cn } from "@/lib/utils"
+import { LanguageSwitcher } from "@/components/LanguageSwitcher"
+import { useTranslations } from 'next-intl'
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const t = useTranslations('nav')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,9 +21,9 @@ export function Navbar() {
   }, [])
 
   const navLinks = [
-    { href: "/property", label: "La Casa" },
-    { href: "/about", label: "Esperienze" },
-    { href: "/contact", label: "Contatti" },
+    { href: "/property/fienaroli", label: t('fienaroli') },
+    { href: "/property/moro", label: t('moro') },
+    { href: "/contact", label: t('contact') },
   ]
 
   return (
@@ -43,14 +46,14 @@ export function Navbar() {
                   isScrolled ? "text-black" : "text-white"
                 )}
               >
-                Casa Fienaroli
+                Trastevere Luxury Homes
               </div>
             </Link>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center space-x-12">
-            {navLinks.map((link, index) => (
+            {navLinks.map((link) => (
               <div key={link.href}>
                 <Link 
                   href={link.href} 
@@ -69,19 +72,11 @@ export function Navbar() {
               </div>
             ))}
             
-            {/* CTA Section */}
+            {/* CTA and Language Section */}
             <div className="flex items-center space-x-6 ml-12">
+              <LanguageSwitcher />
               <Link
-                href="/contact"
-                className={cn(
-                  "text-sm font-medium uppercase tracking-wide opacity-60 hover:opacity-100 transition-all duration-300",
-                  isScrolled ? "text-black" : "text-white"
-                )}
-              >
-                Contatti
-              </Link>
-              <Link
-                href="/property"
+                href="/"
                 className={cn(
                   "text-sm font-medium uppercase tracking-wide px-6 py-3 border transition-all duration-300",
                   isScrolled 
@@ -89,7 +84,7 @@ export function Navbar() {
                     : "border-white text-white hover:bg-white hover:text-black"
                 )}
               >
-                Prenota
+                {t('bookNow')}
               </Link>
             </div>
           </div>
@@ -129,20 +124,16 @@ export function Navbar() {
               ))}
               
               <div className="pt-8 border-t space-y-6 animate-fade-up" style={{ animationDelay: '300ms' }}>
-                <Link
-                  href="/contact"
-                  className="block text-lg font-medium uppercase tracking-wide text-black opacity-60 hover:opacity-100 transition-opacity"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Contatti
-                </Link>
-                <Link
-                  href="/property"
-                  className="inline-block text-sm font-medium uppercase tracking-wide px-6 py-3 border border-black text-black hover:bg-black hover:text-white transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Prenota
-                </Link>
+                <div className="flex items-center justify-between">
+                  <LanguageSwitcher />
+                  <Link
+                    href="/"
+                    className="inline-block text-sm font-medium uppercase tracking-wide px-6 py-3 border border-black text-black hover:bg-black hover:text-white transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {t('bookNow')}
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

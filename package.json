@@ -8,7 +8,13 @@
     "start": "next start",
     "lint": "next lint",
     "db:seed": "npx prisma db seed",
-    "postinstall": "npx prisma generate"
+    "postinstall": "npx prisma generate",
+    "test:quick": "echo '⚡ Running Quick Tests...' && npx tsc --noEmit && echo '✅ TypeScript OK' && curl -s -o /dev/null -w 'Homepage: %{http_code}\\n' http://localhost:3001/ && echo '✅ Quick tests completed'",
+    "test:pre-commit": "echo '🚀 Running Pre-Commit Tests...' && npx tsc --noEmit && npm run build && npm run lint && echo '✅ All pre-commit tests passed'",
+    "test:typecheck": "npx tsc --noEmit",
+    "test:homepage": "curl -s -o /dev/null -w 'Homepage Response: %{http_code}\\n' http://localhost:3001/",
+    "db:check": "npx prisma migrate status",
+    "dev:clean": "rm -rf .next && npm run dev"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
@@ -39,6 +45,7 @@
     "lucide-react": "^0.525.0",
     "next": "15.4.4",
     "next-auth": "^4.24.11",
+    "next-intl": "^4.3.4",
     "postcss": "^8.5.6",
     "prisma": "^6.12.0",
     "react": "19.1.0",

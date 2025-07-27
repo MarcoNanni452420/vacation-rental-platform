@@ -157,7 +157,7 @@ export const mockProperties = [
 ]
 
 // Helper function to parse JSON amenities and images from database
-export function parsePropertyFromDB(property: any) {
+export function parsePropertyFromDB(property: { amenities: string | string[], images: string | string[], [key: string]: unknown }) {
   return {
     ...property,
     amenities: typeof property.amenities === 'string' ? JSON.parse(property.amenities) : property.amenities,

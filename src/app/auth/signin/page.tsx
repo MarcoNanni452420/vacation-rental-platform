@@ -40,7 +40,7 @@ export default function SignIn() {
           router.push("/")
         }
       }
-    } catch (error) {
+    } catch {
       setError("Errore durante il login")
     } finally {
       setIsLoading(false)
@@ -175,7 +175,7 @@ export default function SignIn() {
             </h2>
             <p className="text-lg text-white/90 max-w-md">
               Il tuo rifugio esclusivo nel cuore di Roma. 
-              Gestisci le tue prenotazioni e scopri l'esperienza del lusso autentico.
+              Gestisci le tue prenotazioni e scopri l&apos;esperienza del lusso autentico.
             </p>
           </div>
         </div>

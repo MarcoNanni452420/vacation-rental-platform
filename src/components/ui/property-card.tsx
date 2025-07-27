@@ -47,7 +47,6 @@ const amenityIcons = {
 
 export function PropertyCard({ property, index = 0 }: PropertyCardProps) {
   const [isLiked, setIsLiked] = useState(false)
-  const [imageError, setImageError] = useState(false)
   const isClient = useIsClient()
 
   return (

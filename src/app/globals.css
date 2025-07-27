@@ -34,6 +34,28 @@
     --radius: 0;
   }
 
+  /* Theme Fienaroli - Warm Terracotta Mediterranean */
+  [data-theme="fienaroli"] {
+    --primary: 20 65% 48%; /* Soft Terracotta */
+    --accent: 35 75% 55%; /* Muted Orange */
+    --background: 30 40% 96%; /* Warm Cream */
+    --foreground: 25 35% 20%;
+    --card: 30 50% 97%;
+    --muted: 25 35% 85%;
+    --muted-foreground: 25 25% 45%;
+  }
+
+  /* Theme Moro - Rich Burgundy Elegance */
+  [data-theme="moro"] {
+    --primary: 345 55% 42%; /* Muted Burgundy */
+    --accent: 25 65% 45%; /* Soft Bronze */
+    --background: 15 20% 95%; /* Soft Blush */
+    --foreground: 0 0% 15%;
+    --card: 15 25% 96%;
+    --muted: 350 25% 82%;
+    --muted-foreground: 0 0% 35%;
+  }
+
   .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;

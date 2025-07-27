@@ -73,7 +73,7 @@ export default function SignUp() {
       } else {
         setError(data.error || "Errore durante la registrazione")
       }
-    } catch (error) {
+    } catch {
       setError("Errore durante la registrazione")
     } finally {
       setIsLoading(false)
@@ -117,7 +117,7 @@ export default function SignUp() {
               Unisciti a Casa Fienaroli
             </h2>
             <p className="text-lg text-white/90 max-w-md">
-              Crea il tuo account e scopri l'esperienza esclusiva di Roma. 
+              Crea il tuo account e scopri l&apos;esperienza esclusiva di Roma. 
               Prenota il tuo soggiorno da sogno.
             </p>
           </div>

@@ -21,7 +21,7 @@ export function MotionWrapper({
     setHasMounted(true)
   }, [])
 
-  const MotionComponent = motion[as] as any
+  const MotionComponent = motion[as] as React.ComponentType<MotionProps>
 
   if (!hasMounted) {
     return <div>{fallback || children}</div>
