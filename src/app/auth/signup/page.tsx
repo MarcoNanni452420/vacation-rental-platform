@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ArrowLeft, Eye, EyeOff, CheckCircle } from "lucide-react"
@@ -103,10 +104,12 @@ export default function SignUp() {
     <div className="min-h-screen bg-white flex">
       {/* Left Column - Hero Image */}
       <div className="hidden lg:flex flex-1 relative">
-        <img 
-          src="/images/villa/kitchen-1.jpg"
+        <Image 
+          src="/images/fienaroli/kitchen-1.jpg"
           alt="Casa Fienaroli"
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          sizes="50vw"
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-black/25" />
         

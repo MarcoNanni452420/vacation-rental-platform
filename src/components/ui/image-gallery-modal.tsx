@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -79,11 +80,15 @@ export function ImageGalleryModal({
       {/* Main Image */}
       <div className="flex items-center justify-center h-full px-16 py-20">
         <div className="relative max-w-7xl max-h-full w-full">
-          <img
-            src={images[currentIndex]}
-            alt={`${propertyName} - Immagine ${currentIndex + 1}`}
-            className="w-full h-full object-contain max-h-[80vh]"
-          />
+          <div className="relative w-full max-h-[80vh] aspect-[4/3]">
+            <Image
+              src={images[currentIndex]}
+              alt={`${propertyName} - Immagine ${currentIndex + 1}`}
+              fill
+              sizes="80vw"
+              className="object-contain"
+            />
+          </div>
           
           {/* Navigation Arrows */}
           {images.length > 1 && (
@@ -121,10 +126,12 @@ export function ImageGalleryModal({
                     : "border-transparent opacity-70 hover:opacity-100"
                 )}
               >
-                <img
+                <Image
                   src={image}
                   alt={`Thumbnail ${index + 1}`}
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="64px"
+                  className="object-cover"
                 />
               </button>
             ))}

@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { ClientOnly } from "@/components/ui/client-only"
 import { ImageGalleryModal } from "@/components/ui/image-gallery-modal"
 import Link from "next/link"
+import Image from "next/image"
 import { useRef, useEffect, useState } from "react"
 import { useParams } from "next/navigation"
 import { getPropertyBySlug } from "@/lib/properties-data"
@@ -20,9 +21,6 @@ import {
   Car, 
   Waves,
   Trees,
-  ArrowLeft,
-  Share,
-  Heart,
   Camera,
   CheckCircle,
   Home,
@@ -88,37 +86,19 @@ export default function PropertyPage() {
   }
 
   return (
-    <main className="bg-background overflow-hidden transition-colors duration-700">
-      {/* Header Navigation */}
-      <div className="fixed top-0 w-full bg-background/95 backdrop-blur-md z-50 border-b border-border">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link 
-            href="/" 
-            className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Torna alle proprietà
-          </Link>
-          
-          <div className="flex items-center gap-4">
-            <button className="p-2 hover:bg-muted rounded-full transition-colors">
-              <Share className="w-5 h-5" />
-            </button>
-            <button className="p-2 hover:bg-muted rounded-full transition-colors">
-              <Heart className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-      </div>
+    <main className="bg-background overflow-hidden transition-colors duration-700">{/* Navbar is in the main layout */}
 
       {/* Hero Section with Gallery */}
       <section className="relative h-screen">
         {/* Main Image */}
         <div className="absolute inset-0">
-          <img 
+          <Image 
             src={property.images[0]}
             alt={`${property.name} Interior`}
-            className="w-full h-full object-cover image-bright"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover image-bright"
           />
           <div className="absolute inset-0 bg-black/25" />
         </div>
@@ -138,28 +118,31 @@ export default function PropertyPage() {
         </div>
 
         {/* Property Info Overlay */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/40 to-transparent p-8 z-10">
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-8 z-10">
           <div className="max-w-7xl mx-auto">
             <div className="text-white">
               <div className="flex items-center gap-3 mb-4">
-                <Badge className="bg-white/20 text-white border-white/20">
+                <Badge className="bg-white/20 text-white border-white/20 backdrop-blur-sm">
                   <Star className="h-3 w-3 text-yellow-400 mr-1 fill-current" />
                   {property.rating} · {property.reviews} recensioni
                 </Badge>
               </div>
               
-              <h1 className="text-6xl md:text-7xl font-bold mb-4 text-edge">
-                {property.name}
-              </h1>
-              
-              <div className="flex items-center text-lg text-white/90 mb-6">
-                <MapPin className="h-5 w-5 mr-2" />
-                <span>{property.location}</span>
-              </div>
+              {/* Enhanced readability with backdrop blur */}
+              <div className="bg-black/40 backdrop-blur-sm rounded-lg p-6 max-w-4xl">
+                <h1 className="text-6xl md:text-7xl font-bold mb-4 text-white drop-shadow-lg">
+                  {property.name}
+                </h1>
+                
+                <div className="flex items-center text-lg text-white/95 mb-6 drop-shadow-md">
+                  <MapPin className="h-5 w-5 mr-2" />
+                  <span>{property.location}</span>
+                </div>
 
-              <p className="text-xl text-white/90 max-w-2xl">
-                {property.shortDesc}
-              </p>
+                <p className="text-xl text-white/95 max-w-2xl drop-shadow-md">
+                  {property.shortDesc}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -291,10 +274,12 @@ export default function PropertyPage() {
                   }}
                   className="relative aspect-[4/3] overflow-hidden group cursor-pointer w-full"
                 >
-                  <img 
+                  <Image 
                     src={image}
                     alt={`${property.name} - Immagine ${index + 1}`}
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-700" />
                   
@@ -342,20 +327,20 @@ export default function PropertyPage() {
       </Section>
 
       {/* CTA Section */}
-      <Section className="bg-primary text-primary-foreground">
+      <Section className="bg-foreground text-background">
         <div className="max-w-4xl mx-auto text-center">
           <RevealOnScroll>
-            <h2 className="text-4xl font-bold mb-6">Pronto per il tuo soggiorno a Roma?</h2>
-            <p className="text-xl mb-12 opacity-90">
+            <h2 className="text-4xl font-bold mb-6 text-background">Pronto per il tuo soggiorno a Roma?</h2>
+            <p className="text-xl mb-12 text-background/90">
               Prenota {property.name} e vivi un&apos;esperienza unica nel cuore di Trastevere
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Button variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary px-8 py-4 text-lg font-semibold">
+              <Button className="bg-background text-foreground hover:bg-background/90 px-8 py-4 text-lg font-semibold border-0">
                 Contattaci
               </Button>
               <Link 
                 href="/"
-                className="inline-flex items-center gap-2 px-8 py-4 text-lg font-semibold opacity-80 hover:opacity-100 transition-opacity"
+                className="inline-flex items-center gap-2 px-8 py-4 text-lg font-semibold text-background border-2 border-background hover:bg-background hover:text-foreground transition-all duration-300"
               >
                 Vedi altre proprietà
                 <ArrowRight className="w-5 h-5" />

@@ -41,22 +41,27 @@ export function LanguageSwitcher() {
         {locale.toUpperCase()}
       </button>
       
-      <div className="absolute top-full right-0 mt-2 bg-background border border-border shadow-lg rounded-lg overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
+      <div className="absolute top-full right-0 mt-2 bg-background border border-border min-w-[120px] overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
         <button
           onClick={() => handleLanguageChange('it')}
-          className={`block w-full px-4 py-2 text-left text-sm hover:bg-muted transition-colors ${
-            locale === 'it' ? 'bg-muted font-medium' : ''
+          className={`block w-full px-4 py-3 text-left text-sm uppercase tracking-wider transition-colors ${
+            locale === 'it' 
+              ? 'bg-foreground text-background font-medium' 
+              : 'hover:bg-muted'
           }`}
         >
-          🇮🇹 Italiano
+          IT
         </button>
+        <div className="border-t border-border" />
         <button
           onClick={() => handleLanguageChange('en')}
-          className={`block w-full px-4 py-2 text-left text-sm hover:bg-muted transition-colors ${
-            locale === 'en' ? 'bg-muted font-medium' : ''
+          className={`block w-full px-4 py-3 text-left text-sm uppercase tracking-wider transition-colors ${
+            locale === 'en' 
+              ? 'bg-foreground text-background font-medium' 
+              : 'hover:bg-muted'
           }`}
         >
-          🇬🇧 English
+          EN
         </button>
       </div>
     </div>

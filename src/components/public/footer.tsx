@@ -48,11 +48,6 @@ export function Footer() {
                   {t('contactUs')}
                 </Link>
               </li>
-              <li>
-                <Link href="/admin" className="text-gray-300 hover:text-primary">
-                  {t('hostDashboard')}
-                </Link>
-              </li>
             </ul>
           </div>
 

@@ -4,6 +4,7 @@ import { useState } from "react"
 import { signIn, getSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ArrowLeft, Eye, EyeOff } from "lucide-react"
@@ -160,10 +161,12 @@ export default function SignIn() {
 
       {/* Right Column - Hero Image */}
       <div className="hidden lg:flex flex-1 relative">
-        <img 
-          src="/images/villa/bedroom-elegant.jpg"
+        <Image 
+          src="/images/fienaroli/bedroom-elegant.jpg"
           alt="Casa Fienaroli"
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          sizes="50vw"
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-black/25" />
         

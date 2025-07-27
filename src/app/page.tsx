@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { getAllProperties } from "@/lib/properties-data"
 import { ArrowRight, MapPin, Users, Bed, Bath, Star } from "lucide-react"
 import { useTranslations } from 'next-intl'
@@ -41,7 +42,7 @@ export default function HomePage() {
       {/* Properties Grid Section */}
       <section className="min-h-screen bg-white">
         <div className="grid grid-cols-1 lg:grid-cols-2 h-screen">
-          {properties.map((property) => (
+          {properties.map((property, index) => (
             <Link
               key={property.slug}
               href={`/property/${property.slug}`}
@@ -51,10 +52,13 @@ export default function HomePage() {
             >
               {/* Background Image */}
               <div className="absolute inset-0">
-                <img 
+                <Image 
                   src={property.images[0]}
                   alt={property.name}
-                  className={`w-full h-full object-cover transition-all duration-700 ${
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority={index < 2}
+                  className={`object-cover transition-all duration-700 ${
                     hoveredProperty === property.slug ? 'scale-110' : 'scale-100'
                   }`}
                 />
@@ -204,7 +208,7 @@ export default function HomePage() {
             
             <div className="relative h-[600px] bg-gray-100 rounded-lg overflow-hidden">
               <iframe
-                src="https://maps.google.com/maps?q=41.8918,12.4684&z=17&output=embed&markers=color:orange%7Clabel:F%7C41.8919,12.4686&markers=color:red%7Clabel:M%7C41.8917,12.4682"
+                src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d2969.827!2d12.4678!3d41.8914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x132f6069db49b0d5%3A0xa7e3b79c6ee8e6e8!2sVia%20dei%20Fienaroli%2C%2011%2C%20Roma%20RM%2C%20Italy!3m2!1d41.8919!2d12.4686!4m5!1s0x132f6069db49b0d5%3A0xa7e3b79c6ee8e6e8!2sVia%20del%20Moro%2C%206%2C%20Roma%20RM%2C%20Italy!3m2!1d41.8917!2d12.4682!5e0!3m2!1sen!2sus!4v1642000000000!5m2!1sen!2sus"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -221,16 +225,16 @@ export default function HomePage() {
       {/* CTA Section */}
       <section className="py-32 bg-black text-white">
         <div className="max-w-4xl mx-auto text-center px-6">
-          <h2 className="text-5xl md:text-6xl font-bold mb-8">
+          <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white">
             {t('ctaTitle')}
           </h2>
-          <p className="text-xl opacity-90 mb-12">
+          <p className="text-xl text-white/90 mb-12">
             {t('ctaDescription')}
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link 
               href="/property/fienaroli"
-              className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 font-medium text-sm uppercase tracking-wider hover:bg-gray-100 transition-all duration-300"
+              className="inline-flex items-center gap-3 border-2 border-white text-white px-8 py-4 font-medium text-sm uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-300"
             >
               Casa Fienaroli
               <ArrowRight className="w-4 h-4" />
