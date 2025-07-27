@@ -7,8 +7,8 @@ import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 
 export const metadata: Metadata = {
-  title: "VacationRental Pro - Gestione Case Vacanza",
-  description: "Piattaforma completa per la gestione e pubblicità di case vacanza con dashboard unificata",
+  title: "Trastevere Luxury Homes - Case Vacanza Roma",
+  description: "Case vacanza di lusso nel cuore di Trastevere, Roma. Casa Fienaroli e Casa Moro - esperienze uniche nella città eterna.",
 };
 
 export default async function RootLayout({
