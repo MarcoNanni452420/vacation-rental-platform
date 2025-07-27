@@ -60,22 +60,16 @@ export function PropertyCard({ property, index = 0 }: PropertyCardProps) {
       <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 bg-white/80 backdrop-blur-sm">
         {/* Image Section */}
         <div className="relative h-64 overflow-hidden">
-          {!imageError ? (
-            <motion.div
-              className="w-full h-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="text-center text-primary/60">
-                <Waves className="h-12 w-12 mx-auto mb-2" />
-                <p className="text-sm font-medium">Vista Panoramica</p>
-              </div>
-            </motion.div>
-          ) : (
-            <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-              <span className="text-gray-400">Immagine non disponibile</span>
+          <motion.div
+            className="w-full h-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="text-center text-primary/60">
+              <Waves className="h-12 w-12 mx-auto mb-2" />
+              <p className="text-sm font-medium">Vista Panoramica</p>
             </div>
-          )}
+          </motion.div>
           
           {/* Overlay Elements */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
