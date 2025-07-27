@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { getAllProperties } from "@/lib/properties-data"
-import { ArrowRight, MapPin, Users, Bed, Bath, Star } from "lucide-react"
+import { ArrowRight, MapPin, Users, Bed, Bath } from "lucide-react"
 import { useTranslations } from 'next-intl'
 
 export default function HomePage() {
@@ -98,13 +98,8 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  {/* Price and CTA with better visibility */}
-                  <div className="flex items-center justify-between">
-                    <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3">
-                      <p className="text-2xl font-light text-white drop-shadow-lg">€{property.price}</p>
-                      <p className="text-xs text-white/80">{t('perNight')}</p>
-                    </div>
-                    
+                  {/* CTA with better visibility */}
+                  <div className="flex items-center justify-end">
                     <div className={`inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider transition-all duration-300 text-white drop-shadow-lg ${
                       hoveredProperty === property.slug ? 'translate-x-2' : ''
                     }`}>

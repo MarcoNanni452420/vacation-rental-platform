@@ -5,12 +5,16 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ClientOnly } from "@/components/ui/client-only"
 import { ImageGalleryModal } from "@/components/ui/image-gallery-modal"
+import { BookingCalendar } from "@/components/booking/BookingCalendar"
 import Link from "next/link"
 import Image from "next/image"
 import { useRef, useEffect, useState } from "react"
 import { useParams } from "next/navigation"
 import { getPropertyBySlug } from "@/lib/properties-data"
 import { notFound } from "next/navigation"
+// DateRange type is now handled internally by AirbnbCalendar
+import { differenceInDays } from "date-fns"
+import { getBookingUrl } from "@/lib/octorate-api"
 import { 
   Star, 
   Users, 
@@ -67,10 +71,13 @@ const amenityIcons: Record<string, React.ComponentType<{ className?: string }>> 
 
 export default function PropertyPage() {
   const params = useParams()
+  // const router = useRouter()
   const slug = params?.slug as string
   const property = getPropertyBySlug(slug)
   const [isGalleryOpen, setIsGalleryOpen] = useState(false)
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
+  const [dateRange, setDateRange] = useState<{ from: Date | undefined; to: Date | undefined } | undefined>()
+  const [guests, setGuests] = useState(1)
 
   useEffect(() => {
     if (property) {
@@ -214,28 +221,32 @@ export default function PropertyPage() {
               <RevealOnScroll>
                 <div className="bg-card border border-border p-8 space-y-6">
                   <div>
-                    <p className="text-4xl font-bold text-primary">€{property.price}</p>
-                    <p className="text-muted-foreground">per notte</p>
+                    <h3 className="text-2xl font-bold">Verifica disponibilità</h3>
+                    <p className="text-muted-foreground">Seleziona le date del tuo soggiorno</p>
                   </div>
 
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-sm font-medium mb-2">Check-in</label>
-                      <input 
-                        type="date" 
-                        className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:border-primary transition-colors"
+                      <BookingCalendar
+                        propertySlug={slug as 'fienaroli' | 'moro'}
+                        onDateChange={setDateRange}
+                        selectedRange={dateRange}
                       />
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Check-out</label>
-                      <input 
-                        type="date" 
-                        className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:border-primary transition-colors"
-                      />
-                    </div>
+                    
+                    {dateRange?.from && dateRange?.to && (
+                      <div className="text-sm text-muted-foreground">
+                        {differenceInDays(dateRange.to, dateRange.from)} notti
+                      </div>
+                    )}
+                    
                     <div>
                       <label className="block text-sm font-medium mb-2">Ospiti</label>
-                      <select className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:border-primary transition-colors">
+                      <select 
+                        value={guests}
+                        onChange={(e) => setGuests(Number(e.target.value))}
+                        className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:border-primary transition-colors"
+                      >
                         {[...Array(property.maxGuests)].map((_, i) => (
                           <option key={i} value={i + 1}>{i + 1} Ospite{i > 0 ? 'i' : ''}</option>
                         ))}
@@ -243,12 +254,26 @@ export default function PropertyPage() {
                     </div>
                   </div>
 
-                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-4 text-lg font-semibold">
+                  <Button 
+                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-4 text-lg font-semibold"
+                    disabled={!dateRange?.from || !dateRange?.to}
+                    onClick={() => {
+                      if (dateRange?.from && dateRange?.to) {
+                        const url = getBookingUrl(
+                          slug as 'fienaroli' | 'moro',
+                          dateRange.from,
+                          dateRange.to,
+                          guests
+                        );
+                        window.open(url, '_blank');
+                      }
+                    }}
+                  >
                     Prenota Ora
                   </Button>
 
                   <p className="text-center text-sm text-muted-foreground">
-                    Non verrà addebitato alcun importo in questo momento
+                    Verrai reindirizzato al sistema di prenotazione sicuro
                   </p>
                 </div>
               </RevealOnScroll>

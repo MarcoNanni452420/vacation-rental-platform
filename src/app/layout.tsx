@@ -26,7 +26,7 @@ export default async function RootLayout({
   
   return (
     <html lang="it">
-      <body className="antialiased">
+      <body className="antialiased" suppressHydrationWarning={true}>
         <NextIntlClientProvider messages={messages}>
           <Providers>
             <div className="min-h-screen flex flex-col">
