@@ -113,11 +113,6 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  {/* Rating */}
-                  <div className="absolute top-12 right-12 flex items-center gap-2 text-white">
-                    <Star className="w-4 h-4 fill-current" />
-                    <span className="text-sm">{property.rating}</span>
-                  </div>
                 </div>
               </div>
 
@@ -207,15 +202,12 @@ export default function HomePage() {
             </div>
             
             <div className="relative h-[600px] bg-gray-100 rounded-lg overflow-hidden">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d2969.827!2d12.4678!3d41.8914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m1!1m0!5e0!3m2!1sen!2sus!4v1642000000000!5m2!1sen!2sus&markers=color:orange%7Clabel:F%7C41.8919,12.4686&markers=color:red%7Clabel:M%7C41.8909,12.4675"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Mappa Trastevere - Casa Fienaroli e Casa Moro"
+              <Image
+                src={`https://maps.googleapis.com/maps/api/staticmap?center=41.8914,12.4678&zoom=17&size=1200x600&markers=color:orange%7Clabel:F%7C41.8919,12.4686&markers=color:red%7Clabel:M%7C41.8909,12.4675&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
+                alt="Mappa Trastevere - Casa Fienaroli (F) e Casa Moro (M)"
+                fill
+                sizes="(max-width: 768px) 100vw, 80vw"
+                className="object-cover"
               />
             </div>
           </div>
