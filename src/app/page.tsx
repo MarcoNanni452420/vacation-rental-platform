@@ -72,7 +72,7 @@ export default function HomePage() {
                 {/* Bottom - Details */}
                 <div className="text-white">
                   {/* Text with enhanced readability */}
-                  <div className="bg-black/40 backdrop-blur-sm rounded-lg p-6 mb-6 min-h-[140px] flex flex-col justify-center">
+                  <div className="bg-black/40 backdrop-blur-sm rounded-lg p-6 mb-6 min-h-[160px] flex flex-col justify-center">
                     <h2 className="text-4xl lg:text-5xl font-bold mb-3 text-white drop-shadow-lg">
                       {property.name}
                     </h2>
@@ -208,7 +208,7 @@ export default function HomePage() {
             
             <div className="relative h-[600px] bg-gray-100 rounded-lg overflow-hidden">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.827!2d12.4678!3d41.8914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132f6069db49b0d5%3A0xa7e3b79c6ee8e6e8!2sVia%20dei%20Fienaroli%2C%2011%2C%20Roma%20RM%2C%20Italy!5e0!3m2!1sen!2sus!4v1642000000000!5m2!1sen!2sus&markers=color:orange%7Clabel:F%7C41.8919,12.4686&markers=color:red%7Clabel:M%7C41.8917,12.4682"
+                src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d2969.827!2d12.4678!3d41.8914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m1!1m0!5e0!3m2!1sen!2sus!4v1642000000000!5m2!1sen!2sus&markers=color:orange%7Clabel:F%7C41.8919,12.4686&markers=color:red%7Clabel:M%7C41.8909,12.4675"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

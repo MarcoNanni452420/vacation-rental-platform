@@ -13,17 +13,17 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <Home className="h-8 w-8 text-primary" />
-              <span className="font-bold text-xl">{t('brandName')}</span>
+              <Home className="h-8 w-8 text-white" />
+              <span className="font-bold text-xl text-white">{t('brandName')}</span>
             </div>
             <p className="text-gray-300 mb-4">
               {t('description')}
             </p>
             <div className="flex space-x-4">
-              <Link href="/privacy" className="text-gray-300 hover:text-primary">
+              <Link href="/privacy" className="text-gray-300 hover:text-white">
                 {t('privacyPolicy')}
               </Link>
-              <Link href="/terms" className="text-gray-300 hover:text-primary">
+              <Link href="/terms" className="text-gray-300 hover:text-white">
                 {t('termsOfService')}
               </Link>
             </div>
@@ -31,20 +31,20 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">{t('quickLinks')}</h3>
+            <h3 className="font-semibold text-lg mb-4 text-white">{t('quickLinks')}</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/properties" className="text-gray-300 hover:text-primary">
+                <Link href="/properties" className="text-gray-300 hover:text-white">
                   {t('allProperties')}
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-gray-300 hover:text-primary">
+                <Link href="/about" className="text-gray-300 hover:text-white">
                   {t('aboutUs')}
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-300 hover:text-primary">
+                <Link href="/contact" className="text-gray-300 hover:text-white">
                   {t('contactUs')}
                 </Link>
               </li>
@@ -53,18 +53,18 @@ export function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">{t('contacts')}</h3>
+            <h3 className="font-semibold text-lg mb-4 text-white">{t('contacts')}</h3>
             <ul className="space-y-2">
               <li className="flex items-center space-x-2">
-                <Mail className="h-4 w-4 text-primary" />
+                <Mail className="h-4 w-4 text-white" />
                 <span className="text-gray-300">{t('email')}</span>
               </li>
               <li className="flex items-center space-x-2">
-                <Phone className="h-4 w-4 text-primary" />
+                <Phone className="h-4 w-4 text-white" />
                 <span className="text-gray-300">{t('phone')}</span>
               </li>
               <li className="flex items-center space-x-2">
-                <MapPin className="h-4 w-4 text-primary" />
+                <MapPin className="h-4 w-4 text-white" />
                 <span className="text-gray-300">{t('address')}</span>
               </li>
             </ul>

@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { LanguageSwitcher } from "@/components/LanguageSwitcher"
 import { useTranslations } from 'next-intl'
@@ -10,6 +11,8 @@ import { useTranslations } from 'next-intl'
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const pathname = usePathname()
+  const isHomepage = pathname === '/'
   const t = useTranslations('nav')
 
   useEffect(() => {
@@ -30,7 +33,7 @@ export function Navbar() {
     <nav 
       className={cn(
         "fixed top-0 w-full z-50 backdrop-blur-md transition-all duration-500",
-        isScrolled 
+        isScrolled || isHomepage
           ? "bg-white/95" 
           : "bg-transparent"
       )}
@@ -43,7 +46,7 @@ export function Navbar() {
               <div 
                 className={cn(
                   "text-2xl font-bold tracking-tight transition-colors duration-300",
-                  isScrolled ? "text-black" : "text-white"
+                  isScrolled || isHomepage ? "text-black" : "text-white"
                 )}
               >
                 Trastevere Luxury Homes
@@ -62,7 +65,7 @@ export function Navbar() {
                   <span
                     className={cn(
                       "relative z-10 group-hover:opacity-60 transition-all duration-300",
-                      isScrolled ? "text-black" : "text-white"
+                      isScrolled || isHomepage ? "text-black" : "text-white"
                     )}
                   >
                     {link.label}
@@ -79,7 +82,7 @@ export function Navbar() {
                 href="/"
                 className={cn(
                   "text-sm font-medium uppercase tracking-wide px-6 py-3 border transition-all duration-300",
-                  isScrolled 
+                  isScrolled || isHomepage
                     ? "border-black text-black hover:bg-black hover:text-white" 
                     : "border-white text-white hover:bg-white hover:text-black"
                 )}
@@ -95,7 +98,7 @@ export function Navbar() {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={cn(
                 "p-2 transition-colors duration-300",
-                isScrolled ? "text-black" : "text-white"
+                isScrolled || isHomepage ? "text-black" : "text-white"
               )}
             >
               {isMenuOpen ? (
