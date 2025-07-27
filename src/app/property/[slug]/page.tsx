@@ -335,12 +335,12 @@ export default function PropertyPage() {
               Prenota {property.name} e vivi un&apos;esperienza unica nel cuore di Trastevere
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Button className="bg-background text-foreground hover:bg-background/90 px-8 py-4 text-lg font-semibold border-0">
+              <Button className="bg-background text-foreground hover:bg-background/90 px-8 py-4 text-lg font-semibold border-2 border-background h-14">
                 Contattaci
               </Button>
               <Link 
                 href="/"
-                className="inline-flex items-center gap-2 px-8 py-4 text-lg font-semibold text-background border-2 border-background hover:bg-background hover:text-foreground transition-all duration-300"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold text-background border-2 border-background hover:bg-background hover:text-foreground transition-all duration-300 h-14"
               >
                 Vedi altre proprietà
                 <ArrowRight className="w-5 h-5" />
