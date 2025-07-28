@@ -117,6 +117,7 @@ La posizione strategica permette di vivere l'autentica atmosfera trasteverina ri
     reviews: 89,
     images: [
       "/images/moro/detail-ceiling.jpg",
+      "/images/moro/bedroom-elegant-new.jpg",
       "/images/moro/bedroom-master.jpg",
       "/images/moro/living.jpg",
       "/images/moro/bathroom-luxury.jpg",
