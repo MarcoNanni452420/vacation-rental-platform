@@ -6,15 +6,19 @@ import { Calendar as CalendarIcon } from 'lucide-react';
 import { format, differenceInDays } from 'date-fns';
 import { it } from 'date-fns/locale';
 import { cn } from '@/lib/utils';
+import { useTranslations } from 'next-intl';
 
 interface BookingCalendarProps {
   propertySlug: 'fienaroli' | 'moro';
   onDateChange: (range: { from: Date | undefined; to: Date | undefined } | undefined) => void;
   className?: string;
   selectedRange?: { from: Date | undefined; to: Date | undefined };
+  preloadedAvailability?: import('@/types/octorate').OctorateCalendarResponse | null;
 }
 
-export function BookingCalendar({ propertySlug, onDateChange, className, selectedRange }: BookingCalendarProps) {
+export function BookingCalendar({ propertySlug, onDateChange, className, selectedRange, preloadedAvailability }: BookingCalendarProps) {
+  const t = useTranslations('property');
+  const tBooking = useTranslations('booking');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -74,12 +78,12 @@ export function BookingCalendar({ propertySlug, onDateChange, className, selecte
                           ? "bg-[hsl(20,65%,95%)] text-[hsl(20,65%,48%)]" 
                           : "bg-[hsl(345,55%,95%)] text-[hsl(345,55%,42%)]"
                       )}>
-                        {nights} {nights === 1 ? 'notte' : 'notti'}
+                        {nights} {nights === 1 ? t('night') : t('nights')}
                       </div>
                     </div>
                   </div>
                   <div className="text-sm text-gray-500 mt-0.5">
-                    Check-in → Check-out
+                    {t('checkIn')} → {t('checkOut')}
                   </div>
                 </div>
               ) : (
@@ -88,17 +92,17 @@ export function BookingCalendar({ propertySlug, onDateChange, className, selecte
                     {format(selectedRange.from, 'd MMMM yyyy', { locale: it })}
                   </div>
                   <div className="text-sm text-gray-500 mt-0.5">
-                    Seleziona la data di check-out
+                    {tBooking('selectCheckout')}
                   </div>
                 </div>
               )
             ) : (
               <div>
                 <div className="font-semibold text-gray-700 text-lg">
-                  Quando vuoi soggiornare?
+                  {tBooking('whenStay')}
                 </div>
                 <div className="text-sm text-gray-500 mt-0.5">
-                  Aggiungi le date del tuo viaggio
+                  {tBooking('addDates')}
                 </div>
               </div>
             )}
@@ -122,6 +126,7 @@ export function BookingCalendar({ propertySlug, onDateChange, className, selecte
         onClose={() => setIsModalOpen(false)}
         onDateConfirm={handleDateConfirm}
         initialRange={selectedRange}
+        preloadedAvailability={preloadedAvailability}
       />
     </>
   );

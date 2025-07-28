@@ -18,6 +18,24 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/maps/api/staticmap**',
       },
+      {
+        protocol: 'https',
+        hostname: 'a0.muscache.com',
+        port: '',
+        pathname: '/im/pictures/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'a0.muscache.com',
+        port: '',
+        pathname: '/im/users/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ui-avatars.com',
+        port: '',
+        pathname: '/api/**',
+      },
     ],
   },
 };

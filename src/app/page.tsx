@@ -53,7 +53,7 @@ export default function HomePage() {
               {/* Background Image */}
               <div className="absolute inset-0">
                 <Image 
-                  src={property.images[0]}
+                  src={property.slug === 'moro' ? property.images[1] : property.images[0]}
                   alt={property.name}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -70,20 +70,22 @@ export default function HomePage() {
               {/* Property Info */}
               <div className="relative h-full flex flex-col justify-end p-12 lg:p-16">
                 {/* Bottom - Details */}
-                <div className="text-white">
+                <div className="text-white h-[350px] flex flex-col justify-between">
                   {/* Text with enhanced readability */}
-                  <div className="bg-black/40 backdrop-blur-sm rounded-lg p-6 mb-6 min-h-[160px] flex flex-col justify-center">
+                  <div className="bg-black/40 backdrop-blur-sm rounded-lg p-6 h-[200px] flex flex-col justify-center">
                     <h2 className="text-4xl lg:text-5xl font-bold mb-3 text-white drop-shadow-lg">
                       {property.name}
                     </h2>
                     
                     <p className="text-base text-white/95 max-w-md leading-relaxed drop-shadow-md">
-                      {property.shortDesc}
+                      {t.has(`propertyDescriptions.${property.slug}`) 
+                        ? t(`propertyDescriptions.${property.slug}`) 
+                        : property.shortDesc}
                     </p>
                   </div>
 
                   {/* Features with better contrast */}
-                  <div className="flex items-center gap-6 mb-8 text-sm text-white/90 drop-shadow-md">
+                  <div className="flex items-center gap-6 text-sm text-white/90 drop-shadow-md">
                     <div className="flex items-center gap-2">
                       <Users className="w-4 h-4" />
                       <span>{property.maxGuests} {t('guests')}</span>

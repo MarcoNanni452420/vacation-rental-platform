@@ -2,83 +2,206 @@
 
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import { ClientOnly } from "@/components/ui/client-only"
 import { ImageGalleryModal } from "@/components/ui/image-gallery-modal"
 import { BookingCalendar } from "@/components/booking/BookingCalendar"
 import { GuestSelector } from "@/components/booking/GuestSelector"
+import { ImageCarousel } from "@/components/gallery/ImageCarousel"
+import { ReviewsMapSection } from "@/components/reviews/ReviewsMapSection"
 import Link from "next/link"
 import Image from "next/image"
 import { useRef, useEffect, useState } from "react"
 import { useParams } from "next/navigation"
 import { getPropertyBySlug } from "@/lib/properties-data"
 import { notFound } from "next/navigation"
+import { useTranslations, useLocale } from 'next-intl'
 // DateRange type is now handled internally by AirbnbCalendar
-import { getBookingUrl } from "@/lib/octorate-api"
+import { getAirbnbBookingUrl } from "@/lib/airbnb-booking"
+import { fetchAvailability } from "@/lib/octorate-api"
+import { OctorateCalendarResponse } from "@/types/octorate"
+import { ReviewsResponse } from "@/types/reviews"
 import { cn } from "@/lib/utils"
+
+// Simple markdown parser for bold text
+function parseMarkdown(text: string) {
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+  return parts.map((part, index) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      const boldText = part.slice(2, -2);
+      return <strong key={index}>{boldText}</strong>;
+    }
+    return part;
+  });
+}
+// Icons from react-icons
 import { 
-  Star, 
-  Users, 
-  Bed, 
-  Bath, 
-  MapPin, 
-  Wifi, 
-  Car, 
-  Waves,
-  Trees,
-  Camera,
-  CheckCircle,
-  Home,
-  ChefHat,
-  Tv,
-  Wind,
-  ArrowRight,
-  Coffee,
-  Utensils
-} from "lucide-react"
+  FaStar, 
+  FaUsers, 
+  FaBed, 
+  FaBath, 
+  FaMapMarkerAlt, 
+  FaWifi, 
+  FaCar, 
+  FaCheckCircle,
+  FaHome,
+  FaUtensils,
+  FaTv,
+  FaWind,
+  FaArrowRight,
+  FaCoffee,
+  FaEye,
+  FaTshirt,
+  FaBaby,
+  FaClock,
+  FaTrash,
+  FaSun,
+  FaShower,
+  FaSnowflake,
+  FaFire,
+  FaLock,
+  FaParking,
+  FaBolt,
+  FaBox
+} from "react-icons/fa"
+
+import {
+  MdBathtub,
+  MdKitchen,
+  MdLocalLaundryService,
+  MdSecurity,
+  MdLocalHospital,
+  MdTableRestaurant,
+  MdWineBar,
+  MdLocalParking,
+  MdMicrowave,
+  MdIron
+} from "react-icons/md"
 
 const amenityIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  "WiFi": Wifi,
-  "Piscina": Waves,
-  "Vista Mare": Waves,
-  "Giardino": Trees,
-  "Parcheggio": Car,
-  "Aria Condizionata": Wind,
-  "Cucina Attrezzata": ChefHat,
-  "Cucina di design": ChefHat,
-  "Terrazza Panoramica": Home,
-  "BBQ": ChefHat,
-  "Jacuzzi": Waves,
-  "Spiaggia Privata": Waves,
-  "Servizio Pulizie": Home,
-  "TV Satellite": Tv,
-  "TV": Tv,
-  "TV in ogni stanza": Tv,
-  "Macchina caffè": Coffee,
-  "Macchina caffè Nespresso": Coffee,
-  "Lavastoviglie": Utensils,
-  "Lavatrice": Home,
-  "Lavatrice/Asciugatrice": Home,
-  "Forno": ChefHat,
-  "Forno moderno": ChefHat,
-  "Design esclusivo": Star,
-  "Travi a vista": Home,
-  "Pareti in vetro": Home,
-  "Soffitti storici": Star,
-  "Marmi pregiati": Star,
-  "Opere d'arte": Star,
-  "Doccia walk-in": Bath
+  // Viste panoramiche
+  "Vista sul panorama urbano": FaEye,
+  
+  // Bagno
+  "Asciugacapelli": FaWind,
+  "Prodotti per la pulizia": FaCheckCircle,
+  "Shampoo": FaBath,
+  "Balsamo": FaBath,
+  "Sapone per il corpo": FaBath,
+  "Bidet": MdBathtub,
+  "Acqua calda": FaBath,
+  "Gel doccia": FaBath,
+  
+  // Camera da letto e lavanderia
+  "Lavatrice": MdLocalLaundryService,
+  "Asciugatrice": MdLocalLaundryService,
+  "Essenziali": FaCheckCircle,
+  "Grucce": FaTshirt,
+  "Biancheria da letto": FaBed,
+  "Cuscini e coperte extra": FaBed,
+  "Tende oscuranti": FaSun,
+  "Ferro da stiro": MdIron,
+  "Stendibiancheria per abiti": FaTshirt,
+  "Spazio per conservare l'abbigliamento": FaBox,
+  
+  // Intrattenimento
+  "TV via cavo standard": FaTv,
+  "HDTV da 55 pollici con Netflix": FaTv,
+  
+  // Famiglia
+  "Culla": FaBaby,
+  "Box bebè portatile": FaBaby,
+  "Seggiolone": FaBaby,
+  
+  // Riscaldamento e climatizzazione
+  "Aria condizionata": FaSnowflake,
+  "Climatizzatore centralizzato": FaSnowflake,
+  "Riscaldamento": FaFire,
+  "Riscaldamento a pannelli radianti": FaFire,
+  
+  // Sicurezza domestica
+  "Allarme antincendio": FaFire,
+  "Rilevatore di monossido di carbonio": MdSecurity,
+  "Estintore": FaFire,
+  "Kit di pronto soccorso": MdLocalHospital,
+  
+  // Internet e ufficio
+  "Wi-fi": FaWifi,
+  "WiFi": FaWifi,
+  
+  // Cucina e zona pranzo
+  "Cucina": MdKitchen,
+  "Frigorifero": FaBox,
+  "Servizi di base per cucinare": FaUtensils,
+  "Piatti e posate": FaUtensils,
+  "Freezer": FaBox,
+  "Lavastoviglie": FaUtensils,
+  "Piano cottura a induzione": FaBolt,
+  "Forno": MdMicrowave,
+  "Bollitore": FaCoffee,
+  "Macchina del caffè": FaCoffee,
+  "Macchina del caffè Nespresso": FaCoffee,
+  "Calici da vino": MdWineBar,
+  "Teglia da forno": MdKitchen,
+  "Compattatore di rifiuti": FaTrash,
+  "Tavolo da pranzo": MdTableRestaurant,
+  "Caffè": FaCoffee,
+  
+  // Caratteristiche dell'alloggio
+  "Lavanderia a gettoni nelle vicinanze": MdLocalLaundryService,
+  
+  // Parcheggi e strutture
+  "Parcheggio gratuito in strada": FaParking,
+  "Parcheggio a pagamento in loco": MdLocalParking,
+  "Garage a pagamento non in loco": FaCar,
+  "Casa su un solo piano": FaHome,
+  
+  // Servizi
+  "Sono permessi soggiorni a lungo termine": FaClock,
+  "Self check-in": FaLock,
+  "Smart Lock": FaLock,
+  
+  // Legacy amenities (for backward compatibility)
+  "Cucina Attrezzata": MdKitchen,
+  "Cucina di design": MdKitchen,
+  "TV in ogni stanza": FaTv,
+  "Macchina caffè Nespresso": FaCoffee,
+  "Lavatrice/Asciugatrice": MdLocalLaundryService,
+  "Design esclusivo": FaStar,
+  "Travi a vista": FaHome,
+  "Pareti in vetro": FaHome,
+  "Soffitti storici": FaStar,
+  "Marmi pregiati": FaStar,
+  "Opere d'arte": FaStar,
+  "Doccia walk-in": FaShower,
+  "TV": FaTv,
+  "Forno moderno": MdMicrowave
 }
 
 export default function PropertyPage() {
   const params = useParams()
   // const router = useRouter()
   const slug = params?.slug as string
-  const property = getPropertyBySlug(slug)
+  const locale = useLocale()
+  const t = useTranslations('property')
+  const tAmenities = useTranslations('amenities')
+  const baseProperty = getPropertyBySlug(slug)
+  
+  // Get localized property data
+  const property = baseProperty ? {
+    ...baseProperty,
+    name: t.has(`${slug}.name`) ? t(`${slug}.name`) : baseProperty.name,
+    location: t.has(`${slug}.location`) ? t(`${slug}.location`) : baseProperty.location,
+    shortDesc: t.has(`${slug}.shortDesc`) ? t(`${slug}.shortDesc`) : baseProperty.shortDesc,
+    description: t.has(`${slug}.description`) ? t(`${slug}.description`) : baseProperty.description,
+    longDescription: t.has(`${slug}.longDescription`) ? t(`${slug}.longDescription`) : baseProperty.longDescription,
+  } : undefined
   const [isGalleryOpen, setIsGalleryOpen] = useState(false)
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
   const [dateRange, setDateRange] = useState<{ from: Date | undefined; to: Date | undefined } | undefined>()
   const [guests, setGuests] = useState(1)
+  const [preloadedAvailability, setPreloadedAvailability] = useState<OctorateCalendarResponse | null>(null)
+  const [preloadedReviews, setPreloadedReviews] = useState<ReviewsResponse | null>(null)
+  const [isPreloadingReviews, setIsPreloadingReviews] = useState(true)
 
   useEffect(() => {
     if (property) {
@@ -88,6 +211,41 @@ export default function PropertyPage() {
       document.documentElement.removeAttribute('data-theme')
     }
   }, [property])
+
+  // Preload availability and reviews data on page load and locale change
+  useEffect(() => {
+    const preloadData = async () => {
+      if (!slug) return;
+      
+      try {
+        setIsPreloadingReviews(true);
+        
+        // Reset preloaded reviews when locale changes
+        setPreloadedReviews(null);
+        
+        // Preload availability data (only on initial load)
+        if (!preloadedAvailability) {
+          const availabilityData = await fetchAvailability(slug as 'fienaroli' | 'moro');
+          setPreloadedAvailability(availabilityData);
+        }
+
+        // Preload reviews data (always when locale changes)
+        console.log(`🔄 Preloading reviews for ${slug} (${locale})`);
+        const reviewsResponse = await fetch(`/api/airbnb-reviews/${slug}?limit=12&locale=${locale}`);
+        if (reviewsResponse.ok) {
+          const reviewsData = await reviewsResponse.json();
+          setPreloadedReviews(reviewsData);
+          console.log(`✅ Preloaded ${reviewsData.reviews?.length || 0} reviews for ${locale}`);
+        }
+      } catch (error) {
+        console.error('Error preloading data:', error);
+      } finally {
+        setIsPreloadingReviews(false);
+      }
+    };
+
+    preloadData();
+  }, [slug, locale, preloadedAvailability])
 
   if (!property) {
     notFound()
@@ -101,7 +259,7 @@ export default function PropertyPage() {
         {/* Main Image */}
         <div className="absolute inset-0">
           <Image 
-            src={property.images[0]}
+            src={slug === 'moro' ? property.images[1] : property.images[0]}
             alt={`${property.name} Interior`}
             fill
             priority
@@ -111,30 +269,11 @@ export default function PropertyPage() {
           <div className="absolute inset-0 bg-black/25" />
         </div>
 
-        {/* Image Gallery Grid Overlay */}
-        <div className="absolute bottom-8 right-8 z-20">
-          <button 
-            onClick={() => {
-              setSelectedImageIndex(0)
-              setIsGalleryOpen(true)
-            }}
-            className="inline-flex items-center gap-2 bg-white text-black px-6 py-3 font-medium text-sm uppercase tracking-wider hover:bg-gray-100 transition-colors"
-          >
-            <Camera className="w-4 h-4" />
-            Vedi tutte le foto ({property.images.length})
-          </button>
-        </div>
 
         {/* Property Info Overlay */}
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-8 z-10">
           <div className="max-w-7xl mx-auto">
             <div className="text-white">
-              <div className="flex items-center gap-3 mb-4">
-                <Badge className="bg-white/20 text-white border-white/20 backdrop-blur-sm">
-                  <Star className="h-3 w-3 text-yellow-400 mr-1 fill-current" />
-                  {property.rating} · {property.reviews} recensioni
-                </Badge>
-              </div>
               
               {/* Enhanced readability with backdrop blur */}
               <div className="bg-black/40 backdrop-blur-sm rounded-lg p-6 max-w-4xl">
@@ -143,7 +282,7 @@ export default function PropertyPage() {
                 </h1>
                 
                 <div className="flex items-center text-lg text-white/95 mb-6 drop-shadow-md">
-                  <MapPin className="h-5 w-5 mr-2" />
+                  <FaMapMarkerAlt className="h-5 w-5 mr-2" />
                   <span>{property.location}</span>
                 </div>
 
@@ -166,24 +305,26 @@ export default function PropertyPage() {
               <RevealOnScroll>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                   <div className="text-center">
-                    <Users className="w-8 h-8 mx-auto mb-3 text-primary" />
+                    <FaUsers className="w-8 h-8 mx-auto mb-3 text-primary" />
                     <p className="text-2xl font-bold">{property.maxGuests}</p>
-                    <p className="text-sm text-muted-foreground">Ospiti</p>
+                    <p className="text-sm text-muted-foreground">{t('guests')}</p>
                   </div>
                   <div className="text-center">
-                    <Bed className="w-8 h-8 mx-auto mb-3 text-primary" />
+                    <FaBed className="w-8 h-8 mx-auto mb-3 text-primary" />
                     <p className="text-2xl font-bold">{property.bedrooms}</p>
-                    <p className="text-sm text-muted-foreground">Camere</p>
+                    <p className="text-sm text-muted-foreground">{t('bedrooms')}</p>
                   </div>
                   <div className="text-center">
-                    <Bath className="w-8 h-8 mx-auto mb-3 text-primary" />
+                    <FaBath className="w-8 h-8 mx-auto mb-3 text-primary" />
                     <p className="text-2xl font-bold">{property.bathrooms}</p>
-                    <p className="text-sm text-muted-foreground">Bagni</p>
+                    <p className="text-sm text-muted-foreground">{t('bathrooms')}</p>
                   </div>
                   <div className="text-center">
-                    <Home className="w-8 h-8 mx-auto mb-3 text-primary" />
-                    <p className="text-2xl font-bold">{property.features[0]}</p>
-                    <p className="text-sm text-muted-foreground">Superficie</p>
+                    <FaHome className="w-8 h-8 mx-auto mb-3 text-primary" />
+                    <p className="text-2xl font-bold">
+                      {t(`features.${property.features[0]}`) || property.features[0]}
+                    </p>
+                    <p className="text-sm text-muted-foreground">{t('surface')}</p>
                   </div>
                 </div>
               </RevealOnScroll>
@@ -191,30 +332,13 @@ export default function PropertyPage() {
               {/* Description */}
               <RevealOnScroll>
                 <div className="space-y-6">
-                  <h2 className="text-4xl font-bold">La Proprietà</h2>
+                  <h2 className="text-4xl font-bold">{t('propertyTitle')}</h2>
                   <div className="prose prose-lg max-w-none text-muted-foreground whitespace-pre-line">
-                    {property.longDescription}
+                    {parseMarkdown(property.longDescription)}
                   </div>
                 </div>
               </RevealOnScroll>
 
-              {/* Amenities */}
-              <RevealOnScroll>
-                <div className="space-y-6">
-                  <h2 className="text-4xl font-bold">Servizi</h2>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                    {property.amenities.map((amenity, index) => {
-                      const Icon = amenityIcons[amenity] || CheckCircle
-                      return (
-                        <div key={index} className="flex items-center gap-3">
-                          <Icon className="w-5 h-5 text-primary" />
-                          <span className="text-foreground">{amenity}</span>
-                        </div>
-                      )
-                    })}
-                  </div>
-                </div>
-              </RevealOnScroll>
             </div>
 
             {/* Booking Card */}
@@ -222,8 +346,8 @@ export default function PropertyPage() {
               <RevealOnScroll>
                 <div className="bg-card border border-border p-8 space-y-6">
                   <div>
-                    <h3 className="text-2xl font-bold">Verifica disponibilità</h3>
-                    <p className="text-muted-foreground">Seleziona le date del tuo soggiorno</p>
+                    <h3 className="text-2xl font-bold">{t('checkAvailability')}</h3>
+                    <p className="text-muted-foreground">{t('selectDates')}</p>
                   </div>
 
                   <div className="space-y-4">
@@ -232,6 +356,7 @@ export default function PropertyPage() {
                         propertySlug={slug as 'fienaroli' | 'moro'}
                         onDateChange={setDateRange}
                         selectedRange={dateRange}
+                        preloadedAvailability={preloadedAvailability}
                       />
                     </div>
                     
@@ -258,7 +383,7 @@ export default function PropertyPage() {
                     disabled={!dateRange?.from || !dateRange?.to}
                     onClick={() => {
                       if (dateRange?.from && dateRange?.to) {
-                        const url = getBookingUrl(
+                        const url = getAirbnbBookingUrl(
                           slug as 'fienaroli' | 'moro',
                           dateRange.from,
                           dateRange.to,
@@ -268,12 +393,33 @@ export default function PropertyPage() {
                       }
                     }}
                   >
-                    Prenota Ora
+                    {t('bookNow')}
                   </button>
 
                   <p className="text-center text-sm text-muted-foreground">
-                    Verrai reindirizzato al sistema di prenotazione sicuro
+                    {t('redirectMessage')}
                   </p>
+                </div>
+
+                {/* Amenities - Sidebar Below Booking */}
+                <div className="mt-8 space-y-6">
+                  <h3 className="text-xl font-semibold text-center">{t('servicesTitle')}</h3>
+                  <div className="space-y-3">
+                    {property.amenities.slice(0, 12).map((amenity, index) => {
+                      const Icon = amenityIcons[amenity] || FaCheckCircle
+                      return (
+                        <div key={index} className="flex items-center gap-3">
+                          <Icon className="w-5 h-5 text-primary flex-shrink-0" />
+                          <span className="text-foreground">{tAmenities.has(amenity) ? tAmenities(amenity) : amenity}</span>
+                        </div>
+                      )
+                    })}
+                    {property.amenities.length > 12 && (
+                      <div className="text-sm text-muted-foreground pt-2 text-center">
+                        +{property.amenities.length - 12} {t('moreServices')}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </RevealOnScroll>
             </div>
@@ -281,72 +427,33 @@ export default function PropertyPage() {
         </div>
       </Section>
 
-      {/* Image Gallery */}
-      <Section className="bg-muted">
-        <div className="max-w-7xl mx-auto">
-          <div className="animate-fade-up">
-            <h2 className="text-4xl font-bold mb-12 text-center">Galleria</h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {property.images.map((image, index) => (
-              <div key={index} className="animate-fade-up" style={{ animationDelay: `${index * 100}ms` }}>
-                <button
-                  onClick={() => {
-                    setSelectedImageIndex(index)
-                    setIsGalleryOpen(true)
-                  }}
-                  className="relative aspect-[4/3] overflow-hidden group cursor-pointer w-full"
-                >
-                  <Image 
-                    src={image}
-                    alt={`${property.name} - Immagine ${index + 1}`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-700" />
-                  
-                  {/* Zoom indicator */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="bg-black/50 text-white px-3 py-1 rounded-full text-sm font-medium">
-                      Zoom
-                    </div>
-                  </div>
-                </button>
-              </div>
-            ))}
-          </div>
+      {/* Image Gallery - Full Width Carousel */}
+      <Section className="bg-muted px-0">
+        <div className="animate-fade-up mb-12 text-center px-8">
+          <h2 className="text-4xl font-bold">{t('galleryTitle')}</h2>
         </div>
+        
+        <ImageCarousel
+          images={property.images}
+          propertyName={property.name}
+          propertySlug={slug as 'fienaroli' | 'moro'}
+          onImageClick={(index) => {
+            setSelectedImageIndex(index)
+            setIsGalleryOpen(true)
+          }}
+        />
       </Section>
 
-      {/* Location Section */}
+      {/* Reviews and Map Section - Split Layout */}
       <Section className="bg-background">
-        <div className="max-w-7xl mx-auto text-center">
-          <RevealOnScroll>
-            <h2 className="text-4xl font-bold mb-6">Posizione</h2>
-            <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-              {property.location} - Nel cuore storico di Roma, a pochi passi dalle principali attrazioni
-            </p>
-          </RevealOnScroll>
-          
-          <RevealOnScroll>
-            <div className="bg-gray-100 aspect-video rounded-lg overflow-hidden">
-              <iframe
-                src={property.slug === 'fienaroli' 
-                  ? "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.8267848567495!2d12.467863515520!3d41.89139527922!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132f6069db49b0d5%3A0xa7e3b79c6ee8e6e8!2sVia%20dei%20Fienaroli%2C%2011%2C%20Roma%20RM%2C%20Italy!5e0!3m2!1sen!2sus!4v1642000000000!5m2!1sen!2sus"
-                  : "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.8267848567495!2d12.467863515520!3d41.89139527922!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132f6069db49b0d5%3A0xa7e3b79c6ee8e6e8!2sVia%20del%20Moro%2C%206%2C%20Roma%20RM%2C%20Italy!5e0!3m2!1sen!2sus!4v1642000000000!5m2!1sen!2sus"
-                }
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title={`Mappa ${property.name}`}
-              />
-            </div>
-          </RevealOnScroll>
+        <div className="max-w-7xl mx-auto">
+          <ReviewsMapSection 
+            propertySlug={slug as 'fienaroli' | 'moro'}
+            propertyName={property.name}
+            location={property.location}
+            preloadedReviews={preloadedReviews}
+            isPreloadingReviews={isPreloadingReviews}
+          />
         </div>
       </Section>
 
@@ -354,20 +461,22 @@ export default function PropertyPage() {
       <Section className="bg-foreground text-background">
         <div className="max-w-4xl mx-auto text-center">
           <RevealOnScroll>
-            <h2 className="text-4xl font-bold mb-6 text-background">Pronto per il tuo soggiorno a Roma?</h2>
+            <h2 className="text-4xl font-bold mb-6 text-background">{t('ctaTitle')}</h2>
             <p className="text-xl mb-12 text-background/90">
-              Prenota {property.name} e vivi un&apos;esperienza unica nel cuore di Trastevere
+              {t('ctaDescription', { propertyName: property.name })}
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Button className="bg-background text-foreground hover:bg-background/90 px-8 py-4 text-lg font-semibold border-2 border-background h-14">
-                Contattaci
-              </Button>
+              <Link href="/contact">
+                <Button className="bg-background text-foreground hover:bg-background/90 px-8 py-4 text-lg font-semibold border-2 border-background h-14">
+                  {t('contactUs')}
+                </Button>
+              </Link>
               <Link 
                 href="/"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold text-background border-2 border-background hover:bg-background hover:text-foreground transition-all duration-300 h-14"
               >
-                Vedi altre proprietà
-                <ArrowRight className="w-5 h-5" />
+                {t('seeOtherProperties')}
+                <FaArrowRight className="w-5 h-5" />
               </Link>
             </div>
           </RevealOnScroll>

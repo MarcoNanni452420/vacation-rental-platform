@@ -6,6 +6,7 @@ import { it } from 'date-fns/locale';
 import { fetchAvailability } from '@/lib/octorate-api';
 import { OctorateCalendarResponse } from '@/types/octorate';
 import { cn } from '@/lib/utils';
+import { useTranslations } from 'next-intl';
 
 interface AirbnbCalendarProps {
   propertySlug: 'fienaroli' | 'moro';
@@ -19,6 +20,7 @@ interface DateRange {
 }
 
 export function AirbnbCalendar({ propertySlug, onDateChange, className }: AirbnbCalendarProps) {
+  const t = useTranslations('property');
   const [availability, setAvailability] = useState<OctorateCalendarResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [range, setRange] = useState<DateRange | undefined>();
@@ -104,7 +106,7 @@ export function AirbnbCalendar({ propertySlug, onDateChange, className }: Airbnb
           onDateChange(newRange);
           setError(null);
         } else {
-          setError(`Il soggiorno minimo è di ${minStay} notti.`);
+          setError(t('minimumStay', { nights: minStay }));
         }
       } else {
         // Invalid checkout, reset to new check-in
@@ -250,7 +252,7 @@ export function AirbnbCalendar({ propertySlug, onDateChange, className }: Airbnb
         {range?.from && range?.to && (
           <div className="text-center">
             <h2 className="text-xl font-semibold text-gray-900 mb-2">
-              {differenceInDays(range.to, range.from)} notti
+              {differenceInDays(range.to, range.from)} {differenceInDays(range.to, range.from) === 1 ? t('night') : t('nights')}
             </h2>
             <div className="text-gray-600">
               {format(range.from, 'd MMM yyyy', { locale: it })} - {format(range.to, 'd MMM yyyy', { locale: it })}
@@ -261,14 +263,14 @@ export function AirbnbCalendar({ propertySlug, onDateChange, className }: Airbnb
         {range?.from && !range?.to && (
           <div className="text-center">
             <p className="text-gray-600">
-              Seleziona la data di check-out (minimo {getMinimumStay(range.from)} notti)
+              {t('selectCheckout', { nights: getMinimumStay(range.from) })}
             </p>
           </div>
         )}
         
         {!range?.from && (
           <div className="text-center">
-            <p className="text-gray-600">Seleziona le date del tuo soggiorno</p>
+            <p className="text-gray-600">{t('selectDates')}</p>
           </div>
         )}
         

@@ -7,6 +7,7 @@ import { fetchAvailability } from '@/lib/octorate-api';
 import { OctorateCalendarResponse } from '@/types/octorate';
 import { cn } from '@/lib/utils';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface CalendarModalProps {
   propertySlug: 'fienaroli' | 'moro';
@@ -14,6 +15,7 @@ interface CalendarModalProps {
   onClose: () => void;
   onDateConfirm: (range: { from: Date | undefined; to: Date | undefined } | undefined) => void;
   initialRange?: { from: Date | undefined; to: Date | undefined };
+  preloadedAvailability?: OctorateCalendarResponse | null;
 }
 
 interface DateRange {
@@ -21,7 +23,8 @@ interface DateRange {
   to: Date | undefined;
 }
 
-export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, initialRange }: CalendarModalProps) {
+export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, initialRange, preloadedAvailability }: CalendarModalProps) {
+  const t = useTranslations('property');
   const [availability, setAvailability] = useState<OctorateCalendarResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [range, setRange] = useState<DateRange | undefined>(initialRange);
@@ -52,17 +55,33 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
 
   useEffect(() => {
     const loadData = async () => {
-      setLoading(true);
-      const data = await fetchAvailability(propertySlug);
-      setAvailability(data);
-      setLoading(false);
+      // Use preloaded data if available, otherwise fetch
+      if (preloadedAvailability) {
+        setAvailability(preloadedAvailability);
+        setLoading(false);
+      } else {
+        setLoading(true);
+        const data = await fetchAvailability(propertySlug);
+        setAvailability(data);
+        setLoading(false);
+      }
     };
 
     if (isOpen) {
       loadData();
       setRange(initialRange);
+      // Disable body scroll when modal is open
+      document.body.style.overflow = 'hidden';
+    } else {
+      // Re-enable body scroll when modal is closed
+      document.body.style.overflow = 'unset';
     }
-  }, [isOpen, propertySlug, initialRange]);
+
+    // Cleanup function to restore scroll on unmount
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen, propertySlug, initialRange, preloadedAvailability]);
 
 
   const isDateAvailable = (date: Date): boolean => {
@@ -131,7 +150,7 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
           setRange(newRange);
           setError(null);
         } else {
-          setError(`Il soggiorno minimo è di ${minStay} notti.`);
+          setError(t('minimumStay', { nights: minStay }));
         }
       } else {
         // Invalid checkout, reset to new check-in
@@ -306,8 +325,8 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
           <div>
             <h2 className="text-2xl font-semibold" style={{ color: colors.text }}>
               {range?.from && range?.to 
-                ? `${differenceInDays(range.to, range.from)} notti`
-                : 'Seleziona le date del tuo soggiorno'
+                ? `${differenceInDays(range.to, range.from)} ${differenceInDays(range.to, range.from) === 1 ? t('night') : t('nights')}`
+                : t('selectDates')
               }
             </h2>
             {range?.from && range?.to && (
@@ -317,7 +336,7 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
             )}
             {range?.from && !range?.to && (
               <p className="mt-1" style={{ color: `${colors.text}80` }}>
-                Seleziona la data di check-out (minimo {getMinimumStay(range.from)} notti)
+                {t('selectCheckout', { nights: getMinimumStay(range.from) })}
               </p>
             )}
           </div>
@@ -431,7 +450,7 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
                   : `linear-gradient(135deg, ${colors.primary}, ${colors.accent})`
               }}
             >
-              Conferma
+              {t('confirm')}
             </button>
           </div>
         </div>

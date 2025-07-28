@@ -17,10 +17,15 @@ export async function POST(request: NextRequest) {
     
     // Create transporter
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: process.env.SMTP_HOST || 'smtp.gmail.com',
+      port: parseInt(process.env.SMTP_PORT || '587'),
+      secure: false, // use false for port 587, true for port 465
       auth: {
         user: process.env.SMTP_USER || '',
-        pass: process.env.SMTP_PASS || ''
+        pass: process.env.SMTP_PASSWORD || ''
+      },
+      tls: {
+        rejectUnauthorized: true
       }
     })
 
@@ -73,7 +78,7 @@ export async function POST(request: NextRequest) {
 
     // Send email
     const mailOptions = {
-      from: `"Trastevere Luxury Homes" <${process.env.SMTP_USER || 'noreply@trastivereiluxury.com'}>`,
+      from: `"Trastevere Luxury Homes" <${process.env.SMTP_FROM || process.env.SMTP_USER || 'noreply@trastivereiluxury.com'}>`,
       to: 'marco.nanni92@gmail.com',
       subject: `Nuova richiesta da ${validatedData.name}`,
       text: `Nome: ${validatedData.name}\nEmail: ${validatedData.email}\n\nMessaggio:\n${validatedData.message}`,
@@ -81,7 +86,11 @@ export async function POST(request: NextRequest) {
       replyTo: validatedData.email
     }
 
-    await transporter.sendMail(mailOptions)
+    // Verify connection configuration
+    await transporter.verify()
+    
+    // Send the email
+    const info = await transporter.sendMail(mailOptions)
 
     return NextResponse.json(
       { message: 'Email sent successfully' },

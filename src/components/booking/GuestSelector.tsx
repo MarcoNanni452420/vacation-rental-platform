@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Users, Plus, Minus } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useTranslations } from 'next-intl';
 
 interface GuestSelectorProps {
   propertySlug: 'fienaroli' | 'moro';
@@ -14,6 +15,7 @@ interface GuestSelectorProps {
 
 export function GuestSelector({ propertySlug, value, onChange, maxGuests, className }: GuestSelectorProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const t = useTranslations('booking');
 
   // Theme colors based on property
   const themeColors = {
@@ -75,10 +77,10 @@ export function GuestSelector({ propertySlug, value, onChange, maxGuests, classN
           </div>
           <div>
             <div className="font-semibold text-gray-900 text-lg">
-              {value} {value === 1 ? 'Ospite' : 'Ospiti'}
+              {value} {value === 1 ? t('guest') : t('guests')}
             </div>
             <div className="text-sm text-gray-500">
-              Massimo {maxGuests} ospiti
+              {t('maxGuests', { maxGuests })}
             </div>
           </div>
         </div>

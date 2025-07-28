@@ -77,7 +77,7 @@ L'appartamento è in una posizione fantastica, a pochi metri dalla movida ma in 
     slug: "moro",
     name: "Casa Moro",
     location: "Cuore di Trastevere",
-    shortDesc: "Soffitti del 1400 e lusso moderno tra Santa Maria e fontana Trilussa",
+    shortDesc: "Soffitti del 1400 e lusso moderno nel cuore di Trastevere",
     description: "Nel cuore di Trastevere abbiamo ristrutturato questo appartamento con materiali pregiati, abbinando soluzioni moderne e lussuose, mantenendo i soffitti in legno del 1400.",
     longDescription: `Nel cuore di Trastevere tra Santa Maria e fontana Trilussa abbiamo ristrutturato questo appartamento con materiali pregiati, abbinando soluzioni moderne e lussuose, mantenendo i soffitti in legno del 1400 ed una parte dei pavimenti originali, dove respirare un atmosfera particolare della Roma papale.
 
@@ -97,8 +97,8 @@ La posizione strategica permette di vivere l'autentica atmosfera trasteverina ri
     price: 300,
     theme: "moro",
     maxGuests: 4,
-    bedrooms: 2,
-    bathrooms: 1,
+    bedrooms: 1,
+    bathrooms: 2,
     amenities: [
       "WiFi",
       "Aria Condizionata",

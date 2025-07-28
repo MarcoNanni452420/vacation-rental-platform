@@ -34,7 +34,11 @@
       "fontanaTreviLocation": "Fontana di Trevi e Piazza di Spagna"
     },
     "ctaTitle": "Scegli la tua casa a Roma",
-    "ctaDescription": "Design contemporaneo o fascino storico? Scopri quale delle nostre proprietà fa per te."
+    "ctaDescription": "Design contemporaneo o fascino storico? Scopri quale delle nostre proprietà fa per te.",
+    "propertyDescriptions": {
+      "fienaroli": "Design contemporaneo e travi a vista nel cuore di Roma",
+      "moro": "Soffitti del 1400 e lusso moderno nel cuore di Trastevere"
+    }
   },
   "property": {
     "backToProperties": "Torna alle proprietà",
@@ -43,8 +47,16 @@
     "bedrooms": "Camere", 
     "bathrooms": "Bagni",
     "surface": "Superficie",
+    "features": {
+      "80 mq": "80 mq",
+      "Soffitti del 1400": "Soffitti del 1400",
+      "Materiali pregiati": "Materiali pregiati",
+      "Vista caratteristica": "Vista caratteristica",
+      "Posizione centrale": "Posizione centrale"
+    },
     "propertyTitle": "La Proprietà",
     "servicesTitle": "Servizi",
+    "moreServices": "altri servizi",
     "galleryTitle": "Galleria",
     "locationTitle": "Posizione",
     "locationDescription": "Nel cuore storico di Roma, a pochi passi dalle principali attrazioni",
@@ -58,7 +70,77 @@
     "bookNow": "Prenota Ora",
     "noChargeNow": "Non verrà addebitato alcun importo in questo momento",
     "viewAllPhotos": "Vedi tutte le foto",
-    "image": "Immagine"
+    "image": "Immagine",
+    "redirectMessage": "Verrai reindirizzato ad Airbnb per completare la prenotazione",
+    "checkAvailability": "Verifica disponibilità",
+    "selectDates": "Seleziona le date del tuo soggiorno",
+    "selectCheckout": "Seleziona la data di check-out (minimo {nights} notti)",
+    "minimumStay": "Il soggiorno minimo è di {nights} notti",
+    "nights": "notti",
+    "night": "notte",
+    "confirm": "Conferma",
+    "fienaroli": {
+      "name": "Casa Fienaroli",
+      "location": "Via dei Fienaroli, Trastevere",
+      "shortDesc": "Design contemporaneo e travi a vista nel cuore di Roma",
+      "description": "Vivi l'atmosfera di Trastevere, cuore di Roma, e gli spazi comodi di questa bellissima proprietà! Dettagli di design e pareti di vetro che si sposano con travi a vista e porte antiche dal fascino impagabile.",
+      "longDescription": "Vivi l'atmosfera di Trastevere, cuore di Roma, e gli spazi comodi di questa bellissima proprietà! Dettagli di design e pareti di vetro che si sposano con travi a vista e porte antiche dal fascino impagabile...ristrutturato ed arredato con un lusso discreto integrato nell'ambiente! L'appartamento è in un'ottima posizione, a pochi metri dalla movida ma in un angolo tranquillo, a 50mt negozi, market e ristorantini. Con una passeggiata potrete raggiungere tutte le attrazioni turistiche!\n\n**Lo spazio**\n\nAmpio appartamento in Via dei Fienaroli, nel centro di Trastevere!\nUna società di design ha ristrutturato ed arredato questo ampio appartamento di 80 metri quadri, riuscendo a creare un ambiente caldo e confortevole con arredi e materiali particolari, in grado di catturare l'attenzione!\n\nL'intero appartamento è a vostro esclusivo utilizzo ed è così composto:\n- ampio salone con divano letto matrimoniale, tavolo da pranzo, tv ed aria condizionata\n- Grande piano cucina completamente accessoriato per preparare i pasti, dotato di piastre ad induzione, macchina per il caffè NESPRESSO, forno e lavastoviglie\n- ampia camera con parete a vetri con letto matrimoniale, aria condizionata e tv\n- bagno con ampia cabina doccia, wc, bidet e lavandino con base in legno\n- camera da letto con letto matrimoniale (da notare la testiera del letto) con aria condizionata, tv e bagno in camera. Il bagno privato è dotato di cabina doccia, wc, bidet e lavandino ed ha 2 pareti in vetro, una vera particolarità!\n\nL'appartamento è dotato di lavatrice/asciugatrice, lavastoviglie, wi-fi, tv in tutti gli ambienti ed una cucina equipaggiata per preparare i pasti.\nNel servizio sono incluse le utenze, la biancheria da letto e le stoviglie.\n\nL'appartamento è in una posizione fantastica, a pochi metri dalla movida ma in un angolo tranquillo dai rumori, a 50 mt dalla casa ci sono negozi, market, bar e e deliziosi ristorantini. La macchina non è necessaria e con una breve passeggiata potrete raggiungere Piazza Navona, Piazza Venezia ecc. ecc.!\n\n**Struttura ad uso turistico autorizzata - ID 708**\n\n**Accesso per gli ospiti**\n\nGli ospiti hanno accesso all'intero appartamento!\nChiediamo ai nostri ospiti di lasciare la casa come l'hanno trovata e di trattarla con la stessa cura con cui la trattiamo noi!\n\n**Altre cose da tenere a mente**\n\nLa posizione è strategica e l'appartamento nuovo, è un'occasione da non perdere!\n\nSe volete possiamo organizzare:\n- pick-up da/per l'aeroporto\n- corsi di cucina italiana/romana singoli o di gruppo\n- Tour di Roma ed altre città",
+      "features": ["80 mq", "2 camere", "2 bagni", "Aria condizionata", "WiFi veloce", "Cucina attrezzata"],
+      "amenities": ["Vista sul panorama urbano", "Asciugacapelli", "Prodotti per la pulizia", "Shampoo", "Balsamo", "Sapone per il corpo", "Bidet", "Acqua calda", "Gel doccia", "Lavatrice", "Asciugatrice", "Essenziali", "Grucce", "Biancheria da letto", "Cuscini e coperte extra", "Tende oscuranti", "Ferro da stiro", "Stendibiancheria per abiti", "TV via cavo standard", "Culla", "Box bebè portatile", "Aria condizionata", "Riscaldamento", "Allarme antincendio", "Rilevatore di monossido di carbonio", "Estintore", "Kit di pronto soccorso", "Wi-fi", "Cucina", "Frigorifero", "Servizi di base per cucinare", "Piatti e posate", "Freezer", "Lavastoviglie", "Piano cottura a induzione", "Forno", "Macchina del caffè", "Calici da vino", "Teglia da forno", "Caffè", "Parcheggio gratuito in strada", "Parcheggio a pagamento in loco", "Casa su un solo piano", "Sono permessi soggiorni a lungo termine", "Self check-in", "Smart Lock"]
+    },
+    "moro": {
+      "name": "Casa Moro",
+      "location": "Cuore di Trastevere",
+      "shortDesc": "Soffitti del 1400 e lusso moderno tra Santa Maria e fontana Trilussa",
+      "description": "Nel cuore di Trastevere abbiamo ristrutturato questo appartamento con materiali pregiati, abbinando soluzioni moderne e lussuose, mantenendo i soffitti in legno del 1400.",
+      "longDescription": "Nel cuore di Trastevere tra Santa Maria e fontana Trilussa abbiamo ristrutturato questo appartamento con materiali pregiati, abbinando soluzioni moderne e lussuose, mantenendo i soffitti in legno del 1400 ed una parte dei pavimenti originali, dove respirare un'atmosfera particolare della Roma papale.\n\nPasseggiare per i vicoli e gustare la vera cucina romana nelle tante trattorie tradizionali. Traversare il Tevere e raggiungere rapidamente Piazza Navona, il Pantheon e le meraviglie Romane.\n\n**Lo spazio**\n\nAppartamento Luxury in Via del Moro, nel centro di Trastevere!\nUna società di design ha ristrutturato ed arredato questo bellissimo appartamento, riuscendo a creare un ambiente caldo e confortevole con arredi e materiali particolari, in grado di catturare l'attenzione!\n\nL'intero appartamento è a vostro esclusivo utilizzo ed è così composto:\n- Salone con divano letto matrimoniale, tavolo da pranzo, tv ed aria condizionata\n- Una cucina completamente accessoriata per preparare i pasti, dotata di piastre ad induzione, macchina per il caffè NESPRESSO, forno e lavastoviglie\n- Bagno con ampia cabina doccia, wc, bidet e lavandino\n- Ampia camera da letto con letto matrimoniale con aria condizionata, tv e bagno in camera. Il bagno privato è dotato di cabina doccia, wc, bidet e lavandino ed ha 2 pareti in vetro, una vera particolarità! La camera prosegue in un grande e comodissimo guardaroba, perfetto per avere tutto lo spazio desiderato per riporre ogni cosa!\n\nL'appartamento è dotato di lavatrice/asciugatrice, lavastoviglie, wi-fi, due tv ed una cucina equipaggiata per preparare i pasti.\nNel servizio sono incluse le utenze, la biancheria da letto e le stoviglie.\n\nL'appartamento è in una posizione fantastica, a pochi metri dalla movida. A 50 mt dalla casa ci sono negozi, market, bar e e deliziosi ristorantini. La macchina non è necessaria e con una breve passeggiata potrete raggiungere Piazza Navona, Piazza Venezia, e tutti i maggiori punti di interessi!\n\n**Accesso per gli ospiti**\n\nGli ospiti hanno accesso all'intero appartamento!\nChiediamo ai nostri ospiti di lasciare la casa come l'hanno trovata e di trattarla con la stessa cura con cui la trattiamo noi!\n\n**Altre cose da tenere a mente**\n\nLa posizione è strategica e l'appartamento nuovo, è un'occasione da non perdere!\n\nSe volete possiamo organizzare:\n- pick-up da/per l'aeroporto\n- corsi di cucina italiana/romana singoli o di gruppo\n- Tour di Roma ed altre città",
+      "features": ["Soffitti del 1400", "Materiali pregiati", "Vista caratteristica", "Posizione centrale"],
+      "amenities": ["Vista sul panorama urbano", "Asciugacapelli", "Prodotti per la pulizia", "Shampoo", "Balsamo", "Sapone per il corpo", "Bidet", "Acqua calda", "Gel doccia", "Lavatrice", "Asciugatrice", "Essenziali", "Grucce", "Biancheria da letto", "Cuscini e coperte extra", "Tende oscuranti", "Ferro da stiro", "Stendibiancheria per abiti", "Spazio per conservare l'abbigliamento", "HDTV da 55 pollici con Netflix", "Culla", "Box bebè portatile", "Seggiolone", "Climatizzatore centralizzato", "Riscaldamento a pannelli radianti", "Allarme antincendio", "Rilevatore di monossido di carbonio", "Estintore", "Kit di pronto soccorso", "Wi-fi", "Cucina", "Frigorifero", "Servizi di base per cucinare", "Piatti e posate", "Freezer", "Lavastoviglie", "Piano cottura a induzione", "Forno", "Bollitore", "Macchina del caffè Nespresso", "Calici da vino", "Teglia da forno", "Compattatore di rifiuti", "Tavolo da pranzo", "Caffè", "Lavanderia a gettoni nelle vicinanze", "Parcheggio gratuito in strada", "Garage a pagamento non in loco", "Casa su un solo piano", "Sono permessi soggiorni a lungo termine", "Self check-in", "Smart Lock"]
+    }
+  },
+  "reviews": {
+    "title": "Cosa Dicono i Nostri Ospiti",
+    "loading": "Caricamento recensioni...",
+    "loadingDescription": "Stiamo recuperando le ultime testimonianze dei nostri ospiti",
+    "error": "Errore nel caricamento delle recensioni",
+    "unavailable": "Le recensioni non sono momentaneamente disponibili, ma puoi sempre leggerle direttamente su Airbnb.",
+    "scrollIndicator": "Scorri per vedere altre recensioni",
+    "readAll": "Leggi tutte le {count} recensioni su Airbnb",
+    "viewOnAirbnb": "Vedi recensioni su Airbnb",
+    "readOnAirbnb": "Leggi le recensioni su Airbnb",
+    "verified": "Recensioni verificate da ospiti reali",
+    "noRecent": "Non sono state trovate recensioni recenti. Controlla tutte le recensioni su Airbnb.",
+    "authentic": "Testimonianze autentiche dai nostri ospiti che hanno soggiornato nelle nostre proprietà",
+    "reviewsCount": "recensioni",
+    "translate": "Traduci",
+    "showOriginal": "Mostra originale",
+    "translating": "Traducendo...",
+    "translateTo": "Traduci in {lang}",
+    "translationError": "Errore nella traduzione",
+    "hostResponse": "Risposta dell'host",
+    "showMore": "Mostra altre",
+    "more": "altre",
+    "showLess": "Mostra meno"
+  },
+  "location": {
+    "title": "Posizione",
+    "description": "Nel cuore storico di Roma, a pochi passi dalle principali attrazioni",
+    "nearby": "Nelle vicinanze",
+    "transport": "Trasporti",
+    "walkingTime": "a piedi",
+    "byTram": "in tram",
+    "byTrain": "in treno",
+    "mapTitle": "Mappa {propertyName}",
+    "places": {
+      "Trastevere": "Trastevere",
+      "Ponte Sisto": "Ponte Sisto",
+      "Isola Tiberina": "Isola Tiberina", 
+      "Campo de' Fiori": "Campo de' Fiori",
+      "Pantheon": "Pantheon",
+      "Stazione Trastevere": "Stazione Trastevere",
+      "Metro Piramide": "Metro Piramide",
+      "Aeroporto Fiumicino": "Aeroporto Fiumicino"
+    }
   },
   "footer": {
     "brandName": "Trastevere Luxury Homes",
@@ -75,5 +157,90 @@
     "copyright": "© 2025 Trastevere Luxury Homes. Tutti i diritti riservati.",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Termini di Servizio"
+  },
+  "gallery": {
+    "title": "Galleria",
+    "prevImages": "Immagini precedenti",
+    "nextImages": "Immagini successive",
+    "goToGroup": "Vai al gruppo {number}"
+  },
+  "amenities": {
+    "WiFi": "WiFi",
+    "Aria Condizionata": "Aria Condizionata",
+    "Cucina Attrezzata": "Cucina Attrezzata",
+    "Lavastoviglie": "Lavastoviglie",
+    "Lavatrice/Asciugatrice": "Lavatrice/Asciugatrice",
+    "TV in ogni stanza": "TV in ogni stanza",
+    "Macchina caffè Nespresso": "Macchina caffè Nespresso",
+    "Forno": "Forno",
+    "Design esclusivo": "Design esclusivo",
+    "Travi a vista": "Travi a vista",
+    "Pareti in vetro": "Pareti in vetro",
+    "Cucina di design": "Cucina di design",
+    "Lavatrice": "Lavatrice",
+    "TV": "TV",
+    "Macchina caffè": "Macchina caffè",
+    "Forno moderno": "Forno moderno",
+    "Soffitti storici": "Soffitti storici",
+    "Marmi pregiati": "Marmi pregiati",
+    "Opere d'arte": "Opere d'arte",
+    "Doccia walk-in": "Doccia walk-in"
+  },
+  "booking": {
+    "guest": "Ospite",
+    "guests": "Ospiti",
+    "maxGuests": "Massimo {maxGuests} ospiti",
+    "whenStay": "Quando vuoi soggiornare?",
+    "addDates": "Aggiungi le date del tuo viaggio",
+    "selectCheckout": "Seleziona la data di check-out"
+  },
+  "admin": {
+    "guests": "Ospiti",
+    "people": "persone",
+    "confirmed": "Confermata",
+    "sidebarGuests": "Ospiti"
+  },
+  "contact": {
+    "title": "Contattaci",
+    "subtitle": "Hai domande sulle nostre proprietà o vuoi prenotare il tuo soggiorno? Siamo qui per aiutarti.",
+    "sendMessage": "Invia un messaggio",
+    "contactInfo": "Informazioni di contatto",
+    "form": {
+      "name": "Nome",
+      "namePlaceholder": "Il tuo nome",
+      "email": "Email",
+      "emailPlaceholder": "La tua email",
+      "message": "Messaggio",
+      "messagePlaceholder": "Come possiamo aiutarti?",
+      "sending": "Invio in corso...",
+      "send": "Invia messaggio",
+      "required": "*"
+    },
+    "validation": {
+      "nameMin": "Il nome deve avere almeno 2 caratteri",
+      "emailInvalid": "Email non valida",
+      "messageMin": "Il messaggio deve avere almeno 10 caratteri"
+    },
+    "messages": {
+      "success": "Messaggio inviato con successo! Ti risponderemo al più presto.",
+      "error": "Si è verificato un errore. Riprova più tardi.",
+      "submitError": "Errore nell'invio del messaggio"
+    },
+    "info": {
+      "email": "Email",
+      "emailResponse": "Ti risponderemo entro 24 ore",
+      "phone": "Telefono",
+      "phoneHours": "Lun-Ven 9:00-18:00",
+      "location": "Posizione",
+      "locationDescription": "Le nostre proprietà si trovano nel cuore di Trastevere"
+    },
+    "faq": {
+      "title": "Domande frequenti",
+      "checkInOut": "Check-in dalle 15:00, check-out entro le 11:00",
+      "minimumStay": "Soggiorno minimo di 2 notti",
+      "pets": "Gli animali domestici non sono ammessi",
+      "wifi": "WiFi gratuito in entrambe le proprietà",
+      "cleaningService": "Servizio di pulizie giornaliero disponibile"
+    }
   }
 }
