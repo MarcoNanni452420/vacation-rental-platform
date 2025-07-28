@@ -328,6 +328,40 @@
     @apply hover:bg-muted-foreground/30;
   }
 
+  /* Ultra-wide screen utilities */
+  @screen 3xl {
+    .max-w-ultra-wide {
+      max-width: 2000px;
+    }
+  }
+
+  /* Modern Calendar Styles */
+  .calendar-day {
+    @apply relative transition-all duration-300 ease-out;
+  }
+
+  .calendar-day:hover {
+    @apply transform scale-105;
+  }
+
+  .calendar-day-selected {
+    @apply shadow-lg transform scale-105;
+  }
+
+  .calendar-day-in-range {
+    @apply relative;
+  }
+
+  .calendar-day-in-range::before {
+    content: '';
+    @apply absolute inset-0 opacity-20 rounded-lg;
+  }
+
+  /* Improved focus states for accessibility */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-opacity-50;
+  }
+
   /* Selection */
   ::selection {
     @apply bg-foreground text-background;

@@ -13,6 +13,9 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const pathname = usePathname()
   const isHomepage = pathname === '/'
+  const isContactPage = pathname === '/contact'
+  const isPropertyPage = pathname.startsWith('/property/')
+  const needsDarkText = isHomepage || isContactPage || isPropertyPage || isScrolled
   const t = useTranslations('nav')
 
   useEffect(() => {
@@ -33,20 +36,20 @@ export function Navbar() {
     <nav 
       className={cn(
         "fixed top-0 w-full z-50 backdrop-blur-md transition-all duration-500",
-        isScrolled || isHomepage
+        needsDarkText
           ? "bg-white/95" 
           : "bg-transparent"
       )}
     >
-      <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
+      <div className="max-w-[1920px] mx-auto px-6 lg:px-12 2xl:px-20 3xl:px-32">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex items-center">
             <Link href="/" className="group">
               <div 
                 className={cn(
-                  "text-2xl font-bold tracking-tight transition-colors duration-300",
-                  isScrolled || isHomepage ? "text-black" : "text-white"
+                  "text-2xl xl:text-3xl 2xl:text-4xl font-bold tracking-tight transition-colors duration-300",
+                  needsDarkText ? "text-black" : "text-white"
                 )}
               >
                 Trastevere Luxury Homes
@@ -55,7 +58,7 @@ export function Navbar() {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center space-x-12">
+          <div className="hidden lg:flex items-center space-x-12 xl:space-x-16 2xl:space-x-20">
             {navLinks.map((link) => (
               <div key={link.href}>
                 <Link 
@@ -65,7 +68,7 @@ export function Navbar() {
                   <span
                     className={cn(
                       "relative z-10 group-hover:opacity-60 transition-all duration-300",
-                      isScrolled || isHomepage ? "text-black" : "text-white"
+                      needsDarkText ? "text-black" : "text-white"
                     )}
                   >
                     {link.label}
@@ -76,13 +79,13 @@ export function Navbar() {
             ))}
             
             {/* CTA and Language Section */}
-            <div className="flex items-center space-x-6 ml-12">
+            <div className="flex items-center space-x-6 ml-12 xl:ml-16 2xl:ml-20">
               <LanguageSwitcher />
               <Link
                 href="/"
                 className={cn(
                   "text-sm font-medium uppercase tracking-wide px-6 py-3 border transition-all duration-300",
-                  isScrolled || isHomepage
+                  needsDarkText
                     ? "border-black text-black hover:bg-black hover:text-white" 
                     : "border-white text-white hover:bg-white hover:text-black"
                 )}
@@ -98,7 +101,7 @@ export function Navbar() {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={cn(
                 "p-2 transition-colors duration-300",
-                isScrolled || isHomepage ? "text-black" : "text-white"
+                needsDarkText ? "text-black" : "text-white"
               )}
             >
               {isMenuOpen ? (

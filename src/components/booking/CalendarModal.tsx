@@ -28,6 +28,28 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
   const [error, setError] = useState<string | null>(null);
   const [currentMonth, setCurrentMonth] = useState(new Date());
 
+  // Dynamic theme colors based on property
+  const themeColors = {
+    fienaroli: {
+      primary: 'hsl(20, 65%, 48%)', // Terracotta
+      primaryLight: 'hsl(20, 65%, 95%)', // Very light terracotta
+      accent: 'hsl(35, 75%, 55%)', // Muted orange
+      background: 'hsl(30, 40%, 98%)', // Warm cream
+      hover: 'hsl(20, 65%, 88%)',
+      text: 'hsl(25, 35%, 20%)'
+    },
+    moro: {
+      primary: 'hsl(345, 55%, 42%)', // Burgundy
+      primaryLight: 'hsl(345, 55%, 95%)', // Very light burgundy
+      accent: 'hsl(25, 65%, 45%)', // Soft bronze
+      background: 'hsl(15, 20%, 98%)', // Soft blush
+      hover: 'hsl(345, 55%, 88%)',
+      text: 'hsl(0, 0%, 15%)'
+    }
+  };
+
+  const colors = themeColors[propertySlug];
+
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
@@ -154,30 +176,45 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
   };
 
   const getDayClassName = (date: Date): string => {
-    const base = "w-[50px] h-[50px] text-center cursor-pointer transition-all duration-200 flex items-center justify-center text-sm font-medium border-0 rounded-lg";
+    const base = "w-[42px] h-[42px] md:w-[48px] md:h-[48px] text-center cursor-pointer transition-all duration-300 flex items-center justify-center text-sm font-medium border-0 rounded-xl hover:scale-105";
     
     if (isDateDisabled(date)) {
-      return cn(base, "text-gray-300 cursor-not-allowed bg-white");
+      return cn(base, "text-gray-300 cursor-not-allowed bg-white/50 hover:scale-100");
     }
     
     if (isDateCheckIn(date)) {
-      return cn(base, "bg-gray-900 text-white");
+      return cn(base, "bg-gradient-to-br text-white shadow-lg font-semibold", {
+        'from-[hsl(20,65%,48%)] to-[hsl(20,65%,42%)]': propertySlug === 'fienaroli',
+        'from-[hsl(345,55%,42%)] to-[hsl(345,55%,36%)]': propertySlug === 'moro'
+      });
     }
     
     if (isDateCheckOut(date)) {
-      return cn(base, "bg-gray-900 text-white");
+      return cn(base, "bg-gradient-to-br text-white shadow-lg font-semibold", {
+        'from-[hsl(20,65%,48%)] to-[hsl(20,65%,42%)]': propertySlug === 'fienaroli',
+        'from-[hsl(345,55%,42%)] to-[hsl(345,55%,36%)]': propertySlug === 'moro'
+      });
     }
     
     if (isDateInRange(date)) {
-      return cn(base, "bg-gray-100 text-gray-900");
+      return cn(base, "text-gray-800 font-medium", {
+        'bg-[hsl(20,65%,95%)]': propertySlug === 'fienaroli',
+        'bg-[hsl(345,55%,95%)]': propertySlug === 'moro'
+      });
     }
     
     const isWeekend = getDay(date) === 0 || getDay(date) === 6;
     if (isWeekend) {
-      return cn(base, "text-gray-900 hover:bg-gray-50 font-semibold");
+      return cn(base, "text-gray-900 font-semibold", {
+        'hover:bg-[hsl(20,65%,88%)]': propertySlug === 'fienaroli',
+        'hover:bg-[hsl(345,55%,88%)]': propertySlug === 'moro'
+      });
     }
     
-    return cn(base, "text-gray-700 hover:bg-gray-50");
+    return cn(base, "text-gray-700", {
+      'hover:bg-[hsl(20,65%,88%)]': propertySlug === 'fienaroli',
+      'hover:bg-[hsl(345,55%,88%)]': propertySlug === 'moro'
+    });
   };
 
   const renderMonth = (monthDate: Date) => {
@@ -199,15 +236,16 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
     return (
       <div key={format(monthDate, 'yyyy-MM')} className="flex-1 min-w-0">
         <div className="mb-6">
-          <h3 className="text-xl font-semibold text-gray-900 text-center">
+          <h3 className="text-xl font-semibold text-center"
+              style={{ color: colors.text }}>
             {format(monthDate, 'MMMM yyyy', { locale: it })}
           </h3>
         </div>
         
         {/* Day labels */}
-        <div className="grid grid-cols-7 gap-1 mb-2">
+        <div className="grid grid-cols-7 gap-1 mb-3">
           {['L', 'M', 'M', 'G', 'V', 'S', 'D'].map((day, index) => (
-            <div key={index} className="w-[50px] text-center text-xs font-medium text-gray-500 py-2">
+            <div key={index} className="w-[42px] md:w-[48px] text-center text-xs font-semibold text-gray-600 py-2">
               {day}
             </div>
           ))}
@@ -260,23 +298,25 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
       />
       
       {/* Modal */}
-      <div className="relative bg-white rounded-lg shadow-2xl max-w-5xl w-full mx-4 max-h-[90vh] overflow-hidden">
+      <div className="relative rounded-2xl shadow-2xl max-w-4xl w-full mx-4 max-h-[85vh] overflow-hidden" 
+           style={{ backgroundColor: colors.background }}>        
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+        <div className="flex items-center justify-between p-6 border-b" 
+             style={{ borderColor: `${colors.primary}20` }}>
           <div>
-            <h2 className="text-2xl font-semibold text-gray-900">
+            <h2 className="text-2xl font-semibold" style={{ color: colors.text }}>
               {range?.from && range?.to 
                 ? `${differenceInDays(range.to, range.from)} notti`
                 : 'Seleziona le date del tuo soggiorno'
               }
             </h2>
             {range?.from && range?.to && (
-              <p className="text-gray-600 mt-1">
+              <p className="mt-1" style={{ color: `${colors.text}80` }}>
                 {format(range.from, 'd MMM yyyy', { locale: it })} - {format(range.to, 'd MMM yyyy', { locale: it })}
               </p>
             )}
             {range?.from && !range?.to && (
-              <p className="text-gray-600 mt-1">
+              <p className="mt-1" style={{ color: `${colors.text}80` }}>
                 Seleziona la data di check-out (minimo {getMinimumStay(range.from)} notti)
               </p>
             )}
@@ -284,16 +324,19 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
           
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            className="p-2 rounded-xl transition-all duration-200 hover:scale-105"
+            style={{ backgroundColor: `${colors.primary}10` }}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = `${colors.primary}20`}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = `${colors.primary}10`}
           >
-            <X className="w-6 h-6 text-gray-500" />
+            <X className="w-6 h-6" style={{ color: colors.primary }} />
           </button>
         </div>
 
         {/* Error message */}
         {error && (
-          <div className="px-6 py-3 bg-red-50 border-b border-red-200">
-            <p className="text-sm text-red-600">{error}</p>
+          <div className="px-6 py-3 bg-red-50 border-b border-red-200 animate-fade-in">
+            <p className="text-sm text-red-600 font-medium">{error}</p>
           </div>
         )}
 
@@ -301,7 +344,8 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
         <div className="p-6">
           {loading ? (
             <div className="flex justify-center py-12">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2" 
+                   style={{ borderBottomColor: colors.primary }}></div>
             </div>
           ) : (
             <>
@@ -309,52 +353,83 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
               <div className="flex items-center justify-between mb-8">
                 <button
                   onClick={() => setCurrentMonth(addMonths(currentMonth, -1))}
-                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="p-3 rounded-xl transition-all duration-200 hover:scale-105"
+                  style={{ backgroundColor: `${colors.primary}10` }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = `${colors.primary}20`}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = `${colors.primary}10`}
                 >
-                  <ChevronLeft className="w-6 h-6 text-gray-600" />
+                  <ChevronLeft className="w-6 h-6" style={{ color: colors.primary }} />
                 </button>
                 
-                <div className="text-lg font-medium text-gray-900">
+                <div className="text-lg font-semibold" style={{ color: colors.text }}>
                   {format(currentMonth, 'yyyy', { locale: it })}
                 </div>
                 
                 <button
                   onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
-                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="p-3 rounded-xl transition-all duration-200 hover:scale-105"
+                  style={{ backgroundColor: `${colors.primary}10` }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = `${colors.primary}20`}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = `${colors.primary}10`}
                 >
-                  <ChevronRight className="w-6 h-6 text-gray-600" />
+                  <ChevronRight className="w-6 h-6" style={{ color: colors.primary }} />
                 </button>
               </div>
 
-              {/* Two months side by side */}
-              <div className="flex gap-12 justify-center">
-                {renderMonth(currentMonth)}
-                {renderMonth(addMonths(currentMonth, 1))}
+              {/* Two months side by side on desktop, single on mobile */}
+              <div className="flex flex-col md:flex-row gap-8 md:gap-12 justify-center">
+                <div className="md:hidden">
+                  {renderMonth(currentMonth)}
+                </div>
+                <div className="hidden md:flex gap-12">
+                  {renderMonth(currentMonth)}
+                  {renderMonth(addMonths(currentMonth, 1))}
+                </div>
               </div>
             </>
           )}
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between p-6 border-t border-gray-200 bg-gray-50">
+        <div className="flex flex-col sm:flex-row items-center justify-between p-6 border-t gap-4" 
+             style={{ borderColor: `${colors.primary}20`, backgroundColor: `${colors.primary}05` }}>
           <button
             onClick={handleClear}
-            className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            className="px-4 py-2 text-sm font-medium bg-white border rounded-xl transition-all duration-200 hover:scale-105 order-2 sm:order-1"
+            style={{ 
+              color: colors.text, 
+              borderColor: `${colors.primary}30`,
+              backgroundColor: 'white'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = `${colors.primary}10`}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'white'}
           >
             Cancella date
           </button>
           
-          <div className="flex gap-3">
+          <div className="flex gap-3 order-1 sm:order-2">
             <button
               onClick={onClose}
-              className="px-6 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              className="px-6 py-2 text-sm font-medium bg-white border rounded-xl transition-all duration-200 hover:scale-105"
+              style={{ 
+                color: colors.text, 
+                borderColor: `${colors.primary}30`,
+                backgroundColor: 'white'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = `${colors.primary}10`}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'white'}
             >
               Annulla
             </button>
             <button
               onClick={handleConfirm}
               disabled={!range?.from || !range?.to}
-              className="px-6 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg hover:bg-gray-800 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
+              className="px-6 py-2 text-sm font-medium text-white rounded-xl transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg"
+              style={{ 
+                background: !range?.from || !range?.to 
+                  ? '#9CA3AF' 
+                  : `linear-gradient(135deg, ${colors.primary}, ${colors.accent})`
+              }}
             >
               Conferma
             </button>
