@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { ClientOnly } from "@/components/ui/client-only"
 import { ImageGalleryModal } from "@/components/ui/image-gallery-modal"
 import { BookingCalendar } from "@/components/booking/BookingCalendar"
+import { GuestSelector } from "@/components/booking/GuestSelector"
 import Link from "next/link"
 import Image from "next/image"
 import { useRef, useEffect, useState } from "react"
@@ -15,6 +16,7 @@ import { notFound } from "next/navigation"
 // DateRange type is now handled internally by AirbnbCalendar
 import { differenceInDays } from "date-fns"
 import { getBookingUrl } from "@/lib/octorate-api"
+import { cn } from "@/lib/utils"
 import { 
   Star, 
   Users, 
@@ -240,22 +242,26 @@ export default function PropertyPage() {
                       </div>
                     )}
                     
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Ospiti</label>
-                      <select 
-                        value={guests}
-                        onChange={(e) => setGuests(Number(e.target.value))}
-                        className="w-full px-4 py-3 border border-border rounded-none focus:outline-none focus:border-primary transition-colors"
-                      >
-                        {[...Array(property.maxGuests)].map((_, i) => (
-                          <option key={i} value={i + 1}>{i + 1} Ospite{i > 0 ? 'i' : ''}</option>
-                        ))}
-                      </select>
-                    </div>
+                    <GuestSelector
+                      propertySlug={slug as 'fienaroli' | 'moro'}
+                      value={guests}
+                      onChange={setGuests}
+                      maxGuests={property.maxGuests}
+                    />
                   </div>
 
-                  <Button 
-                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-4 text-lg font-semibold"
+                  <button 
+                    className={cn(
+                      "w-full py-4 px-6 rounded-xl text-lg font-semibold",
+                      "transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]",
+                      "text-white shadow-lg",
+                      "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100",
+                      !dateRange?.from || !dateRange?.to 
+                        ? "bg-gray-400" 
+                        : slug === 'fienaroli'
+                          ? "bg-gradient-to-r from-[hsl(20,65%,48%)] to-[hsl(35,75%,55%)] hover:from-[hsl(20,65%,45%)] hover:to-[hsl(35,75%,52%)]"
+                          : "bg-gradient-to-r from-[hsl(345,55%,42%)] to-[hsl(25,65%,45%)] hover:from-[hsl(345,55%,39%)] hover:to-[hsl(25,65%,42%)]"
+                    )}
                     disabled={!dateRange?.from || !dateRange?.to}
                     onClick={() => {
                       if (dateRange?.from && dateRange?.to) {
@@ -270,7 +276,7 @@ export default function PropertyPage() {
                     }}
                   >
                     Prenota Ora
-                  </Button>
+                  </button>
 
                   <p className="text-center text-sm text-muted-foreground">
                     Verrai reindirizzato al sistema di prenotazione sicuro

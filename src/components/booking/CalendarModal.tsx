@@ -176,7 +176,7 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
   };
 
   const getDayClassName = (date: Date): string => {
-    const base = "w-[42px] h-[42px] md:w-[48px] md:h-[48px] text-center cursor-pointer transition-all duration-300 flex items-center justify-center text-sm font-medium border-0 rounded-xl hover:scale-105";
+    const base = "w-[40px] h-[40px] md:w-[44px] md:h-[44px] text-center cursor-pointer transition-all duration-300 flex items-center justify-center text-sm font-medium border-0 rounded-xl hover:scale-105";
     
     if (isDateDisabled(date)) {
       return cn(base, "text-gray-300 cursor-not-allowed bg-white/50 hover:scale-100");
@@ -235,17 +235,17 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
 
     return (
       <div key={format(monthDate, 'yyyy-MM')} className="flex-1 min-w-0">
-        <div className="mb-6">
-          <h3 className="text-xl font-semibold text-center"
+        <div className="mb-4">
+          <h3 className="text-lg md:text-xl font-semibold text-center"
               style={{ color: colors.text }}>
             {format(monthDate, 'MMMM yyyy', { locale: it })}
           </h3>
         </div>
         
         {/* Day labels */}
-        <div className="grid grid-cols-7 gap-1 mb-3">
+        <div className="grid grid-cols-7 gap-1 mb-2">
           {['L', 'M', 'M', 'G', 'V', 'S', 'D'].map((day, index) => (
-            <div key={index} className="w-[42px] md:w-[48px] text-center text-xs font-semibold text-gray-600 py-2">
+            <div key={index} className="w-[40px] md:w-[44px] text-center text-xs font-semibold text-gray-600 py-1">
               {day}
             </div>
           ))}
@@ -298,10 +298,10 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
       />
       
       {/* Modal */}
-      <div className="relative rounded-2xl shadow-2xl max-w-4xl w-full mx-4 max-h-[85vh] overflow-hidden" 
+      <div className="relative rounded-2xl shadow-2xl max-w-4xl w-full mx-4 max-h-[80vh] overflow-hidden" 
            style={{ backgroundColor: colors.background }}>        
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b" 
+        <div className="flex items-center justify-between p-4 md:p-6 border-b" 
              style={{ borderColor: `${colors.primary}20` }}>
           <div>
             <h2 className="text-2xl font-semibold" style={{ color: colors.text }}>
@@ -341,7 +341,7 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
         )}
 
         {/* Calendar content */}
-        <div className="p-6">
+        <div className="p-4 md:p-6">
           {loading ? (
             <div className="flex justify-center py-12">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2" 
@@ -350,7 +350,7 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
           ) : (
             <>
               {/* Month navigation */}
-              <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center justify-between mb-6">
                 <button
                   onClick={() => setCurrentMonth(addMonths(currentMonth, -1))}
                   className="p-3 rounded-xl transition-all duration-200 hover:scale-105"
@@ -391,7 +391,7 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
         </div>
 
         {/* Footer */}
-        <div className="flex flex-col sm:flex-row items-center justify-between p-6 border-t gap-4" 
+        <div className="flex flex-col sm:flex-row items-center justify-between p-4 md:p-6 border-t gap-4" 
              style={{ borderColor: `${colors.primary}20`, backgroundColor: `${colors.primary}05` }}>
           <button
             onClick={handleClear}
