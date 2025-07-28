@@ -26,18 +26,40 @@ export const properties: Record<string, Property> = {
     location: "Via dei Fienaroli, Trastevere",
     shortDesc: "Design contemporaneo e travi a vista nel cuore di Roma",
     description: "Vivi l'atmosfera di Trastevere, cuore di Roma, e gli spazi comodi di questa bellissima proprietà! Dettagli di design e pareti di vetro che si sposano con travi a vista e porte antiche dal fascino impagabile.",
-    longDescription: `Ampio appartamento in Via dei Fienaroli, nel centro di Trastevere!
-    
+    longDescription: `Vivi l'atmosfera di Trastevere, cuore di Roma, e gli spazi comodi di questa bellissima proprietà! Dettagli di design e pareti di vetro che si sposano con travi a vista e porte antiche dal fascino impagabile...ristrutturato ed arredato con un lusso discreto integrato nell'ambiente! L'appartamento è in un'ottima posizione, a pochi metri dalla movida ma in un angolo tranquillo, a 50mt negozi, market e ristorantini. Con una passeggiata potrete raggiungere tutte le attrazioni turistiche!
+
+**Lo spazio**
+
+Ampio appartamento in Via dei Fienaroli, nel centro di Trastevere!
 Una società di design ha ristrutturato ed arredato questo ampio appartamento di 80 metri quadri, riuscendo a creare un ambiente caldo e confortevole con arredi e materiali particolari, in grado di catturare l'attenzione!
 
 L'intero appartamento è a vostro esclusivo utilizzo ed è così composto:
 - ampio salone con divano letto matrimoniale, tavolo da pranzo, tv ed aria condizionata
-- Grande piano cucina completamente accessoriato per preparare i pasti, dotato di piastre ad induzione, macchina per il caffè NESPRESSO, forno e lavastoviglie
+- Grande piano cucina completamente accessoriato per preparare i pasti, dotato di piastre ad induzione, macchina per il caffè **NESPRESSO**, forno e lavastoviglie
 - ampia camera con parete a vetri con letto matrimoniale, aria condizionata e tv
 - bagno con ampia cabina doccia, wc, bidet e lavandino con base in legno
 - camera da letto con letto matrimoniale (da notare la testiera del letto) con aria condizionata, tv e bagno in camera. Il bagno privato è dotato di cabina doccia, wc, bidet e lavandino ed ha 2 pareti in vetro, una vera particolarità!
 
-L'appartamento è in una posizione fantastica, a pochi metri dalla movida ma in un angolo tranquillo dai rumori, a 50 mt dalla casa ci sono negozi, market, bar e deliziosi ristorantini. La macchina non è necessaria e con una breve passeggiata potrete raggiungere Piazza Navona, Piazza Venezia ecc.!`,
+L'appartamento è dotato di lavatrice/asciugatrice, lavastoviglie, wi-fi, tv in tutti gli ambienti ed una cucina equipaggiata per preparare i pasti.
+Nel servizio sono incluse le utenze, la biancheria da letto e le stoviglie.
+
+L'appartamento è in una posizione fantastica, a pochi metri dalla movida ma in un angolo tranquillo dai rumori, a 50 mt dalla casa ci sono negozi, market, bar e e deliziosi ristorantini. La macchina non è necessaria e con una breve passeggiata potrete raggiungere Piazza Navona, Piazza Venezia ecc. ecc.!
+
+**Struttura ad uso turistico autorizzata - ID 708**
+
+**Accesso per gli ospiti**
+
+Gli ospiti hanno accesso all'intero appartamento!
+Chiediamo ai nostri ospiti di lasciare la casa come l'hanno trovata e di trattarla con la stessa cura con cui la trattiamo noi!
+
+**Altre cose da tenere a mente**
+
+La posizione è strategica e l'appartamento nuovo, è un'occasione da non perdere!
+
+Se volete possiamo organizzare:
+- pick-up da/per l'aeroporto
+- corsi di cucina italiana/romana singoli o di gruppo
+- Tour di Roma ed altre città`,
     features: ["80 mq", "2 camere", "2 bagni", "Aria condizionata", "WiFi veloce", "Cucina attrezzata"],
     price: 250,
     theme: "fienaroli",
