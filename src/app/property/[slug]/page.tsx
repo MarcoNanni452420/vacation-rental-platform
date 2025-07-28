@@ -14,7 +14,6 @@ import { useParams } from "next/navigation"
 import { getPropertyBySlug } from "@/lib/properties-data"
 import { notFound } from "next/navigation"
 // DateRange type is now handled internally by AirbnbCalendar
-import { differenceInDays } from "date-fns"
 import { getBookingUrl } from "@/lib/octorate-api"
 import { cn } from "@/lib/utils"
 import { 
@@ -236,12 +235,6 @@ export default function PropertyPage() {
                       />
                     </div>
                     
-                    {dateRange?.from && dateRange?.to && (
-                      <div className="text-sm text-muted-foreground">
-                        {differenceInDays(dateRange.to, dateRange.from)} notti
-                      </div>
-                    )}
-                    
                     <GuestSelector
                       propertySlug={slug as 'fienaroli' | 'moro'}
                       value={guests}
@@ -253,14 +246,14 @@ export default function PropertyPage() {
                   <button 
                     className={cn(
                       "w-full py-4 px-6 rounded-xl text-lg font-semibold",
-                      "transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]",
-                      "text-white shadow-lg",
+                      "transition-all duration-300 transform hover:scale-[1.01] active:scale-[0.99]",
+                      "text-white shadow-md hover:shadow-lg",
                       "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100",
                       !dateRange?.from || !dateRange?.to 
                         ? "bg-gray-400" 
                         : slug === 'fienaroli'
-                          ? "bg-gradient-to-r from-[hsl(20,65%,48%)] to-[hsl(35,75%,55%)] hover:from-[hsl(20,65%,45%)] hover:to-[hsl(35,75%,52%)]"
-                          : "bg-gradient-to-r from-[hsl(345,55%,42%)] to-[hsl(25,65%,45%)] hover:from-[hsl(345,55%,39%)] hover:to-[hsl(25,65%,42%)]"
+                          ? "bg-[hsl(20,50%,45%)] hover:bg-[hsl(20,50%,42%)]"
+                          : "bg-[hsl(345,40%,40%)] hover:bg-[hsl(345,40%,37%)]"
                     )}
                     disabled={!dateRange?.from || !dateRange?.to}
                     onClick={() => {

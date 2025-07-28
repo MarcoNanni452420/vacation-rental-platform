@@ -63,17 +63,19 @@ export function BookingCalendar({ propertySlug, onDateChange, className, selecte
             {selectedRange?.from ? (
               selectedRange.to ? (
                 <div>
-                  <div className="flex items-baseline gap-3">
+                  <div className="space-y-1">
                     <div className="font-semibold text-gray-900 text-lg">
                       {format(selectedRange.from, 'd MMM', { locale: it })} - {format(selectedRange.to, 'd MMM yyyy', { locale: it })}
                     </div>
-                    <div className={cn(
-                      "text-sm font-medium px-2 py-0.5 rounded-full",
-                      propertySlug === 'fienaroli' 
-                        ? "bg-[hsl(20,65%,95%)] text-[hsl(20,65%,48%)]" 
-                        : "bg-[hsl(345,55%,95%)] text-[hsl(345,55%,42%)]"
-                    )}>
-                      {nights} {nights === 1 ? 'notte' : 'notti'}
+                    <div className="flex items-center gap-2">
+                      <div className={cn(
+                        "text-sm font-medium px-3 py-1 rounded-full inline-flex",
+                        propertySlug === 'fienaroli' 
+                          ? "bg-[hsl(20,65%,95%)] text-[hsl(20,65%,48%)]" 
+                          : "bg-[hsl(345,55%,95%)] text-[hsl(345,55%,42%)]"
+                      )}>
+                        {nights} {nights === 1 ? 'notte' : 'notti'}
+                      </div>
                     </div>
                   </div>
                   <div className="text-sm text-gray-500 mt-0.5">
