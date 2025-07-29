@@ -233,10 +233,27 @@ export function Navbar() {
                 
                 {/* Mobile Book Now Options - Match Desktop Style */}
                 <div className="space-y-4">
-                  <p className="text-xs font-medium uppercase tracking-wider text-gray-500">
-                    {t('bookNow')} - Choose Your Property
-                  </p>
-                  <div className="bg-background border border-border w-full overflow-hidden rounded-lg shadow-lg">
+                  <button
+                    onClick={handleBookingToggle}
+                    className="w-full text-sm font-medium uppercase tracking-wide px-6 py-3 border border-black text-black hover:bg-black hover:text-white transition-all duration-300 flex items-center justify-center gap-2"
+                  >
+                    {t('bookNow')}
+                    <svg 
+                      className={cn(
+                        "w-4 h-4 transition-transform duration-200",
+                        isBookingDropdownOpen && "rotate-180"
+                      )}
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  
+                  {/* Dropdown Menu - Match Desktop */}
+                  {isBookingDropdownOpen && (
+                    <div className="bg-background border border-border w-full overflow-hidden rounded-lg shadow-lg">
                     <Link
                       href="/property/fienaroli#booking"
                       className="block w-full px-4 py-3 text-left text-sm font-medium uppercase tracking-wider transition-colors text-[hsl(20,65%,35%)] hover:text-[hsl(20,65%,35%)]/80 hover:bg-[hsl(20,65%,35%)]/10"
@@ -270,7 +287,8 @@ export function Navbar() {
                     >
                       Moro
                     </Link>
-                  </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

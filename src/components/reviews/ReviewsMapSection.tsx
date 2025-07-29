@@ -1,7 +1,7 @@
 "use client"
 
 import { VerticalReviews } from './VerticalReviews';
-import { MapPin, MapPinIcon, Train, Car, Coffee } from 'lucide-react';
+import { MapPin, MapPinIcon, Train, Plane, Coffee } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ReviewsResponse } from '@/types/reviews';
 import { useTranslations } from 'next-intl';
@@ -133,7 +133,7 @@ export function ReviewsMapSection({
             {[
               { nameKey: "Stazione Trastevere", time: `10 min ${t('walkingTime')}`, icon: Train },
               { nameKey: "Metro Piramide", time: `15 min ${t('byTram')}`, icon: Train },
-              { nameKey: "Aeroporto Fiumicino", time: `35 min ${t('byTrain')}`, icon: Car }
+              { nameKey: "Aeroporto Fiumicino", time: `35 min ${t('byTrain')}`, icon: Plane }
             ].map((transport, index) => (
               <div key={index} className="flex items-center justify-between p-2 rounded-lg hover:bg-white/50 transition-colors">
                 <div className="flex items-center gap-3">
