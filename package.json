@@ -14,7 +14,8 @@
     "test:typecheck": "npx tsc --noEmit",
     "test:homepage": "curl -s -o /dev/null -w 'Homepage Response: %{http_code}\\n' http://localhost:3001/",
     "db:check": "npx prisma migrate status",
-    "dev:clean": "rm -rf .next && npm run dev"
+    "dev:clean": "rm -rf .next && npm run dev",
+    "analyze": "ANALYZE=true npm run build"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
@@ -69,6 +70,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@next/bundle-analyzer": "^15.4.4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

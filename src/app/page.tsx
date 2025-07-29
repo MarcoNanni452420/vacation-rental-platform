@@ -6,6 +6,7 @@ import Image from "next/image"
 import { getAllProperties } from "@/lib/properties-data"
 import { ArrowRight, MapPin, Users, Bed, Bath } from "lucide-react"
 import { useTranslations } from 'next-intl'
+import { LazySection } from "@/components/ui/LazySection"
 
 export default function HomePage() {
   const properties = getAllProperties()
@@ -14,7 +15,9 @@ export default function HomePage() {
 
   // Reset theme on homepage
   useEffect(() => {
-    document.documentElement.removeAttribute('data-theme')
+    if (typeof window !== 'undefined') {
+      document.documentElement.removeAttribute('data-theme')
+    }
   }, [])
 
   return (
@@ -58,9 +61,16 @@ export default function HomePage() {
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   priority={index < 2}
-                  className={`object-cover transition-all duration-700 ${
-                    hoveredProperty === property.slug ? 'scale-110' : 'scale-100'
+                  quality={90}
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bz6rt3/Z"
+                  className={`object-cover w-full h-full transition-all duration-300 md:duration-500 transform-gpu ${
+                    hoveredProperty === property.slug ? 'scale-105 md:scale-110' : 'scale-100'
                   }`}
+                  style={{ 
+                    objectFit: 'cover',
+                    objectPosition: 'center center'
+                  }}
                 />
                 <div className={`absolute inset-0 bg-black transition-opacity duration-700 ${
                   hoveredProperty === property.slug ? 'opacity-40' : 'opacity-20'
@@ -130,93 +140,105 @@ export default function HomePage() {
       </section>
 
       {/* About Section */}
-      <section className="py-32 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <h6 className="text-sm uppercase tracking-[0.3em] mb-6 font-medium text-gray-600">
-            {t('aboutSectionLabel')}
-          </h6>
-          <h2 className="text-5xl md:text-6xl font-bold mb-8">
-            {t('aboutTitle')}
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12">
-            {t('aboutDescription')}
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-            <div className="text-center">
-              <div className="text-4xl font-bold mb-2">2</div>
-              <p className="text-gray-600">{t('stats.properties')}</p>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold mb-2">10+</div>
-              <p className="text-gray-600">{t('stats.experience')}</p>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold mb-2">200+</div>
-              <p className="text-gray-600">{t('stats.guests')}</p>
+      <LazySection
+        fallback={<div className="py-32 bg-gray-50 animate-pulse"><div className="h-64 bg-gray-200 rounded-lg mx-auto max-w-4xl" /></div>}
+        rootMargin="100px"
+      >
+        <section className="py-32 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-6 text-center">
+            <h2 className="text-sm uppercase tracking-[0.3em] mb-6 font-medium text-gray-600">
+              {t('aboutSectionLabel')}
+            </h2>
+            <h3 className="text-5xl md:text-6xl font-bold mb-8">
+              {t('aboutTitle')}
+            </h3>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12">
+              {t('aboutDescription')}
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+              <div className="text-center">
+                <div className="text-4xl font-bold mb-2">2</div>
+                <p className="text-gray-600">{t('stats.properties')}</p>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold mb-2">10+</div>
+                <p className="text-gray-600">{t('stats.experience')}</p>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold mb-2">200+</div>
+                <p className="text-gray-600">{t('stats.guests')}</p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </LazySection>
 
       {/* Location Section */}
-      <section className="py-32 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h6 className="text-sm uppercase tracking-[0.3em] mb-6 font-medium text-gray-600">
-                {t('locationSectionLabel')}
-              </h6>
-              <h2 className="text-5xl md:text-6xl font-bold mb-8">
-                {t('locationTitle')}
-              </h2>
-              <p className="text-xl text-gray-600 mb-6">
-                {t('locationDescription')}
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <MapPin className="w-5 h-5 text-gray-400 mt-1" />
-                  <div>
-                    <p className="font-medium">{t('walkingDistances.santaMaria')}</p>
-                    <p className="text-gray-600">{t('walkingDistances.santaMariaLocation')}</p>
+      <LazySection
+        fallback={<div className="py-32 bg-white animate-pulse"><div className="h-96 bg-gray-200 rounded-lg mx-auto max-w-6xl" /></div>}
+        rootMargin="150px"
+      >
+        <section className="py-32 bg-white">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <h2 className="text-sm uppercase tracking-[0.3em] mb-6 font-medium text-gray-600">
+                  {t('locationSectionLabel')}
+                </h2>
+                <h3 className="text-5xl md:text-6xl font-bold mb-8">
+                  {t('locationTitle')}
+                </h3>
+                <p className="text-xl text-gray-600 mb-6">
+                  {t('locationDescription')}
+                </p>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-4">
+                    <MapPin className="w-5 h-5 text-gray-400 mt-1" />
+                    <div>
+                      <p className="font-medium">{t('walkingDistances.santaMaria')}</p>
+                      <p className="text-gray-600">{t('walkingDistances.santaMariaLocation')}</p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <MapPin className="w-5 h-5 text-gray-400 mt-1" />
-                  <div>
-                    <p className="font-medium">{t('walkingDistances.piazzaNavona')}</p>
-                    <p className="text-gray-600">{t('walkingDistances.piazzaNavonaLocation')}</p>
+                  <div className="flex items-start gap-4">
+                    <MapPin className="w-5 h-5 text-gray-400 mt-1" />
+                    <div>
+                      <p className="font-medium">{t('walkingDistances.piazzaNavona')}</p>
+                      <p className="text-gray-600">{t('walkingDistances.piazzaNavonaLocation')}</p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <MapPin className="w-5 h-5 text-gray-400 mt-1" />
-                  <div>
-                    <p className="font-medium">{t('walkingDistances.fontanaTrevi')}</p>
-                    <p className="text-gray-600">{t('walkingDistances.fontanaTreviLocation')}</p>
+                  <div className="flex items-start gap-4">
+                    <MapPin className="w-5 h-5 text-gray-400 mt-1" />
+                    <div>
+                      <p className="font-medium">{t('walkingDistances.fontanaTrevi')}</p>
+                      <p className="text-gray-600">{t('walkingDistances.fontanaTreviLocation')}</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            
-            <div className="relative h-[600px] bg-gray-100 rounded-lg overflow-hidden">
-              <Image
-                src={`https://maps.googleapis.com/maps/api/staticmap?center=41.8898,12.4712&zoom=17&size=1200x600&markers=color:orange%7Clabel:F%7C41.8885,12.4719&markers=color:red%7Clabel:M%7C41.8911,12.4705&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
-                alt="Mappa Trastevere - Casa Fienaroli (F) e Casa Moro (M)"
-                fill
-                sizes="(max-width: 768px) 100vw, 80vw"
-                className="object-cover"
-              />
+              
+              <div className="relative h-[600px] bg-gray-100 rounded-lg overflow-hidden">
+                <Image
+                  src={`https://maps.googleapis.com/maps/api/staticmap?center=41.8898,12.4712&zoom=17&size=1200x600&markers=color:orange%7Clabel:F%7C41.8885,12.4719&markers=color:red%7Clabel:M%7C41.8911,12.4705&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
+                  alt="Mappa Trastevere - Casa Fienaroli (F) e Casa Moro (M)"
+                  fill
+                  sizes="(max-width: 640px) 95vw, (max-width: 1024px) 80vw, 50vw"
+                  quality={90}
+                  className="object-cover"
+                  loading="lazy"
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </LazySection>
 
       {/* CTA Section */}
       <section className="py-32 bg-black text-white">
         <div className="max-w-4xl mx-auto text-center px-6">
-          <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white">
+          <h3 className="text-5xl md:text-6xl font-bold mb-8 text-white">
             {t('ctaTitle')}
-          </h2>
+          </h3>
           <p className="text-xl text-white/90 mb-12">
             {t('ctaDescription')}
           </p>

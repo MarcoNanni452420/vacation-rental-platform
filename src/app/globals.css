@@ -90,6 +90,7 @@
   html {
     @apply scroll-smooth;
     font-size: 16px;
+    font-display: swap;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -183,14 +184,14 @@
     animation: textReveal 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
   }
 
-  /* Image Hover Effects */
+  /* Image Hover Effects - Mobile Optimized */
   .image-zoom {
     @apply overflow-hidden;
   }
   
   .image-zoom img {
-    @apply transition-all duration-700 ease-out;
-    @apply hover:scale-110 hover:brightness-110;
+    @apply transition-all duration-300 md:duration-500 ease-out transform-gpu;
+    @apply hover:scale-105 md:hover:scale-110 hover:brightness-110;
   }
 
   /* Brighter images for better visibility */
@@ -211,6 +212,36 @@
 }
 
 @layer utilities {
+  /* Mobile performance optimizations */
+  @media (max-width: 768px) {
+    .transition-all {
+      transition-duration: 300ms !important;
+    }
+    
+    .duration-700 {
+      transition-duration: 300ms !important;
+    }
+    
+    .scale-110 {
+      transform: scale(1.05) !important;
+    }
+    
+    /* Prefer reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  }
+
+  /* Hardware acceleration for transforms */
+  .transform-gpu {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
   /* Modern Spacing Scale */
   .section-padding {
     @apply py-24 md:py-32 lg:py-40;

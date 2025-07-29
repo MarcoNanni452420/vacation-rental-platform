@@ -1,0 +1,41 @@
+# Modern browsers only - reduce polyfills for better performance
+# Target browsers with native ES2020+ support
+
+# Chrome 90+ (March 2021)
+Chrome >= 90
+
+# Firefox 90+ (July 2021)  
+Firefox >= 90
+
+# Safari 15+ (September 2021)
+Safari >= 15
+
+# Edge 90+ (April 2021)
+Edge >= 90
+
+# iOS Safari 15+ 
+iOS >= 15
+
+# Samsung Internet 15+
+Samsung >= 15
+
+# Opera 76+
+Opera >= 76
+
+# No Internet Explorer support
+not IE 11
+not IE_Mob 11
+
+# No old mobile browsers
+not Android < 90
+not op_mini all
+
+# Modern features we can use:
+# - ES2020 (optional chaining, nullish coalescing)
+# - ES2021 (logical assignment, numeric separators)
+# - Native async/await
+# - Native promises
+# - Native modules
+# - CSS Grid
+# - CSS Flexbox
+# - CSS custom properties

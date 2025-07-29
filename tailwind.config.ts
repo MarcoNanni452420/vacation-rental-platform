@@ -9,6 +9,21 @@ export default {
   ],
   theme: {
     extend: {
+      // Use system fonts to avoid external font loading  
+      fontFamily: {
+        sans: [
+          '-apple-system',
+          'BlinkMacSystemFont', 
+          '"Segoe UI"',
+          'Roboto',
+          '"Helvetica Neue"',
+          'Arial',
+          'sans-serif',
+          '"Apple Color Emoji"',
+          '"Segoe UI Emoji"',
+          '"Segoe UI Symbol"'
+        ],
+      },
       screens: {
         '3xl': '1920px',
       },
