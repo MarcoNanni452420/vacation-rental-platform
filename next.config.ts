@@ -143,8 +143,6 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react', 'date-fns', 'react-hot-toast', 'framer-motion'],
     scrollRestoration: true,
-    // Optimize CSS loading
-    optimizeCss: true,
   },
 };
 
