@@ -229,13 +229,18 @@ export async function GET(
     // Try to extract priceItems from the found productPriceBreakdown
     let priceItems: DisplayPriceItem[] = [];
     
-    if (productPriceBreakdown.priceBreakdown?.priceItems) {
-      priceItems = productPriceBreakdown.priceBreakdown.priceItems;
-    } else if (productPriceBreakdown.priceItems) {
-      priceItems = productPriceBreakdown.priceItems;
+    const breakdown = productPriceBreakdown as Record<string, unknown>;
+    
+    if (breakdown.priceBreakdown && typeof breakdown.priceBreakdown === 'object') {
+      const innerBreakdown = breakdown.priceBreakdown as Record<string, unknown>;
+      if (Array.isArray(innerBreakdown.priceItems)) {
+        priceItems = innerBreakdown.priceItems as DisplayPriceItem[];
+      }
+    } else if (Array.isArray(breakdown.priceItems)) {
+      priceItems = breakdown.priceItems as DisplayPriceItem[];
     } else {
       console.log('❌ priceItems not found in productPriceBreakdown');
-      console.log('📋 productPriceBreakdown keys:', Object.keys(productPriceBreakdown));
+      console.log('📋 productPriceBreakdown keys:', Object.keys(breakdown));
       
       return NextResponse.json(
         { 
