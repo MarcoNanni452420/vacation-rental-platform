@@ -78,14 +78,14 @@ export function ImageGalleryModal({
       </div>
 
       {/* Main Image */}
-      <div className="flex items-center justify-center h-full px-16 py-20">
+      <div className="flex items-center justify-center h-full px-4 md:px-16 py-16 md:py-20">
         <div className="relative max-w-7xl max-h-full w-full">
-          <div className="relative w-full max-h-[80vh] aspect-[4/3]">
+          <div className="relative w-full max-h-[92vh] md:max-h-[85vh]">
             <Image
               src={images[currentIndex]}
               alt={`${propertyName} - Immagine ${currentIndex + 1}`}
               fill
-              sizes="80vw"
+              sizes="(max-width: 768px) 95vw, 85vw"
               className="object-contain"
             />
           </div>

@@ -331,7 +331,7 @@ export default function PropertyPage() {
                   <TruncatedDescription 
                     text={property.longDescription}
                     propertySlug={slug as 'fienaroli' | 'moro'}
-                    mobileCharLimit={200}
+                    mobileCharLimit={380}
                   />
                 </div>
               </RevealOnScroll>

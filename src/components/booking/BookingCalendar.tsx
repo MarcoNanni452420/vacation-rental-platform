@@ -102,7 +102,7 @@ export function BookingCalendar({ propertySlug, onDateChange, className, selecte
                   {tBooking('whenStay')}
                 </div>
                 <div className="text-sm text-gray-500 mt-0.5">
-                  {tBooking('addDates')}
+                  {tBooking('selectCheckin')}
                 </div>
               </div>
             )}

@@ -197,6 +197,7 @@
     "maxGuests": "Massimo {maxGuests} ospiti",
     "whenStay": "Quando vuoi soggiornare?",
     "addDates": "Aggiungi le date del tuo viaggio",
+    "selectCheckin": "Seleziona data check-in",
     "selectCheckout": "Seleziona la data di check-out"
   },
   "admin": {

@@ -1,6 +1,7 @@
 "use client"
 
-import { Star } from 'lucide-react';
+import { useState } from 'react';
+import { Star, ChevronDown, ChevronUp } from 'lucide-react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
@@ -40,6 +41,14 @@ export function ReviewCard({
   className
 }: ReviewCardProps) {
   const t = useTranslations('reviews');
+  const [isExpanded, setIsExpanded] = useState(false);
+  
+  // Mobile truncation - show first 120 characters
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const shouldTruncate = isMobile && comments.length > 120;
+  const displayComments = shouldTruncate && !isExpanded 
+    ? comments.slice(0, 120) + '...'
+    : comments;
   // Theme colors based on property
   const themeColors = {
     fienaroli: {
@@ -78,12 +87,14 @@ export function ReviewCard({
   return (
     <div className={cn(
       "p-6 rounded-2xl border-2 transition-all duration-300 hover:shadow-lg",
+      "md:min-h-auto min-h-[280px] max-h-[320px] flex flex-col justify-between", // Square aspect on mobile
       colors.border,
       colors.bg,
       className
     )}>
-      {/* Header with reviewer info and rating */}
-      <div className="flex items-start justify-between mb-4">
+      <div className="flex-1 flex flex-col">
+        {/* Header with reviewer info and rating */}
+        <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
           <div className="relative w-12 h-12 flex-shrink-0">
             <Image
@@ -135,12 +146,35 @@ export function ReviewCard({
         </div>
       )}
 
-      {/* Review content - already translated if in English */}
+      {/* Review content - with mobile truncation */}
       <div className="mb-4">
         <div 
           className="text-gray-800 leading-relaxed"
-          dangerouslySetInnerHTML={{ __html: comments }}
+          dangerouslySetInnerHTML={{ __html: displayComments }}
         />
+        
+        {/* Read more/less button for mobile */}
+        {shouldTruncate && (
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className={cn(
+              "flex items-center gap-1 mt-2 text-sm font-medium transition-colors duration-300 md:hidden",
+              colors.accent
+            )}
+          >
+            {isExpanded ? (
+              <>
+                Mostra meno
+                <ChevronUp className="w-4 h-4" />
+              </>
+            ) : (
+              <>
+                Leggi di più
+                <ChevronDown className="w-4 h-4" />
+              </>
+            )}
+          </button>
+        )}
         
         {/* Translation disclaimer for auto-translated content */}
         {disclaimer && (
@@ -166,6 +200,7 @@ export function ReviewCard({
           <p className="text-sm text-gray-700">{response}</p>
         </div>
       )}
+      </div>
     </div>
   );
 }
