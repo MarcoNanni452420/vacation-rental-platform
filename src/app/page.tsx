@@ -44,7 +44,7 @@ export default function HomePage() {
 
       {/* Properties Grid Section */}
       <section className="min-h-screen bg-white">
-        <div className="grid grid-cols-1 lg:grid-cols-2 h-screen">
+        <div className="grid grid-cols-1 lg:grid-cols-2 h-screen" suppressHydrationWarning={true}>
           {properties.map((property, index) => (
             <Link
               key={property.slug}
@@ -54,7 +54,7 @@ export default function HomePage() {
               onMouseLeave={() => setHoveredProperty(null)}
             >
               {/* Background Image */}
-              <div className="absolute inset-0">
+              <div className="absolute inset-0" style={{ aspectRatio: 'unset' }} suppressHydrationWarning={true}>
                 <Image 
                   src={property.slug === 'moro' ? property.images[1] : property.images[0]}
                   alt={property.name}
@@ -245,14 +245,14 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link 
               href="/property/fienaroli"
-              className="inline-flex items-center gap-3 border-2 border-white text-white px-8 py-4 font-medium text-sm uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-300"
+              className="inline-flex items-center justify-center gap-3 border-2 border-white text-white px-4 sm:px-8 py-4 font-medium text-sm uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-300 w-full sm:w-auto max-w-xs"
             >
               Casa Fienaroli
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link 
               href="/property/moro"
-              className="inline-flex items-center gap-3 border-2 border-white text-white px-8 py-4 font-medium text-sm uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-300"
+              className="inline-flex items-center justify-center gap-3 border-2 border-white text-white px-4 sm:px-8 py-4 font-medium text-sm uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-300 w-full sm:w-auto max-w-xs"
             >
               Casa Moro
               <ArrowRight className="w-4 h-4" />

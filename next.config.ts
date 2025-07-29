@@ -55,12 +55,55 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // Performance headers
+  // Security and performance headers
   async headers() {
     return [
       {
         source: '/(.*)',
         headers: [
+          // Content Security Policy - Comprehensive protection against XSS
+          {
+            key: 'Content-Security-Policy',
+value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://maps.googleapis.com https://maps.google.com https://www.googletagmanager.com",
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://maps.googleapis.com",
+              "img-src 'self' data: blob: https://*.googleapis.com https://*.gstatic.com https://a0.muscache.com https://ui-avatars.com",
+              "font-src 'self' https://fonts.gstatic.com data:",
+              "connect-src 'self' https://*.googleapis.com https://maps.google.com https://www.google-analytics.com https://api.octorateplus.com",
+              "frame-src https://www.google.com/maps/",
+              "object-src 'none'",
+              "base-uri 'self'",
+              "form-action 'self' https://api.octorateplus.com",
+              "frame-ancestors 'none'"
+            ].join('; ')
+          },
+          // HSTS - Enhanced with includeSubDomains and preload
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=31536000; includeSubDomains; preload',
+          },
+          // COOP - Cross-Origin-Opener-Policy
+          {
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin',
+          },
+          // COEP - Commented out to allow Google Maps embed
+          // {
+          //   key: 'Cross-Origin-Embedder-Policy',
+          //   value: 'credentialless',
+          // },
+          // Enhanced Referrer Policy
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+          // Permissions Policy - Restrict dangerous APIs
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), speaker=()',
+          },
+          // Existing security headers
           {
             key: 'X-Frame-Options',
             value: 'DENY',
@@ -70,8 +113,8 @@ const nextConfig: NextConfig = {
             value: 'nosniff',
           },
           {
-            key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin',
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
           },
         ],
       },

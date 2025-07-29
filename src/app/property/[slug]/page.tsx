@@ -418,13 +418,8 @@ export default function PropertyPage() {
                       return (
                         <div 
                           key={index} 
-                          className={cn(
-                            "flex items-center gap-4 p-4 rounded-xl transition-all duration-300",
-                            "bg-card border border-border hover:shadow-md hover:scale-[1.02]",
-                            slug === 'fienaroli' 
-                              ? "hover:border-[hsl(20,65%,85%)] hover:bg-[hsl(20,65%,98%)]"
-                              : "hover:border-[hsl(345,55%,85%)] hover:bg-[hsl(345,55%,98%)]"
-                          )}
+                          className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border !shadow-none hover:!shadow-none hover:!transform-none hover:!bg-card hover:!border-border"
+                          style={{ transition: 'none' }}
                         >
                           <Icon className={cn(
                             "w-6 h-6 flex-shrink-0",
@@ -491,13 +486,13 @@ export default function PropertyPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link href="/contact">
-                <Button className="bg-background text-foreground hover:bg-background/90 px-8 py-4 text-lg font-semibold border-2 border-background h-14">
+                <Button className="bg-background text-foreground hover:bg-background/90 px-4 sm:px-8 py-4 text-lg font-semibold border-2 border-background h-14 w-full sm:w-auto max-w-xs">
                   {t('contactUs')}
                 </Button>
               </Link>
               <Link 
                 href="/"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold text-background border-2 border-background hover:bg-background hover:text-foreground transition-all duration-300 h-14"
+                className="inline-flex items-center justify-center gap-2 px-4 sm:px-8 py-4 text-lg font-semibold text-background border-2 border-background hover:bg-background hover:text-foreground transition-all duration-300 h-14 w-full sm:w-auto max-w-xs"
               >
                 {t('seeOtherProperties')}
                 <FaArrowRight className="w-5 h-5" />
