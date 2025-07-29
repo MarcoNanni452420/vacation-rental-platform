@@ -129,7 +129,7 @@ export function ImageCarousel({
                 alt={`${propertyName} - Immagine ${image.index + 1}`}
                 fill
                 priority={displayIndex < 3}
-                loading={displayIndex < 3 ? undefined : "lazy"} // Explicit lazy loading for better performance
+                loading={imagesPerView === 1 && displayIndex >= 3 ? "lazy" : undefined} // Lazy loading only on mobile
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover transition-transform duration-700 group-hover/image:scale-110 rounded-2xl"
               />
@@ -177,9 +177,9 @@ export function ImageCarousel({
         </>
       )}
 
-      {/* Progress Indicators - Only show if more images than can be displayed */}
+      {/* Progress Indicators - Only show if more images than can be displayed and not on mobile */}
       {images.length > imagesPerView && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1 sm:gap-2 px-4">
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1 sm:gap-2 px-4 hidden sm:flex">
           {Array.from({ length: Math.floor(images.length / imagesPerView) }, (_, i) => (
             <button
               key={i}
