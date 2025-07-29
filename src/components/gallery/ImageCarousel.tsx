@@ -111,7 +111,7 @@ export function ImageCarousel({
       )}
     >
       {/* Carousel Container */}
-      <div className="relative p-4 min-h-[320px] sm:min-h-[400px]">
+      <div className="relative p-4 h-[320px] sm:h-[400px]">
         <div className={cn(
           "grid gap-4",
           imagesPerView === 1 && "grid-cols-1",
@@ -154,7 +154,8 @@ export function ImageCarousel({
           <button
             onClick={goToPrevious}
             className={cn(
-              "absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full text-white transition-all duration-300 z-10",
+              "absolute left-4 p-3 rounded-full text-white transition-all duration-300 z-10",
+              "top-[160px] sm:top-1/2 sm:-translate-y-1/2", // Fixed position on mobile, centered on desktop
               "bg-black/30 backdrop-blur-sm hover:bg-black/50",
               "opacity-0 group-hover:opacity-100 hover:scale-110"
             )}
@@ -166,7 +167,8 @@ export function ImageCarousel({
           <button
             onClick={goToNext}
             className={cn(
-              "absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full text-white transition-all duration-300 z-10",
+              "absolute right-4 p-3 rounded-full text-white transition-all duration-300 z-10",
+              "top-[160px] sm:top-1/2 sm:-translate-y-1/2", // Fixed position on mobile, centered on desktop
               "bg-black/30 backdrop-blur-sm hover:bg-black/50",
               "opacity-0 group-hover:opacity-100 hover:scale-110"
             )}

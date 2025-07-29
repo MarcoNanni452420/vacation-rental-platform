@@ -2,11 +2,18 @@
 
 import { motion } from "framer-motion"
 import { ClientOnly } from "@/components/ui/client-only"
-import { ImageGalleryModal } from "@/components/ui/image-gallery-modal"
+import dynamic from 'next/dynamic'
+
+// Lazy load heavy components for better performance
+const ImageGalleryModal = dynamic(() => import('@/components/ui/image-gallery-modal').then(mod => ({ default: mod.ImageGalleryModal })), {
+  ssr: false // Modal not needed on SSR
+})
 import { BookingCalendar } from "@/components/booking/BookingCalendar"
 import { GuestSelector } from "@/components/booking/GuestSelector"
 import { ImageCarousel } from "@/components/gallery/ImageCarousel"
-import { ReviewsMapSection } from "@/components/reviews/ReviewsMapSection"
+const ReviewsMapSection = dynamic(() => import('@/components/reviews/ReviewsMapSection').then(mod => ({ default: mod.ReviewsMapSection })), {
+  loading: () => <div className="animate-pulse bg-gray-200 h-96 rounded-2xl" />
+})
 import { TruncatedDescription } from "@/components/ui/truncated-description"
 import { PriceCalculator } from "@/components/pricing/PriceCalculator"
 import Link from "next/link"

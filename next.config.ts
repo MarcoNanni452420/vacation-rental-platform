@@ -131,12 +131,20 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  // Modularize imports for better tree shaking
+  modularizeImports: {
+    'lucide-react': {
+      transform: 'lucide-react/dist/esm/icons/{{member}}',
+    },
+  },
   // Enable compression
   compress: true,
   // Enable experimental features for performance
   experimental: {
-    optimizePackageImports: ['lucide-react', 'date-fns', 'react-hot-toast'],
+    optimizePackageImports: ['lucide-react', 'date-fns', 'react-hot-toast', 'framer-motion'],
     scrollRestoration: true,
+    // Optimize CSS loading
+    optimizeCss: true,
   },
 };
 

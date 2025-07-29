@@ -238,7 +238,7 @@ export function Navbar() {
                   </p>
                   <Link
                     href="/property/fienaroli#booking"
-                    className="flex items-center gap-4 p-4 rounded-xl bg-muted border border-[hsl(20,65%,35%)]/30 hover:bg-muted/80 hover:border-[hsl(20,65%,35%)]/50 transition-all duration-200 group"
+                    className="flex items-center gap-4 p-4 rounded-2xl bg-muted border border-[hsl(20,65%,35%)]/30 hover:bg-muted/80 hover:border-[hsl(20,65%,35%)]/50 transition-all duration-300 group hover:shadow-sm"
                     onClick={(e) => {
                       setIsMenuOpen(false)
                       if (typeof window !== 'undefined' && window.location.pathname === '/property/fienaroli') {
@@ -254,7 +254,7 @@ export function Navbar() {
                       <div className="font-semibold text-[hsl(20,65%,35%)] group-hover:text-[hsl(20,65%,35%)]/80">
                         Fienaroli
                       </div>
-                      <div className="text-xs text-muted-foreground mt-1 flex items-center gap-2">
+                      <div className="text-xs text-gray-600 mt-1 flex items-center gap-2">
                         <span>6 guests</span>
                         <span>•</span>
                         <span>Via dei Fienaroli</span>
@@ -268,7 +268,7 @@ export function Navbar() {
                   </Link>
                   <Link
                     href="/property/moro#booking"
-                    className="flex items-center gap-4 p-4 rounded-xl bg-muted border border-[hsl(345,55%,35%)]/30 hover:bg-muted/80 hover:border-[hsl(345,55%,35%)]/50 transition-all duration-200 group"
+                    className="flex items-center gap-4 p-4 rounded-2xl bg-muted border border-[hsl(345,55%,35%)]/30 hover:bg-muted/80 hover:border-[hsl(345,55%,35%)]/50 transition-all duration-300 group hover:shadow-sm"
                     onClick={(e) => {
                       setIsMenuOpen(false)
                       if (typeof window !== 'undefined' && window.location.pathname === '/property/moro') {
@@ -284,7 +284,7 @@ export function Navbar() {
                       <div className="font-semibold text-[hsl(345,55%,35%)] group-hover:text-[hsl(345,55%,35%)]/80">
                         Moro
                       </div>
-                      <div className="text-xs text-muted-foreground mt-1 flex items-center gap-2">
+                      <div className="text-xs text-gray-600 mt-1 flex items-center gap-2">
                         <span>4 guests</span>
                         <span>•</span>
                         <span>Near Santa Maria</span>
