@@ -52,16 +52,16 @@ export function ReviewCard({
     fienaroli: {
       border: 'border-[hsl(20,65%,90%)]',
       bg: 'bg-[hsl(20,65%,98%)]',
-      accent: 'text-[hsl(20,65%,48%)]',
+      accent: 'text-[hsl(20,65%,35%)]', // Darkened from 48% to 35% for better contrast
       tagBg: 'bg-[hsl(20,65%,95%)]',
-      tagText: 'text-[hsl(20,65%,48%)]'
+      tagText: 'text-[hsl(20,65%,35%)]' // Darkened from 48% to 35% for WCAG AA compliance
     },
     moro: {
       border: 'border-[hsl(345,55%,90%)]',
       bg: 'bg-[hsl(345,55%,98%)]',
-      accent: 'text-[hsl(345,55%,42%)]',
+      accent: 'text-[hsl(345,55%,35%)]', // Darkened from 42% to 35% for better contrast
       tagBg: 'bg-[hsl(345,55%,95%)]',
-      tagText: 'text-[hsl(345,55%,42%)]'
+      tagText: 'text-[hsl(345,55%,35%)]' // Darkened from 42% to 35% for WCAG AA compliance
     }
   };
 

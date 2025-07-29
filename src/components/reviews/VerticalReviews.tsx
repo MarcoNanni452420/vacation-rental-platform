@@ -30,16 +30,16 @@ export function VerticalReviews({ propertySlug, className, preloadedReviews, isP
   // Theme colors based on property
   const themeColors = {
     fienaroli: {
-      accent: 'text-[hsl(20,65%,48%)]',
-      button: 'bg-[hsl(20,65%,48%)] hover:bg-[hsl(20,65%,42%)]',
-      border: 'border-[hsl(20,65%,48%)]',
-      expandButton: 'text-[hsl(20,65%,48%)] hover:bg-[hsl(20,65%,95%)]'
+      accent: 'text-[hsl(20,65%,35%)]', // Darkened for better contrast
+      button: 'bg-[hsl(20,65%,35%)] hover:bg-[hsl(20,65%,30%)]', // Darkened button colors
+      border: 'border-[hsl(20,65%,35%)]',
+      expandButton: 'text-[hsl(20,65%,35%)] hover:bg-[hsl(20,65%,95%)]' // Darkened expand button
     },
     moro: {
-      accent: 'text-[hsl(345,55%,42%)]',
-      button: 'bg-[hsl(345,55%,42%)] hover:bg-[hsl(345,55%,37%)]',
-      border: 'border-[hsl(345,55%,42%)]',
-      expandButton: 'text-[hsl(345,55%,42%)] hover:bg-[hsl(345,55%,95%)]'
+      accent: 'text-[hsl(345,55%,35%)]', // Darkened for better contrast
+      button: 'bg-[hsl(345,55%,35%)] hover:bg-[hsl(345,55%,30%)]', // Darkened button colors
+      border: 'border-[hsl(345,55%,35%)]',
+      expandButton: 'text-[hsl(345,55%,35%)] hover:bg-[hsl(345,55%,95%)]' // Darkened expand button
     }
   };
 

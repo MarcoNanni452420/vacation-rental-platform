@@ -28,12 +28,12 @@ export function ReviewsMapSection({
   // Theme colors based on property
   const themeColors = {
     fienaroli: {
-      accent: 'text-[hsl(20,65%,48%)]',
-      border: 'border-[hsl(20,65%,48%)]'
+      accent: 'text-[hsl(20,65%,35%)]', // Darkened for better contrast
+      border: 'border-[hsl(20,65%,35%)]'
     },
     moro: {
-      accent: 'text-[hsl(345,55%,42%)]',
-      border: 'border-[hsl(345,55%,42%)]'
+      accent: 'text-[hsl(345,55%,35%)]', // Darkened for better contrast
+      border: 'border-[hsl(345,55%,35%)]'
     }
   };
 

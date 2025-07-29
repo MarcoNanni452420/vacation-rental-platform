@@ -179,18 +179,20 @@ export function ImageCarousel({
       {/* Progress Indicators - Only show if more images than can be displayed */}
       {images.length > imagesPerView && (
         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-          {Array.from({ length: Math.ceil(images.length / imagesPerView) }, (_, i) => (
+          {Array.from({ length: Math.floor(images.length / imagesPerView) }, (_, i) => (
             <button
               key={i}
               onClick={() => setCurrentIndex(i * imagesPerView)}
-              className={cn(
+              className="w-11 h-11 flex items-center justify-center transition-all duration-300" // 44x44px invisible touch target
+              aria-label={t('goToGroup', { number: i + 1 })}
+            >
+              <div className={cn(
                 "w-2 h-2 rounded-full transition-all duration-300",
                 Math.floor(currentIndex / imagesPerView) === i
-                  ? `${colors.accent} w-8` 
+                  ? `${colors.accent} w-8` // Elegant line expansion when active
                   : "bg-white/50 hover:bg-white/75"
-              )}
-              aria-label={t('goToGroup', { number: i + 1 })}
-            />
+              )} />
+            </button>
           ))}
         </div>
       )}

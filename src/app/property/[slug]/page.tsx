@@ -381,7 +381,7 @@ export default function PropertyPage() {
             {/* Booking Card */}
             <div className="lg:sticky lg:top-24 h-fit">
               <RevealOnScroll>
-                <div className="bg-card border border-border p-8 space-y-6">
+                <div className="bg-card border border-border p-8 space-y-6 rounded-2xl">
                   <div>
                     <h3 className="text-2xl font-bold">{t('checkAvailability')}</h3>
                     <p className="text-muted-foreground">{t('selectDates')}</p>
