@@ -6,25 +6,25 @@
     "bookNow": "Prenota Ora"
   },
   "home": {
-    "subtitle": "Houses in Rome",
-    "title": "Trastevere Luxury",
-    "description": "Due proprietà esclusive nel cuore storico di Roma, dove il design contemporaneo incontra la tradizione",
+    "subtitle": "Appartamenti di Lusso Storici a Roma",
+    "title": "Trastevere Luxury Homes",
+    "description": "Soggiorna in esclusivi appartamenti di design con soffitti in legno del 1400 e pareti in vetro contemporanee. Due proprietà uniche nel quartiere più affascinante di Roma, a due passi da Santa Maria in Trastevere e dalle principali attrazioni.",
     "explore": "Esplora",
     "perNight": "per notte",
     "guests": "ospiti",
     "bedrooms": "camere",
     "bathrooms": "bagni",
-    "aboutSectionLabel": "L'esperienza",
-    "aboutTitle": "Vivi Roma come un local",
-    "aboutDescription": "Nel cuore di Trastevere, a pochi passi dalla movida ma in angoli tranquilli, le nostre case offrono il perfetto equilibrio tra comfort moderno e autenticità romana. Passeggia per i vicoli storici, gusta la vera cucina romana nelle trattorie tradizionali, e raggiungi facilmente Piazza Navona, il Pantheon e tutte le meraviglie di Roma.",
+    "aboutSectionLabel": "Esperienza Romana Autentica",
+    "aboutTitle": "Lusso Storico Incontra Comfort Moderno",
+    "aboutDescription": "Vivi Roma da due straordinari appartamenti di design nelle location più prestigiose di Trastevere. Casa Fienaroli combina travi in legno a vista con pareti in vetro contemporanee, mentre Casa Moro presenta autentici soffitti del 1400 con bagni di lusso in marmo. Entrambe le proprietà offrono servizi esclusivi come macchine Nespresso, docce walk-in e aria condizionata in ogni stanza - a pochi passi da Santa Maria in Trastevere, Piazza Navona e il Pantheon.",
     "stats": {
       "properties": "Proprietà esclusive",
       "experience": "Anni di esperienza", 
       "guests": "Ospiti soddisfatti"
     },
-    "locationSectionLabel": "Posizione",
-    "locationTitle": "Il cuore di Trastevere",
-    "locationDescription": "Entrambe le proprietà si trovano nel quartiere più caratteristico di Roma, dove l'atmosfera bohémien si mescola con la storia millenaria della città eterna.",
+    "locationSectionLabel": "Posizione Privilegiata",
+    "locationTitle": "Le Vie Più Prestigiose di Trastevere",
+    "locationDescription": "Casa Fienaroli si trova nella ricercata Via dei Fienaroli, mentre Casa Moro è perfettamente posizionata tra Santa Maria in Trastevere e l'iconica Fontana del Trilussa. Entrambe le location offrono il perfetto equilibrio tra autentica vita di quartiere romana e accesso immediato alle attrazioni più famose della città.",
     "walkingDistances": {
       "santaMaria": "5 minuti a piedi",
       "santaMariaLocation": "Santa Maria in Trastevere",
@@ -33,11 +33,11 @@
       "fontanaTrevi": "15 minuti a piedi",
       "fontanaTreviLocation": "Fontana di Trevi e Piazza di Spagna"
     },
-    "ctaTitle": "Scegli la tua casa a Roma",
-    "ctaDescription": "Design contemporaneo o fascino storico? Scopri quale delle nostre proprietà fa per te.",
+    "ctaTitle": "Scegli la Tua Esperienza Romana Perfetta",
+    "ctaDescription": "Pareti in vetro di design o soffitti del 1400? Entrambe le proprietà offrono servizi di lusso e location prestigiose a Trastevere.",
     "propertyDescriptions": {
-      "fienaroli": "Design contemporaneo e travi a vista nel cuore di Roma",
-      "moro": "Soffitti del 1400 e lusso moderno nel cuore di Trastevere"
+      "fienaroli": "Appartamento di design da 80mq con travi a vista e pareti in vetro nella prestigiosa Via dei Fienaroli. Accoglie 6 persone in 2 camere con cucina Nespresso e bagni esclusivi.",
+      "moro": "Appartamento unico da 90mq con autentici soffitti in legno del 1400 e bagni di lusso in marmo. Rifugio intimo con 1 camera tra Santa Maria e Fontana del Trilussa."
     }
   },
   "property": {

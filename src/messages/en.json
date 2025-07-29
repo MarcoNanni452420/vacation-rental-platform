@@ -6,25 +6,25 @@
     "bookNow": "Book Now"
   },
   "home": {
-    "subtitle": "Houses in Rome",
-    "title": "Trastevere Luxury",
-    "description": "Two exclusive properties in the historic heart of Rome, where contemporary design meets tradition",
+    "subtitle": "Historic Luxury Apartments in Rome",
+    "title": "Trastevere Luxury Homes",
+    "description": "Stay in exclusive designer apartments featuring 15th-century wooden ceilings and contemporary glass walls. Two unique properties in Rome's most charming neighborhood, steps from Santa Maria in Trastevere and major attractions.",
     "explore": "Explore",
     "perNight": "per night",
     "guests": "guests",
     "bedrooms": "bedrooms", 
     "bathrooms": "bathrooms",
-    "aboutSectionLabel": "The Experience",
-    "aboutTitle": "Live Rome like a local",
-    "aboutDescription": "In the heart of Trastevere, steps away from the nightlife but in quiet corners, our houses offer the perfect balance between modern comfort and Roman authenticity. Walk through historic alleys, taste true Roman cuisine in traditional trattorias, and easily reach Piazza Navona, the Pantheon and all the wonders of Rome.",
+    "aboutSectionLabel": "Authentic Roman Living",
+    "aboutTitle": "Historic Luxury Meets Modern Comfort",
+    "aboutDescription": "Experience Rome from two extraordinary designer apartments in Trastevere's most prestigious locations. Casa Fienaroli combines exposed wooden beams with contemporary glass walls, while Casa Moro features authentic 15th-century ceilings with luxury marble bathrooms. Both properties offer exclusive amenities like Nespresso machines, walk-in showers, and air conditioning in every room - just steps from Santa Maria in Trastevere, Piazza Navona, and the Pantheon.",
     "stats": {
       "properties": "Exclusive properties",
       "experience": "Years of experience",
       "guests": "Satisfied guests"
     },
-    "locationSectionLabel": "Location",
-    "locationTitle": "The heart of Trastevere", 
-    "locationDescription": "Both properties are located in Rome's most characteristic neighborhood, where bohemian atmosphere blends with the millenary history of the eternal city.",
+    "locationSectionLabel": "Prime Location",
+    "locationTitle": "Trastevere's Most Prestigious Streets", 
+    "locationDescription": "Casa Fienaroli sits on the coveted Via dei Fienaroli, while Casa Moro is perfectly positioned between Santa Maria in Trastevere and the iconic Trilussa Fountain. Both locations offer the perfect blend of authentic Roman neighborhood life with immediate access to the city's most famous attractions.",
     "walkingDistances": {
       "santaMaria": "5 minutes walk",
       "santaMariaLocation": "Santa Maria in Trastevere",
@@ -33,11 +33,11 @@
       "fontanaTrevi": "15 minutes walk",
       "fontanaTreviLocation": "Trevi Fountain and Spanish Steps"
     },
-    "ctaTitle": "Choose your home in Rome",
-    "ctaDescription": "Contemporary design or historic charm? Discover which of our properties is right for you.",
+    "ctaTitle": "Choose Your Perfect Roman Experience",
+    "ctaDescription": "Designer glass walls or 15th-century ceilings? Both properties offer luxury amenities and prime Trastevere locations.",
     "propertyDescriptions": {
-      "fienaroli": "Contemporary design and exposed beams in the heart of Rome",
-      "moro": "Historic ceilings and modern luxury in the heart of Trastevere"
+      "fienaroli": "Designer 80sqm apartment with exposed beams and glass walls on prestigious Via dei Fienaroli. Sleeps 6 in 2 bedrooms with Nespresso kitchen and exclusive bathrooms.",
+      "moro": "Unique 90sqm apartment with authentic 15th-century wooden ceilings and luxury marble bathrooms. Intimate 1-bedroom retreat between Santa Maria and Trilussa Fountain."
     }
   },
   "property": {
