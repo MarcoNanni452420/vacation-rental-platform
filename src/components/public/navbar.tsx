@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { LanguageSwitcher } from "@/components/LanguageSwitcher"
@@ -11,6 +11,8 @@ import { useTranslations } from 'next-intl'
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isBookingDropdownOpen, setIsBookingDropdownOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
   const isHomepage = pathname === '/'
   const isContactPage = pathname === '/contact'
@@ -25,6 +27,45 @@ export function Navbar() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsBookingDropdownOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  // Close dropdown on route change
+  useEffect(() => {
+    setIsBookingDropdownOpen(false)
+  }, [pathname])
+
+  // Listen for custom event to close this dropdown when others open
+  useEffect(() => {
+    const handleCloseDropdown = () => {
+      setIsBookingDropdownOpen(false)
+    }
+
+    window.addEventListener('closeBookingDropdown', handleCloseDropdown)
+    return () => window.removeEventListener('closeBookingDropdown', handleCloseDropdown)
+  }, [])
+
+  const handleBookingToggle = () => {
+    if (!isBookingDropdownOpen) {
+      // Dispatch event to close other dropdowns
+      window.dispatchEvent(new CustomEvent('closeLanguageDropdown'))
+    }
+    setIsBookingDropdownOpen(!isBookingDropdownOpen)
+  }
+
+  const handleCloseDropdowns = () => {
+    setIsBookingDropdownOpen(false)
+  }
 
   const navLinks = [
     { href: "/property/fienaroli", label: t('fienaroli') },
@@ -79,19 +120,73 @@ export function Navbar() {
             ))}
             
             {/* CTA and Language Section */}
-            <div className="flex items-center space-x-6 ml-12 xl:ml-16 2xl:ml-20">
-              <LanguageSwitcher />
-              <Link
-                href="/"
-                className={cn(
-                  "text-sm font-medium uppercase tracking-wide px-6 py-3 border transition-all duration-300",
-                  needsDarkText
-                    ? "border-black text-black hover:bg-black hover:text-white" 
-                    : "border-white text-white hover:bg-white hover:text-black"
+            <div className="flex items-center space-x-8 ml-12 xl:ml-16 2xl:ml-20">
+              <LanguageSwitcher needsDarkText={needsDarkText} />
+              
+              {/* Book Now Dropdown */}
+              <div className="relative" ref={dropdownRef}>
+                <button
+                  onClick={handleBookingToggle}
+                  className={cn(
+                    "text-sm font-medium uppercase tracking-wide px-6 py-3 border transition-all duration-300 flex items-center gap-2",
+                    needsDarkText
+                      ? "border-black text-black hover:bg-black hover:text-white" 
+                      : "border-white text-white hover:bg-white hover:text-black"
+                  )}
+                >
+                  {t('bookNow')}
+                  <svg 
+                    className={cn(
+                      "w-4 h-4 transition-transform duration-200",
+                      isBookingDropdownOpen && "rotate-180"
+                    )}
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                
+                {/* Dropdown Menu - Match Language Switcher Design */}
+                {isBookingDropdownOpen && (
+                  <div className="absolute top-full left-0 mt-0 bg-background border border-border w-full overflow-hidden rounded-lg shadow-lg z-50">
+                    <Link
+                      href="/property/fienaroli#booking"
+                      className="block w-full px-4 py-3 text-left text-sm font-medium uppercase tracking-wider transition-colors text-[#C17A5B] hover:text-[#C17A5B]/80 hover:bg-[#C17A5B]/10"
+                      onClick={(e) => {
+                        handleCloseDropdowns()
+                        if (typeof window !== 'undefined' && window.location.pathname === '/property/fienaroli') {
+                          e.preventDefault()
+                          const element = document.getElementById('booking-section')
+                          if (element) {
+                            element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
+                          }
+                        }
+                      }}
+                    >
+                      Fienaroli
+                    </Link>
+                    <div className="border-t border-border" />
+                    <Link
+                      href="/property/moro#booking"
+                      className="block w-full px-4 py-3 text-left text-sm font-medium uppercase tracking-wider transition-colors text-[#A65B5B] hover:text-[#A65B5B]/80 hover:bg-[#A65B5B]/10"
+                      onClick={(e) => {
+                        handleCloseDropdowns()
+                        if (typeof window !== 'undefined' && window.location.pathname === '/property/moro') {
+                          e.preventDefault()
+                          const element = document.getElementById('booking-section')
+                          if (element) {
+                            element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
+                          }
+                        }
+                      }}
+                    >
+                      Moro
+                    </Link>
+                  </div>
                 )}
-              >
-                {t('bookNow')}
-              </Link>
+              </div>
             </div>
           </div>
 
@@ -134,12 +229,72 @@ export function Navbar() {
               <div className="pt-8 border-t space-y-6 animate-fade-up" style={{ animationDelay: '300ms' }}>
                 <div className="flex items-center justify-between">
                   <LanguageSwitcher />
+                </div>
+                
+                {/* Mobile Book Now Options */}
+                <div className="space-y-4">
+                  <p className="text-xs font-medium uppercase tracking-wider text-gray-500">
+                    {t('bookNow')} - Choose Your Property
+                  </p>
                   <Link
-                    href="/"
-                    className="inline-block text-sm font-medium uppercase tracking-wide px-6 py-3 border border-black text-black hover:bg-black hover:text-white transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
+                    href="/property/fienaroli#booking"
+                    className="flex items-center gap-4 p-4 rounded-xl bg-muted border border-[#C17A5B]/30 hover:bg-muted/80 hover:border-[#C17A5B]/50 transition-all duration-200 group"
+                    onClick={(e) => {
+                      setIsMenuOpen(false)
+                      if (typeof window !== 'undefined' && window.location.pathname === '/property/fienaroli') {
+                        e.preventDefault()
+                        const element = document.getElementById('booking-section')
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
+                        }
+                      }
+                    }}
                   >
-                    {t('bookNow')}
+                    <div className="flex-1">
+                      <div className="font-semibold text-[#C17A5B] group-hover:text-[#C17A5B]/80">
+                        Fienaroli
+                      </div>
+                      <div className="text-xs text-muted-foreground mt-1 flex items-center gap-2">
+                        <span>6 guests</span>
+                        <span>•</span>
+                        <span>Via dei Fienaroli</span>
+                      </div>
+                    </div>
+                    <div className="opacity-60 group-hover:opacity-100 transition-opacity duration-200">
+                      <svg className="w-4 h-4 text-[#C17A5B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </Link>
+                  <Link
+                    href="/property/moro#booking"
+                    className="flex items-center gap-4 p-4 rounded-xl bg-muted border border-[#A65B5B]/30 hover:bg-muted/80 hover:border-[#A65B5B]/50 transition-all duration-200 group"
+                    onClick={(e) => {
+                      setIsMenuOpen(false)
+                      if (typeof window !== 'undefined' && window.location.pathname === '/property/moro') {
+                        e.preventDefault()
+                        const element = document.getElementById('booking-section')
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
+                        }
+                      }
+                    }}
+                  >
+                    <div className="flex-1">
+                      <div className="font-semibold text-[#A65B5B] group-hover:text-[#A65B5B]/80">
+                        Moro
+                      </div>
+                      <div className="text-xs text-muted-foreground mt-1 flex items-center gap-2">
+                        <span>4 guests</span>
+                        <span>•</span>
+                        <span>Near Santa Maria</span>
+                      </div>
+                    </div>
+                    <div className="opacity-60 group-hover:opacity-100 transition-opacity duration-200">
+                      <svg className="w-4 h-4 text-[#A65B5B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
                   </Link>
                 </div>
               </div>

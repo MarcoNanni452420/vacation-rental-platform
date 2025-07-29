@@ -45,7 +45,11 @@ export default withAuth(
       "object-src 'none'",
       "base-uri 'self'",
       "form-action 'self' https://api.octorateplus.com",
-      "frame-ancestors 'none'"
+      "frame-ancestors 'none'",
+      // Trusted Types - Temporarily disabled for Next.js compatibility
+      // Will re-enable with proper policy configuration
+      // "require-trusted-types-for 'script'",
+      // "trusted-types default"
     ].join('; ')
     
     response.headers.set('Content-Security-Policy', cspValue)

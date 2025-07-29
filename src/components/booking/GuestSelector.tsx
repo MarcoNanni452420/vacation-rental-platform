@@ -90,6 +90,7 @@ export function GuestSelector({ propertySlug, value, onChange, maxGuests, classN
             type="button"
             onClick={handleDecrement}
             disabled={value <= 1}
+            aria-label={t('decreaseGuests')}
             className={cn(
               "p-2 rounded-lg transition-all duration-200",
               "disabled:opacity-50 disabled:cursor-not-allowed",
@@ -107,6 +108,7 @@ export function GuestSelector({ propertySlug, value, onChange, maxGuests, classN
             type="button"
             onClick={handleIncrement}
             disabled={value >= maxGuests}
+            aria-label={t('increaseGuests')}
             className={cn(
               "p-2 rounded-lg transition-all duration-200",
               "disabled:opacity-50 disabled:cursor-not-allowed",

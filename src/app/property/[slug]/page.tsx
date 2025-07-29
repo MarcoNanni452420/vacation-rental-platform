@@ -208,6 +208,45 @@ export default function PropertyPage() {
     }
   }, [property])
 
+  // Handle hash routing for booking section
+  useEffect(() => {
+    const hash = window.location.hash
+    if (hash === '#booking') {
+      // Wait for component to mount and render
+      const timer = setTimeout(() => {
+        const bookingElement = document.getElementById('booking-section')
+        if (bookingElement) {
+          bookingElement.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center',
+            inline: 'nearest'
+          })
+        }
+      }, 100)
+      return () => clearTimeout(timer)
+    }
+  }, [])
+
+  // Also handle hash changes during navigation
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash
+      if (hash === '#booking') {
+        const bookingElement = document.getElementById('booking-section')
+        if (bookingElement) {
+          bookingElement.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center',
+            inline: 'nearest'
+          })
+        }
+      }
+    }
+
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [])
+
   // Preload availability and reviews data on page load and locale change
   useEffect(() => {
     const preloadData = async () => {
@@ -299,7 +338,7 @@ export default function PropertyPage() {
             <div className="lg:col-span-2 space-y-16">
               {/* Key Features */}
               <RevealOnScroll>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div id="booking-section" className="grid grid-cols-2 md:grid-cols-4 gap-8">
                   <div className="text-center">
                     <Users className="w-8 h-8 mx-auto mb-3 text-primary" />
                     <p className="text-2xl font-bold">{property.maxGuests}</p>

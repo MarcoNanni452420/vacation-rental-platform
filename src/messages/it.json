@@ -205,7 +205,9 @@
     "whenStay": "Quando vuoi soggiornare?",
     "addDates": "Aggiungi le date del tuo viaggio",
     "selectCheckin": "Seleziona data check-in",
-    "selectCheckout": "Seleziona la data di check-out"
+    "selectCheckout": "Seleziona la data di check-out",
+    "increaseGuests": "Aumenta il numero di ospiti",
+    "decreaseGuests": "Diminuisci il numero di ospiti"
   },
   "pricing": {
     "night": "notte",

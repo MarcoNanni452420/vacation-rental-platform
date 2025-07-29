@@ -260,7 +260,9 @@
     "whenStay": "When do you want to stay?",
     "addDates": "Add your travel dates",
     "selectCheckin": "Select check-in date",
-    "selectCheckout": "Select check-out date"
+    "selectCheckout": "Select check-out date",
+    "increaseGuests": "Increase number of guests",
+    "decreaseGuests": "Decrease number of guests"
   },
   "pricing": {
     "night": "night",
