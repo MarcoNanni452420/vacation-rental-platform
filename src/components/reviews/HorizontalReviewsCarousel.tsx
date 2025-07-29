@@ -30,16 +30,16 @@ export function HorizontalReviewsCarousel({
   // Theme colors based on property
   const themeColors = {
     fienaroli: {
-      accent: 'text-[hsl(20,65%,48%)]',
-      button: 'bg-[hsl(20,65%,48%)] hover:bg-[hsl(20,65%,42%)]',
-      border: 'border-[hsl(20,65%,48%)]',
-      indicator: 'bg-[hsl(20,65%,48%)]'
+      accent: 'text-[hsl(20,65%,35%)]', // Updated for accessibility
+      button: 'bg-[hsl(20,65%,35%)] hover:bg-[hsl(20,65%,30%)]', // Updated for accessibility
+      border: 'border-[hsl(20,65%,35%)]',
+      indicator: 'bg-[hsl(20,65%,35%)]' // Updated for accessibility
     },
     moro: {
-      accent: 'text-[hsl(345,55%,42%)]',
-      button: 'bg-[hsl(345,55%,42%)] hover:bg-[hsl(345,55%,37%)]',
-      border: 'border-[hsl(345,55%,42%)]',
-      indicator: 'bg-[hsl(345,55%,42%)]'
+      accent: 'text-[hsl(345,55%,35%)]', // Updated for accessibility
+      button: 'bg-[hsl(345,55%,35%)] hover:bg-[hsl(345,55%,30%)]', // Updated for accessibility
+      border: 'border-[hsl(345,55%,35%)]',
+      indicator: 'bg-[hsl(345,55%,35%)]' // Updated for accessibility
     }
   };
 
@@ -178,19 +178,21 @@ export function HorizontalReviewsCarousel({
       </div>
 
       {/* Progress Indicators */}
-      <div className="flex justify-center gap-1.5 mt-6">
+      <div className="flex justify-center gap-1 sm:gap-2 mt-6">
         {reviews.map((_, index) => (
           <button
             key={index}
             onClick={() => scrollToIndex(index)}
-            className={cn(
+            className="w-11 h-11 flex items-center justify-center transition-all duration-300" // 44x44px touch target
+            aria-label={t('goToReview', { number: index + 1 })}
+          >
+            <div className={cn(
               "h-1.5 rounded-full transition-all duration-300",
               index === currentIndex 
                 ? `${colors.indicator} w-8` 
                 : "bg-gray-300 w-1.5 hover:bg-gray-400"
-            )}
-            aria-label={t('goToReview', { number: index + 1 })}
-          />
+            )} />
+          </button>
         ))}
       </div>
 

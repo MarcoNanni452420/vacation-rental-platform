@@ -106,6 +106,7 @@ export function ReviewCard({
                 alt={`${reviewer.firstName}&apos;s profile`}
                 width={48}
                 height={48}
+                loading="lazy" // Lazy load reviewer avatars for better performance
                 className="rounded-full object-cover w-full h-full"
                 onError={(e) => {
                   // Fallback to default avatar if image fails

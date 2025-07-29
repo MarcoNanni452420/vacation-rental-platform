@@ -27,14 +27,14 @@ export function ImageCarousel({
   // Theme colors based on property
   const themeColors = {
     fienaroli: {
-      accent: 'bg-[hsl(20,65%,48%)]',
-      hover: 'hover:bg-[hsl(20,65%,42%)]',
-      border: 'border-[hsl(20,65%,48%)]'
+      accent: 'bg-[hsl(20,65%,35%)]', // Updated for accessibility
+      hover: 'hover:bg-[hsl(20,65%,30%)]', // Updated for accessibility
+      border: 'border-[hsl(20,65%,35%)]'
     },
     moro: {
-      accent: 'bg-[hsl(345,55%,42%)]',
-      hover: 'hover:bg-[hsl(345,55%,37%)]',
-      border: 'border-[hsl(345,55%,42%)]'
+      accent: 'bg-[hsl(345,55%,35%)]', // Updated for accessibility
+      hover: 'hover:bg-[hsl(345,55%,30%)]', // Updated for accessibility
+      border: 'border-[hsl(345,55%,35%)]'
     }
   };
 
@@ -111,7 +111,7 @@ export function ImageCarousel({
       )}
     >
       {/* Carousel Container */}
-      <div className="relative p-4">
+      <div className="relative p-4 min-h-[320px] sm:min-h-[400px]">
         <div className={cn(
           "grid gap-4",
           imagesPerView === 1 && "grid-cols-1",
@@ -129,6 +129,7 @@ export function ImageCarousel({
                 alt={`${propertyName} - Immagine ${image.index + 1}`}
                 fill
                 priority={displayIndex < 3}
+                loading={displayIndex < 3 ? undefined : "lazy"} // Explicit lazy loading for better performance
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover transition-transform duration-700 group-hover/image:scale-110 rounded-2xl"
               />
@@ -153,7 +154,7 @@ export function ImageCarousel({
           <button
             onClick={goToPrevious}
             className={cn(
-              "absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full text-white transition-all duration-300",
+              "absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full text-white transition-all duration-300 z-10",
               "bg-black/30 backdrop-blur-sm hover:bg-black/50",
               "opacity-0 group-hover:opacity-100 hover:scale-110"
             )}
@@ -165,7 +166,7 @@ export function ImageCarousel({
           <button
             onClick={goToNext}
             className={cn(
-              "absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full text-white transition-all duration-300",
+              "absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full text-white transition-all duration-300 z-10",
               "bg-black/30 backdrop-blur-sm hover:bg-black/50",
               "opacity-0 group-hover:opacity-100 hover:scale-110"
             )}
@@ -178,7 +179,7 @@ export function ImageCarousel({
 
       {/* Progress Indicators - Only show if more images than can be displayed */}
       {images.length > imagesPerView && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1 sm:gap-2 px-4">
           {Array.from({ length: Math.floor(images.length / imagesPerView) }, (_, i) => (
             <button
               key={i}

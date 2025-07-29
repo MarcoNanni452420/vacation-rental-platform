@@ -153,7 +153,7 @@ export function Navbar() {
                   <div className="absolute top-full left-0 mt-0 bg-background border border-border w-full overflow-hidden rounded-lg shadow-lg z-50">
                     <Link
                       href="/property/fienaroli#booking"
-                      className="block w-full px-4 py-3 text-left text-sm font-medium uppercase tracking-wider transition-colors text-[#C17A5B] hover:text-[#C17A5B]/80 hover:bg-[#C17A5B]/10"
+                      className="block w-full px-4 py-3 text-left text-sm font-medium uppercase tracking-wider transition-colors text-[hsl(20,65%,35%)] hover:text-[hsl(20,65%,35%)]/80 hover:bg-[hsl(20,65%,35%)]/10"
                       onClick={(e) => {
                         handleCloseDropdowns()
                         if (typeof window !== 'undefined' && window.location.pathname === '/property/fienaroli') {
@@ -170,7 +170,7 @@ export function Navbar() {
                     <div className="border-t border-border" />
                     <Link
                       href="/property/moro#booking"
-                      className="block w-full px-4 py-3 text-left text-sm font-medium uppercase tracking-wider transition-colors text-[#A65B5B] hover:text-[#A65B5B]/80 hover:bg-[#A65B5B]/10"
+                      className="block w-full px-4 py-3 text-left text-sm font-medium uppercase tracking-wider transition-colors text-[hsl(345,55%,35%)] hover:text-[hsl(345,55%,35%)]/80 hover:bg-[hsl(345,55%,35%)]/10"
                       onClick={(e) => {
                         handleCloseDropdowns()
                         if (typeof window !== 'undefined' && window.location.pathname === '/property/moro') {
@@ -238,7 +238,7 @@ export function Navbar() {
                   </p>
                   <Link
                     href="/property/fienaroli#booking"
-                    className="flex items-center gap-4 p-4 rounded-xl bg-muted border border-[#C17A5B]/30 hover:bg-muted/80 hover:border-[#C17A5B]/50 transition-all duration-200 group"
+                    className="flex items-center gap-4 p-4 rounded-xl bg-muted border border-[hsl(20,65%,35%)]/30 hover:bg-muted/80 hover:border-[hsl(20,65%,35%)]/50 transition-all duration-200 group"
                     onClick={(e) => {
                       setIsMenuOpen(false)
                       if (typeof window !== 'undefined' && window.location.pathname === '/property/fienaroli') {
@@ -251,7 +251,7 @@ export function Navbar() {
                     }}
                   >
                     <div className="flex-1">
-                      <div className="font-semibold text-[#C17A5B] group-hover:text-[#C17A5B]/80">
+                      <div className="font-semibold text-[hsl(20,65%,35%)] group-hover:text-[hsl(20,65%,35%)]/80">
                         Fienaroli
                       </div>
                       <div className="text-xs text-muted-foreground mt-1 flex items-center gap-2">
@@ -261,14 +261,14 @@ export function Navbar() {
                       </div>
                     </div>
                     <div className="opacity-60 group-hover:opacity-100 transition-opacity duration-200">
-                      <svg className="w-4 h-4 text-[#C17A5B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 text-[hsl(20,65%,35%)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     </div>
                   </Link>
                   <Link
                     href="/property/moro#booking"
-                    className="flex items-center gap-4 p-4 rounded-xl bg-muted border border-[#A65B5B]/30 hover:bg-muted/80 hover:border-[#A65B5B]/50 transition-all duration-200 group"
+                    className="flex items-center gap-4 p-4 rounded-xl bg-muted border border-[hsl(345,55%,35%)]/30 hover:bg-muted/80 hover:border-[hsl(345,55%,35%)]/50 transition-all duration-200 group"
                     onClick={(e) => {
                       setIsMenuOpen(false)
                       if (typeof window !== 'undefined' && window.location.pathname === '/property/moro') {
@@ -281,7 +281,7 @@ export function Navbar() {
                     }}
                   >
                     <div className="flex-1">
-                      <div className="font-semibold text-[#A65B5B] group-hover:text-[#A65B5B]/80">
+                      <div className="font-semibold text-[hsl(345,55%,35%)] group-hover:text-[hsl(345,55%,35%)]/80">
                         Moro
                       </div>
                       <div className="text-xs text-muted-foreground mt-1 flex items-center gap-2">
@@ -291,7 +291,7 @@ export function Navbar() {
                       </div>
                     </div>
                     <div className="opacity-60 group-hover:opacity-100 transition-opacity duration-200">
-                      <svg className="w-4 h-4 text-[#A65B5B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 text-[hsl(345,55%,35%)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     </div>

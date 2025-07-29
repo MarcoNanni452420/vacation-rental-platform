@@ -74,7 +74,7 @@ export default function ContactPage() {
       <section className="py-16 bg-muted">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">{t('title')}</h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             {t('subtitle')}
           </p>
         </div>
@@ -151,7 +151,7 @@ export default function ContactPage() {
               {/* FAQ Section */}
               <div className="mt-16 p-8 bg-muted rounded-lg">
                 <h2 className="text-2xl font-bold mb-6 text-center">{t('faq.title')}</h2>
-                <ul className="space-y-3 text-muted-foreground">
+                <ul className="space-y-3 text-gray-700">
                   <li className="flex items-start">
                     <span className="text-primary mr-2">•</span>
                     <span>{t('faq.checkInOut')}</span>

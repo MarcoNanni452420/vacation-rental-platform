@@ -131,6 +131,7 @@ export function ImageGalleryModal({
                   src={image}
                   alt={`Thumbnail ${index + 1}`}
                   fill
+                  loading="lazy" // Lazy load thumbnails for better performance
                   sizes="64px"
                   className="object-cover"
                 />
