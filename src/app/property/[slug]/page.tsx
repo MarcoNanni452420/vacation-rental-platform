@@ -1,7 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
 import { ClientOnly } from "@/components/ui/client-only"
 import { ImageGalleryModal } from "@/components/ui/image-gallery-modal"
 import { BookingCalendar } from "@/components/booking/BookingCalendar"
@@ -485,10 +484,11 @@ export default function PropertyPage() {
               {t('ctaDescription', { propertyName: property.name })}
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <Link href="/contact">
-                <Button className="bg-background text-foreground hover:bg-background/90 px-4 sm:px-8 py-4 text-lg font-semibold border-2 border-background h-14 w-full sm:w-auto max-w-xs">
-                  {t('contactUs')}
-                </Button>
+              <Link 
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 px-4 sm:px-8 py-4 text-lg font-semibold bg-background text-foreground border-2 border-background hover:bg-background/90 transition-all duration-300 h-14 w-full sm:w-auto max-w-xs"
+              >
+                {t('contactUs')}
               </Link>
               <Link 
                 href="/"
