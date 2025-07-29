@@ -120,6 +120,25 @@
     letter-spacing: -0.04em;
   }
 
+  /* Hero title specific styles to avoid browser warnings */
+  .hero-title {
+    font-size: 4.5rem; /* text-7xl */
+    font-weight: 700;
+    letter-spacing: -0.04em;
+  }
+  
+  @media (min-width: 768px) {
+    .hero-title {
+      font-size: 6rem; /* md:text-8xl */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .hero-title {
+      font-size: 8rem; /* lg:text-9xl */
+    }
+  }
+
   h2 {
     @apply text-4xl md:text-5xl lg:text-6xl;
     font-weight: 600;

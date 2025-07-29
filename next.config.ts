@@ -61,23 +61,7 @@ const nextConfig: NextConfig = {
       {
         source: '/(.*)',
         headers: [
-          // Content Security Policy - Comprehensive protection against XSS
-          {
-            key: 'Content-Security-Policy',
-value: [
-              "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://maps.googleapis.com https://maps.google.com https://www.googletagmanager.com",
-              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://maps.googleapis.com",
-              "img-src 'self' data: blob: https://*.googleapis.com https://*.gstatic.com https://a0.muscache.com https://ui-avatars.com",
-              "font-src 'self' https://fonts.gstatic.com data:",
-              "connect-src 'self' https://*.googleapis.com https://maps.google.com https://www.google-analytics.com https://api.octorateplus.com",
-              "frame-src https://www.google.com/maps/",
-              "object-src 'none'",
-              "base-uri 'self'",
-              "form-action 'self' https://api.octorateplus.com",
-              "frame-ancestors 'none'"
-            ].join('; ')
-          },
+          // Content Security Policy is now set dynamically in middleware with nonce
           // HSTS - Enhanced with includeSubDomains and preload
           {
             key: 'Strict-Transport-Security',

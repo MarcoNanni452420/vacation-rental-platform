@@ -6,6 +6,7 @@ import { Footer } from "@/components/public/footer";
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages, getLocale} from 'next-intl/server';
 import { Toaster } from 'react-hot-toast';
+import { headers } from 'next/headers';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://trastevere-luxury.com'),
@@ -68,6 +69,10 @@ export default async function RootLayout({
   const messages = await getMessages();
   const locale = await getLocale();
   
+  // Get nonce from middleware
+  const headersList = await headers();
+  const nonce = headersList.get('x-nonce') || '';
+  
   return (
     <html lang={locale}>
       <head>
@@ -78,6 +83,7 @@ export default async function RootLayout({
         <link rel="preload" as="fetch" href="/api/availability/moro" crossOrigin="anonymous" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="csp-nonce" content={nonce} />
       </head>
       <body className="antialiased" suppressHydrationWarning={true}>
         <NextIntlClientProvider messages={messages}>

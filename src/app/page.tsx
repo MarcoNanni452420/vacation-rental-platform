@@ -28,7 +28,7 @@ export default function HomePage() {
           <h6 className="text-sm uppercase tracking-[0.3em] mb-6 font-medium text-gray-600">
             {t('subtitle')}
           </h6>
-          <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold mb-8 tracking-tight">
+          <h1 className="hero-title mb-8">
             {t('title')}
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto font-light">
