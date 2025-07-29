@@ -8,6 +8,8 @@ import { BookingCalendar } from "@/components/booking/BookingCalendar"
 import { GuestSelector } from "@/components/booking/GuestSelector"
 import { ImageCarousel } from "@/components/gallery/ImageCarousel"
 import { ReviewsMapSection } from "@/components/reviews/ReviewsMapSection"
+import { TruncatedDescription } from "@/components/ui/truncated-description"
+import { PriceCalculator } from "@/components/pricing/PriceCalculator"
 import Link from "next/link"
 import Image from "next/image"
 import { useRef, useEffect, useState } from "react"
@@ -22,159 +24,152 @@ import { OctorateCalendarResponse } from "@/types/octorate"
 import { ReviewsResponse } from "@/types/reviews"
 import { cn } from "@/lib/utils"
 
-// Simple markdown parser for bold text
-function parseMarkdown(text: string) {
-  const parts = text.split(/(\*\*.*?\*\*)/g);
-  return parts.map((part, index) => {
-    if (part.startsWith('**') && part.endsWith('**')) {
-      const boldText = part.slice(2, -2);
-      return <strong key={index}>{boldText}</strong>;
-    }
-    return part;
-  });
-}
 // Icons from react-icons
+// Lucide icons for modern amenity display
 import { 
-  FaStar, 
-  FaUsers, 
-  FaBed, 
-  FaBath, 
-  FaMapMarkerAlt, 
-  FaWifi, 
-  FaCar, 
-  FaCheckCircle,
-  FaHome,
-  FaUtensils,
-  FaTv,
-  FaWind,
-  FaArrowRight,
-  FaCoffee,
-  FaEye,
-  FaTshirt,
-  FaBaby,
-  FaClock,
-  FaTrash,
-  FaSun,
-  FaShower,
-  FaSnowflake,
-  FaFire,
-  FaLock,
-  FaParking,
-  FaBolt,
-  FaBox
-} from "react-icons/fa"
+  Star, 
+  Users, 
+  Bed, 
+  Bath, 
+  MapPin, 
+  Wifi, 
+  Car, 
+  CheckCircle,
+  Home,
+  Utensils,
+  Tv,
+  Wind,
+  Coffee,
+  Eye,
+  Shirt,
+  Baby,
+  Clock,
+  Trash2,
+  Sun,
+  ShowerHead,
+  Snowflake,
+  Flame,
+  Lock,
+  ParkingCircle,
+  Zap,
+  Package
+} from "lucide-react"
 
+// Keep FA icons only where absolutely needed
+import { FaArrowRight } from "react-icons/fa"
+
+// Lucide replacements for MD icons
 import {
-  MdBathtub,
-  MdKitchen,
-  MdLocalLaundryService,
-  MdSecurity,
-  MdLocalHospital,
-  MdTableRestaurant,
-  MdWineBar,
-  MdLocalParking,
-  MdMicrowave,
-  MdIron
-} from "react-icons/md"
+  Bath as Bathtub,
+  ChefHat as Kitchen,
+  WashingMachine,
+  Shield,
+  Cross,
+  UtensilsCrossed,
+  Wine,
+  Car as Parking,
+  Microwave,
+  Shirt as Iron
+} from "lucide-react"
 
 const amenityIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   // Viste panoramiche
-  "Vista sul panorama urbano": FaEye,
+  "Vista sul panorama urbano": Eye,
   
   // Bagno
-  "Asciugacapelli": FaWind,
-  "Prodotti per la pulizia": FaCheckCircle,
-  "Shampoo": FaBath,
-  "Balsamo": FaBath,
-  "Sapone per il corpo": FaBath,
-  "Bidet": MdBathtub,
-  "Acqua calda": FaBath,
-  "Gel doccia": FaBath,
+  "Asciugacapelli": Wind,
+  "Prodotti per la pulizia": CheckCircle,
+  "Shampoo": Bath,
+  "Balsamo": Bath,
+  "Sapone per il corpo": Bath,
+  "Bidet": Bathtub,
+  "Acqua calda": Bath,
+  "Gel doccia": Bath,
   
   // Camera da letto e lavanderia
-  "Lavatrice": MdLocalLaundryService,
-  "Asciugatrice": MdLocalLaundryService,
-  "Essenziali": FaCheckCircle,
-  "Grucce": FaTshirt,
-  "Biancheria da letto": FaBed,
-  "Cuscini e coperte extra": FaBed,
-  "Tende oscuranti": FaSun,
-  "Ferro da stiro": MdIron,
-  "Stendibiancheria per abiti": FaTshirt,
-  "Spazio per conservare l'abbigliamento": FaBox,
+  "Lavatrice": WashingMachine,
+  "Asciugatrice": WashingMachine,
+  "Essenziali": CheckCircle,
+  "Grucce": Shirt,
+  "Biancheria da letto": Bed,
+  "Cuscini e coperte extra": Bed,
+  "Tende oscuranti": Sun,
+  "Ferro da stiro": Iron,
+  "Stendibiancheria per abiti": Shirt,
+  "Spazio per conservare l'abbigliamento": Package,
   
   // Intrattenimento
-  "TV via cavo standard": FaTv,
-  "HDTV da 55 pollici con Netflix": FaTv,
+  "TV via cavo standard": Tv,
+  "HDTV da 55 pollici con Netflix": Tv,
   
   // Famiglia
-  "Culla": FaBaby,
-  "Box bebè portatile": FaBaby,
-  "Seggiolone": FaBaby,
+  "Culla": Baby,
+  "Box bebè portatile": Baby,
+  "Seggiolone": Baby,
   
   // Riscaldamento e climatizzazione
-  "Aria condizionata": FaSnowflake,
-  "Climatizzatore centralizzato": FaSnowflake,
-  "Riscaldamento": FaFire,
-  "Riscaldamento a pannelli radianti": FaFire,
+  "Aria condizionata": Snowflake,
+  "Climatizzatore centralizzato": Snowflake,
+  "Riscaldamento": Flame,
+  "Riscaldamento a pannelli radianti": Flame,
   
   // Sicurezza domestica
-  "Allarme antincendio": FaFire,
-  "Rilevatore di monossido di carbonio": MdSecurity,
-  "Estintore": FaFire,
-  "Kit di pronto soccorso": MdLocalHospital,
+  "Allarme antincendio": Flame,
+  "Rilevatore di monossido di carbonio": Shield,
+  "Estintore": Flame,
+  "Kit di pronto soccorso": Cross,
   
   // Internet e ufficio
-  "Wi-fi": FaWifi,
-  "WiFi": FaWifi,
+  "Wi-fi": Wifi,
+  "WiFi": Wifi,
   
   // Cucina e zona pranzo
-  "Cucina": MdKitchen,
-  "Frigorifero": FaBox,
-  "Servizi di base per cucinare": FaUtensils,
-  "Piatti e posate": FaUtensils,
-  "Freezer": FaBox,
-  "Lavastoviglie": FaUtensils,
-  "Piano cottura a induzione": FaBolt,
-  "Forno": MdMicrowave,
-  "Bollitore": FaCoffee,
-  "Macchina del caffè": FaCoffee,
-  "Macchina del caffè Nespresso": FaCoffee,
-  "Calici da vino": MdWineBar,
-  "Teglia da forno": MdKitchen,
-  "Compattatore di rifiuti": FaTrash,
-  "Tavolo da pranzo": MdTableRestaurant,
-  "Caffè": FaCoffee,
+  "Cucina": Kitchen,
+  "Frigorifero": Package,
+  "Servizi di base per cucinare": Utensils,
+  "Piatti e posate": Utensils,
+  "Freezer": Package,
+  "Lavastoviglie": Utensils,
+  "Piano cottura a induzione": Zap,
+  "Forno": Microwave,
+  "Bollitore": Coffee,
+  "Macchina del caffè": Coffee,
+  "Macchina del caffè Nespresso": Coffee,
+  "Calici da vino": Wine,
+  "Teglia da forno": Kitchen,
+  "Compattatore di rifiuti": Trash2,
+  "Tavolo da pranzo": UtensilsCrossed,
+  "Caffè": Coffee,
   
   // Caratteristiche dell'alloggio
-  "Lavanderia a gettoni nelle vicinanze": MdLocalLaundryService,
+  "Lavanderia a gettoni nelle vicinanze": WashingMachine,
   
   // Parcheggi e strutture
-  "Parcheggio gratuito in strada": FaParking,
-  "Parcheggio a pagamento in loco": MdLocalParking,
-  "Garage a pagamento non in loco": FaCar,
-  "Casa su un solo piano": FaHome,
+  "Parcheggio gratuito in strada": ParkingCircle,
+  "Parcheggio a pagamento in loco": Parking,
+  "Garage a pagamento non in loco": Car,
+  "Casa su un solo piano": Home,
   
   // Servizi
-  "Sono permessi soggiorni a lungo termine": FaClock,
-  "Self check-in": FaLock,
-  "Smart Lock": FaLock,
+  "Sono permessi soggiorni a lungo termine": Clock,
+  "Self check-in": Lock,
+  "Smart Lock": Lock,
   
   // Legacy amenities (for backward compatibility)
-  "Cucina Attrezzata": MdKitchen,
-  "Cucina di design": MdKitchen,
-  "TV in ogni stanza": FaTv,
-  "Macchina caffè Nespresso": FaCoffee,
-  "Lavatrice/Asciugatrice": MdLocalLaundryService,
-  "Design esclusivo": FaStar,
-  "Travi a vista": FaHome,
-  "Pareti in vetro": FaHome,
-  "Soffitti storici": FaStar,
-  "Marmi pregiati": FaStar,
-  "Opere d'arte": FaStar,
-  "Doccia walk-in": FaShower,
-  "TV": FaTv,
-  "Forno moderno": MdMicrowave
+  "Cucina Attrezzata": Kitchen,
+  "Cucina di design": Kitchen,
+  "TV in ogni stanza": Tv,
+  "Macchina caffè Nespresso": Coffee,
+  "Lavatrice/Asciugatrice": WashingMachine,
+  "Design esclusivo": Star,
+  "Travi a vista": Home,
+  "Pareti in vetro": Home,
+  "Soffitti storici": Star,
+  "Marmi pregiati": Star,
+  "Opere d'arte": Star,
+  "Doccia walk-in": ShowerHead,
+  "TV": Tv,
+  "Forno moderno": Microwave
 }
 
 export default function PropertyPage() {
@@ -282,7 +277,7 @@ export default function PropertyPage() {
                 </h1>
                 
                 <div className="flex items-center text-lg text-white/95 mb-6 drop-shadow-md">
-                  <FaMapMarkerAlt className="h-5 w-5 mr-2" />
+                  <MapPin className="h-5 w-5 mr-2" />
                   <span>{property.location}</span>
                 </div>
 
@@ -305,22 +300,22 @@ export default function PropertyPage() {
               <RevealOnScroll>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                   <div className="text-center">
-                    <FaUsers className="w-8 h-8 mx-auto mb-3 text-primary" />
+                    <Users className="w-8 h-8 mx-auto mb-3 text-primary" />
                     <p className="text-2xl font-bold">{property.maxGuests}</p>
                     <p className="text-sm text-muted-foreground">{t('guests')}</p>
                   </div>
                   <div className="text-center">
-                    <FaBed className="w-8 h-8 mx-auto mb-3 text-primary" />
+                    <Bed className="w-8 h-8 mx-auto mb-3 text-primary" />
                     <p className="text-2xl font-bold">{property.bedrooms}</p>
                     <p className="text-sm text-muted-foreground">{t('bedrooms')}</p>
                   </div>
                   <div className="text-center">
-                    <FaBath className="w-8 h-8 mx-auto mb-3 text-primary" />
+                    <Bath className="w-8 h-8 mx-auto mb-3 text-primary" />
                     <p className="text-2xl font-bold">{property.bathrooms}</p>
                     <p className="text-sm text-muted-foreground">{t('bathrooms')}</p>
                   </div>
                   <div className="text-center">
-                    <FaHome className="w-8 h-8 mx-auto mb-3 text-primary" />
+                    <Home className="w-8 h-8 mx-auto mb-3 text-primary" />
                     <p className="text-2xl font-bold">
                       {t(`features.${property.features[0]}`) || property.features[0]}
                     </p>
@@ -333,9 +328,11 @@ export default function PropertyPage() {
               <RevealOnScroll>
                 <div className="space-y-6">
                   <h2 className="text-4xl font-bold">{t('propertyTitle')}</h2>
-                  <div className="prose prose-lg max-w-none text-muted-foreground whitespace-pre-line">
-                    {parseMarkdown(property.longDescription)}
-                  </div>
+                  <TruncatedDescription 
+                    text={property.longDescription}
+                    propertySlug={slug as 'fienaroli' | 'moro'}
+                    mobileCharLimit={200}
+                  />
                 </div>
               </RevealOnScroll>
 
@@ -367,6 +364,15 @@ export default function PropertyPage() {
                       maxGuests={property.maxGuests}
                     />
                   </div>
+
+                  {/* Price Calculator - Shows after date selection */}
+                  <PriceCalculator
+                    propertySlug={slug as 'fienaroli' | 'moro'}
+                    checkinDate={dateRange?.from}
+                    checkoutDate={dateRange?.to}
+                    guests={guests}
+                    className="mt-6"
+                  />
 
                   <button 
                     className={cn(
@@ -401,16 +407,32 @@ export default function PropertyPage() {
                   </p>
                 </div>
 
-                {/* Amenities - Sidebar Below Booking */}
+                {/* Amenities - Enhanced Grid Layout */}
                 <div className="mt-8 space-y-6">
                   <h3 className="text-xl font-semibold text-center">{t('servicesTitle')}</h3>
-                  <div className="space-y-3">
+                  <div className="grid grid-cols-1 gap-4">
                     {property.amenities.slice(0, 12).map((amenity, index) => {
-                      const Icon = amenityIcons[amenity] || FaCheckCircle
+                      const Icon = amenityIcons[amenity] || CheckCircle
                       return (
-                        <div key={index} className="flex items-center gap-3">
-                          <Icon className="w-5 h-5 text-primary flex-shrink-0" />
-                          <span className="text-foreground">{tAmenities.has(amenity) ? tAmenities(amenity) : amenity}</span>
+                        <div 
+                          key={index} 
+                          className={cn(
+                            "flex items-center gap-4 p-4 rounded-xl transition-all duration-300",
+                            "bg-card border border-border hover:shadow-md hover:scale-[1.02]",
+                            slug === 'fienaroli' 
+                              ? "hover:border-[hsl(20,65%,85%)] hover:bg-[hsl(20,65%,98%)]"
+                              : "hover:border-[hsl(345,55%,85%)] hover:bg-[hsl(345,55%,98%)]"
+                          )}
+                        >
+                          <Icon className={cn(
+                            "w-6 h-6 flex-shrink-0",
+                            slug === 'fienaroli' 
+                              ? "text-[hsl(20,65%,48%)]" 
+                              : "text-[hsl(345,55%,42%)]"
+                          )} />
+                          <span className="text-foreground font-medium">
+                            {tAmenities.has(amenity) ? tAmenities(amenity) : amenity}
+                          </span>
                         </div>
                       )
                     })}

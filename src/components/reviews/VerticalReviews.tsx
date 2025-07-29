@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 import { useTranslations, useLocale } from 'next-intl';
 import { ReviewData, ReviewsResponse } from '@/types/reviews';
 import { Button } from '@/components/ui/button';
+import { HorizontalReviewsCarousel } from './HorizontalReviewsCarousel';
 
 
 interface VerticalReviewsProps {
@@ -25,6 +26,7 @@ export function VerticalReviews({ propertySlug, className, preloadedReviews, isP
   const [error, setError] = useState<string | null>(null);
   const [airbnbUrl, setAirbnbUrl] = useState<string>('#');
   const [showAll, setShowAll] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   // Theme colors based on property
   const themeColors = {
@@ -44,6 +46,17 @@ export function VerticalReviews({ propertySlug, className, preloadedReviews, isP
 
   const colors = themeColors[propertySlug];
   const stats = getPropertyReviewStats(propertySlug);
+
+  // Check if mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     // If we're still preloading, show loading state
@@ -123,6 +136,18 @@ export function VerticalReviews({ propertySlug, className, preloadedReviews, isP
           </a>
         </div>
       </div>
+    );
+  }
+
+  // Use horizontal carousel on mobile, vertical list on desktop
+  if (isMobile) {
+    return (
+      <HorizontalReviewsCarousel
+        reviews={reviews}
+        propertySlug={propertySlug}
+        airbnbUrl={airbnbUrl}
+        className={className}
+      />
     );
   }
 

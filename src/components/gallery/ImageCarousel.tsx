@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Camera, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
@@ -12,7 +12,6 @@ interface ImageCarouselProps {
   propertySlug: 'fienaroli' | 'moro';
   onImageClick: (index: number) => void;
   className?: string;
-  autoAdvanceInterval?: number;
 }
 
 export function ImageCarousel({
@@ -20,12 +19,10 @@ export function ImageCarousel({
   propertyName,
   propertySlug,
   onImageClick,
-  className,
-  autoAdvanceInterval = 5000
+  className
 }: ImageCarouselProps) {
   const t = useTranslations('gallery');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
 
   // Theme colors based on property
   const themeColors = {
@@ -43,30 +40,40 @@ export function ImageCarousel({
 
   const colors = themeColors[propertySlug];
 
-  // Auto-advance functionality
+  // Responsive image count
+  const getImagesPerView = () => {
+    if (typeof window === 'undefined') return 3; // SSR default
+    if (window.innerWidth < 768) return 1; // Mobile
+    if (window.innerWidth < 1024) return 2; // Tablet
+    return 3; // Desktop
+  };
+
+  const [imagesPerView, setImagesPerView] = useState(3);
+
+  // Update images per view on resize
   useEffect(() => {
-    if (isHovered || images.length <= 3) return;
-
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => 
-        prevIndex + 3 >= images.length ? 0 : prevIndex + 1
-      );
-    }, autoAdvanceInterval);
-
-    return () => clearInterval(interval);
-  }, [images.length, autoAdvanceInterval, isHovered]);
+    const handleResize = () => {
+      setImagesPerView(getImagesPerView());
+    };
+    
+    if (typeof window !== 'undefined') {
+      setImagesPerView(getImagesPerView());
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
+  }, []);
 
   const goToPrevious = useCallback(() => {
     setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? Math.max(0, images.length - 3) : prevIndex - 1
+      prevIndex === 0 ? Math.max(0, images.length - imagesPerView) : prevIndex - 1
     );
-  }, [images.length]);
+  }, [images.length, imagesPerView]);
 
   const goToNext = useCallback(() => {
     setCurrentIndex((prevIndex) => 
-      prevIndex + 3 >= images.length ? 0 : prevIndex + 1
+      prevIndex + imagesPerView >= images.length ? 0 : prevIndex + 1
     );
-  }, [images.length]);
+  }, [images.length, imagesPerView]);
 
   if (images.length === 0) {
     return (
@@ -79,15 +86,17 @@ export function ImageCarousel({
     );
   }
 
-  // Get visible images (3 at a time)
+  // Get visible images based on screen size
   const getVisibleImages = () => {
     const visibleImages = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < imagesPerView; i++) {
       const imageIndex = (currentIndex + i) % images.length;
-      visibleImages.push({
-        src: images[imageIndex],
-        index: imageIndex
-      });
+      if (imageIndex < images.length) {
+        visibleImages.push({
+          src: images[imageIndex],
+          index: imageIndex
+        });
+      }
     }
     return visibleImages;
   };
@@ -100,12 +109,15 @@ export function ImageCarousel({
         "relative w-full overflow-hidden group",
         className
       )}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       {/* Carousel Container */}
       <div className="relative p-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className={cn(
+          "grid gap-4",
+          imagesPerView === 1 && "grid-cols-1",
+          imagesPerView === 2 && "grid-cols-2",
+          imagesPerView === 3 && "grid-cols-3"
+        )}>
           {visibleImages.map((image, displayIndex) => (
             <div 
               key={`${image.index}-${displayIndex}`} 
@@ -135,8 +147,8 @@ export function ImageCarousel({
         </div>
       </div>
 
-      {/* Navigation Arrows - Only show if more than 3 images */}
-      {images.length > 3 && (
+      {/* Navigation Arrows - Only show if more images than can be displayed */}
+      {images.length > imagesPerView && (
         <>
           <button
             onClick={goToPrevious}
@@ -164,16 +176,16 @@ export function ImageCarousel({
         </>
       )}
 
-      {/* Progress Indicators - Only show if more than 3 images */}
-      {images.length > 3 && (
+      {/* Progress Indicators - Only show if more images than can be displayed */}
+      {images.length > imagesPerView && (
         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-          {Array.from({ length: Math.ceil(images.length / 3) }, (_, i) => (
+          {Array.from({ length: Math.ceil(images.length / imagesPerView) }, (_, i) => (
             <button
               key={i}
-              onClick={() => setCurrentIndex(i * 3)}
+              onClick={() => setCurrentIndex(i * imagesPerView)}
               className={cn(
                 "w-2 h-2 rounded-full transition-all duration-300",
-                Math.floor(currentIndex / 3) === i
+                Math.floor(currentIndex / imagesPerView) === i
                   ? `${colors.accent} w-8` 
                   : "bg-white/50 hover:bg-white/75"
               )}
@@ -185,7 +197,7 @@ export function ImageCarousel({
 
       {/* Image Counter */}
       <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-black/30 backdrop-blur-sm text-white text-sm font-medium">
-        {currentIndex + 1}-{Math.min(currentIndex + 3, images.length)} di {images.length}
+        {currentIndex + 1}-{Math.min(currentIndex + imagesPerView, images.length)} di {images.length}
       </div>
     </div>
   );
