@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { fetchPropertyReviews, REVIEW_PROPERTY_MAPPING } from '@/lib/airbnb-api';
+import { fetchPropertyReviews, REVIEW_PROPERTY_MAPPING } from '@/lib/reviews-api';
 import { ReviewApiError } from '@/types/airbnb';
 import { translateHostResponses } from '@/lib/translate-host-responses';
 

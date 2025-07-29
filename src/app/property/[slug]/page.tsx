@@ -18,7 +18,7 @@ import { getPropertyBySlug } from "@/lib/properties-data"
 import { notFound } from "next/navigation"
 import { useTranslations, useLocale } from 'next-intl'
 // DateRange type is now handled internally by AirbnbCalendar
-import { getAirbnbBookingUrl } from "@/lib/airbnb-booking"
+import { getBookingUrl } from "@/lib/booking-redirect"
 import { fetchAvailability } from "@/lib/octorate-api"
 import { OctorateCalendarResponse } from "@/types/octorate"
 import { ReviewsResponse } from "@/types/reviews"
@@ -226,7 +226,7 @@ export default function PropertyPage() {
 
         // Preload reviews data (always when locale changes)
         console.log(`🔄 Preloading reviews for ${slug} (${locale})`);
-        const reviewsResponse = await fetch(`/api/airbnb-reviews/${slug}?limit=12&locale=${locale}`);
+        const reviewsResponse = await fetch(`/api/reviews/${slug}?limit=12&locale=${locale}`);
         if (reviewsResponse.ok) {
           const reviewsData = await reviewsResponse.json();
           setPreloadedReviews(reviewsData);
@@ -389,7 +389,7 @@ export default function PropertyPage() {
                     disabled={!dateRange?.from || !dateRange?.to}
                     onClick={() => {
                       if (dateRange?.from && dateRange?.to) {
-                        const url = getAirbnbBookingUrl(
+                        const url = getBookingUrl(
                           slug as 'fienaroli' | 'moro',
                           dateRange.from,
                           dateRange.to,

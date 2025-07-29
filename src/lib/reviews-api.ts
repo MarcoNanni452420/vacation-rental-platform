@@ -1,10 +1,10 @@
 import { PropertyReviewsResponse, PropertyReviewMapping } from '@/types/airbnb';
 
-const AIRBNB_API_KEY = 'd306zoyjsyarp7ifhu67rjxn52tv0t20';
+const REVIEWS_API_KEY = 'd306zoyjsyarp7ifhu67rjxn52tv0t20';
 const QUERY_HASH = 'dec1c8061483e78373602047450322fd474e79ba9afa8d3dbbc27f504030f91d';
 
-// Base URLs per diversi domini Airbnb
-const AIRBNB_BASE_URLS = {
+// Base URLs per diversi domini reviews
+const REVIEWS_BASE_URLS = {
   it: 'https://www.airbnb.it/api/v3/StaysPdpReviewsQuery',
   en: 'https://www.airbnb.co.uk/api/v3/StaysPdpReviewsQuery'
 };
@@ -25,7 +25,7 @@ export const REVIEW_PROPERTY_MAPPING: Record<string, PropertyReviewMapping> = {
   }
 };
 
-interface FetchAirbnbReviewsOptions {
+interface FetchReviewsOptions {
   limit?: number;
   offset?: string;
   sortingPreference?: 'BEST_QUALITY' | 'MOST_RECENT';
@@ -33,7 +33,7 @@ interface FetchAirbnbReviewsOptions {
 
 export async function fetchPropertyReviews(
   propertySlug: string,
-  options: FetchAirbnbReviewsOptions = {},
+  options: FetchReviewsOptions = {},
   locale: string = 'it'
 ): Promise<PropertyReviewsResponse> {
   const mapping = REVIEW_PROPERTY_MAPPING[propertySlug];
@@ -84,14 +84,14 @@ export async function fetchPropertyReviews(
   });
 
   // Seleziona l'URL base in base al locale
-  const baseUrl = AIRBNB_BASE_URLS[locale as keyof typeof AIRBNB_BASE_URLS] || AIRBNB_BASE_URLS.it;
+  const baseUrl = REVIEWS_BASE_URLS[locale as keyof typeof REVIEWS_BASE_URLS] || REVIEWS_BASE_URLS.it;
   const url = `${baseUrl}/${QUERY_HASH}?${params.toString()}`;
 
   try {
     const response = await fetch(url, {
       method: 'GET',
       headers: {
-        'X-Airbnb-Api-Key': AIRBNB_API_KEY,
+        'X-Airbnb-Api-Key': REVIEWS_API_KEY,
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'

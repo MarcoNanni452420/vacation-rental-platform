@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { ExternalLink, Star, Users, Loader2 } from 'lucide-react';
 import { ReviewCard } from './ReviewCard';
-import { getPropertyReviewStats } from '@/lib/airbnb-api';
+import { getPropertyReviewStats } from '@/lib/reviews-api';
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
 
@@ -35,12 +35,12 @@ interface ReviewsResponse {
   fetchedAt: string;
 }
 
-interface AirbnbReviewsProps {
+interface GuestReviewsProps {
   propertySlug: 'fienaroli' | 'moro';
   className?: string;
 }
 
-export function AirbnbReviews({ propertySlug, className }: AirbnbReviewsProps) {
+export function GuestReviews({ propertySlug, className }: GuestReviewsProps) {
   const t = useTranslations('reviews');
   const [reviews, setReviews] = useState<ReviewData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -70,7 +70,7 @@ export function AirbnbReviews({ propertySlug, className }: AirbnbReviewsProps) {
         setLoading(true);
         setError(null);
 
-        const response = await fetch(`/api/airbnb-reviews/${propertySlug}?limit=6`);
+        const response = await fetch(`/api/reviews/${propertySlug}?limit=6`);
         
         if (!response.ok) {
           throw new Error(`Failed to fetch reviews: ${response.statusText}`);

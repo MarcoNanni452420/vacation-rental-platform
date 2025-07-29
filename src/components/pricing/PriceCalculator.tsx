@@ -5,6 +5,7 @@ import { Loader2, AlertCircle } from 'lucide-react';
 import { PriceBreakdown } from './PriceBreakdown';
 import { PricingCalculation } from '@/types/pricing';
 import { format } from 'date-fns';
+import { useTranslations } from 'next-intl';
 
 interface PriceCalculatorProps {
   propertySlug: 'fienaroli' | 'moro';
@@ -21,6 +22,7 @@ export function PriceCalculator({
   guests,
   className
 }: PriceCalculatorProps) {
+  const t = useTranslations('pricing');
   const [pricing, setPricing] = useState<PricingCalculation | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -44,7 +46,7 @@ export function PriceCalculator({
           guests: guests.toString()
         });
 
-        const response = await fetch(`/api/airbnb-pricing/${propertySlug}?${params.toString()}`);
+        const response = await fetch(`/api/booking-pricing/${propertySlug}?${params.toString()}`);
         
         if (!response.ok) {
           const errorData = await response.json();
@@ -76,7 +78,7 @@ export function PriceCalculator({
       <div className={`bg-card border border-border rounded-xl p-6 ${className}`}>
         <div className="flex items-center justify-center gap-3">
           <Loader2 className="w-5 h-5 animate-spin text-primary" />
-          <span className="text-muted-foreground">Calcolando il prezzo...</span>
+          <span className="text-muted-foreground">{t('calculating')}</span>
         </div>
       </div>
     );

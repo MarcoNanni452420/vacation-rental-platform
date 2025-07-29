@@ -45,7 +45,7 @@ export function ReviewCard({
   
   // Mobile truncation - show first 120 characters
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const shouldTruncate = isMobile && comments.length > 120;
+  const shouldTruncate = isMobile && (comments.length > 120 || response);
   const displayComments = shouldTruncate && !isExpanded 
     ? comments.slice(0, 120) + '...'
     : comments;
@@ -87,67 +87,67 @@ export function ReviewCard({
   return (
     <div className={cn(
       "p-6 rounded-2xl border-2 transition-all duration-300 hover:shadow-lg",
-      "md:min-h-auto min-h-[280px] max-h-[320px] flex flex-col justify-between", // Square aspect on mobile
+      "md:min-h-auto md:max-h-none min-h-[280px] max-h-[320px] flex flex-col", // Responsive height
       colors.border,
       colors.bg,
       className
     )}>
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col md:overflow-visible overflow-hidden">
         {/* Header with reviewer info and rating */}
         <div className="flex items-start justify-between mb-4">
-        <div className="flex items-center gap-3">
-          <div className="relative w-12 h-12 flex-shrink-0">
-            <Image
-              src={reviewer.pictureUrl}
-              alt={`${reviewer.firstName}&apos;s profile`}
-              width={48}
-              height={48}
-              className="rounded-full object-cover w-full h-full"
-              onError={(e) => {
-                // Fallback to default avatar if image fails
-                const target = e.target as HTMLImageElement;
-                target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(reviewer.firstName)}&background=f3f4f6&color=6b7280`;
-              }}
-            />
-            {reviewer.isSuperhost && (
-              <div className={cn(
-                "absolute -bottom-1 -right-1 rounded-full px-1 py-0.5 text-xs font-medium",
-                colors.tagBg,
-                colors.tagText
-              )}>
-                ⭐
-              </div>
-            )}
+          <div className="flex items-center gap-3">
+            <div className="relative w-12 h-12 flex-shrink-0">
+              <Image
+                src={reviewer.pictureUrl}
+                alt={`${reviewer.firstName}&apos;s profile`}
+                width={48}
+                height={48}
+                className="rounded-full object-cover w-full h-full"
+                onError={(e) => {
+                  // Fallback to default avatar if image fails
+                  const target = e.target as HTMLImageElement;
+                  target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(reviewer.firstName)}&background=f3f4f6&color=6b7280`;
+                }}
+              />
+              {reviewer.isSuperhost && (
+                <div className={cn(
+                  "absolute -bottom-1 -right-1 rounded-full px-1 py-0.5 text-xs font-medium",
+                  colors.tagBg,
+                  colors.tagText
+                )}>
+                  ⭐
+                </div>
+              )}
+            </div>
+            <div>
+              <h4 className="font-semibold text-gray-900">{reviewer.firstName}</h4>
+              <p className="text-sm text-gray-600">{reviewer.location}</p>
+            </div>
           </div>
-          <div>
-            <h4 className="font-semibold text-gray-900">{reviewer.firstName}</h4>
-            <p className="text-sm text-gray-600">{reviewer.location}</p>
+          
+          <div className="flex flex-col items-end gap-1">
+            <div className="flex items-center gap-1">
+              {renderStars(rating)}
+            </div>
+            <p className="text-sm text-gray-500">{localizedDate}</p>
           </div>
         </div>
-        
-        <div className="flex flex-col items-end gap-1">
-          <div className="flex items-center gap-1">
-            {renderStars(rating)}
-          </div>
-          <p className="text-sm text-gray-500">{localizedDate}</p>
-        </div>
-      </div>
 
-      {/* Collection tag if present */}
-      {collectionTag && (
-        <div className="mb-3">
-          <span className={cn(
-            "inline-flex items-center px-3 py-1 rounded-full text-xs font-medium",
-            colors.tagBg,
-            colors.tagText
-          )}>
-            {collectionTag}
-          </span>
-        </div>
-      )}
+        {/* Collection tag if present */}
+        {collectionTag && (
+          <div className="mb-3">
+            <span className={cn(
+              "inline-flex items-center px-3 py-1 rounded-full text-xs font-medium",
+              colors.tagBg,
+              colors.tagText
+            )}>
+              {collectionTag}
+            </span>
+          </div>
+        )}
 
-      {/* Review content - with mobile truncation */}
-      <div className="mb-4">
+        {/* Review content - with mobile truncation */}
+        <div className="md:flex-none flex-1 md:overflow-visible overflow-hidden">
         <div 
           className="text-gray-800 leading-relaxed"
           dangerouslySetInnerHTML={{ __html: displayComments }}
@@ -182,24 +182,24 @@ export function ReviewCard({
             {disclaimer}
           </p>
         )}
-      </div>
 
-      {/* Host response if present */}
-      {response && (
-        <div className={cn(
-          "mt-4 p-4 rounded-lg border-l-4",
-          colors.border.replace('border-', 'border-l-'),
-          "bg-gray-50"
-        )}>
-          <div className="flex items-center gap-2 mb-2">
-            <div className="w-6 h-6 rounded-full bg-gray-300 flex items-center justify-center">
-              <span className="text-xs font-medium text-gray-600">H</span>
+        {/* Host response if present - show only when expanded on mobile */}
+        {response && (!isMobile || isExpanded) && (
+          <div className={cn(
+            "mt-4 p-4 rounded-lg border-l-4",
+            colors.border.replace('border-', 'border-l-'),
+            "bg-gray-50"
+          )}>
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-6 h-6 rounded-full bg-gray-300 flex items-center justify-center">
+                <span className="text-xs font-medium text-gray-600">H</span>
+              </div>
+              <span className="text-sm font-medium text-gray-700">{t('hostResponse') || 'Risposta dell\'host'}</span>
             </div>
-            <span className="text-sm font-medium text-gray-700">{t('hostResponse') || 'Risposta dell\'host'}</span>
+            <p className="text-sm text-gray-700">{response}</p>
           </div>
-          <p className="text-sm text-gray-700">{response}</p>
+        )}
         </div>
-      )}
       </div>
     </div>
   );

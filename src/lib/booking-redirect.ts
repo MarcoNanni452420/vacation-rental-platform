@@ -21,7 +21,7 @@ export const AIRBNB_PROPERTIES = {
   }
 } as const;
 
-export function getAirbnbBookingUrl(
+export function getBookingUrl(
   propertySlug: 'fienaroli' | 'moro',
   checkin: Date,
   checkout: Date,

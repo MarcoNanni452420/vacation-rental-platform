@@ -1,8 +1,8 @@
 "use client"
 
-import { Info } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { PricingCalculation } from '@/types/pricing';
+import { useTranslations } from 'next-intl';
 
 interface PriceBreakdownProps {
   pricing: PricingCalculation;
@@ -11,6 +11,7 @@ interface PriceBreakdownProps {
 }
 
 export function PriceBreakdown({ pricing, propertySlug, className }: PriceBreakdownProps) {
+  const t = useTranslations('pricing');
   
   // Theme colors based on property
   const themeColors = {
@@ -38,8 +39,8 @@ export function PriceBreakdown({ pricing, propertySlug, className }: PriceBreakd
 
   // Get the accommodation title with nights info
   const getAccommodationTitle = (): string => {
-    const nightsText = pricing.nights === 1 ? 'notte' : 'notti';
-    return `${pricing.nights} ${nightsText} a ${formatPrice(pricing.accommodationPerNight)}`;
+    const nightsText = pricing.nights === 1 ? t('night') : t('nights');
+    return `${pricing.nights} ${nightsText} ${t('at')} ${formatPrice(pricing.accommodationPerNight)}`;
   };
 
   return (
@@ -55,30 +56,21 @@ export function PriceBreakdown({ pricing, propertySlug, className }: PriceBreakd
         {/* Show cleaning fee and taxes always */}
         {pricing.cleaningFee > 0 && (
           <div className="flex justify-between items-center py-2">
-            <div className="flex items-center gap-2">
-              <span>Costi di pulizia</span>
-              <Info className="w-4 h-4 text-muted-foreground" />
-            </div>
+            <span>{t('cleaningFee')}</span>
             <span>{formatPrice(pricing.cleaningFee)}</span>
           </div>
         )}
 
         {pricing.taxes > 0 && (
           <div className="flex justify-between items-center py-2">
-            <div className="flex items-center gap-2">
-              <span>Tasse</span>
-              <Info className="w-4 h-4 text-muted-foreground" />
-            </div>
+            <span>{t('taxes')}</span>
             <span>{formatPrice(pricing.taxes)}</span>
           </div>
         )}
 
         {pricing.serviceFeesTotal > 0 && (
           <div className="flex justify-between items-center py-2">
-            <div className="flex items-center gap-2">
-              <span>Commissioni di servizio</span>
-              <Info className="w-4 h-4 text-muted-foreground" />
-            </div>
+            <span>{t('serviceFees')}</span>
             <span>{formatPrice(pricing.serviceFeesTotal)}</span>
           </div>
         )}
@@ -88,7 +80,7 @@ export function PriceBreakdown({ pricing, propertySlug, className }: PriceBreakd
           "flex justify-between items-center py-4 border-t mt-4",
           colors.border
         )}>
-          <span className="text-xl font-semibold">Totale</span>
+          <span className="text-xl font-semibold">{t('total')}</span>
           <span className="text-2xl font-bold">{formatPrice(pricing.grandTotal)}</span>
         </div>
       </div>

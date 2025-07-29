@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { ExternalLink, Star, Loader2 } from 'lucide-react';
 import { ReviewCard } from './ReviewCard';
-import { getPropertyReviewStats } from '@/lib/airbnb-api';
+import { getPropertyReviewStats } from '@/lib/reviews-api';
 import { cn } from '@/lib/utils';
 import { useTranslations, useLocale } from 'next-intl';
 import { ReviewData, ReviewsResponse } from '@/types/reviews';
