@@ -272,15 +272,13 @@ export default function PropertyPage() {
         }
 
         // Preload reviews data (always when locale changes)
-        console.log(`🔄 Preloading reviews for ${slug} (${locale})`);
         const reviewsResponse = await fetch(`/api/reviews/${slug}?limit=12&locale=${locale}`);
         if (reviewsResponse.ok) {
           const reviewsData = await reviewsResponse.json();
           setPreloadedReviews(reviewsData);
-          console.log(`✅ Preloaded ${reviewsData.reviews?.length || 0} reviews for ${locale}`);
         }
-      } catch (error) {
-        console.error('Error preloading data:', error);
+      } catch {
+        // Silently handle preloading errors
       } finally {
         setIsPreloadingReviews(false);
       }

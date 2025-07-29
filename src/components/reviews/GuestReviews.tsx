@@ -79,10 +79,8 @@ export function GuestReviews({ propertySlug, className }: GuestReviewsProps) {
         const data: ReviewsResponse = await response.json();
         setReviews(data.reviews || []);
         setAirbnbUrl(data.airbnbUrl || '#');
-        
-        console.log(`Loaded ${data.reviews?.length || 0} reviews for ${propertySlug}`);
       } catch (err) {
-        console.error('Error fetching reviews:', err);
+        // Silently handle error
         setError(err instanceof Error ? err.message : t('error'));
       } finally {
         setLoading(false);

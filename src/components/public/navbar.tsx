@@ -238,7 +238,7 @@ export function Navbar() {
                   </p>
                   <Link
                     href="/property/fienaroli#booking"
-                    className="flex items-center gap-4 p-4 rounded-2xl bg-muted border border-[hsl(20,65%,35%)]/30 hover:bg-muted/80 hover:border-[hsl(20,65%,35%)]/50 transition-all duration-300 group hover:shadow-sm"
+                    className="flex items-center gap-4 p-4 rounded-xl border border-black text-black hover:bg-black hover:text-white transition-all duration-300 group"
                     onClick={(e) => {
                       setIsMenuOpen(false)
                       if (typeof window !== 'undefined' && window.location.pathname === '/property/fienaroli') {
@@ -251,24 +251,24 @@ export function Navbar() {
                     }}
                   >
                     <div className="flex-1">
-                      <div className="font-semibold text-[hsl(20,65%,35%)] group-hover:text-[hsl(20,65%,35%)]/80">
+                      <div className="font-semibold">
                         Fienaroli
                       </div>
-                      <div className="text-xs text-gray-600 mt-1 flex items-center gap-2">
+                      <div className="text-xs opacity-60 mt-1 flex items-center gap-2">
                         <span>6 guests</span>
                         <span>•</span>
                         <span>Via dei Fienaroli</span>
                       </div>
                     </div>
                     <div className="opacity-60 group-hover:opacity-100 transition-opacity duration-200">
-                      <svg className="w-4 h-4 text-[hsl(20,65%,35%)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     </div>
                   </Link>
                   <Link
                     href="/property/moro#booking"
-                    className="flex items-center gap-4 p-4 rounded-2xl bg-muted border border-[hsl(345,55%,35%)]/30 hover:bg-muted/80 hover:border-[hsl(345,55%,35%)]/50 transition-all duration-300 group hover:shadow-sm"
+                    className="flex items-center gap-4 p-4 rounded-xl border border-black text-black hover:bg-black hover:text-white transition-all duration-300 group"
                     onClick={(e) => {
                       setIsMenuOpen(false)
                       if (typeof window !== 'undefined' && window.location.pathname === '/property/moro') {
@@ -281,17 +281,17 @@ export function Navbar() {
                     }}
                   >
                     <div className="flex-1">
-                      <div className="font-semibold text-[hsl(345,55%,35%)] group-hover:text-[hsl(345,55%,35%)]/80">
+                      <div className="font-semibold">
                         Moro
                       </div>
-                      <div className="text-xs text-gray-600 mt-1 flex items-center gap-2">
+                      <div className="text-xs opacity-60 mt-1 flex items-center gap-2">
                         <span>4 guests</span>
                         <span>•</span>
                         <span>Near Santa Maria</span>
                       </div>
                     </div>
                     <div className="opacity-60 group-hover:opacity-100 transition-opacity duration-200">
-                      <svg className="w-4 h-4 text-[hsl(345,55%,35%)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     </div>

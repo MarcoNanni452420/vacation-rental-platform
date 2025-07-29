@@ -20,8 +20,6 @@ export async function translateHostResponses(
     batches.push(responses.slice(i, i + BATCH_SIZE));
   }
 
-  console.log(`🔄 Translating ${responses.length} host responses in ${batches.length} parallel batches`);
-
   // Function to translate a single batch
   async function translateBatch(batch: Array<{ id: string; response: string }>): Promise<HostResponseTranslation[]> {
     const systemPrompt = `You are a professional translator. Translate the following Airbnb host responses from Italian to ${targetLang === 'en' ? 'English' : targetLang}. Maintain the friendly, welcoming tone. Return as a JSON array of translated strings in the same order.`;
@@ -67,7 +65,6 @@ export async function translateHostResponses(
           translations = JSON.parse(jsonString);
         }
       } catch {
-        console.log('JSON parsing failed, using fallback parsing');
         // Fallback parsing
         translations = translatedText
           .split('\n')
@@ -87,8 +84,7 @@ export async function translateHostResponses(
         translatedResponse: translations[index] || item.response
       }));
       
-    } catch (error) {
-      console.error('Translation batch error:', error);
+    } catch {
       // Return original responses on error
       return batch.map(item => ({
         reviewId: item.id,
@@ -106,11 +102,10 @@ export async function translateHostResponses(
     // Flatten results
     const allTranslations = batchResults.flat();
     
-    console.log(`✅ Translated ${allTranslations.length} host responses`);
     return allTranslations;
     
-  } catch (error) {
-    console.error('Host response translation failed:', error);
+  } catch {
+    // Silently handle translation failure
     // Return original responses
     return responses.map(item => ({
       reviewId: item.id,

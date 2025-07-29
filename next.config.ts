@@ -131,12 +131,7 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  // Modularize imports for better tree shaking
-  modularizeImports: {
-    'lucide-react': {
-      transform: 'lucide-react/dist/esm/icons/{{member}}',
-    },
-  },
+  // Note: Removed modularizeImports for lucide-react to fix build issues
   // Enable compression
   compress: true,
   // Enable experimental features for performance

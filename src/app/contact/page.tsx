@@ -60,9 +60,9 @@ export default function ContactPage() {
 
       toast.success(t('messages.success'))
       reset()
-    } catch (error) {
+    } catch {
       toast.error(t('messages.error'))
-      console.error('Contact form error:', error)
+      // Silently handle contact form error
     } finally {
       setIsSubmitting(false)
     }
@@ -73,7 +73,7 @@ export default function ContactPage() {
       {/* Hero Section */}
       <section className="py-16 bg-muted">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">{t('title')}</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4" style={{ fontSize: 'clamp(2.25rem, 5vw, 3rem)' }}>{t('title')}</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             {t('subtitle')}
           </p>

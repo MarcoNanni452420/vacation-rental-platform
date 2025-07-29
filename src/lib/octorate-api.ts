@@ -16,13 +16,10 @@ export async function fetchAvailability(propertySlug: 'fienaroli' | 'moro'): Pro
 
       if (response.ok) {
         const data = await response.json();
-        console.info(`✅ Successfully fetched availability for ${propertySlug} from internal API`);
         return data;
-      } else {
-        console.info(`Internal API returned ${response.status} for ${propertySlug}`);
       }
     } catch (apiError) {
-      console.info(`Internal API failed for ${propertySlug}:`, apiError);
+      // Internal API failed, try fallback
     }
 
     // Fallback: Try direct Octorate API (will likely fail due to CORS)
@@ -40,7 +37,6 @@ export async function fetchAvailability(propertySlug: 'fienaroli' | 'moro'): Pro
         const jsCode = await response.text();
         const parsedData = parseOctorateJavaScript(jsCode);
         if (parsedData) {
-          console.info(`✅ Successfully fetched availability for ${propertySlug} directly from Octorate`);
           return {
             propertyId: property.id,
             calendar: parsedData
@@ -48,17 +44,16 @@ export async function fetchAvailability(propertySlug: 'fienaroli' | 'moro'): Pro
         }
       }
     } catch {
-      console.info(`CORS blocked direct Octorate API call for ${propertySlug}`);
+      // CORS blocked direct Octorate API call
     }
 
     // Final fallback: Mock data
-    console.info(`📅 Using mock availability data for ${propertySlug}`);
     return {
       propertyId: property.id,
       calendar: generateMockCalendarData()
     };
-  } catch (error) {
-    console.error('Error in fetchAvailability:', error);
+  } catch {
+    // Error in fetchAvailability
     const fallbackProperty = OCTORATE_PROPERTIES[propertySlug];
     return {
       propertyId: fallbackProperty.id,
@@ -92,8 +87,8 @@ function parseOctorateJavaScript(jsCode: string): OctorateCalendarDay[] | null {
     }
     
     return calendar.sort((a, b) => a.date.localeCompare(b.date));
-  } catch (error) {
-    console.error('Failed to parse Octorate JavaScript response:', error);
+  } catch {
+    // Failed to parse Octorate JavaScript response
     return null;
   }
 }

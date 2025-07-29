@@ -62,7 +62,6 @@ export function VerticalReviews({ propertySlug, className, preloadedReviews, isP
     if (isPreloadingReviews) {
       setLoading(true);
       setReviews([]); // Clear old reviews while loading
-      console.log(`⏳ Waiting for preloading to complete for ${propertySlug} (${locale})`);
       return;
     }
 
@@ -75,12 +74,10 @@ export function VerticalReviews({ propertySlug, className, preloadedReviews, isP
       setAirbnbUrl(preloadedReviews.airbnbUrl || '#');
       setLoading(false);
       setError(null);
-      console.log(`✅ Using preloaded ${sortedReviews.length} reviews for ${propertySlug} (${locale})`);
     } else if (!isPreloadingReviews) {
       // If preloading is complete but no data, show error
       setError(t('error'));
       setLoading(false);
-      console.log(`❌ No preloaded data available for ${propertySlug} (${locale})`);
     }
   }, [propertySlug, preloadedReviews, isPreloadingReviews, locale, t]);
 

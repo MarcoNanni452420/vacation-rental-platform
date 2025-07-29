@@ -53,8 +53,7 @@ export async function GET(
       lastUpdated: new Date().toISOString()
     });
 
-  } catch (error) {
-    console.error('Error fetching from Octorate:', error);
+  } catch {
     return NextResponse.json(
       { error: 'Failed to fetch availability data' },
       { status: 500 }
@@ -73,8 +72,8 @@ function parseOctorateResponse(jsCode: string) {
     if (availMatch) {
       try {
         availability = JSON.parse(availMatch[1]);
-      } catch (e) {
-        console.error('Failed to parse availability:', e);
+      } catch {
+        // Failed to parse availability
       }
     }
     
@@ -83,8 +82,8 @@ function parseOctorateResponse(jsCode: string) {
     if (minstayMatch) {
       try {
         minStayData = JSON.parse(minstayMatch[1]);
-      } catch (e) {
-        console.error('Failed to parse minstay:', e);
+      } catch {
+        // Failed to parse minstay
       }
     }
     
@@ -129,11 +128,9 @@ function parseOctorateResponse(jsCode: string) {
     // Filter out past dates from final result (only keep future dates for booking)
     const futureCalendar = processedCalendar.filter(day => new Date(day.date) >= today);
     
-    console.log(`Parsed ${Object.keys(availability).length} managed dates from Octorate`);
-    
     return futureCalendar;
-  } catch (error) {
-    console.error('Failed to parse Octorate response:', error);
+  } catch {
+    // Failed to parse Octorate response
     return null;
   }
 }

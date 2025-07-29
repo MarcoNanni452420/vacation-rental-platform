@@ -28,8 +28,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.log(`Translating review ${reviewId} to ${targetLang}`);
-    
     const translatedText = await translateReview({ text, targetLang });
     
     return NextResponse.json({
@@ -41,7 +39,7 @@ export async function POST(request: NextRequest) {
     });
     
   } catch (error) {
-    console.error('Translation error:', error);
+    // Silently handle translation error
     
     // Return more specific error messages
     const errorMessage = error instanceof Error ? error.message : 'Unknown translation error';

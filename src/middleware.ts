@@ -35,7 +35,8 @@ export default withAuth(
       "default-src 'self'",
       // Use nonce with strict-dynamic for secure script execution
       // Add unsafe-eval for development mode (Next.js requirement)
-      `script-src 'nonce-${nonce}' 'strict-dynamic'${isDevelopment ? " 'unsafe-eval'" : ""} https://maps.googleapis.com https://maps.google.com https://www.googletagmanager.com`,
+      // Allow Next.js chunks and dynamic imports
+      `script-src 'nonce-${nonce}' 'strict-dynamic'${isDevelopment ? " 'unsafe-eval'" : ""} 'self' https://maps.googleapis.com https://maps.google.com https://www.googletagmanager.com`,
       // Style still needs unsafe-inline for Tailwind CSS and Google Maps
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://maps.googleapis.com",
       "img-src 'self' data: blob: https://*.googleapis.com https://*.gstatic.com https://a0.muscache.com https://ui-avatars.com",

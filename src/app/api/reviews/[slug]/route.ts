@@ -65,11 +65,8 @@ export async function GET(
     const now = Date.now();
 
     if (cached && (now - cached.timestamp) < CACHE_DURATION) {
-      console.log(`Serving cached reviews for ${slug} (${locale})`);
       return NextResponse.json(cached.data);
     }
-
-    console.log(`Fetching property reviews for ${slug} (limit: ${limit}, offset: ${offset}, locale: ${locale})`);
 
     // Fetch dalle API delle recensioni
     const reviewsData = await fetchPropertyReviews(slug, {
@@ -113,8 +110,6 @@ export async function GET(
         }));
 
       if (hostResponsesToTranslate.length > 0) {
-        console.log(`🔄 Translating ${hostResponsesToTranslate.length} host responses to ${locale}`);
-        
         const translatedResponses = await translateHostResponses(hostResponsesToTranslate, locale);
         
         // Crea una mappa per lookup veloce
@@ -147,8 +142,6 @@ export async function GET(
     return NextResponse.json(responseData);
 
   } catch (error) {
-    console.error('Error in property-reviews API:', error);
-    
     const errorResponse: ReviewApiError = {
       error: 'Failed to fetch reviews',
       message: error instanceof Error ? error.message : 'Unknown error occurred',

@@ -56,7 +56,6 @@ export function PriceCalculator({
         const pricingData: PricingCalculation = await response.json();
         setPricing(pricingData);
       } catch (err) {
-        console.error('Error fetching pricing:', err);
         setError(err instanceof Error ? err.message : 'Failed to load pricing');
         setPricing(null);
       } finally {

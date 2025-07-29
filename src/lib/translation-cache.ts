@@ -53,7 +53,6 @@ export function setCachedTranslation(
     );
   } catch {
     // Storage full, ignore
-    console.warn('Translation cache storage full');
   }
 }
 

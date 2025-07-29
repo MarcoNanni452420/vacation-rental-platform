@@ -179,7 +179,6 @@ export async function GET(
     });
 
     if (!response.ok) {
-      console.error(`Airbnb API error: ${response.status}`);
       return NextResponse.json(
         { error: 'Failed to fetch pricing from Airbnb' },
         { status: 502 }
@@ -196,7 +195,6 @@ export async function GET(
         const currentPath = path ? `${path}.${key}` : key;
         
         if (key === 'productPriceBreakdown' && value && typeof value === 'object') {
-          console.log(`🎯 Found productPriceBreakdown at: ${currentPath}`);
           return value;
         }
         
@@ -208,13 +206,9 @@ export async function GET(
       return null;
     }
     
-    console.log('🔍 Searching for productPriceBreakdown in Airbnb response...');
     const productPriceBreakdown = searchForPriceBreakdown(data);
     
     if (!productPriceBreakdown) {
-      console.log('❌ productPriceBreakdown not found in response');
-      console.log('📋 Available top-level keys:', Object.keys(data));
-      
       return NextResponse.json(
         { 
           error: 'Prezzi non disponibili al momento',
@@ -223,8 +217,6 @@ export async function GET(
         { status: 404 }
       );
     }
-    
-    console.log('✅ Found productPriceBreakdown:', JSON.stringify(productPriceBreakdown, null, 2));
     
     // Try to extract priceItems from the found productPriceBreakdown
     let priceItems: DisplayPriceItem[] = [];
@@ -239,9 +231,6 @@ export async function GET(
     } else if (Array.isArray(breakdown.priceItems)) {
       priceItems = breakdown.priceItems as DisplayPriceItem[];
     } else {
-      console.log('❌ priceItems not found in productPriceBreakdown');
-      console.log('📋 productPriceBreakdown keys:', Object.keys(breakdown));
-      
       return NextResponse.json(
         { 
           error: 'Breakdown prezzi non disponibile',
@@ -252,7 +241,6 @@ export async function GET(
     }
     
     if (!Array.isArray(priceItems) || priceItems.length === 0) {
-      console.log('❌ priceItems is not a valid array');
       return NextResponse.json(
         { 
           error: 'Dati prezzi non validi',
@@ -268,8 +256,7 @@ export async function GET(
 
     return NextResponse.json(calculation);
 
-  } catch (error) {
-    console.error('Pricing API error:', error);
+  } catch {
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
