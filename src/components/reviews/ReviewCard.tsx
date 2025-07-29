@@ -43,11 +43,11 @@ export function ReviewCard({
   const t = useTranslations('reviews');
   const [isExpanded, setIsExpanded] = useState(false);
   
-  // Mobile truncation - show first 120 characters
+  // Mobile truncation - show first 200 characters
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const shouldTruncate = isMobile && (comments.length > 120 || response);
+  const shouldTruncate = isMobile && (comments.length > 200 || response);
   const displayComments = shouldTruncate && !isExpanded 
-    ? comments.slice(0, 120) + '...'
+    ? comments.slice(0, 200) + '...'
     : comments;
   // Theme colors based on property
   const themeColors = {

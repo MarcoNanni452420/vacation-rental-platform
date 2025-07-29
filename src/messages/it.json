@@ -49,6 +49,7 @@
     "surface": "Superficie",
     "features": {
       "80 mq": "80 mq",
+      "90 mq": "90 mq",
       "Soffitti del 1400": "Soffitti del 1400",
       "Materiali pregiati": "Materiali pregiati",
       "Vista caratteristica": "Vista caratteristica",
@@ -81,6 +82,10 @@
     "nights": "notti",
     "night": "notte",
     "confirm": "Conferma",
+    "selectCheckin": "Seleziona data check-in",
+    "clearDates": "Cancella date",
+    "cancel": "Annulla",
+    "weekdays": ["L", "M", "M", "G", "V", "S", "D"],
     "fienaroli": {
       "name": "Casa Fienaroli",
       "location": "Via dei Fienaroli, Trastevere",

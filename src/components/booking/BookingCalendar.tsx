@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { CalendarModal } from './CalendarModal';
 import { Calendar as CalendarIcon } from 'lucide-react';
 import { format, differenceInDays } from 'date-fns';
-import { it } from 'date-fns/locale';
+import { it, enUS } from 'date-fns/locale';
 import { cn } from '@/lib/utils';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 interface BookingCalendarProps {
   propertySlug: 'fienaroli' | 'moro';
@@ -19,6 +19,10 @@ interface BookingCalendarProps {
 export function BookingCalendar({ propertySlug, onDateChange, className, selectedRange, preloadedAvailability }: BookingCalendarProps) {
   const t = useTranslations('property');
   const tBooking = useTranslations('booking');
+  const locale = useLocale();
+  
+  // Dynamic date-fns locale
+  const dateLocale = locale === 'it' ? it : enUS;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -46,6 +50,22 @@ export function BookingCalendar({ propertySlug, onDateChange, className, selecte
   const hasSelection = selectedRange?.from && selectedRange?.to;
   const nights = hasSelection ? differenceInDays(selectedRange.to!, selectedRange.from!) : 0;
 
+  // Intelligent date formatting
+  const formatDateRange = (from: Date, to: Date) => {
+    const fromMonth = from.getMonth();
+    const toMonth = to.getMonth();
+    const fromYear = from.getFullYear();
+    const toYear = to.getFullYear();
+    
+    if (fromMonth === toMonth && fromYear === toYear) {
+      // Same month and year: "5-7 Aug 2025"
+      return `${format(from, 'd', { locale: dateLocale })}-${format(to, 'd MMM yyyy', { locale: dateLocale })}`;
+    } else {
+      // Different months/years: "30 Jul - 5 Aug 2025"
+      return `${format(from, 'd MMM', { locale: dateLocale })} - ${format(to, 'd MMM yyyy', { locale: dateLocale })}`;
+    }
+  };
+
   return (
     <>
       <button
@@ -66,30 +86,33 @@ export function BookingCalendar({ propertySlug, onDateChange, className, selecte
           <div className="flex-1">
             {selectedRange?.from ? (
               selectedRange.to ? (
-                <div>
-                  <div className="space-y-1">
-                    <div className="font-semibold text-gray-900 text-lg">
-                      {format(selectedRange.from, 'd MMM', { locale: it })} - {format(selectedRange.to, 'd MMM yyyy', { locale: it })}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className={cn(
-                        "text-sm font-medium px-3 py-1 rounded-full inline-flex",
-                        propertySlug === 'fienaroli' 
-                          ? "bg-[hsl(20,65%,95%)] text-[hsl(20,65%,48%)]" 
-                          : "bg-[hsl(345,55%,95%)] text-[hsl(345,55%,42%)]"
-                      )}>
-                        {nights} {nights === 1 ? t('night') : t('nights')}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="text-sm text-gray-500 mt-0.5">
+                <div className="space-y-2">
+                  {/* Titoli */}
+                  <div className="text-sm text-gray-500">
                     {t('checkIn')} → {t('checkOut')}
+                  </div>
+                  
+                  {/* Date intelligenti */}
+                  <div className="font-semibold text-gray-900 text-lg">
+                    {formatDateRange(selectedRange.from, selectedRange.to)}
+                  </div>
+                  
+                  {/* Chip Notti */}
+                  <div className="flex items-center gap-2">
+                    <div className={cn(
+                      "text-sm font-medium px-3 py-1 rounded-full inline-flex",
+                      propertySlug === 'fienaroli' 
+                        ? "bg-[hsl(20,65%,95%)] text-[hsl(20,65%,48%)]" 
+                        : "bg-[hsl(345,55%,95%)] text-[hsl(345,55%,42%)]"
+                    )}>
+                      {nights} {nights === 1 ? t('night') : t('nights')}
+                    </div>
                   </div>
                 </div>
               ) : (
                 <div>
                   <div className="font-semibold text-gray-900 text-lg">
-                    {format(selectedRange.from, 'd MMMM yyyy', { locale: it })}
+                    {format(selectedRange.from, 'd MMMM yyyy', { locale: dateLocale })}
                   </div>
                   <div className="text-sm text-gray-500 mt-0.5">
                     {tBooking('selectCheckout')}

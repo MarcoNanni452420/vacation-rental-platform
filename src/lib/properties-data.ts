@@ -115,7 +115,7 @@ L'appartamento presenta:
 Passeggiare per i vicoli e gustare la vera cucina romana nelle tante trattorie tradizionali. Traversare il Tevere e raggiungere rapidamente Piazza Navona, il Pantheon e le meraviglie Romane.
 
 La posizione strategica permette di vivere l'autentica atmosfera trasteverina rimanendo a pochi passi dalle principali attrazioni turistiche.`,
-    features: ["Soffitti del 1400", "Materiali pregiati", "Vista caratteristica", "Posizione centrale"],
+    features: ["90 mq", "Soffitti del 1400", "Materiali pregiati", "Vista caratteristica", "Posizione centrale"],
     price: 300,
     theme: "moro",
     maxGuests: 4,

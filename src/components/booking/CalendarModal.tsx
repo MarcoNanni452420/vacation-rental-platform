@@ -3,12 +3,12 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { format, isBefore, startOfToday, differenceInDays, addMonths, startOfMonth, endOfMonth, eachDayOfInterval, getDay } from 'date-fns';
-import { it } from 'date-fns/locale';
+import { it, enUS } from 'date-fns/locale';
 import { fetchAvailability } from '@/lib/octorate-api';
 import { OctorateCalendarResponse } from '@/types/octorate';
 import { cn } from '@/lib/utils';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 interface CalendarModalProps {
   propertySlug: 'fienaroli' | 'moro';
@@ -26,6 +26,10 @@ interface DateRange {
 
 export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, initialRange, preloadedAvailability }: CalendarModalProps) {
   const t = useTranslations('property');
+  const locale = useLocale();
+  
+  // Dynamic date-fns locale
+  const dateLocale = locale === 'it' ? it : enUS;
   const [availability, setAvailability] = useState<OctorateCalendarResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [range, setRange] = useState<DateRange | undefined>(initialRange);
@@ -263,13 +267,13 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
         <div className="mb-4">
           <h3 className="text-lg md:text-xl font-semibold text-center"
               style={{ color: colors.text }}>
-            {format(monthDate, 'MMMM yyyy', { locale: it })}
+            {format(monthDate, 'MMMM yyyy', { locale: dateLocale })}
           </h3>
         </div>
         
         {/* Day labels */}
         <div className="grid grid-cols-7 gap-1 mb-2">
-          {['L', 'M', 'M', 'G', 'V', 'S', 'D'].map((day, index) => (
+          {(t.raw('weekdays') as string[]).map((day: string, index: number) => (
             <div key={index} className="w-[40px] md:w-[44px] text-center text-xs font-semibold text-gray-600 py-1">
               {day}
             </div>
@@ -337,7 +341,7 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
             </h2>
             {range?.from && range?.to && (
               <p className="mt-1" style={{ color: `${colors.text}80` }}>
-                {format(range.from, 'd MMM yyyy', { locale: it })} - {format(range.to, 'd MMM yyyy', { locale: it })}
+                {format(range.from, 'd MMM yyyy', { locale: dateLocale })} - {format(range.to, 'd MMM yyyy', { locale: dateLocale })}
               </p>
             )}
             {range?.from && !range?.to && (
@@ -347,7 +351,7 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
             )}
             {!range?.from && (
               <p className="mt-1" style={{ color: `${colors.text}80` }}>
-                Seleziona data check-in
+{t('selectCheckin')}
               </p>
             )}
           </div>
@@ -426,7 +430,7 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
                 </button>
                 
                 <div className="text-lg font-semibold" style={{ color: colors.text }}>
-                  {format(currentMonth, 'yyyy', { locale: it })}
+                  {format(currentMonth, 'yyyy', { locale: dateLocale })}
                 </div>
                 
                 <button
@@ -499,7 +503,7 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
               }
             }}
           >
-            Cancella date
+{t('clearDates')}
           </button>
           
           <div className="flex gap-3 order-1 sm:order-2">
@@ -528,7 +532,7 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
                 }
               }}
             >
-              Annulla
+{t('cancel')}
             </button>
             <button
               onClick={handleConfirm}
