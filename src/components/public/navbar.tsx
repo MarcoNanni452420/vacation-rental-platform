@@ -231,71 +231,46 @@ export function Navbar() {
                   <LanguageSwitcher />
                 </div>
                 
-                {/* Mobile Book Now Options */}
+                {/* Mobile Book Now Options - Match Desktop Style */}
                 <div className="space-y-4">
                   <p className="text-xs font-medium uppercase tracking-wider text-gray-500">
                     {t('bookNow')} - Choose Your Property
                   </p>
-                  <Link
-                    href="/property/fienaroli#booking"
-                    className="flex items-center gap-4 p-4 rounded-xl border border-black text-black hover:bg-black hover:text-white transition-all duration-300 group"
-                    onClick={(e) => {
-                      setIsMenuOpen(false)
-                      if (typeof window !== 'undefined' && window.location.pathname === '/property/fienaroli') {
-                        e.preventDefault()
-                        const element = document.getElementById('booking-section')
-                        if (element) {
-                          element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
+                  <div className="bg-background border border-border w-full overflow-hidden rounded-lg shadow-lg">
+                    <Link
+                      href="/property/fienaroli#booking"
+                      className="block w-full px-4 py-3 text-left text-sm font-medium uppercase tracking-wider transition-colors text-[hsl(20,65%,35%)] hover:text-[hsl(20,65%,35%)]/80 hover:bg-[hsl(20,65%,35%)]/10"
+                      onClick={(e) => {
+                        setIsMenuOpen(false)
+                        if (typeof window !== 'undefined' && window.location.pathname === '/property/fienaroli') {
+                          e.preventDefault()
+                          const element = document.getElementById('booking-section')
+                          if (element) {
+                            element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
+                          }
                         }
-                      }
-                    }}
-                  >
-                    <div className="flex-1">
-                      <div className="font-semibold">
-                        Fienaroli
-                      </div>
-                      <div className="text-xs opacity-60 mt-1 flex items-center gap-2">
-                        <span>6 guests</span>
-                        <span>•</span>
-                        <span>Via dei Fienaroli</span>
-                      </div>
-                    </div>
-                    <div className="opacity-60 group-hover:opacity-100 transition-opacity duration-200">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </Link>
-                  <Link
-                    href="/property/moro#booking"
-                    className="flex items-center gap-4 p-4 rounded-xl border border-black text-black hover:bg-black hover:text-white transition-all duration-300 group"
-                    onClick={(e) => {
-                      setIsMenuOpen(false)
-                      if (typeof window !== 'undefined' && window.location.pathname === '/property/moro') {
-                        e.preventDefault()
-                        const element = document.getElementById('booking-section')
-                        if (element) {
-                          element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
+                      }}
+                    >
+                      Fienaroli
+                    </Link>
+                    <div className="border-t border-border" />
+                    <Link
+                      href="/property/moro#booking"
+                      className="block w-full px-4 py-3 text-left text-sm font-medium uppercase tracking-wider transition-colors text-[hsl(345,55%,35%)] hover:text-[hsl(345,55%,35%)]/80 hover:bg-[hsl(345,55%,35%)]/10"
+                      onClick={(e) => {
+                        setIsMenuOpen(false)
+                        if (typeof window !== 'undefined' && window.location.pathname === '/property/moro') {
+                          e.preventDefault()
+                          const element = document.getElementById('booking-section')
+                          if (element) {
+                            element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
+                          }
                         }
-                      }
-                    }}
-                  >
-                    <div className="flex-1">
-                      <div className="font-semibold">
-                        Moro
-                      </div>
-                      <div className="text-xs opacity-60 mt-1 flex items-center gap-2">
-                        <span>4 guests</span>
-                        <span>•</span>
-                        <span>Near Santa Maria</span>
-                      </div>
-                    </div>
-                    <div className="opacity-60 group-hover:opacity-100 transition-opacity duration-200">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </Link>
+                      }}
+                    >
+                      Moro
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
