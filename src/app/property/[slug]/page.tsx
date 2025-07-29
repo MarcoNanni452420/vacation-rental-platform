@@ -484,7 +484,7 @@ export default function PropertyPage() {
             <p className="text-xl mb-12 text-background/90">
               {t('ctaDescription', { propertyName: property.name })}
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <Link href="/contact">
                 <Button className="bg-background text-foreground hover:bg-background/90 px-4 sm:px-8 py-4 text-lg font-semibold border-2 border-background h-14 w-full sm:w-auto max-w-xs">
                   {t('contactUs')}

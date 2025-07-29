@@ -242,7 +242,7 @@ export default function HomePage() {
           <p className="text-xl text-white/90 mb-12">
             {t('ctaDescription')}
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Link 
               href="/property/fienaroli"
               className="inline-flex items-center justify-center gap-3 border-2 border-white text-white px-4 sm:px-8 py-4 font-medium text-sm uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-300 w-full sm:w-auto max-w-xs"
