@@ -66,7 +66,7 @@ export async function translateHostResponses(
           const jsonString = translatedText.substring(jsonStart, jsonEnd + 1);
           translations = JSON.parse(jsonString);
         }
-      } catch (parseError) {
+      } catch {
         console.log('JSON parsing failed, using fallback parsing');
         // Fallback parsing
         translations = translatedText

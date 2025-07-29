@@ -12,7 +12,7 @@ import { TruncatedDescription } from "@/components/ui/truncated-description"
 import { PriceCalculator } from "@/components/pricing/PriceCalculator"
 import Link from "next/link"
 import Image from "next/image"
-import { useRef, useEffect, useState } from "react"
+import { useRef, useEffect, useState, useMemo } from "react"
 import { useParams } from "next/navigation"
 import { getPropertyBySlug } from "@/lib/properties-data"
 import { notFound } from "next/navigation"
@@ -181,15 +181,17 @@ export default function PropertyPage() {
   const tAmenities = useTranslations('amenities')
   const baseProperty = getPropertyBySlug(slug)
   
-  // Get localized property data
-  const property = baseProperty ? {
-    ...baseProperty,
-    name: t.has(`${slug}.name`) ? t(`${slug}.name`) : baseProperty.name,
-    location: t.has(`${slug}.location`) ? t(`${slug}.location`) : baseProperty.location,
-    shortDesc: t.has(`${slug}.shortDesc`) ? t(`${slug}.shortDesc`) : baseProperty.shortDesc,
-    description: t.has(`${slug}.description`) ? t(`${slug}.description`) : baseProperty.description,
-    longDescription: t.has(`${slug}.longDescription`) ? t(`${slug}.longDescription`) : baseProperty.longDescription,
-  } : undefined
+  // Get localized property data with useMemo to avoid recomputation
+  const property = useMemo(() => {
+    return baseProperty ? {
+      ...baseProperty,
+      name: t.has(`${slug}.name`) ? t(`${slug}.name`) : baseProperty.name,
+      location: t.has(`${slug}.location`) ? t(`${slug}.location`) : baseProperty.location,
+      shortDesc: t.has(`${slug}.shortDesc`) ? t(`${slug}.shortDesc`) : baseProperty.shortDesc,
+      description: t.has(`${slug}.description`) ? t(`${slug}.description`) : baseProperty.description,
+      longDescription: t.has(`${slug}.longDescription`) ? t(`${slug}.longDescription`) : baseProperty.longDescription,
+    } : undefined
+  }, [baseProperty, slug, t])
   const [isGalleryOpen, setIsGalleryOpen] = useState(false)
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
   const [dateRange, setDateRange] = useState<{ from: Date | undefined; to: Date | undefined } | undefined>()

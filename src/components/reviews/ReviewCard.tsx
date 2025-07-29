@@ -28,14 +28,12 @@ interface ReviewCardProps {
 }
 
 export function ReviewCard({
-  id,
   comments,
   localizedDate,
   rating,
   reviewer,
   response,
   collectionTag,
-  needsTranslation,
   disclaimer,
   propertySlug,
   className

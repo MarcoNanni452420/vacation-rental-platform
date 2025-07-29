@@ -90,7 +90,7 @@ export function GuestReviews({ propertySlug, className }: GuestReviewsProps) {
     };
 
     fetchReviews();
-  }, [propertySlug]);
+  }, [propertySlug, t]);
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (

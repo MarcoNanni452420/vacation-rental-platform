@@ -86,12 +86,12 @@ Se volete possiamo organizzare:
       "/images/fienaroli/living-space.avif",
       "/images/fienaroli/modern-design.avif",
       "/images/fienaroli/detail-glass.avif",
-      "/images/fienaroli/bedroom-new-1.jpg",
-      "/images/fienaroli/bedroom-new-2.jpg",
-      "/images/fienaroli/kitchen-1.jpg",
-      "/images/fienaroli/bathroom-1.jpg",
-      "/images/fienaroli/bedroom-elegant.jpg",
-      "/images/fienaroli/bedroom-rustic.jpg"
+      "/images/optimized/fienaroli/bedroom-new-1_optimized.jpg",
+      "/images/optimized/fienaroli/bedroom-new-2_optimized.jpg",
+      "/images/optimized/fienaroli/kitchen-1_optimized.jpg",
+      "/images/optimized/fienaroli/bathroom-1_optimized.jpg",
+      "/images/optimized/fienaroli/bedroom-elegant_optimized.jpg",
+      "/images/optimized/fienaroli/bedroom-rustic_optimized.jpg"
     ]
   },
   moro: {
@@ -138,16 +138,16 @@ La posizione strategica permette di vivere l'autentica atmosfera trasteverina ri
     rating: 5.0,
     reviews: 89,
     images: [
-      "/images/moro/detail-ceiling.jpg",
-      "/images/moro/bedroom-elegant-new.jpg",
-      "/images/moro/bedroom-master.jpg",
-      "/images/moro/living.jpg",
-      "/images/moro/bathroom-luxury.jpg",
-      "/images/moro/kitchen.jpg",
-      "/images/moro/bedroom-2.jpg",
-      "/images/moro/corridor.jpg",
-      "/images/moro/detail-art.jpg",
-      "/images/moro/overview.jpg"
+      "/images/optimized/moro/detail-ceiling_optimized.jpg",
+      "/images/optimized/moro/bedroom-elegant-new_optimized.jpg",
+      "/images/optimized/moro/bedroom-master_optimized.jpg",
+      "/images/optimized/moro/living_optimized.jpg",
+      "/images/optimized/moro/bathroom-luxury_optimized.jpg",
+      "/images/optimized/moro/kitchen_optimized.jpg",
+      "/images/optimized/moro/bedroom-2_optimized.jpg",
+      "/images/optimized/moro/corridor_optimized.jpg",
+      "/images/optimized/moro/detail-art_optimized.jpg",
+      "/images/optimized/moro/overview_optimized.jpg"
     ]
   }
 }

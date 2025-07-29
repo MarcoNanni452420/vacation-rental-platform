@@ -2,6 +2,8 @@
  * Utility functions to clean platform references from API response data
  */
 
+import { ReviewData } from '@/types/reviews'
+
 /**
  * Clean platform-specific references from text
  * @param text - Text to clean
@@ -77,13 +79,13 @@ export function cleanCollectionTag(tag: string | null | undefined): string | nul
  * @param review - Review object from API
  * @returns Cleaned review object
  */
-export function cleanReviewData(review: any): any {
+export function cleanReviewData(review: ReviewData): ReviewData {
   return {
     ...review,
     // Clean reviewer location
     reviewer: {
       ...review.reviewer,
-      location: cleanReviewerLocation(review.reviewer?.location || review.localizedReviewerLocation)
+      location: cleanReviewerLocation(review.reviewer?.location || '')
     },
     // Clean collection tag
     collectionTag: cleanCollectionTag(review.collectionTag),

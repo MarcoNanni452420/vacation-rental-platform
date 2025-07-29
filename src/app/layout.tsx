@@ -70,6 +70,18 @@ export default async function RootLayout({
   
   return (
     <html lang={locale}>
+      <head>
+        <link
+          rel="preload"
+          href="/fonts/inter-var.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link rel="dns-prefetch" href="//maps.googleapis.com" />
+        <link rel="dns-prefetch" href="//a0.muscache.com" />
+        <link rel="preconnect" href="https://maps.googleapis.com" crossOrigin="anonymous" />
+      </head>
       <body className="antialiased" suppressHydrationWarning={true}>
         <NextIntlClientProvider messages={messages}>
           <Providers>

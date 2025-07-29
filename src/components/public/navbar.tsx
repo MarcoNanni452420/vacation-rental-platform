@@ -103,6 +103,8 @@ export function Navbar() {
                 "p-2 transition-colors duration-300",
                 needsDarkText ? "text-black" : "text-white"
               )}
+              aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isMenuOpen}
             >
               {isMenuOpen ? (
                 <X className="h-6 w-6 transition-transform duration-200" />

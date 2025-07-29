@@ -90,7 +90,7 @@ export async function POST(request: NextRequest) {
     await transporter.verify()
     
     // Send the email
-    const info = await transporter.sendMail(mailOptions)
+    await transporter.sendMail(mailOptions)
 
     return NextResponse.json(
       { message: 'Email sent successfully' },

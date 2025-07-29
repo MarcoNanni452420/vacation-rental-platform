@@ -7,7 +7,6 @@ import { getPropertyReviewStats } from '@/lib/reviews-api';
 import { cn } from '@/lib/utils';
 import { useTranslations, useLocale } from 'next-intl';
 import { ReviewData, ReviewsResponse } from '@/types/reviews';
-import { Button } from '@/components/ui/button';
 import { HorizontalReviewsCarousel } from './HorizontalReviewsCarousel';
 
 
