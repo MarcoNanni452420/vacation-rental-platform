@@ -43,11 +43,11 @@ export function ReviewCard({
   const t = useTranslations('reviews');
   const [isExpanded, setIsExpanded] = useState(false);
   
-  // Mobile truncation - show first 200 characters
+  // Mobile truncation - show first 180 characters (reduced to give space for controls)
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const shouldTruncate = isMobile && (comments.length > 200 || response);
+  const shouldTruncate = isMobile && (comments.length > 180 || response);
   const displayComments = shouldTruncate && !isExpanded 
-    ? comments.slice(0, 200) + '...'
+    ? comments.slice(0, 180) + '...'
     : comments;
   // Theme colors based on property
   const themeColors = {
@@ -168,27 +168,27 @@ export function ReviewCard({
           <button
             onClick={() => setIsExpanded(!isExpanded)}
             className={cn(
-              "flex items-center gap-1 mt-2 text-sm font-medium transition-colors duration-300 md:hidden",
+              "flex items-center gap-1 mt-2 text-sm font-medium transition-colors duration-300 md:hidden flex-shrink-0",
               colors.accent
             )}
           >
             {isExpanded ? (
               <>
-                Mostra meno
+                {t('showLess')}
                 <ChevronUp className="w-4 h-4" />
               </>
             ) : (
               <>
-                Leggi di più
+                {t('readMore')}
                 <ChevronDown className="w-4 h-4" />
               </>
             )}
           </button>
         )}
         
-        {/* Translation disclaimer for auto-translated content */}
+        {/* Translation disclaimer for auto-translated content - always visible on mobile */}
         {disclaimer && (
-          <p className="text-xs text-gray-500 mt-2 italic">
+          <p className="text-xs text-gray-500 mt-2 italic flex-shrink-0">
             {disclaimer}
           </p>
         )}
