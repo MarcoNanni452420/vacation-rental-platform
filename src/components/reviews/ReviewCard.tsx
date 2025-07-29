@@ -87,12 +87,18 @@ export function ReviewCard({
   return (
     <div className={cn(
       "p-6 rounded-2xl border-2 transition-all duration-300 hover:shadow-lg",
-      "md:min-h-auto md:max-h-none min-h-[280px] max-h-[320px] flex flex-col", // Responsive height
+      "md:min-h-auto md:max-h-none flex flex-col", // Responsive height
+      // Mobile height and overflow management
+      isMobile ? (isExpanded ? "min-h-[280px]" : "min-h-[280px] max-h-[320px]") : "",
       colors.border,
       colors.bg,
       className
     )}>
-      <div className="flex-1 flex flex-col md:overflow-visible overflow-hidden">
+      <div className={cn(
+        "flex-1 flex flex-col",
+        // Dynamic overflow based on expanded state on mobile
+        isMobile ? (isExpanded ? "overflow-visible" : "overflow-hidden") : "md:overflow-visible overflow-hidden"
+      )}>
         {/* Header with reviewer info and rating */}
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center gap-3">
@@ -121,7 +127,6 @@ export function ReviewCard({
             </div>
             <div>
               <h4 className="font-semibold text-gray-900">{reviewer.firstName}</h4>
-              <p className="text-sm text-gray-600">{reviewer.location}</p>
             </div>
           </div>
           
@@ -147,7 +152,12 @@ export function ReviewCard({
         )}
 
         {/* Review content - with mobile truncation */}
-        <div className="md:flex-none flex-1 md:overflow-visible overflow-hidden">
+        <div className={cn(
+          "md:flex-none",
+          // Dynamic flex and overflow based on expanded state
+          isMobile ? (isExpanded ? "flex-none" : "flex-1") : "flex-1",
+          isMobile ? (isExpanded ? "overflow-visible" : "overflow-hidden") : "md:overflow-visible overflow-hidden"
+        )}>
         <div 
           className="text-gray-800 leading-relaxed"
           dangerouslySetInnerHTML={{ __html: displayComments }}

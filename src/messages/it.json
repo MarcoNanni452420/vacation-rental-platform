@@ -167,7 +167,8 @@
     "title": "Galleria",
     "prevImages": "Immagini precedenti",
     "nextImages": "Immagini successive",
-    "goToGroup": "Vai al gruppo {number}"
+    "goToGroup": "Vai al gruppo {number}",
+    "of": "di"
   },
   "amenities": {
     "WiFi": "WiFi",

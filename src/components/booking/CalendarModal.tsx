@@ -277,7 +277,7 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
         </div>
         
         {/* Calendar grid */}
-        <div className="space-y-1">
+        <div className="space-y-1 md:min-h-0 min-h-[280px]">
           {weeks.map((week, weekIndex) => (
             <div key={weekIndex} className="grid grid-cols-7 gap-1">
               {week.map((day, dayIndex) => (
@@ -472,8 +472,8 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
         </div>
 
         {/* Footer - Fixed at bottom */}
-        <div className="flex flex-col sm:flex-row items-center justify-between p-4 md:p-6 border-t gap-4 flex-shrink-0" 
-             style={{ borderColor: `${colors.primary}20`, backgroundColor: `${colors.primary}05` }}>
+        <div className="flex flex-col sm:flex-row items-center justify-between p-4 md:p-6 border-t gap-4 flex-shrink-0 bg-white" 
+             style={{ borderColor: `${colors.primary}20` }}>
           <button
             onClick={handleClear}
             className="px-4 py-2 text-sm font-medium border rounded-xl transition-all duration-200 hover:scale-105 order-2 sm:order-1 min-h-[44px]"

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { fetchPropertyReviews, REVIEW_PROPERTY_MAPPING } from '@/lib/reviews-api';
 import { ReviewApiError } from '@/types/airbnb';
 import { translateHostResponses } from '@/lib/translate-host-responses';
+import { cleanReviewerLocation, cleanCollectionTag } from '@/lib/clean-platform-references';
 
 // Cache delle recensioni (1 ora)
 const CACHE_DURATION = 60 * 60 * 1000; // 1 ora in millisecondi
@@ -91,14 +92,14 @@ export async function GET(
       rating: review.rating,
       reviewer: {
         firstName: review.reviewer.firstName,
-        location: review.localizedReviewerLocation,
+        location: cleanReviewerLocation(review.localizedReviewerLocation),
         pictureUrl: review.reviewer.pictureUrl,
         isSuperhost: review.reviewer.isSuperhost
       },
       response: review.response || null,
-      collectionTag: review.collectionTag || null,
+      collectionTag: cleanCollectionTag(review.collectionTag),
       needsTranslation: false,
-      disclaimer: locale !== 'it' ? `Native translation by Airbnb for ${locale.toUpperCase()}` : ''
+      disclaimer: locale !== 'it' ? 'Automatically translated' : ''
     }));
 
     // Traduci le host responses se necessario (solo per locale diverso da italiano)

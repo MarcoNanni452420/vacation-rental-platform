@@ -59,7 +59,7 @@ export function ImageGalleryModal({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm">
+    <div className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-sm">
       {/* Header */}
       <div className="absolute top-0 left-0 right-0 z-10 flex items-center justify-between p-6">
         <div className="text-white">
@@ -80,11 +80,12 @@ export function ImageGalleryModal({
       {/* Main Image */}
       <div className="flex items-center justify-center h-full px-4 md:px-16 py-16 md:py-20">
         <div className="relative max-w-7xl max-h-full w-full">
-          <div className="relative w-full max-h-[92vh] md:max-h-[85vh]">
+          <div className="relative w-full h-[60vh] md:h-[70vh]">
             <Image
               src={images[currentIndex]}
               alt={`${propertyName} - Immagine ${currentIndex + 1}`}
               fill
+              priority
               sizes="(max-width: 768px) 95vw, 85vw"
               className="object-contain"
             />

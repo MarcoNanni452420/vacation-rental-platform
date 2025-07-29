@@ -167,7 +167,8 @@
     "title": "Gallery",
     "prevImages": "Previous images",
     "nextImages": "Next images",
-    "goToGroup": "Go to group {number}"
+    "goToGroup": "Go to group {number}",
+    "of": "of"
   },
   "amenities": {
     "Vista sul panorama urbano": "Urban panoramic view",

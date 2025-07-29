@@ -197,7 +197,10 @@ export function ImageCarousel({
 
       {/* Image Counter */}
       <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-black/30 backdrop-blur-sm text-white text-sm font-medium">
-        {currentIndex + 1}-{Math.min(currentIndex + imagesPerView, images.length)} di {images.length}
+        {imagesPerView === 1 
+          ? `${currentIndex + 1} ${t('of')} ${images.length}`
+          : `${currentIndex + 1}-${Math.min(currentIndex + imagesPerView, images.length)} ${t('of')} ${images.length}`
+        }
       </div>
     </div>
   );
