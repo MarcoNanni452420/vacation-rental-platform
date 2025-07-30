@@ -14,6 +14,8 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isBookingDropdownOpen, setIsBookingDropdownOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const mobileDropdownRef = useRef<HTMLDivElement>(null)
+  const [isNavigating, setIsNavigating] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
   const isHomepage = pathname === '/'
@@ -33,14 +35,21 @@ export function Navbar() {
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      // Don't close if we're navigating
+      if (isNavigating) return;
+      
+      // Check if click is outside both desktop and mobile dropdowns
+      const isOutsideDesktop = dropdownRef.current && !dropdownRef.current.contains(event.target as Node);
+      const isOutsideMobile = mobileDropdownRef.current && !mobileDropdownRef.current.contains(event.target as Node);
+      
+      if (isOutsideDesktop && isOutsideMobile) {
         setIsBookingDropdownOpen(false)
       }
     }
 
     document.addEventListener('mousedown', handleClickOutside)
     return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [])
+  }, [isNavigating])
 
   // Close dropdown on route change
   useEffect(() => {
@@ -259,7 +268,7 @@ export function Navbar() {
                 </div>
                 
                 {/* Mobile Book Now Options - Match Desktop Style */}
-                <div className="space-y-4">
+                <div className="space-y-4" ref={mobileDropdownRef}>
                   <button
                     onClick={handleBookingToggle}
                     className="w-full text-sm font-medium uppercase tracking-wide px-6 py-3 border border-black text-black hover:bg-black hover:text-white transition-all duration-300 flex items-center justify-center gap-2"
@@ -285,11 +294,14 @@ export function Navbar() {
                         href="/property/fienaroli#booking"
                         className="block w-full px-4 py-3 text-left text-sm font-medium uppercase tracking-wider transition-colors text-[hsl(20,65%,35%)] hover:text-[hsl(20,65%,35%)]/80 hover:bg-[hsl(20,65%,35%)]/10"
                         onClick={() => {
-                          // Delay dropdown close to allow navigation to complete
+                          // Set navigating flag to prevent dropdown close
+                          setIsNavigating(true)
+                          // Close after navigation completes
                           setTimeout(() => {
                             setIsBookingDropdownOpen(false)
                             setIsMenuOpen(false)
-                          }, 150)
+                            setIsNavigating(false)
+                          }, 500)
                         }}
                       >
                         Fienaroli
@@ -299,11 +311,14 @@ export function Navbar() {
                         href="/property/moro#booking"
                         className="block w-full px-4 py-3 text-left text-sm font-medium uppercase tracking-wider transition-colors text-[hsl(345,55%,35%)] hover:text-[hsl(345,55%,35%)]/80 hover:bg-[hsl(345,55%,35%)]/10"
                         onClick={() => {
-                          // Delay dropdown close to allow navigation to complete
+                          // Set navigating flag to prevent dropdown close
+                          setIsNavigating(true)
+                          // Close after navigation completes
                           setTimeout(() => {
                             setIsBookingDropdownOpen(false)
                             setIsMenuOpen(false)
-                          }, 150)
+                            setIsNavigating(false)
+                          }, 500)
                         }}
                       >
                         Moro

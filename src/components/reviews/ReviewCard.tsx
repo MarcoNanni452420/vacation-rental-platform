@@ -159,9 +159,8 @@ export function ReviewCard({
         <div className="flex flex-col">
           <div 
             className="text-gray-800 leading-relaxed"
-          >
-            {displayComments}
-          </div>
+            dangerouslySetInnerHTML={{ __html: displayComments }}
+          />
         
           {/* Read more/less button for mobile - always visible when needed */}
           {shouldTruncate && (

@@ -31,11 +31,12 @@ export default function HomePage() {
               alt="Trastevere Luxury"
               width={500}
               height={167}
-              className="max-w-sm md:max-w-lg lg:max-w-xl h-auto -mt-8 -mb-12"
+              className="max-w-[18rem] sm:max-w-sm md:max-w-lg lg:max-w-xl h-auto -mt-16 md:-mt-20 -mb-8"
               priority
+              fetchPriority="high"
             />
           </div>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto font-light mt-2">
+          <p className="text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto font-light mt-2 px-6 sm:px-4">
             {t('description')}
           </p>
         </div>
