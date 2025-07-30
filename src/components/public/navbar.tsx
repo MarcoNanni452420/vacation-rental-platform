@@ -253,7 +253,7 @@ export function Navbar() {
                   
                   {/* Dropdown Menu - Match Desktop */}
                   {isBookingDropdownOpen && (
-                    <div className="absolute top-full left-0 mt-0 bg-background border border-border w-full overflow-hidden rounded-lg shadow-lg z-50">
+                    <div className="mt-4 bg-background border border-border w-full overflow-hidden rounded-lg shadow-lg">
                       <Link
                         href="/property/fienaroli#booking"
                         className="block w-full px-4 py-3 text-left text-sm font-medium uppercase tracking-wider transition-colors text-[hsl(20,65%,35%)] hover:text-[hsl(20,65%,35%)]/80 hover:bg-[hsl(20,65%,35%)]/10"
@@ -265,8 +265,9 @@ export function Navbar() {
                               element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
                             }
                           }
-                          // Close menu after navigation to avoid interference
-                          setTimeout(() => setIsMenuOpen(false), 100)
+                          // Close both dropdowns immediately to allow navigation
+                          setIsBookingDropdownOpen(false)
+                          setIsMenuOpen(false)
                         }}
                       >
                         Fienaroli
@@ -283,8 +284,9 @@ export function Navbar() {
                               element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
                             }
                           }
-                          // Close menu after navigation to avoid interference
-                          setTimeout(() => setIsMenuOpen(false), 100)
+                          // Close both dropdowns immediately to allow navigation
+                          setIsBookingDropdownOpen(false)
+                          setIsMenuOpen(false)
                         }}
                       >
                         Moro
