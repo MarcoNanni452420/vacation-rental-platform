@@ -122,20 +122,26 @@
 
   /* Hero title specific styles to avoid browser warnings */
   .hero-title {
-    font-size: 4.5rem; /* text-7xl */
+    font-size: 3.5rem; /* reduced from 4.5rem */
     font-weight: 700;
     letter-spacing: -0.04em;
+    margin: 2rem 0; /* added margin top/bottom */
+    padding: 0 1rem; /* added horizontal padding */
   }
   
   @media (min-width: 768px) {
     .hero-title {
-      font-size: 6rem; /* md:text-8xl */
+      font-size: 4.5rem; /* reduced from 6rem */
+      margin: 2.5rem 0;
+      padding: 0 1.5rem;
     }
   }
   
   @media (min-width: 1024px) {
     .hero-title {
-      font-size: 8rem; /* lg:text-9xl */
+      font-size: 6rem; /* reduced from 8rem */
+      margin: 3rem 0;
+      padding: 0 2rem;
     }
   }
 

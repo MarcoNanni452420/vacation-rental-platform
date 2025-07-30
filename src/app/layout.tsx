@@ -10,22 +10,22 @@ import { headers } from 'next/headers';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://trastevere-luxury.com'),
-  title: "Historic Luxury Apartments Trastevere Rome | 15th Century Ceilings & Designer Glass Walls",
-  description: "Stay in exclusive designer apartments with 15th-century wooden ceilings and contemporary glass walls in Trastevere, Rome. Casa Fienaroli on Via dei Fienaroli and Casa Moro near Santa Maria - authentic luxury experiences.",
-  keywords: ["historic apartment Rome", "luxury vacation rental Trastevere", "15th century ceiling Rome", "designer apartment Rome", "exposed beams Rome", "Casa Fienaroli", "Casa Moro", "Santa Maria Trastevere rental", "Via dei Fienaroli apartment", "Rome glass walls apartment", "Trastevere luxury accommodation", "historic Rome vacation rental"],
-  authors: [{ name: "Trastevere Luxury Homes" }],
-  creator: "Trastevere Luxury Homes",
-  publisher: "Trastevere Luxury Homes",
+  title: "Trastevere Luxury | Authentic Rome, Refined Living",
+  description: "Stay in exclusive designer apartments featuring 15th-century wooden ceilings and contemporary glass walls. Two unique properties in Rome's most charming neighborhood, steps from Santa Maria in Trastevere and major attractions.",
+  keywords: ["luxury vacation rental Trastevere", "15th century ceiling Rome", "designer apartment Rome", "exposed beams Rome", "Casa Fienaroli", "Casa Moro", "Santa Maria Trastevere rental", "Via dei Fienaroli apartment", "Rome glass walls apartment", "Trastevere luxury accommodation", "authentic Rome accommodation"],
+  authors: [{ name: "Trastevere Luxury" }],
+  creator: "Trastevere Luxury",
+  publisher: "Trastevere Luxury",
   openGraph: {
-    title: "Historic Luxury Apartments Trastevere Rome | Casa Fienaroli & Casa Moro",
-    description: "Stay in exclusive designer apartments with 15th-century wooden ceilings and contemporary glass walls in Trastevere, Rome. Authentic luxury experiences near Santa Maria.",
-    siteName: "Trastevere Luxury Homes",
+    title: "Trastevere Luxury | Authentic Rome, Refined Living",
+    description: "Stay in exclusive designer apartments featuring 15th-century wooden ceilings and contemporary glass walls. Two unique properties in Rome's most charming neighborhood.",
+    siteName: "Trastevere Luxury",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/images/fienaroli/bedroom-elegant.jpg",
         width: 1200,
         height: 630,
-        alt: "Trastevere Luxury Homes - Casa Fienaroli and Casa Moro",
+        alt: "Trastevere Luxury - Casa Fienaroli Designer Bedroom with Exposed Beams",
       },
     ],
     locale: "en_US",
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Historic Luxury Apartments Trastevere Rome | Casa Fienaroli & Casa Moro",
-    description: "Stay in exclusive designer apartments with 15th-century wooden ceilings and contemporary glass walls in Trastevere, Rome.",
-    images: ["/og-image.jpg"],
+    title: "Trastevere Luxury | Authentic Rome, Refined Living",
+    description: "Stay in exclusive designer apartments featuring 15th-century wooden ceilings and contemporary glass walls in Rome's most charming neighborhood.",
+    images: ["/images/fienaroli/bedroom-elegant.jpg"],
     creator: "@trastevereluxury",
   },
   robots: {
@@ -51,9 +51,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.png', type: 'image/png' },
+      { url: '/logo-tl.png', type: 'image/png', sizes: '192x192' },
     ],
-    apple: '/favicon.svg',
+    apple: '/logo-tl.png',
   },
   verification: {
     google: '',
@@ -83,7 +84,7 @@ export default async function RootLayout({
         <link rel="preload" as="fetch" href="/api/availability/moro" crossOrigin="anonymous" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="csp-nonce" content={nonce} />
+        
       </head>
       <body className="antialiased" suppressHydrationWarning={true}>
         <NextIntlClientProvider messages={messages}>

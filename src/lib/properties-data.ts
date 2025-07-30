@@ -35,7 +35,7 @@ Una società di design ha ristrutturato ed arredato questo ampio appartamento di
 
 L'intero appartamento è a vostro esclusivo utilizzo ed è così composto:
 - ampio salone con divano letto matrimoniale, tavolo da pranzo, tv ed aria condizionata
-- Grande piano cucina completamente accessoriato per preparare i pasti, dotato di piastre ad induzione, macchina per il caffè **NESPRESSO**, forno e lavastoviglie
+- Grande piano cucina completamente accessoriato per preparare i pasti, dotato di piastre ad induzione, macchina per il caffè Nespresso, forno e lavastoviglie
 - ampia camera con parete a vetri con letto matrimoniale, aria condizionata e tv
 - bagno con ampia cabina doccia, wc, bidet e lavandino con base in legno
 - camera da letto con letto matrimoniale (da notare la testiera del letto) con aria condizionata, tv e bagno in camera. Il bagno privato è dotato di cabina doccia, wc, bidet e lavandino ed ha 2 pareti in vetro, una vera particolarità!

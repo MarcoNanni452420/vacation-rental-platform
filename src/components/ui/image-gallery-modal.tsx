@@ -59,9 +59,9 @@ export function ImageGalleryModal({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-black">
+    <div className="fixed inset-0 z-[99999] bg-black overflow-hidden">
       {/* Header */}
-      <div className="absolute top-0 left-0 right-0 z-10 flex items-center justify-between p-6">
+      <div className="absolute top-0 left-0 right-0 z-[10] flex items-center justify-between p-6">
         <div className="text-white">
           <h3 className="text-lg font-medium">{propertyName}</h3>
           <p className="text-sm text-white/70">
@@ -78,8 +78,8 @@ export function ImageGalleryModal({
       </div>
 
       {/* Main Image */}
-      <div className="flex items-center justify-center px-4 md:px-16 pt-20 pb-24" style={{ height: '100vh' }}>
-        <div className="relative w-full h-full">
+      <div className="absolute inset-0 flex items-center justify-center px-4 md:px-16 z-[5]">
+        <div className="relative w-full z-[5]" style={{ height: 'calc(100vh - 200px)', marginTop: '80px', marginBottom: '120px' }}>
           <div className="relative w-full h-full">
             <Image
               src={images[currentIndex]}
@@ -114,14 +114,14 @@ export function ImageGalleryModal({
 
       {/* Thumbnail Navigation */}
       {images.length > 1 && (
-        <div className="absolute bottom-0 left-0 right-0 p-6">
+        <div className="absolute bottom-0 left-0 right-0 p-6 z-[1]">
           <div className="flex justify-center gap-2 max-w-4xl mx-auto overflow-x-auto scrollbar-thin">
             {images.map((image, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
                 className={cn(
-                  "flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all",
+                  "flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all relative z-[1]",
                   currentIndex === index 
                     ? "border-white shadow-lg" 
                     : "border-transparent opacity-70 hover:opacity-100"

@@ -50,15 +50,20 @@ export function HorizontalReviewsCarousel({
   const checkScroll = () => {
     if (!scrollContainerRef.current) return;
     
-    const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
-    setCanScrollLeft(scrollLeft > 0);
-    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
-    
-    // Calculate current index based on scroll position
-    const cardWidth = scrollContainerRef.current.firstElementChild?.clientWidth || 300;
-    const gap = 16; // 1rem gap
-    const newIndex = Math.round(scrollLeft / (cardWidth + gap));
-    setCurrentIndex(newIndex);
+    // Use requestAnimationFrame to batch layout calculations and reduce forced reflow
+    requestAnimationFrame(() => {
+      if (!scrollContainerRef.current) return;
+      
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
+      
+      // Calculate current index based on scroll position
+      const cardWidth = scrollContainerRef.current.firstElementChild?.clientWidth || 300;
+      const gap = 16; // 1rem gap
+      const newIndex = Math.round(scrollLeft / (cardWidth + gap));
+      setCurrentIndex(newIndex);
+    });
   };
 
   useEffect(() => {

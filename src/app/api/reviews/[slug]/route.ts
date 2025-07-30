@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { fetchPropertyReviews, REVIEW_PROPERTY_MAPPING } from '@/lib/reviews-api';
 import { ReviewApiError } from '@/types/airbnb';
 import { translateHostResponses } from '@/lib/translate-host-responses';
+import { translateReview } from '@/lib/openai-translation';
 import { cleanReviewerLocation, cleanCollectionTag } from '@/lib/clean-platform-references';
 
 // Cache delle recensioni (1 ora)
@@ -78,7 +79,7 @@ export async function GET(
     // Estrai le recensioni dal response
     const reviews = reviewsData.data?.presentation?.stayProductDetailPage?.reviews?.reviews || [];
     
-    // Prepara la risposta pulita - Airbnb già fornisce le traduzioni native per i commenti
+    // Prepara la risposta pulita - Airbnb già fornisce i commenti in inglese
     let cleanedReviews = reviews.map(review => ({
       id: review.id,
       comments: review.comments,
@@ -95,13 +96,111 @@ export async function GET(
       },
       response: review.response || null,
       collectionTag: cleanCollectionTag(review.collectionTag),
-      needsTranslation: false,
-      disclaimer: locale !== 'it' ? 'Automatically translated' : ''
+      needsTranslation: locale === 'it', // Solo IT locale necessita traduzione
+      disclaimer: '' // Sarà impostato dopo le traduzioni
     }));
 
-    // Traduci le host responses se necessario (solo per locale diverso da italiano)
-    if (locale !== 'it') {
-      // Estrai le responses che necessitano traduzione
+    // Gestione traduzioni basate su locale
+    if (locale === 'it') {
+      // Per locale IT: traduci sia reviews che host responses in italiano
+      const reviewsToTranslate = cleanedReviews
+        .filter(review => review.comments && review.comments.trim().length > 0)
+        .map(review => ({
+          id: review.id,
+          text: review.comments
+        }));
+
+      const hostResponsesToTranslate = cleanedReviews
+        .filter(review => review.response && review.response.trim().length > 0)
+        .map(review => ({
+          id: review.id,
+          response: review.response!
+        }));
+
+      // Traduci reviews in batch sequenziali per evitare rate limiting OpenAI
+      if (reviewsToTranslate.length > 0) {
+        const BATCH_SIZE = 3; // Batch più piccolo per evitare overload API
+        const reviewTranslationMap = new Map();
+        
+        // Process reviews in sequential batches
+        for (let i = 0; i < reviewsToTranslate.length; i += BATCH_SIZE) {
+          const batch = reviewsToTranslate.slice(i, i + BATCH_SIZE);
+          
+          const batchResults = await Promise.all(
+            batch.map(async ({ id, text }) => ({
+              id,
+              translatedText: await translateReview({ text, targetLang: 'it' })
+            }))
+          );
+          
+          // Add batch results to map
+          batchResults.forEach(({ id, translatedText }) => {
+            reviewTranslationMap.set(id, translatedText);
+          });
+          
+          // Small delay between batches to respect rate limits
+          if (i + BATCH_SIZE < reviewsToTranslate.length) {
+            await new Promise(resolve => setTimeout(resolve, 100));
+          }
+        }
+
+        // Aggiorna i comments con le traduzioni
+        cleanedReviews = cleanedReviews.map(review => ({
+          ...review,
+          comments: reviewTranslationMap.get(review.id) || review.comments
+        }));
+      }
+
+      // Traduci host responses
+      if (hostResponsesToTranslate.length > 0) {
+        const translatedResponses = await translateHostResponses(hostResponsesToTranslate, 'it');
+        
+        const responseTranslationMap = new Map(
+          translatedResponses.map(tr => [tr.reviewId, tr.translatedResponse])
+        );
+        
+        cleanedReviews = cleanedReviews.map(review => ({
+          ...review,
+          response: responseTranslationMap.get(review.id) || review.response
+        }));
+      }
+
+      // Imposta disclaimer per IT
+      cleanedReviews = cleanedReviews.map(review => ({
+        ...review,
+        disclaimer: 'Tradotto automaticamente'
+      }));
+
+    } else if (locale === 'en') {
+      // Per locale EN: traduci solo host responses (reviews già in inglese)
+      const hostResponsesToTranslate = cleanedReviews
+        .filter(review => review.response && review.response.trim().length > 0)
+        .map(review => ({
+          id: review.id,
+          response: review.response!
+        }));
+
+      if (hostResponsesToTranslate.length > 0) {
+        const translatedResponses = await translateHostResponses(hostResponsesToTranslate, 'en');
+        
+        const translationMap = new Map(
+          translatedResponses.map(tr => [tr.reviewId, tr.translatedResponse])
+        );
+        
+        cleanedReviews = cleanedReviews.map(review => ({
+          ...review,
+          response: translationMap.get(review.id) || review.response
+        }));
+      }
+
+      // Nessun disclaimer per EN (reviews native, host responses tradotte in background)
+      cleanedReviews = cleanedReviews.map(review => ({
+        ...review,
+        disclaimer: ''
+      }));
+
+    } else {
+      // Altri locali: mantenere logica precedente
       const hostResponsesToTranslate = cleanedReviews
         .filter(review => review.response && review.response.trim().length > 0)
         .map(review => ({
@@ -112,17 +211,21 @@ export async function GET(
       if (hostResponsesToTranslate.length > 0) {
         const translatedResponses = await translateHostResponses(hostResponsesToTranslate, locale);
         
-        // Crea una mappa per lookup veloce
         const translationMap = new Map(
           translatedResponses.map(tr => [tr.reviewId, tr.translatedResponse])
         );
         
-        // Aggiorna le reviews con le traduzioni
         cleanedReviews = cleanedReviews.map(review => ({
           ...review,
           response: translationMap.get(review.id) || review.response
         }));
       }
+
+      // Disclaimer generico per altri locali
+      cleanedReviews = cleanedReviews.map(review => ({
+        ...review,
+        disclaimer: 'Automatically translated'
+      }));
     }
 
     const responseData = {

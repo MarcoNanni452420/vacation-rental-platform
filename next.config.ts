@@ -134,10 +134,12 @@ const nextConfig: NextConfig = {
   // Note: Removed modularizeImports for lucide-react to fix build issues
   // Enable compression
   compress: true,
-  // Enable experimental features for performance
+  // Enable experimental features for performance and security
   experimental: {
     optimizePackageImports: ['lucide-react', 'date-fns', 'react-hot-toast', 'framer-motion'],
     scrollRestoration: true,
+    // Enable automatic nonce injection for CSP strict-dynamic compatibility
+    strictNextHead: true,
   },
 };
 

@@ -18,7 +18,7 @@ export async function fetchAvailability(propertySlug: 'fienaroli' | 'moro'): Pro
         const data = await response.json();
         return data;
       }
-    } catch (apiError) {
+    } catch {
       // Internal API failed, try fallback
     }
 

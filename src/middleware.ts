@@ -29,31 +29,26 @@ export default withAuth(
     // Add nonce to response headers
     response.headers.set('x-nonce', nonce)
     
-    // Set CSP header with actual nonce (override next.config.ts header)
-    const isDevelopment = process.env.NODE_ENV === 'development'
-    const cspValue = [
-      "default-src 'self'",
-      // Use nonce for inline scripts, unsafe-inline and self for Next.js chunks
-      // Remove strict-dynamic to allow unsafe-inline and self fallbacks
-      // Add unsafe-eval for development mode (Next.js requirement)
-      `script-src 'nonce-${nonce}' 'unsafe-inline' 'self'${isDevelopment ? " 'unsafe-eval'" : ""} https://maps.googleapis.com https://maps.google.com https://www.googletagmanager.com`,
-      // Style still needs unsafe-inline for Tailwind CSS and Google Maps
-      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://maps.googleapis.com",
-      "img-src 'self' data: blob: https://*.googleapis.com https://*.gstatic.com https://a0.muscache.com https://ui-avatars.com",
-      "font-src 'self' https://fonts.gstatic.com data:",
-      "connect-src 'self' https://*.googleapis.com https://maps.google.com https://www.google-analytics.com https://api.octorateplus.com",
-      "frame-src https://www.google.com/maps/",
-      "object-src 'none'",
-      "base-uri 'self'",
-      "form-action 'self' https://api.octorateplus.com",
-      "frame-ancestors 'none'",
-      // Trusted Types - Temporarily disabled for Next.js compatibility
-      // Will re-enable with proper policy configuration
-      // "require-trusted-types-for 'script'",
-      // "trusted-types default"
-    ].join('; ')
-    
-    response.headers.set('Content-Security-Policy', cspValue)
+    // CSP disabled for now - will re-enable later
+    // const isDevelopment = process.env.NODE_ENV === 'development'
+    // const cspValue = [
+    //   "default-src 'self'",
+    //   `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'unsafe-eval' https://maps.googleapis.com https://maps.google.com https://www.googletagmanager.com`,
+    //   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://maps.googleapis.com",
+    //   "img-src 'self' data: blob: https://*.googleapis.com https://*.gstatic.com https://a0.muscache.com https://ui-avatars.com",
+    //   "font-src 'self' https://fonts.gstatic.com data:",
+    //   "connect-src 'self' https://*.googleapis.com https://maps.google.com https://www.google-analytics.com https://api.octorateplus.com",
+    //   "frame-src https://www.google.com/maps/",
+    //   "object-src 'none'",
+    //   "base-uri 'self'",
+    //   "form-action 'self' https://api.octorateplus.com",
+    //   "frame-ancestors 'none'",
+    //   "require-trusted-types-for 'script'",
+    //   "trusted-types default nextjs webpack-chunk next-dynamic",
+    //   "report-uri /api/csp-report"
+    // ].join('; ')
+    // 
+    // response.headers.set('Content-Security-Policy', cspValue)
     
     return response
   },

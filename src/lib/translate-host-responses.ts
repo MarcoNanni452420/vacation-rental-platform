@@ -95,12 +95,18 @@ export async function translateHostResponses(
   }
 
   try {
-    // Execute all batches in parallel
-    const batchPromises = batches.map(batch => translateBatch(batch));
-    const batchResults = await Promise.all(batchPromises);
+    // Execute batches sequentially to avoid rate limiting
+    const allTranslations: HostResponseTranslation[] = [];
     
-    // Flatten results
-    const allTranslations = batchResults.flat();
+    for (let i = 0; i < batches.length; i++) {
+      const batchResult = await translateBatch(batches[i]);
+      allTranslations.push(...batchResult);
+      
+      // Small delay between batches to respect rate limits
+      if (i < batches.length - 1) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+      }
+    }
     
     return allTranslations;
     

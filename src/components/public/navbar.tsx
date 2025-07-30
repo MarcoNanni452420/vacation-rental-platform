@@ -1,9 +1,10 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { Menu, X } from "lucide-react"
 import { useState, useEffect, useRef } from "react"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { LanguageSwitcher } from "@/components/LanguageSwitcher"
 import { useTranslations } from 'next-intl'
@@ -14,6 +15,7 @@ export function Navbar() {
   const [isBookingDropdownOpen, setIsBookingDropdownOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
+  const router = useRouter()
   const isHomepage = pathname === '/'
   const isContactPage = pathname === '/contact'
   const isPropertyPage = pathname.startsWith('/property/')
@@ -63,9 +65,7 @@ export function Navbar() {
     setIsBookingDropdownOpen(!isBookingDropdownOpen)
   }
 
-  const handleCloseDropdowns = () => {
-    setIsBookingDropdownOpen(false)
-  }
+
 
   const navLinks = [
     { href: "/property/fienaroli", label: t('fienaroli') },
@@ -87,13 +87,28 @@ export function Navbar() {
           {/* Logo */}
           <div className="flex items-center">
             <Link href="/" className="group">
-              <div 
-                className={cn(
-                  "text-2xl xl:text-3xl 2xl:text-4xl font-bold tracking-tight transition-colors duration-300",
-                  needsDarkText ? "text-black" : "text-white"
-                )}
-              >
-                Trastevere Luxury Homes
+              <div className="flex items-center gap-3">
+                {/* TL Logo */}
+                <div className="w-10 h-10 xl:w-12 xl:h-12 2xl:w-14 2xl:h-14 rounded-xl overflow-hidden bg-black">
+                  <Image
+                    src="/favicon.png"
+                    alt="Trastevere Luxury Logo"
+                    width={56}
+                    height={56}
+                    className="w-full h-full object-cover"
+                    priority
+                  />
+                </div>
+                
+                {/* Brand Text */}
+                <div 
+                  className={cn(
+                    "text-xs xl:text-sm 2xl:text-base font-medium tracking-[0.2em] uppercase transition-colors duration-300",
+                    needsDarkText ? "text-black" : "text-white"
+                  )}
+                >
+                  TRASTEVERE LUXURY HOMES
+                </div>
               </div>
             </Link>
           </div>
@@ -155,13 +170,19 @@ export function Navbar() {
                       href="/property/fienaroli#booking"
                       className="block w-full px-4 py-3 text-left text-sm font-medium uppercase tracking-wider transition-colors text-[hsl(20,65%,35%)] hover:text-[hsl(20,65%,35%)]/80 hover:bg-[hsl(20,65%,35%)]/10"
                       onClick={(e) => {
-                        handleCloseDropdowns()
+                        // Close both dropdowns immediately
+                        setIsBookingDropdownOpen(false)
+                        setIsMenuOpen(false)
+                        
                         if (typeof window !== 'undefined' && window.location.pathname === '/property/fienaroli') {
                           e.preventDefault()
-                          const element = document.getElementById('booking-section')
-                          if (element) {
-                            element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
-                          }
+                          // Use requestAnimationFrame to avoid forced reflow during click handler
+                          requestAnimationFrame(() => {
+                            const element = document.getElementById('booking-section')
+                            if (element) {
+                              element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
+                            }
+                          })
                         }
                       }}
                     >
@@ -172,13 +193,19 @@ export function Navbar() {
                       href="/property/moro#booking"
                       className="block w-full px-4 py-3 text-left text-sm font-medium uppercase tracking-wider transition-colors text-[hsl(345,55%,35%)] hover:text-[hsl(345,55%,35%)]/80 hover:bg-[hsl(345,55%,35%)]/10"
                       onClick={(e) => {
-                        handleCloseDropdowns()
+                        // Close both dropdowns immediately
+                        setIsBookingDropdownOpen(false)
+                        setIsMenuOpen(false)
+                        
                         if (typeof window !== 'undefined' && window.location.pathname === '/property/moro') {
                           e.preventDefault()
-                          const element = document.getElementById('booking-section')
-                          if (element) {
-                            element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
-                          }
+                          // Use requestAnimationFrame to avoid forced reflow during click handler
+                          requestAnimationFrame(() => {
+                            const element = document.getElementById('booking-section')
+                            if (element) {
+                              element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
+                            }
+                          })
                         }
                       }}
                     >
@@ -251,23 +278,18 @@ export function Navbar() {
                     </svg>
                   </button>
                   
-                  {/* Dropdown Menu - Match Desktop */}
+                  {/* Dropdown Menu - Native Links for Mobile */}
                   {isBookingDropdownOpen && (
                     <div className="mt-4 bg-background border border-border w-full overflow-hidden rounded-lg shadow-lg">
                       <Link
                         href="/property/fienaroli#booking"
                         className="block w-full px-4 py-3 text-left text-sm font-medium uppercase tracking-wider transition-colors text-[hsl(20,65%,35%)] hover:text-[hsl(20,65%,35%)]/80 hover:bg-[hsl(20,65%,35%)]/10"
-                        onClick={(e) => {
-                          if (typeof window !== 'undefined' && window.location.pathname === '/property/fienaroli') {
-                            e.preventDefault()
-                            const element = document.getElementById('booking-section')
-                            if (element) {
-                              element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
-                            }
-                          }
-                          // Close both dropdowns immediately to allow navigation
-                          setIsBookingDropdownOpen(false)
-                          setIsMenuOpen(false)
+                        onClick={() => {
+                          // Delay dropdown close to allow navigation to complete
+                          setTimeout(() => {
+                            setIsBookingDropdownOpen(false)
+                            setIsMenuOpen(false)
+                          }, 150)
                         }}
                       >
                         Fienaroli
@@ -276,17 +298,12 @@ export function Navbar() {
                       <Link
                         href="/property/moro#booking"
                         className="block w-full px-4 py-3 text-left text-sm font-medium uppercase tracking-wider transition-colors text-[hsl(345,55%,35%)] hover:text-[hsl(345,55%,35%)]/80 hover:bg-[hsl(345,55%,35%)]/10"
-                        onClick={(e) => {
-                          if (typeof window !== 'undefined' && window.location.pathname === '/property/moro') {
-                            e.preventDefault()
-                            const element = document.getElementById('booking-section')
-                            if (element) {
-                              element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
-                            }
-                          }
-                          // Close both dropdowns immediately to allow navigation
-                          setIsBookingDropdownOpen(false)
-                          setIsMenuOpen(false)
+                        onClick={() => {
+                          // Delay dropdown close to allow navigation to complete
+                          setTimeout(() => {
+                            setIsBookingDropdownOpen(false)
+                            setIsMenuOpen(false)
+                          }, 150)
                         }}
                       >
                         Moro

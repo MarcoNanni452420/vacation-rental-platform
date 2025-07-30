@@ -23,15 +23,19 @@ export default function HomePage() {
   return (
     <main className="bg-white overflow-hidden">
       {/* Hero Section - Minimal with brand */}
-      <section className="h-screen relative flex items-center justify-center pt-24">
+      <section className="h-screen relative flex items-center justify-center pt-12">
         <div className="text-center z-10">
-          <h6 className="text-sm uppercase tracking-[0.3em] mb-6 font-medium text-gray-600">
-            {t('subtitle')}
-          </h6>
-          <h1 className="hero-title mb-8">
-            {t('title')}
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto font-light">
+          <div className="flex justify-center">
+            <Image
+              src="/homepage-title-logo.png"
+              alt="Trastevere Luxury"
+              width={500}
+              height={167}
+              className="max-w-sm md:max-w-lg lg:max-w-xl h-auto -mt-8 -mb-12"
+              priority
+            />
+          </div>
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto font-light mt-2">
             {t('description')}
           </p>
         </div>

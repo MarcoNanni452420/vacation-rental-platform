@@ -184,6 +184,7 @@ export default function PropertyPage() {
   const slug = params?.slug as string
   const locale = useLocale()
   const t = useTranslations('property')
+  const tHome = useTranslations('home')
   const tAmenities = useTranslations('amenities')
   const baseProperty = getPropertyBySlug(slug)
   
@@ -327,7 +328,9 @@ export default function PropertyPage() {
                 </div>
 
                 <p className="text-xl text-white/95 max-w-2xl drop-shadow-md">
-                  {property.shortDesc}
+                  {tHome.has(`propertyDescriptions.${slug}`) 
+                    ? tHome(`propertyDescriptions.${slug}`) 
+                    : property.shortDesc}
                 </p>
               </div>
             </div>
