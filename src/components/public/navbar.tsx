@@ -253,13 +253,12 @@ export function Navbar() {
                   
                   {/* Dropdown Menu - Match Desktop */}
                   {isBookingDropdownOpen && (
-                    <div className="bg-background border border-border w-full overflow-hidden rounded-lg shadow-lg">
+                    <div className="absolute top-full left-0 mt-0 bg-background border border-border w-full overflow-hidden rounded-lg shadow-lg z-50">
                       <Link
                         href="/property/fienaroli#booking"
                         className="block w-full px-4 py-3 text-left text-sm font-medium uppercase tracking-wider transition-colors text-[hsl(20,65%,35%)] hover:text-[hsl(20,65%,35%)]/80 hover:bg-[hsl(20,65%,35%)]/10"
                         onClick={(e) => {
                           handleCloseDropdowns()
-                          setIsMenuOpen(false)
                           if (typeof window !== 'undefined' && window.location.pathname === '/property/fienaroli') {
                             e.preventDefault()
                             const element = document.getElementById('booking-section')
@@ -277,7 +276,6 @@ export function Navbar() {
                         className="block w-full px-4 py-3 text-left text-sm font-medium uppercase tracking-wider transition-colors text-[hsl(345,55%,35%)] hover:text-[hsl(345,55%,35%)]/80 hover:bg-[hsl(345,55%,35%)]/10"
                         onClick={(e) => {
                           handleCloseDropdowns()
-                          setIsMenuOpen(false)
                           if (typeof window !== 'undefined' && window.location.pathname === '/property/moro') {
                             e.preventDefault()
                             const element = document.getElementById('booking-section')
