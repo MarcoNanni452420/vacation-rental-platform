@@ -59,7 +59,7 @@ export function ImageGalleryModal({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-sm">
+    <div className="fixed inset-0 z-[9999] bg-black">
       {/* Header */}
       <div className="absolute top-0 left-0 right-0 z-10 flex items-center justify-between p-6">
         <div className="text-white">

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Star, ChevronDown, ChevronUp } from 'lucide-react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
@@ -40,10 +40,21 @@ export function ReviewCard({
 }: ReviewCardProps) {
   const t = useTranslations('reviews');
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   
-  // Mobile truncation - show first 180 characters (reduced to give space for controls)
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const shouldTruncate = isMobile && (comments.length > 180 || response);
+  // Reactive mobile detection with resize listener
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile(); // Check on mount
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  // Fixed truncation logic - only truncate if text is long on mobile
+  const shouldTruncate = isMobile && comments.length > 180;
   const displayComments = shouldTruncate && !isExpanded 
     ? comments.slice(0, 180) + '...'
     : comments;
@@ -85,18 +96,12 @@ export function ReviewCard({
   return (
     <div className={cn(
       "p-6 rounded-2xl border-2 transition-all duration-300 hover:shadow-lg",
-      "md:min-h-auto md:max-h-none flex flex-col", // Responsive height
-      // Mobile height and overflow management
-      isMobile ? (isExpanded ? "min-h-[280px]" : "min-h-[280px] max-h-[320px]") : "",
+      "flex flex-col", // Simple flex column
       colors.border,
       colors.bg,
       className
     )}>
-      <div className={cn(
-        "flex-1 flex flex-col",
-        // Dynamic overflow based on expanded state on mobile
-        isMobile ? (isExpanded ? "overflow-visible" : "overflow-hidden") : "md:overflow-visible overflow-hidden"
-      )}>
+      <div className="flex flex-col">
         {/* Header with reviewer info and rating */}
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center gap-3">
@@ -150,64 +155,59 @@ export function ReviewCard({
           </div>
         )}
 
-        {/* Review content - with mobile truncation */}
-        <div className={cn(
-          "md:flex-none",
-          // Dynamic flex and overflow based on expanded state
-          isMobile ? (isExpanded ? "flex-none" : "flex-1") : "flex-1",
-          isMobile ? (isExpanded ? "overflow-visible" : "overflow-hidden") : "md:overflow-visible overflow-hidden"
-        )}>
-        <div 
-          className="text-gray-800 leading-relaxed"
-          dangerouslySetInnerHTML={{ __html: displayComments }}
-        />
+        {/* Review content - simplified */}
+        <div className="flex flex-col">
+          <div 
+            className="text-gray-800 leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: displayComments }}
+          />
         
-        {/* Read more/less button for mobile */}
-        {shouldTruncate && (
-          <button
-            onClick={() => setIsExpanded(!isExpanded)}
-            className={cn(
-              "flex items-center gap-1 mt-2 text-sm font-medium transition-colors duration-300 md:hidden flex-shrink-0",
-              colors.accent
-            )}
-          >
-            {isExpanded ? (
-              <>
-                {t('showLess')}
-                <ChevronUp className="w-4 h-4" />
-              </>
-            ) : (
-              <>
-                {t('readMore')}
-                <ChevronDown className="w-4 h-4" />
-              </>
-            )}
-          </button>
-        )}
-        
-        {/* Translation disclaimer for auto-translated content - always visible on mobile */}
-        {disclaimer && (
-          <p className="text-xs text-gray-500 mt-2 italic flex-shrink-0">
-            {disclaimer}
-          </p>
-        )}
+          {/* Read more/less button for mobile - always visible when needed */}
+          {shouldTruncate && (
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className={cn(
+                "flex items-center gap-1 mt-2 text-sm font-medium transition-colors duration-300 md:hidden",
+                colors.accent
+              )}
+            >
+              {isExpanded ? (
+                <>
+                  {t('showLess')}
+                  <ChevronUp className="w-4 h-4" />
+                </>
+              ) : (
+                <>
+                  {t('readMore')}
+                  <ChevronDown className="w-4 h-4" />
+                </>
+              )}
+            </button>
+          )}
+          
+          {/* Translation disclaimer for auto-translated content */}
+          {disclaimer && (
+            <p className="text-xs text-gray-500 mt-2 italic">
+              {disclaimer}
+            </p>
+          )}
 
-        {/* Host response if present - show only when expanded on mobile */}
-        {response && (!isMobile || isExpanded) && (
-          <div className={cn(
-            "mt-4 p-4 rounded-lg border-l-4",
-            colors.border.replace('border-', 'border-l-'),
-            "bg-gray-50"
-          )}>
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-6 h-6 rounded-full bg-gray-300 flex items-center justify-center">
-                <span className="text-xs font-medium text-gray-600">H</span>
+          {/* Host response if present - show only when expanded on mobile */}
+          {response && (!isMobile || isExpanded) && (
+            <div className={cn(
+              "mt-4 p-4 rounded-lg border-l-4",
+              colors.border.replace('border-', 'border-l-'),
+              "bg-gray-50"
+            )}>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-6 h-6 rounded-full bg-gray-300 flex items-center justify-center">
+                  <span className="text-xs font-medium text-gray-600">H</span>
+                </div>
+                <span className="text-sm font-medium text-gray-700">{t('hostResponse') || 'Risposta dell\'host'}</span>
               </div>
-              <span className="text-sm font-medium text-gray-700">{t('hostResponse') || 'Risposta dell\'host'}</span>
+              <p className="text-sm text-gray-700">{response}</p>
             </div>
-            <p className="text-sm text-gray-700">{response}</p>
-          </div>
-        )}
+          )}
         </div>
       </div>
     </div>

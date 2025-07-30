@@ -251,9 +251,9 @@ export function Navbar() {
                     </svg>
                   </button>
                   
-                  {/* Dropdown Menu - Match Desktop */}
+                  {/* Dropdown Menu - Mobile Inline */}
                   {isBookingDropdownOpen && (
-                    <div className="absolute top-full left-0 mt-0 bg-background border border-border w-full overflow-hidden rounded-lg shadow-lg z-50">
+                    <div className="bg-background border border-border w-full overflow-hidden rounded-lg shadow-lg">
                       <Link
                         href="/property/fienaroli#booking"
                         className="block w-full px-4 py-3 text-left text-sm font-medium uppercase tracking-wider transition-colors text-[hsl(20,65%,35%)] hover:text-[hsl(20,65%,35%)]/80 hover:bg-[hsl(20,65%,35%)]/10"

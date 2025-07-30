@@ -23,7 +23,7 @@ export default function HomePage() {
   return (
     <main className="bg-white overflow-hidden">
       {/* Hero Section - Minimal with brand */}
-      <section className="h-screen relative flex items-center justify-center">
+      <section className="h-screen relative flex items-center justify-center pt-24">
         <div className="text-center z-10">
           <h6 className="text-sm uppercase tracking-[0.3em] mb-6 font-medium text-gray-600">
             {t('subtitle')}
