@@ -76,7 +76,7 @@ export function PriceCalculator({
         onPriceCalculated(null);
       } else {
         // Set price when available
-        onPriceCalculated(pricing?.totalAmount || null);
+        onPriceCalculated(pricing?.grandTotal || null);
       }
     }
   }, [pricing, onPriceCalculated, checkinDate, checkoutDate]);
