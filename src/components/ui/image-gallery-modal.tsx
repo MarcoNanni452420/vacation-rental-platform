@@ -78,8 +78,8 @@ export function ImageGalleryModal({
       </div>
 
       {/* Main Image */}
-      <div className="flex items-center justify-center px-4 md:px-16" style={{ height: 'calc(100vh - 160px)' }}>
-        <div className="relative w-full h-full max-w-7xl">
+      <div className="flex items-center justify-center px-4 md:px-16" style={{ height: 'calc(100vh - 120px)' }}>
+        <div className="relative w-full h-full">
           <div className="relative w-full h-full">
             <Image
               src={images[currentIndex]}

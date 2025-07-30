@@ -128,7 +128,7 @@ export function ImageCarousel({
                 src={image.src}
                 alt={`${propertyName} - Immagine ${image.index + 1}`}
                 fill
-                priority={displayIndex < 3}
+                priority={image.index < 6}
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover transition-transform duration-700 group-hover/image:scale-110 rounded-2xl"
               />
