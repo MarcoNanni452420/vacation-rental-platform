@@ -13,6 +13,7 @@ interface PriceCalculatorProps {
   checkoutDate?: Date;
   guests: number;
   className?: string;
+  onPriceCalculated?: (totalPrice: number | null) => void;
 }
 
 export function PriceCalculator({
@@ -20,7 +21,8 @@ export function PriceCalculator({
   checkinDate,
   checkoutDate,
   guests,
-  className
+  className,
+  onPriceCalculated
 }: PriceCalculatorProps) {
   const t = useTranslations('pricing');
   const [pricing, setPricing] = useState<PricingCalculation | null>(null);
@@ -65,6 +67,19 @@ export function PriceCalculator({
 
     fetchPricing();
   }, [propertySlug, checkinDate, checkoutDate, guests]);
+
+  // Notify parent component when price is calculated
+  useEffect(() => {
+    if (onPriceCalculated) {
+      if (!checkinDate || !checkoutDate) {
+        // Clear price when no dates selected
+        onPriceCalculated(null);
+      } else {
+        // Set price when available
+        onPriceCalculated(pricing?.totalAmount || null);
+      }
+    }
+  }, [pricing, onPriceCalculated, checkinDate, checkoutDate]);
 
   // Don't render anything if no dates selected
   if (!checkinDate || !checkoutDate) {

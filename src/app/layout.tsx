@@ -7,6 +7,7 @@ import {NextIntlClientProvider} from 'next-intl';
 import {getMessages, getLocale} from 'next-intl/server';
 import { Toaster } from 'react-hot-toast';
 import { headers } from 'next/headers';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://trastevere-luxury.com'),
@@ -75,7 +76,7 @@ export default async function RootLayout({
   const nonce = headersList.get('x-nonce') || '';
   
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning={true}>
       <head>
         <link rel="preconnect" href="https://maps.googleapis.com" />
         <link rel="preconnect" href="https://a0.muscache.com" />
@@ -85,6 +86,19 @@ export default async function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17411939860"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17411939860');
+          `}
+        </Script>
       </head>
       <body className="antialiased" suppressHydrationWarning={true}>
         <NextIntlClientProvider messages={messages}>

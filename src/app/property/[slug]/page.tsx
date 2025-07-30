@@ -206,6 +206,7 @@ export default function PropertyPage() {
   const [preloadedAvailability, setPreloadedAvailability] = useState<OctorateCalendarResponse | null>(null)
   const [preloadedReviews, setPreloadedReviews] = useState<ReviewsResponse | null>(null)
   const [isPreloadingReviews, setIsPreloadingReviews] = useState(true)
+  const [totalPrice, setTotalPrice] = useState<number | null>(null)
 
   useEffect(() => {
     if (property) {
@@ -420,6 +421,7 @@ export default function PropertyPage() {
                     checkoutDate={dateRange?.to}
                     guests={guests}
                     className="mt-6"
+                    onPriceCalculated={setTotalPrice}
                   />
 
                   <button 
@@ -437,6 +439,16 @@ export default function PropertyPage() {
                     disabled={!dateRange?.from || !dateRange?.to}
                     onClick={() => {
                       if (dateRange?.from && dateRange?.to) {
+                        // Track Google Ads conversion
+                        if (typeof window !== 'undefined' && (window as any).gtag) {
+                          (window as any).gtag('event', 'conversion', {
+                            'send_to': 'AW-17411939860/p_kOCN-PmvwaEJS81O5A',
+                            'value': totalPrice || 0,
+                            'currency': 'EUR',
+                            'transaction_id': `${slug}-${Date.now()}`, // Unique transaction ID
+                          });
+                        }
+                        
                         const url = getBookingUrl(
                           slug as 'fienaroli' | 'moro',
                           dateRange.from,
