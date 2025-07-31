@@ -1,18 +1,47 @@
 import {getRequestConfig} from 'next-intl/server';
-import {cookies} from 'next/headers';
+import {cookies, headers} from 'next/headers';
  
 export default getRequestConfig(async () => {
-  // This can either be defined statically if only a single locale
-  // is supported, or alternatively read from the user settings,
-  // a database, the `Accept-Language` header, etc.
-  const locale = (await cookies()).get('locale')?.value || 'en';
-  
   // Supported locales
   const supportedLocales = ['en', 'it', 'fr', 'de', 'es'];
-  const validLocale = supportedLocales.includes(locale) ? locale : 'en';
- 
+  
+  // Priority 1: Check if user has manually selected a language (cookie)
+  const cookieLocale = (await cookies()).get('locale')?.value;
+  if (cookieLocale && supportedLocales.includes(cookieLocale)) {
+    return {
+      locale: cookieLocale,
+      messages: (await import(`../messages/${cookieLocale}.json`)).default
+    };
+  }
+  
+  // Priority 2: Auto-detect from browser Accept-Language header
+  const acceptLanguage = (await headers()).get('accept-language') || '';
+  
+  // Parse Accept-Language header (e.g., "it-IT,it;q=0.9,en;q=0.8,fr;q=0.7")
+  const languages = acceptLanguage
+    .split(',')
+    .map(lang => {
+      const [code, priority] = lang.trim().split(';q=');
+      return {
+        code: code.split('-')[0].toLowerCase(), // Extract language code (it-IT → it)
+        priority: priority ? parseFloat(priority) : 1.0
+      };
+    })
+    .sort((a, b) => b.priority - a.priority); // Sort by priority
+  
+  // Find first supported language
+  for (const lang of languages) {
+    if (supportedLocales.includes(lang.code)) {
+      return {
+        locale: lang.code,
+        messages: (await import(`../messages/${lang.code}.json`)).default
+      };
+    }
+  }
+  
+  // Priority 3: Fallback to English
   return {
-    locale: validLocale,
-    messages: (await import(`../messages/${validLocale}.json`)).default
+    locale: 'en',
+    messages: (await import(`../messages/en.json`)).default
   };
 });

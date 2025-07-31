@@ -8,6 +8,7 @@ import { FranceFlag } from '@/components/ui/flags/FranceFlag'
 import { GermanyFlag } from '@/components/ui/flags/GermanyFlag'
 import { SpainFlag } from '@/components/ui/flags/SpainFlag'
 import { cn } from '@/lib/utils'
+import { useLocale } from 'next-intl'
 
 interface LanguageSwitcherProps {
   needsDarkText?: boolean;
@@ -22,7 +23,8 @@ const languages = [
 ];
 
 export function LanguageSwitcher({ needsDarkText = false }: LanguageSwitcherProps) {
-  const [locale, setLocale] = useState('en') // Default to 'en' for SSR
+  const currentLocale = useLocale() // Get current locale from next-intl
+  const [locale, setLocale] = useState(currentLocale) // Initialize with current locale
   const [mounted, setMounted] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
@@ -30,11 +32,11 @@ export function LanguageSwitcher({ needsDarkText = false }: LanguageSwitcherProp
   // Fix hydration by only reading cookie after mount
   useEffect(() => {
     setMounted(true)
-    // Check for any of the supported locales in cookies
-    const cookieLocale = document.cookie.match(/locale=([^;]+)/)?.[1] || 'en'
-    const supportedLocale = languages.find(lang => lang.code === cookieLocale)?.code || 'en'
+    // Update locale from cookie or current locale
+    const cookieLocale = document.cookie.match(/locale=([^;]+)/)?.[1] || currentLocale
+    const supportedLocale = languages.find(lang => lang.code === cookieLocale)?.code || currentLocale
     setLocale(supportedLocale)
-  }, [])
+  }, [currentLocale])
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -78,11 +80,13 @@ export function LanguageSwitcher({ needsDarkText = false }: LanguageSwitcherProp
 
   // Prevent hydration mismatch by not rendering until mounted
   if (!mounted) {
+    // Use current locale for SSR instead of hardcoded EN
+    const initialLanguage = languages.find(lang => lang.code === currentLocale) || languages.find(lang => lang.code === 'en')!;
     return (
       <div className="relative">
         <button className="flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors">
-          <Globe className="w-4 h-4" />
-          EN
+          <initialLanguage.flag className="w-4 h-4" />
+          {initialLanguage.name}
         </button>
       </div>
     )
