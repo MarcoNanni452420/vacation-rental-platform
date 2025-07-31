@@ -22,7 +22,16 @@ export async function translateHostResponses(
 
   // Function to translate a single batch
   async function translateBatch(batch: Array<{ id: string; response: string }>): Promise<HostResponseTranslation[]> {
-    const systemPrompt = `You are a professional translator. Translate the following Airbnb host responses from Italian to ${targetLang === 'en' ? 'English' : targetLang}. Maintain the friendly, welcoming tone. Return as a JSON array of translated strings in the same order.`;
+    const languageNames = {
+      'en': 'English',
+      'it': 'Italian', 
+      'fr': 'French',
+      'de': 'German',
+      'es': 'Spanish'
+    };
+    
+    const targetLanguageName = languageNames[targetLang as keyof typeof languageNames] || 'English';
+    const systemPrompt = `You are a professional translator. Translate the following Airbnb host responses from Italian to ${targetLanguageName}. Maintain the friendly, welcoming tone. Return as a JSON array of translated strings in the same order.`;
     
     const textsForPrompt = batch.map((item, index) => `${index + 1}. ${item.response}`);
     const userPrompt = `Translate these host responses:\n\n${textsForPrompt.join('\n\n')}\n\nReturn as JSON array: ["translation1", "translation2", ...]`;

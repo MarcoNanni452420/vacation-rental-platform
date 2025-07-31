@@ -13,13 +13,13 @@ const REVIEWS_BASE_URLS = {
 export const REVIEW_PROPERTY_MAPPING: Record<string, PropertyReviewMapping> = {
   fienaroli: {
     listingId: 'U3RheUxpc3Rpbmc6MjAyNDc4MjY=',
-    airbnbUrl: 'https://www.airbnb.it/rooms/20247826',
+    airbnbUrl: 'https://www.airbnb.com/rooms/20247826',
     totalReviews: 33,
     averageRating: 4.89
   },
   moro: {
     listingId: 'U3RheUxpc3Rpbmc6OTk4MzQ2MjQyMDE2NjkzMzc1',
-    airbnbUrl: 'https://www.airbnb.it/rooms/998346242016693375',
+    airbnbUrl: 'https://www.airbnb.com/rooms/998346242016693375',
     totalReviews: 24, // Basato sul limit dell'API
     averageRating: 4.95
   }

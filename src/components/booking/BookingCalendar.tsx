@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { CalendarModal } from './CalendarModal';
 import { Calendar as CalendarIcon } from 'lucide-react';
 import { format, differenceInDays } from 'date-fns';
-import { it, enUS } from 'date-fns/locale';
+import { it, enUS, fr, de, es } from 'date-fns/locale';
 import { cn } from '@/lib/utils';
 import { useTranslations, useLocale } from 'next-intl';
 
@@ -21,8 +21,15 @@ export function BookingCalendar({ propertySlug, onDateChange, className, selecte
   const tBooking = useTranslations('booking');
   const locale = useLocale();
   
-  // Dynamic date-fns locale
-  const dateLocale = locale === 'it' ? it : enUS;
+  // Dynamic date-fns locale mapping
+  const localeMap = {
+    'it': it,
+    'en': enUS,
+    'fr': fr,
+    'de': de,
+    'es': es
+  };
+  const dateLocale = localeMap[locale as keyof typeof localeMap] || enUS;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 

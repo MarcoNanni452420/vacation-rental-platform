@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { format, isBefore, startOfToday, differenceInDays, addMonths, startOfMonth, endOfMonth, eachDayOfInterval, getDay } from 'date-fns';
-import { it, enUS } from 'date-fns/locale';
+import { it, enUS, fr, de, es } from 'date-fns/locale';
 import { fetchAvailability } from '@/lib/octorate-api';
 import { OctorateCalendarResponse } from '@/types/octorate';
 import { cn } from '@/lib/utils';
@@ -29,7 +29,23 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
   const locale = useLocale();
   
   // Dynamic date-fns locale
-  const dateLocale = locale === 'it' ? it : enUS;
+  const getDateLocale = () => {
+    switch (locale) {
+      case 'it': return it;
+      case 'fr': return fr;
+      case 'de': return de;
+      case 'es': return es;
+      case 'en':
+      default: return enUS;
+    }
+  };
+  const dateLocale = getDateLocale();
+  
+  // Helper function to capitalize first letter of month names
+  const formatMonthCapitalized = (date: Date, formatStr: string) => {
+    const formatted = format(date, formatStr, { locale: dateLocale });
+    return formatted.charAt(0).toUpperCase() + formatted.slice(1);
+  };
   const [availability, setAvailability] = useState<OctorateCalendarResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [range, setRange] = useState<DateRange | undefined>(initialRange);
@@ -267,7 +283,7 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
         <div className="mb-4">
           <h3 className="text-lg md:text-xl font-semibold text-center"
               style={{ color: colors.text }}>
-            {format(monthDate, 'MMMM yyyy', { locale: dateLocale })}
+            {formatMonthCapitalized(monthDate, 'MMMM yyyy')}
           </h3>
         </div>
         
@@ -341,7 +357,7 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
             </h2>
             {range?.from && range?.to && (
               <p className="mt-1" style={{ color: `${colors.text}80` }}>
-                {format(range.from, 'd MMM yyyy', { locale: dateLocale })} - {format(range.to, 'd MMM yyyy', { locale: dateLocale })}
+                {formatMonthCapitalized(range.from, 'd MMM yyyy')} - {formatMonthCapitalized(range.to, 'd MMM yyyy')}
               </p>
             )}
             {range?.from && !range?.to && (

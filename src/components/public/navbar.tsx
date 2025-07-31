@@ -264,7 +264,7 @@ export function Navbar() {
               
               <div className="pt-8 border-t space-y-6 animate-fade-up" style={{ animationDelay: '300ms' }}>
                 <div className="flex items-center justify-between">
-                  <LanguageSwitcher />
+                  <LanguageSwitcher needsDarkText={true} />
                 </div>
                 
                 {/* Mobile Book Now Options - Match Desktop Style */}

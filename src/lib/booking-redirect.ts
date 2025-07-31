@@ -11,13 +11,13 @@ export const AIRBNB_PROPERTIES = {
     roomId: '20247826',
     maxGuests: 6,
     bookingUrl: (params: AirbnbBookingParams) => 
-      `https://www.airbnb.it/rooms/20247826?check_in=${params.checkin}&guests=${params.guests}&adults=${params.guests}&check_out=${params.checkout}`
+      `https://www.airbnb.com/rooms/20247826?check_in=${params.checkin}&guests=${params.guests}&adults=${params.guests}&check_out=${params.checkout}`
   },
   moro: {
     roomId: '998346242016693375',
     maxGuests: 4,
     bookingUrl: (params: AirbnbBookingParams) =>
-      `https://www.airbnb.it/rooms/998346242016693375?check_in=${params.checkin}&guests=${params.guests}&adults=${params.guests}&check_out=${params.checkout}`
+      `https://www.airbnb.com/rooms/998346242016693375?check_in=${params.checkin}&guests=${params.guests}&adults=${params.guests}&check_out=${params.checkout}`
   }
 } as const;
 

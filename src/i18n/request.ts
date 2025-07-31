@@ -6,9 +6,13 @@ export default getRequestConfig(async () => {
   // is supported, or alternatively read from the user settings,
   // a database, the `Accept-Language` header, etc.
   const locale = (await cookies()).get('locale')?.value || 'en';
+  
+  // Supported locales
+  const supportedLocales = ['en', 'it', 'fr', 'de', 'es'];
+  const validLocale = supportedLocales.includes(locale) ? locale : 'en';
  
   return {
-    locale,
-    messages: (await import(`../messages/${locale}.json`)).default
+    locale: validLocale,
+    messages: (await import(`../messages/${validLocale}.json`)).default
   };
 });

@@ -4,11 +4,22 @@ import { useState, useEffect, useRef } from 'react'
 import { Globe } from 'lucide-react'
 import { ItalyFlag } from '@/components/ui/flags/ItalyFlag'
 import { USFlag } from '@/components/ui/flags/USFlag'
+import { FranceFlag } from '@/components/ui/flags/FranceFlag'
+import { GermanyFlag } from '@/components/ui/flags/GermanyFlag'
+import { SpainFlag } from '@/components/ui/flags/SpainFlag'
 import { cn } from '@/lib/utils'
 
 interface LanguageSwitcherProps {
   needsDarkText?: boolean;
 }
+
+const languages = [
+  { code: 'it', name: 'IT', flag: ItalyFlag },
+  { code: 'en', name: 'EN', flag: USFlag },
+  { code: 'fr', name: 'FR', flag: FranceFlag },
+  { code: 'de', name: 'DE', flag: GermanyFlag },
+  { code: 'es', name: 'ES', flag: SpainFlag },
+];
 
 export function LanguageSwitcher({ needsDarkText = false }: LanguageSwitcherProps) {
   const [locale, setLocale] = useState('en') // Default to 'en' for SSR
@@ -19,8 +30,10 @@ export function LanguageSwitcher({ needsDarkText = false }: LanguageSwitcherProp
   // Fix hydration by only reading cookie after mount
   useEffect(() => {
     setMounted(true)
-    const currentLocale = document.cookie.includes('locale=it') ? 'it' : 'en'
-    setLocale(currentLocale)
+    // Check for any of the supported locales in cookies
+    const cookieLocale = document.cookie.match(/locale=([^;]+)/)?.[1] || 'en'
+    const supportedLocale = languages.find(lang => lang.code === cookieLocale)?.code || 'en'
+    setLocale(supportedLocale)
   }, [])
 
   // Close dropdown when clicking outside
@@ -75,6 +88,9 @@ export function LanguageSwitcher({ needsDarkText = false }: LanguageSwitcherProp
     )
   }
 
+  const currentLanguage = languages.find(lang => lang.code === locale) || languages[1]; // fallback to EN
+  const otherLanguages = languages.filter(lang => lang.code !== locale);
+
   return (
     <div className="relative" ref={dropdownRef}>
       <button 
@@ -86,29 +102,22 @@ export function LanguageSwitcher({ needsDarkText = false }: LanguageSwitcherProp
             : "text-white hover:text-white/80"
         )}
       >
-        {locale === 'it' ? <ItalyFlag className="w-4 h-4" /> : <USFlag className="w-4 h-4" />}
-        {locale.toUpperCase()}
+        <currentLanguage.flag className="w-4 h-4" />
+        {currentLanguage.name}
       </button>
       
       {isOpen && (
-        <div className="absolute top-full right-[-10px] md:right-[-10px] md:left-auto left-0 mt-0 bg-background border border-border min-w-[80px] overflow-hidden transition-opacity duration-200 z-50 rounded-lg shadow-lg">
-          {locale === 'it' ? (
+        <div className="absolute top-full right-[-10px] md:right-[-10px] md:left-auto left-0 mt-0 bg-background border border-border min-w-[80px] overflow-hidden transition-opacity duration-200 z-50 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+          {otherLanguages.map((language) => (
             <button
-              onClick={() => handleLanguageChange('en')}
+              key={language.code}
+              onClick={() => handleLanguageChange(language.code)}
               className="flex items-center justify-center gap-2 w-full px-4 py-3 text-sm uppercase tracking-wider transition-colors hover:bg-muted"
             >
-              <USFlag className="w-4 h-4" />
-              EN
+              <language.flag className="w-4 h-4" />
+              {language.name}
             </button>
-          ) : (
-            <button
-              onClick={() => handleLanguageChange('it')}
-              className="flex items-center justify-center gap-2 w-full px-4 py-3 text-sm uppercase tracking-wider transition-colors hover:bg-muted"
-            >
-              <ItalyFlag className="w-4 h-4" />
-              IT
-            </button>
-          )}
+          ))}
         </div>
       )}
     </div>
