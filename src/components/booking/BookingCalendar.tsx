@@ -7,6 +7,7 @@ import { format, differenceInDays } from 'date-fns';
 import { it, enUS, fr, de, es } from 'date-fns/locale';
 import { cn } from '@/lib/utils';
 import { useTranslations, useLocale } from 'next-intl';
+import { track } from '@vercel/analytics';
 
 interface BookingCalendarProps {
   propertySlug: 'fienaroli' | 'moro';
@@ -34,6 +35,15 @@ export function BookingCalendar({ propertySlug, onDateChange, className, selecte
   const [isHovered, setIsHovered] = useState(false);
 
   const handleDateConfirm = (range: { from: Date | undefined; to: Date | undefined } | undefined) => {
+    // Track date selection
+    if (range?.from && range?.to) {
+      track('Dates Selected', {
+        property: propertySlug,
+        nights: differenceInDays(range.to, range.from),
+        checkin_date: range.from.toISOString().split('T')[0],
+        checkout_date: range.to.toISOString().split('T')[0]
+      });
+    }
     onDateChange(range);
   };
 
@@ -76,7 +86,14 @@ export function BookingCalendar({ propertySlug, onDateChange, className, selecte
   return (
     <>
       <button
-        onClick={() => setIsModalOpen(true)}
+        onClick={() => {
+          // Track calendar opening
+          track('Calendar Opened', {
+            property: propertySlug,
+            has_existing_selection: !!(selectedRange?.from && selectedRange?.to)
+          });
+          setIsModalOpen(true);
+        }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         className={cn(

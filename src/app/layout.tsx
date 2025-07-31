@@ -8,6 +8,8 @@ import {getMessages, getLocale} from 'next-intl/server';
 import { Toaster } from 'react-hot-toast';
 import { headers } from 'next/headers';
 import Script from 'next/script';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://trastevere-luxury.com'),
@@ -133,6 +135,9 @@ export default async function RootLayout({
               <Footer />
             </div>
           </Providers>
+          {/* Vercel Analytics - Non-blocking performance tracking */}
+          <Analytics />
+          <SpeedInsights />
         </NextIntlClientProvider>
       </body>
     </html>

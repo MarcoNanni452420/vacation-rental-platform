@@ -29,6 +29,7 @@ import { fetchAvailability } from "@/lib/octorate-api"
 import { OctorateCalendarResponse } from "@/types/octorate"
 import { ReviewsResponse } from "@/types/reviews"
 import { cn } from "@/lib/utils"
+import { track } from '@vercel/analytics';
 
 // Icons from react-icons
 // Lucide icons for modern amenity display
@@ -216,6 +217,20 @@ export default function PropertyPage() {
       document.documentElement.removeAttribute('data-theme')
     }
   }, [property])
+
+  // Track property page visit - performance optimized
+  useEffect(() => {
+    if (property) {
+      // Track page visit once per session
+      track('Property Page Visit', {
+        property: slug,
+        property_name: property.name,
+        referrer: typeof window !== 'undefined' ? document.referrer || 'direct' : 'unknown',
+        device: typeof window !== 'undefined' ? 
+          (window.innerWidth < 768 ? 'mobile' : window.innerWidth < 1024 ? 'tablet' : 'desktop') : 'unknown'
+      });
+    }
+  }, []); // Empty dependency array - runs only once on mount
 
   // Handle hash routing for booking section
   useEffect(() => {
@@ -439,6 +454,16 @@ export default function PropertyPage() {
                     disabled={!dateRange?.from || !dateRange?.to}
                     onClick={() => {
                       if (dateRange?.from && dateRange?.to) {
+                        // Track Vercel Analytics - Booking Confirmed (Main Conversion)
+                        track('Booking Confirmed', {
+                          property: slug,
+                          guests: guests,
+                          nights: Math.ceil((dateRange.to.getTime() - dateRange.from.getTime()) / (1000 * 60 * 60 * 24)),
+                          total_price: totalPrice || 0,
+                          checkin_date: dateRange.from.toISOString().split('T')[0],
+                          checkout_date: dateRange.to.toISOString().split('T')[0]
+                        });
+
                         // Track Google Ads conversion
                         if (typeof window !== 'undefined' && (window as any).gtag) {
                           (window as any).gtag('event', 'conversion', {

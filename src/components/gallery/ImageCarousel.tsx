@@ -5,6 +5,7 @@ import { Camera, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
+import { track } from '@vercel/analytics';
 
 interface ImageCarouselProps {
   images: string[];
@@ -162,7 +163,15 @@ export function ImageCarousel({
             <div 
               key={`${image.index}-${displayIndex}`} 
               className="relative aspect-[4/3] overflow-hidden rounded-2xl group/image cursor-pointer transform transition-all duration-300 hover:z-10"
-              onClick={() => onImageClick(image.index)}
+              onClick={() => {
+                // Track gallery image click
+                track('Gallery Image Clicked', {
+                  property: propertySlug,
+                  image_index: image.index,
+                  image_name: image.src.split('/').pop()?.replace('.jpg', '').replace('.jpeg', '').replace('.png', '').replace('.webp', '') || 'unknown'
+                });
+                onImageClick(image.index);
+              }}
             >
               <Image
                 src={image.src}
