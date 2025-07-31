@@ -112,7 +112,7 @@ export function ImageCarousel({
       )}
     >
       {/* Carousel Container with ultra-wide support */}
-      <div className="relative p-4 3xl:p-6 h-[320px] sm:h-[400px] 3xl:h-[500px] max-w-[1400px] 3xl:max-w-[1600px] mx-auto">
+      <div className="relative p-4 3xl:p-6 h-[320px] sm:h-[400px] 3xl:h-[550px] max-w-[1400px] 3xl:max-w-[1800px] mx-auto">
         <div className={cn(
           "grid gap-4 3xl:gap-6",
           imagesPerView === 1 && "grid-cols-1",
@@ -123,16 +123,19 @@ export function ImageCarousel({
           {visibleImages.map((image, displayIndex) => (
             <div 
               key={`${image.index}-${displayIndex}`} 
-              className="relative aspect-[4/3] overflow-hidden rounded-2xl group/image cursor-pointer"
+              className="relative aspect-[4/3] overflow-hidden rounded-2xl group/image cursor-pointer transform transition-all duration-300 hover:z-10"
               onClick={() => onImageClick(image.index)}
             >
               <Image
                 src={image.src}
                 alt={`${propertyName} - Immagine ${image.index + 1}`}
                 fill
-                priority={image.index < 8} // Increased for better loading
+                priority={image.index < 12} // Further increased for 3xl screens
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, (max-width: 1920px) 33vw, 25vw"
+                quality={90}
                 className="object-cover transition-transform duration-700 group-hover/image:scale-110 rounded-2xl"
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAfEAACAQMFAQAAAAAAAAAAAAABAgMABAUGEhMhMUH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AiqOp0kAAAAASUVORK5CYII="
               />
               
               {/* Zoom overlay */}
@@ -147,42 +150,40 @@ export function ImageCarousel({
             </div>
           ))}
         </div>
-      </div>
-
-      {/* Navigation Arrows - Only show if more images than can be displayed */}
-      {images.length > imagesPerView && (
-        <>
-          <button
-            onClick={goToPrevious}
-            className={cn(
-              "absolute left-4 p-3 rounded-full text-white transition-all duration-300 z-10",
-              "top-[160px] sm:top-1/2 sm:-translate-y-1/2", // Fixed position on mobile, centered on desktop
-              "bg-black/30 backdrop-blur-sm hover:bg-black/50",
-              "opacity-0 group-hover:opacity-100 hover:scale-110"
-            )}
-            aria-label={t('prevImages')}
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          
-          <button
-            onClick={goToNext}
-            className={cn(
-              "absolute right-4 p-3 rounded-full text-white transition-all duration-300 z-10",
-              "top-[160px] sm:top-1/2 sm:-translate-y-1/2", // Fixed position on mobile, centered on desktop
-              "bg-black/30 backdrop-blur-sm hover:bg-black/50",
-              "opacity-0 group-hover:opacity-100 hover:scale-110"
-            )}
-            aria-label={t('nextImages')}
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-        </>
-      )}
-
-      {/* Progress Indicators - Only show if more images than can be displayed and not on mobile */}
-      {images.length > imagesPerView && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1 sm:gap-2 px-4 hidden sm:flex">
+        {/* Navigation Arrows - Inside container for better positioning */}
+        {images.length > imagesPerView && (
+          <>
+            <button
+              onClick={goToPrevious}
+              className={cn(
+                "absolute left-4 3xl:left-8 p-3 3xl:p-4 rounded-full text-white transition-all duration-300 z-10",
+                "top-[160px] sm:top-1/2 sm:-translate-y-1/2", // Fixed position on mobile, centered on desktop
+                "bg-black/30 backdrop-blur-sm hover:bg-black/50",
+                "opacity-0 group-hover:opacity-100 hover:scale-110"
+              )}
+              aria-label={t('prevImages')}
+            >
+              <ChevronLeft className="w-6 h-6 3xl:w-8 3xl:h-8" />
+            </button>
+            
+            <button
+              onClick={goToNext}
+              className={cn(
+                "absolute right-4 3xl:right-8 p-3 3xl:p-4 rounded-full text-white transition-all duration-300 z-10",
+                "top-[160px] sm:top-1/2 sm:-translate-y-1/2", // Fixed position on mobile, centered on desktop
+                "bg-black/30 backdrop-blur-sm hover:bg-black/50",
+                "opacity-0 group-hover:opacity-100 hover:scale-110"
+              )}
+              aria-label={t('nextImages')}
+            >
+              <ChevronRight className="w-6 h-6 3xl:w-8 3xl:h-8" />
+            </button>
+          </>
+        )}
+        
+        {/* Progress Indicators - Inside container for alignment */}
+        {images.length > imagesPerView && (
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1 sm:gap-2 px-4 hidden sm:flex">
           {Array.from({ length: Math.floor(images.length / imagesPerView) }, (_, i) => (
             <button
               key={i}
@@ -200,6 +201,7 @@ export function ImageCarousel({
           ))}
         </div>
       )}
+      </div>
 
       {/* Image Counter */}
       <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-black/30 backdrop-blur-sm text-white text-sm font-medium">
