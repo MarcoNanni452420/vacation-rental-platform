@@ -40,12 +40,13 @@ export function ImageCarousel({
 
   const colors = themeColors[propertySlug];
 
-  // Responsive image count
+  // Responsive image count with ultra-wide support
   const getImagesPerView = () => {
     if (typeof window === 'undefined') return 3; // SSR default
     if (window.innerWidth < 768) return 1; // Mobile
     if (window.innerWidth < 1024) return 2; // Tablet
-    return 3; // Desktop
+    if (window.innerWidth < 1920) return 3; // Desktop
+    return 4; // Ultra-wide (3xl)
   };
 
   const [imagesPerView, setImagesPerView] = useState(3);
@@ -110,13 +111,14 @@ export function ImageCarousel({
         className
       )}
     >
-      {/* Carousel Container */}
-      <div className="relative p-4 h-[320px] sm:h-[400px]">
+      {/* Carousel Container with ultra-wide support */}
+      <div className="relative p-4 3xl:p-6 h-[320px] sm:h-[400px] 3xl:h-[500px] max-w-[1400px] 3xl:max-w-[1600px] mx-auto">
         <div className={cn(
-          "grid gap-4",
+          "grid gap-4 3xl:gap-6",
           imagesPerView === 1 && "grid-cols-1",
           imagesPerView === 2 && "grid-cols-2",
-          imagesPerView === 3 && "grid-cols-3"
+          imagesPerView === 3 && "grid-cols-3",
+          imagesPerView === 4 && "grid-cols-4"
         )}>
           {visibleImages.map((image, displayIndex) => (
             <div 
@@ -128,8 +130,8 @@ export function ImageCarousel({
                 src={image.src}
                 alt={`${propertyName} - Immagine ${image.index + 1}`}
                 fill
-                priority={image.index < 6}
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                priority={image.index < 8} // Increased for better loading
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, (max-width: 1920px) 33vw, 25vw"
                 className="object-cover transition-transform duration-700 group-hover/image:scale-110 rounded-2xl"
               />
               

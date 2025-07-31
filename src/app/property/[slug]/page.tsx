@@ -505,7 +505,7 @@ export default function PropertyPage() {
       </Section>
 
       {/* Image Gallery - Full Width Carousel */}
-      <Section className="bg-muted px-0">
+      <Section className="bg-muted px-0 3xl:px-8">
         <div className="animate-fade-up mb-12 text-center px-8">
           <h2 className="text-4xl font-bold">{t('galleryTitle')}</h2>
         </div>
