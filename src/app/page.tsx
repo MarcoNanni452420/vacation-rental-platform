@@ -7,6 +7,8 @@ import { getAllProperties } from "@/lib/properties-data"
 import { ArrowRight, MapPin, Users, Bed, Bath } from "lucide-react"
 import { useTranslations } from 'next-intl'
 import { LazySection } from "@/components/ui/LazySection"
+import { AnimatedScrollPrompt } from "@/components/ui/AnimatedScrollPrompt"
+import { MobileBottomSheet } from "@/components/ui/MobileBottomSheet"
 
 export default function HomePage() {
   const properties = getAllProperties()
@@ -41,14 +43,14 @@ export default function HomePage() {
           </p>
         </div>
         
-        {/* Scroll indicator */}
+        {/* Enhanced Animated Scroll Prompt - Replaces simple indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-          <div className="w-[1px] h-16 bg-gray-300 mx-auto animate-pulse" />
+          <AnimatedScrollPrompt />
         </div>
       </section>
 
       {/* Properties Grid Section */}
-      <section className="min-h-screen bg-white">
+      <section id="properties-section" className="min-h-screen bg-white">
         <div className="grid grid-cols-1 lg:grid-cols-2 h-screen" suppressHydrationWarning={true}>
           {properties.map((property, index) => (
             <Link
@@ -58,7 +60,7 @@ export default function HomePage() {
               onMouseEnter={() => setHoveredProperty(property.slug)}
               onMouseLeave={() => setHoveredProperty(null)}
             >
-              {/* Background Image */}
+              {/* Background Image - Clean on Mobile */}
               <div className="absolute inset-0" style={{ aspectRatio: 'unset' }} suppressHydrationWarning={true}>
                 <Image 
                   src={property.slug === 'moro' ? property.images[1] : property.images[0]}
@@ -77,14 +79,14 @@ export default function HomePage() {
                     objectPosition: 'center center'
                   }}
                 />
+                {/* Mobile: Minimal overlay, Desktop: Interactive overlay */}
                 <div className={`absolute inset-0 bg-black transition-opacity duration-700 ${
-                  hoveredProperty === property.slug ? 'opacity-40' : 'opacity-20'
+                  hoveredProperty === property.slug ? 'opacity-40 md:opacity-40' : 'opacity-10 md:opacity-20'
                 }`} />
               </div>
 
-              {/* Property Info */}
-              <div className="relative h-full flex flex-col justify-end p-12 lg:p-16">
-                {/* Bottom - Details */}
+              {/* Desktop Property Info - Hidden on Mobile */}
+              <div className="relative h-full hidden md:flex flex-col justify-end p-12 lg:p-16">
                 <div className="text-white h-[350px] flex flex-col justify-between">
                   {/* Text with enhanced readability */}
                   <div className="bg-black/40 backdrop-blur-sm rounded-lg p-6 h-[200px] flex flex-col justify-center">
@@ -115,7 +117,7 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  {/* CTA with better visibility */}
+                  {/* Desktop CTA */}
                   <div className="flex items-center justify-end">
                     <div className={`inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider transition-all duration-300 text-white drop-shadow-lg ${
                       hoveredProperty === property.slug ? 'translate-x-2' : ''
@@ -124,9 +126,25 @@ export default function HomePage() {
                       <ArrowRight className="w-4 h-4" />
                     </div>
                   </div>
-
                 </div>
               </div>
+
+              {/* Mobile Bottom Sheet */}
+              <MobileBottomSheet
+                title={property.name}
+                description={t.has(`propertyDescriptions.${property.slug}`) 
+                  ? t(`propertyDescriptions.${property.slug}`) 
+                  : property.shortDesc}
+                features={{
+                  guests: property.maxGuests,
+                  bedrooms: property.bedrooms,
+                  bathrooms: property.bathrooms
+                }}
+                ctaText={t('explore')}
+                onCtaClick={() => {
+                  // Navigation will be handled by the parent Link component
+                }}
+              />
 
               {/* Theme Preview Line */}
               <div 

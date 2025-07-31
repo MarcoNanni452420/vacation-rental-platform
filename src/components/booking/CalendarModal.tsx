@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { format, isBefore, startOfToday, differenceInDays, addMonths, startOfMonth, endOfMonth, eachDayOfInterval, getDay } from 'date-fns';
+import { format, differenceInDays, addMonths, startOfMonth, endOfMonth, eachDayOfInterval, getDay } from 'date-fns';
+import { isBeforeTodayInItaly, startOfTodayInItaly, formatDateForAPI, isValidDateRangeInItaly, getTimezoneDebugInfo } from '@/lib/date-utils';
 import { it, enUS, fr, de, es } from 'date-fns/locale';
 import { fetchAvailability } from '@/lib/octorate-api';
 import { OctorateCalendarResponse } from '@/types/octorate';
@@ -112,14 +113,14 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
 
   const isDateAvailable = (date: Date): boolean => {
     if (!availability) return false;
-    const dateStr = format(date, 'yyyy-MM-dd');
+    const dateStr = formatDateForAPI(date); // Use Italian timezone-aware formatting
     const dayData = availability.calendar.find(day => day.date === dateStr);
     return dayData?.available ?? false;
   };
 
   const getMinimumStay = (date: Date): number => {
     if (!availability) return 2;
-    const dateStr = format(date, 'yyyy-MM-dd');
+    const dateStr = formatDateForAPI(date); // Use Italian timezone-aware formatting
     const dayData = availability.calendar.find(day => day.date === dateStr);
     return dayData?.minimumStay ?? 2;
   };
@@ -153,7 +154,8 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
   };
 
   const handleDateClick = (date: Date) => {
-    if (isBefore(date, startOfToday()) || !isDateAvailable(date)) return;
+    // CRITICAL FIX: Use Italian timezone for all date validations
+    if (isBeforeTodayInItaly(date) || !isDateAvailable(date)) return;
 
     if (!range?.from) {
       // First click: set check-in
@@ -206,7 +208,8 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
   };
 
   const isDateDisabled = (date: Date): boolean => {
-    if (isBefore(date, startOfToday())) return true;
+    // CRITICAL FIX: Use Italian timezone for past date validation
+    if (isBeforeTodayInItaly(date)) return true;
     if (!isDateAvailable(date)) return true;
     
     if (range?.from && !range?.to) {

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { ClientOnly } from "@/components/ui/client-only"
+import { PropertyHero } from "@/components/ui/PropertyHero"
 import dynamic from 'next/dynamic'
 
 // Lazy load heavy components for better performance
@@ -30,6 +31,8 @@ import { OctorateCalendarResponse } from "@/types/octorate"
 import { ReviewsResponse } from "@/types/reviews"
 import { cn } from "@/lib/utils"
 import { track } from '@vercel/analytics';
+import { isValidDateRangeInItaly, getTimezoneDebugInfo } from '@/lib/date-utils';
+import { format } from 'date-fns';
 
 // Icons from react-icons
 // Lucide icons for modern amenity display
@@ -311,48 +314,26 @@ export default function PropertyPage() {
   return (
     <main className="bg-background overflow-hidden transition-colors duration-700">{/* Navbar is in the main layout */}
 
-      {/* Hero Section with Gallery */}
-      <section className="relative h-screen">
-        {/* Main Image */}
-        <div className="absolute inset-0">
-          <Image 
-            src={slug === 'moro' ? property.images[1] : property.images[0]}
-            alt={`${property.name} Interior`}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover image-bright"
-          />
-          <div className="absolute inset-0 bg-black/25" />
-        </div>
-
-
-        {/* Property Info Overlay */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-8 z-10">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-white">
-              
-              {/* Enhanced readability with backdrop blur */}
-              <div className="bg-black/40 backdrop-blur-sm rounded-lg p-6 max-w-4xl">
-                <h1 className="text-6xl md:text-7xl font-bold mb-4 text-white drop-shadow-lg">
-                  {property.name}
-                </h1>
-                
-                <div className="flex items-center text-lg text-white/95 mb-6 drop-shadow-md">
-                  <MapPin className="h-5 w-5 mr-2" />
-                  <span>{property.location}</span>
-                </div>
-
-                <p className="text-xl text-white/95 max-w-2xl drop-shadow-md">
-                  {tHome.has(`propertyDescriptions.${slug}`) 
-                    ? tHome(`propertyDescriptions.${slug}`) 
-                    : property.shortDesc}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Hero Section with PropertyHero Component */}
+      <PropertyHero
+        imageSrc={slug === 'moro' ? property.images[1] : property.images[0]}
+        title={property.name}
+        location={property.location}
+        description={tHome.has(`propertyDescriptions.${slug}`) 
+          ? tHome(`propertyDescriptions.${slug}`) 
+          : property.shortDesc}
+        ctaText={t('checkAvailability')}
+        onCtaClick={() => {
+          const bookingElement = document.getElementById('booking-section');
+          if (bookingElement) {
+            bookingElement.scrollIntoView({ 
+              behavior: 'smooth', 
+              block: 'center',
+              inline: 'nearest'
+            });
+          }
+        }}
+      />
 
       {/* Property Details Grid */}
       <Section className="bg-background">
@@ -362,7 +343,7 @@ export default function PropertyPage() {
             <div className="lg:col-span-2 space-y-16">
               {/* Key Features */}
               <RevealOnScroll>
-                <div id="booking-section" className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                   <div className="text-center">
                     <Users className="w-8 h-8 mx-auto mb-3 text-primary" />
                     <p className="text-2xl font-bold">{property.maxGuests}</p>
@@ -405,7 +386,7 @@ export default function PropertyPage() {
             {/* Booking Card */}
             <div className="lg:sticky lg:top-24 h-fit">
               <RevealOnScroll>
-                <div className="bg-card border border-border p-8 space-y-6 rounded-2xl">
+                <div id="booking-section" className="bg-card border border-border p-8 space-y-6 rounded-2xl">
                   <div>
                     <h3 className="text-2xl font-bold">{t('checkAvailability')}</h3>
                     <p className="text-muted-foreground">{t('selectDates')}</p>
@@ -454,33 +435,60 @@ export default function PropertyPage() {
                     disabled={!dateRange?.from || !dateRange?.to}
                     onClick={() => {
                       if (dateRange?.from && dateRange?.to) {
-                        // Track Vercel Analytics - Booking Confirmed (Main Conversion)
-                        track('Booking Confirmed', {
-                          property: slug,
-                          guests: guests,
-                          nights: Math.ceil((dateRange.to.getTime() - dateRange.from.getTime()) / (1000 * 60 * 60 * 24)),
-                          total_price: totalPrice || 0,
-                          checkin_date: dateRange.from.toISOString().split('T')[0],
-                          checkout_date: dateRange.to.toISOString().split('T')[0]
-                        });
+                        // CRITICAL FIX: Validate dates with Italian timezone before tracking
+                        const isValidRange = isValidDateRangeInItaly(dateRange.from, dateRange.to);
+                        const debugInfo = getTimezoneDebugInfo();
+                        
+                        if (isValidRange) {
+                          // Track Vercel Analytics - Booking Confirmed (Main Conversion)
+                          track('Booking Confirmed', {
+                            property: slug,
+                            guests: guests,
+                            nights: Math.ceil((dateRange.to.getTime() - dateRange.from.getTime()) / (1000 * 60 * 60 * 24)),
+                            total_price: totalPrice || 0,
+                            checkin_date: format(dateRange.from, 'yyyy-MM-dd'),
+                            checkout_date: format(dateRange.to, 'yyyy-MM-dd'),
+                            // Enhanced debugging metadata
+                            user_timezone: debugInfo.userTimezone,
+                            validation_passed: true
+                          });
 
-                        // Track Google Ads conversion
-                        if (typeof window !== 'undefined' && (window as any).gtag) {
-                          (window as any).gtag('event', 'conversion', {
-                            'send_to': 'AW-17411939860/p_kOCN-PmvwaEJS81O5A',
-                            'value': totalPrice || 0,
-                            'currency': 'EUR',
-                            'transaction_id': `${slug}-${Date.now()}`, // Unique transaction ID
+                          // Track Google Ads conversion
+                          if (typeof window !== 'undefined' && (window as any).gtag) {
+                            (window as any).gtag('event', 'conversion', {
+                              'send_to': 'AW-17411939860/p_kOCN-PmvwaEJS81O5A',
+                              'value': totalPrice || 0,
+                              'currency': 'EUR',
+                              'transaction_id': `${slug}-${Date.now()}`, // Unique transaction ID
+                            });
+                          }
+                          
+                          const url = getBookingUrl(
+                            slug as 'fienaroli' | 'moro',
+                            dateRange.from,
+                            dateRange.to,
+                            guests
+                          );
+                          window.open(url, '_blank');
+                        } else {
+                          // Track invalid booking attempt for debugging
+                          track('Booking Attempted - Invalid Dates', {
+                            property: slug,
+                            guests: guests,
+                            attempted_checkin: format(dateRange.from, 'yyyy-MM-dd'),
+                            attempted_checkout: format(dateRange.to, 'yyyy-MM-dd'),
+                            user_timezone: debugInfo.userTimezone,
+                            user_time: debugInfo.userTime,
+                            italian_time: debugInfo.italianTime,
+                            validation_passed: false
+                          });
+                          
+                          // Show error to user
+                          console.error('Invalid date range for Italian timezone:', {
+                            dateRange,
+                            debugInfo
                           });
                         }
-                        
-                        const url = getBookingUrl(
-                          slug as 'fienaroli' | 'moro',
-                          dateRange.from,
-                          dateRange.to,
-                          guests
-                        );
-                        window.open(url, '_blank');
                       }
                     }}
                   >

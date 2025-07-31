@@ -40,8 +40,8 @@ export function BookingCalendar({ propertySlug, onDateChange, className, selecte
       track('Dates Selected', {
         property: propertySlug,
         nights: differenceInDays(range.to, range.from),
-        checkin_date: range.from.toISOString().split('T')[0],
-        checkout_date: range.to.toISOString().split('T')[0]
+        checkin_date: format(range.from, 'yyyy-MM-dd'),
+        checkout_date: format(range.to, 'yyyy-MM-dd')
       });
     }
     onDateChange(range);
