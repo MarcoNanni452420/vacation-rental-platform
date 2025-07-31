@@ -1,0 +1,1772 @@
+{
+  "metadata": {
+    "createdAt": "2025-07-31T00:26:10.416Z",
+    "source": "batch-translation",
+    "languages": [
+      "en",
+      "it",
+      "fr",
+      "de",
+      "es"
+    ],
+    "properties": [
+      "fienaroli",
+      "moro"
+    ]
+  },
+  "reviews": {
+    "fienaroli": {
+      "en": {
+        "reviews": [
+          {
+            "id": "1474644919525631539",
+            "comments": "The apartment is larger than the pictures suggest.  Nice modern kitchen, and 2 full bedrooms and bathrooms.  Access was easy and just walk out your door and there is all sorts of nightlife just a block away.",
+            "originalComments": "The apartment is larger than the pictures suggest.  Nice modern kitchen, and 2 full bedrooms and bathrooms.  Access was easy and just walk out your door and there is all sorts of nightlife just a block away.",
+            "language": "en",
+            "createdAt": "2025-07-27T14:56:13Z",
+            "localizedDate": "3 days ago",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Nathan",
+              "location": "Ann Arbor, Michigan",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/aff2480d-e2a5-43ad-ab3e-69854162434d.jpg",
+              "isSuperhost": false
+            },
+            "response": "Thank you very much Nathan!",
+            "collectionTag": "WEEKEND TRIP",
+            "needsTranslation": false,
+            "disclaimer": ""
+          },
+          {
+            "id": "1418109483734409829",
+            "comments": "Enjoyed our 3 night stay here. Apartment is located in a very lively, niche neighborhood, late night bars/restaurants etc., but having food and drink easily accessible was great. Recycling on street was early morning, but that is found anywhere in the city. <br/>Apartment interior was eclectic and fun. Great storage for hanging clothes. Will definitely stay again.",
+            "originalComments": "Enjoyed our 3 night stay here. Apartment is located in a very lively, niche neighborhood, late night bars/restaurants etc., but having food and drink easily accessible was great. Recycling on street was early morning, but that is found anywhere in the city. <br/>Apartment interior was eclectic and fun. Great storage for hanging clothes. Will definitely stay again.",
+            "language": "en",
+            "createdAt": "2025-05-10T14:50:24Z",
+            "localizedDate": "May 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "I",
+              "location": "New Jersey, United States",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/fd8f6c33-fa7e-43fb-bc65-ecbc4989593f.jpg",
+              "isSuperhost": false
+            },
+            "response": "Thank you very much!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": ""
+          },
+          {
+            "id": "1460776198132690690",
+            "comments": "Fantastic apartment in our favorite neighborhood. The layout is functional and comfortable. Riccardo was very responsive—when we had an AC issue, he had a technician there that same afternoon.",
+            "originalComments": "Fantastic apartment in our favorite neighborhood. The layout is functional and comfortable. Riccardo was very responsive—when we had an AC issue, he had a technician there that same afternoon.",
+            "language": "en",
+            "createdAt": "2025-07-08T11:41:32Z",
+            "localizedDate": "3 weeks ago",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Axel",
+              "location": "New York, New York",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/17b24de3-d847-490b-81aa-4412c64ce5d5.jpg",
+              "isSuperhost": false
+            },
+            "response": "Thank you very much Axel!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": ""
+          },
+          {
+            "id": "1430381802816820112",
+            "comments": "We loved our stay here.  Property was beautiful and the host was very attentive and responsive to any questions.  the neighborhood was amazing, walkable to many restaurants (also the host left a great list of recommendations!) I would recommend this property highly.",
+            "originalComments": "We loved our stay here.  Property was beautiful and the host was very attentive and responsive to any questions.  the neighborhood was amazing, walkable to many restaurants (also the host left a great list of recommendations!) I would recommend this property highly.",
+            "language": "en",
+            "createdAt": "2025-05-27T13:13:18Z",
+            "localizedDate": "May 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Sheila",
+              "location": "New York, New York",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/02c972f1-d52b-4c1b-bf38-150b8b257217.jpg",
+              "isSuperhost": false
+            },
+            "response": "Thank you Sheila",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": ""
+          },
+          {
+            "id": "1378201106292838080",
+            "comments": "Fabulous place to stay, just off the really busy parts of Trastevere but close to restaurants and everything walkable. Host was great, proactive communications and great recommendations for restaurants and luggage storage. Set up driver service for us from airport so no waiting. <br/>We will definitely be back , hopefully for longer than a weekend.",
+            "originalComments": "Fabulous place to stay, just off the really busy parts of Trastevere but close to restaurants and everything walkable. Host was great, proactive communications and great recommendations for restaurants and luggage storage. Set up driver service for us from airport so no waiting. <br/>We will definitely be back , hopefully for longer than a weekend.",
+            "language": "en",
+            "createdAt": "2025-03-16T13:19:34Z",
+            "localizedDate": "March 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Claire",
+              "location": "Houston, Texas",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/6a7a3595-e6c1-461f-be7a-fec86bdd2b28.jpg",
+              "isSuperhost": false
+            },
+            "response": "Thank you so much for your wonderful review Claire!",
+            "collectionTag": "WEEKEND TRIP",
+            "needsTranslation": false,
+            "disclaimer": ""
+          },
+          {
+            "id": "1473179561844173522",
+            "comments": "We absolutely loved our stay at this apartment in Trastevere area in the heart of Rome. Close to every attraction and great Resturant’s. <br/>The space had everything we could possibly need — full amenities that made it feel like home while still giving us that authentic Italian vibe we were hoping for. It was spotless, thoughtfully decorated, and perfectly located to explore the city.<br/>Communication with the host was exceptional — friendly, attentive, and always quick to respond, which made the whole experience seamless and stress-free. We truly felt welcomed and cared for.<br/>If you’re looking for a place that combines comfort, cleanliness, and a real Roman charm, this is it. We can’t wait to come back!",
+            "originalComments": "We absolutely loved our stay at this apartment in Trastevere area in the heart of Rome. Close to every attraction and great Resturant’s. <br/>The space had everything we could possibly need — full amenities that made it feel like home while still giving us that authentic Italian vibe we were hoping for. It was spotless, thoughtfully decorated, and perfectly located to explore the city.<br/>Communication with the host was exceptional — friendly, attentive, and always quick to respond, which made the whole experience seamless and stress-free. We truly felt welcomed and cared for.<br/>If you’re looking for a place that combines comfort, cleanliness, and a real Roman charm, this is it. We can’t wait to come back!",
+            "language": "en",
+            "createdAt": "2025-07-25T14:24:48Z",
+            "localizedDate": "5 days ago",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Yasser",
+              "location": "Burlington, Canada",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/05dc83de-ba3b-4af5-9dc5-003ed9199864.jpg",
+              "isSuperhost": false
+            },
+            "response": "Thank you very much Yasser!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": ""
+          },
+          {
+            "id": "1408589603673083296",
+            "comments": "Great location in Trastevere! Lots of restaurants and bars nearby. The apartment was very easy to find and the app made it easy to get in/out of. All the rooms were very clean and looked exactly as pictured",
+            "originalComments": "Great location in Trastevere! Lots of restaurants and bars nearby. The apartment was very easy to find and the app made it easy to get in/out of. All the rooms were very clean and looked exactly as pictured",
+            "language": "en",
+            "createdAt": "2025-04-27T11:36:05Z",
+            "localizedDate": "April 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Jessica",
+              "location": "",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/a661e3d8-a9af-4f18-bd04-b88202fd1c95.jpeg",
+              "isSuperhost": false
+            },
+            "response": "Thank you very much",
+            "collectionTag": "WEEKEND TRIP",
+            "needsTranslation": false,
+            "disclaimer": ""
+          },
+          {
+            "id": "1403616519883670174",
+            "comments": "The location of this apartment is great however compared to other places in this price range this apartment is overpriced. The apartment is clean and tidy however it is in need of furnishing upgrades especially the beds. The couch is also covered with blankets to hide wear which doesn’t seem fitting for a “luxury” accommodation. The outside terraces are great but the furniture in each of those is also broken. Overall we enjoyed our stay but were a little disappointed in the accommodations.",
+            "originalComments": "The location of this apartment is great however compared to other places in this price range this apartment is overpriced. The apartment is clean and tidy however it is in need of furnishing upgrades especially the beds. The couch is also covered with blankets to hide wear which doesn’t seem fitting for a “luxury” accommodation. The outside terraces are great but the furniture in each of those is also broken. Overall we enjoyed our stay but were a little disappointed in the accommodations.",
+            "language": "en",
+            "createdAt": "2025-04-20T14:55:28Z",
+            "localizedDate": "April 2025",
+            "rating": 4,
+            "reviewer": {
+              "firstName": "Megan",
+              "location": "Wilmington, North Carolina",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/d8d45d51-f7aa-4ad1-abd6-05c939f709eb.jpeg",
+              "isSuperhost": false
+            },
+            "response": "Hi Megan, that's strange because the apartment has been recently renovated, especially the bathroom is brand new and all our guests are pleasantly surprised by the decor and the terraces! But we will try to improve, thank you",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": ""
+          },
+          {
+            "id": "1303533680701434511",
+            "comments": "Loved our stay!  Right in the center of Trastevere and about 5 minute walk from the Tiber and so many key attractions. Such a great home base for anything and everything you’d want to do while in Rome. The apartment was clean and well appointed - exactly as advertised. Communication was always prompt and responsive. Cannot recommend enough!",
+            "originalComments": "Loved our stay!  Right in the center of Trastevere and about 5 minute walk from the Tiber and so many key attractions. Such a great home base for anything and everything you’d want to do while in Rome. The apartment was clean and well appointed - exactly as advertised. Communication was always prompt and responsive. Cannot recommend enough!",
+            "language": "en",
+            "createdAt": "2024-12-03T12:48:43Z",
+            "localizedDate": "December 2024",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Scott",
+              "location": "Chicago, Illinois",
+              "pictureUrl": "https://a0.muscache.com/im/users/5235956/profile_pic/1361890953/original.jpg",
+              "isSuperhost": false
+            },
+            "response": "Thank you very much Scott!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": ""
+          },
+          {
+            "id": "1239080522196780994",
+            "comments": "Our stay with Roman Holidays in Trastevere was perfect! Trastevere is a very lively night spot with so many people, bars, and restaurants. We were in the heart of all that in a quiet, peaceful, comfortable, recently renovated apartment. This home was convenient to all the major sites, well appointed, and comfortable. We would love to stay with Roman Holidays again!",
+            "originalComments": "Our stay with Roman Holidays in Trastevere was perfect! Trastevere is a very lively night spot with so many people, bars, and restaurants. We were in the heart of all that in a quiet, peaceful, comfortable, recently renovated apartment. This home was convenient to all the major sites, well appointed, and comfortable. We would love to stay with Roman Holidays again!",
+            "language": "en",
+            "createdAt": "2024-09-05T14:31:48Z",
+            "localizedDate": "September 2024",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Hank",
+              "location": "California, United States",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/91e74741-4ee8-46b1-a09f-040ac263b961.jpg",
+              "isSuperhost": false
+            },
+            "response": "Thank you very much Hank!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": ""
+          },
+          {
+            "id": "1228137268190807307",
+            "comments": "Well located in a quiet part of Trastevere, but still only steps from the main piazza and a great selection of restaurants, the Conad supermarket and TAXI rank.  A very spacious apartment that is well equipped.  Stylish bathrooms and kitchen and with the old wooden beam ceiling - it makes for a very comfortable space.  The bedrooms are large.",
+            "originalComments": "Well located in a quiet part of Trastevere, but still only steps from the main piazza and a great selection of restaurants, the Conad supermarket and TAXI rank.  A very spacious apartment that is well equipped.  Stylish bathrooms and kitchen and with the old wooden beam ceiling - it makes for a very comfortable space.  The bedrooms are large.",
+            "language": "en",
+            "createdAt": "2024-08-21T12:09:31Z",
+            "localizedDate": "August 2024",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Ross",
+              "location": "",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/35d0495b-2ae1-4d2a-9692-89292fabebd9.jpg",
+              "isSuperhost": false
+            },
+            "response": "Thank you very much Ross!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": ""
+          },
+          {
+            "id": "1415851242350117286",
+            "comments": "Fantastic location, comfortable bed and great bathrooms with very powerful showers",
+            "originalComments": "Fantastic location, comfortable bed and great bathrooms with very powerful showers",
+            "language": "en",
+            "createdAt": "2025-05-07T12:03:40Z",
+            "localizedDate": "May 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Annabel",
+              "location": "",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/b2fa24ab-7dbc-4c1a-9adc-00cd4fedc74c.jpg",
+              "isSuperhost": false
+            },
+            "response": "Thank you very much Annabel!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": ""
+          }
+        ],
+        "totalCount": 12,
+        "propertySlug": "fienaroli",
+        "airbnbUrl": "https://www.airbnb.it/rooms/20247826",
+        "fetchedAt": "2025-07-31T00:18:34.423Z"
+      },
+      "it": {
+        "reviews": [
+          {
+            "id": "1474644919525631539",
+            "comments": "L'appartamento è più grande di quanto suggeriscano le foto. Bella cucina moderna e 2 camere da letto e bagni completi. L'accesso è facile e basta uscire dalla porta e c'è tutta una serie di locali notturni a soli un isolato di distanza.",
+            "originalComments": "The apartment is larger than the pictures suggest.  Nice modern kitchen, and 2 full bedrooms and bathrooms.  Access was easy and just walk out your door and there is all sorts of nightlife just a block away.",
+            "language": "en",
+            "createdAt": "2025-07-27T14:56:13Z",
+            "localizedDate": "3 giorni fa",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Nathan",
+              "location": "Ann Arbor, Michigan",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/aff2480d-e2a5-43ad-ab3e-69854162434d.jpg",
+              "isSuperhost": false
+            },
+            "response": "Grazie mille Nathan!",
+            "collectionTag": "WEEKEND FUORI PORTA",
+            "needsTranslation": true,
+            "disclaimer": "Tradotto automaticamente"
+          }
+        ],
+        "totalCount": 1,
+        "propertySlug": "fienaroli",
+        "airbnbUrl": "https://www.airbnb.it/rooms/20247826",
+        "fetchedAt": "2025-07-31T00:18:29.865Z"
+      },
+      "fr": {
+        "reviews": [
+          {
+            "id": "1474644919525631539",
+            "comments": "L'appartement est plus grand que ce que les photos laissent penser. Belle cuisine moderne, et 2 chambres et salles de bains complètes. L'accès était facile et il suffit de sortir de votre porte pour trouver toutes sortes de vie nocturne à seulement un pâté de maisons.",
+            "originalComments": "The apartment is larger than the pictures suggest.  Nice modern kitchen, and 2 full bedrooms and bathrooms.  Access was easy and just walk out your door and there is all sorts of nightlife just a block away.",
+            "language": "en",
+            "createdAt": "2025-07-27T14:56:13Z",
+            "localizedDate": "3 days ago",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Nathan",
+              "location": "Ann Arbor, Michigan",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/aff2480d-e2a5-43ad-ab3e-69854162434d.jpg",
+              "isSuperhost": false
+            },
+            "response": "Merci beaucoup Nathan!",
+            "collectionTag": "WEEKEND TRIP",
+            "needsTranslation": false,
+            "disclaimer": "Traduit automatiquement",
+            "originalResponse": "Thank you very much Nathan!"
+          },
+          {
+            "id": "1418109483734409829",
+            "comments": "Nous avons apprécié notre séjour de 3 nuits ici. L'appartement est situé dans un quartier très animé et branché, avec des bars/restaurants ouverts tard, mais avoir de la nourriture et des boissons facilement accessibles était génial. Le recyclage dans la rue était tôt le matin, mais c'est quelque chose que l'on trouve partout en ville. L'intérieur de l'appartement était éclectique et amusant. Beaucoup de rangements pour suspendre les vêtements. Nous reviendrons certainement.",
+            "originalComments": "Enjoyed our 3 night stay here. Apartment is located in a very lively, niche neighborhood, late night bars/restaurants etc., but having food and drink easily accessible was great. Recycling on street was early morning, but that is found anywhere in the city. <br/>Apartment interior was eclectic and fun. Great storage for hanging clothes. Will definitely stay again.",
+            "language": "en",
+            "createdAt": "2025-05-10T14:50:24Z",
+            "localizedDate": "May 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "I",
+              "location": "New Jersey, United States",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/fd8f6c33-fa7e-43fb-bc65-ecbc4989593f.jpg",
+              "isSuperhost": false
+            },
+            "response": "Merci beaucoup!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traduit automatiquement",
+            "originalResponse": "Thank you very much!"
+          },
+          {
+            "id": "1460776198132690690",
+            "comments": "Appartement fantastique dans notre quartier préféré. La disposition est fonctionnelle et confortable. Riccardo a été très réactif - lorsque nous avons eu un problème avec la climatisation, il a fait venir un technicien l'après-midi même.",
+            "originalComments": "Fantastic apartment in our favorite neighborhood. The layout is functional and comfortable. Riccardo was very responsive—when we had an AC issue, he had a technician there that same afternoon.",
+            "language": "en",
+            "createdAt": "2025-07-08T11:41:32Z",
+            "localizedDate": "3 weeks ago",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Axel",
+              "location": "New York, New York",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/17b24de3-d847-490b-81aa-4412c64ce5d5.jpg",
+              "isSuperhost": false
+            },
+            "response": "Merci beaucoup Axel!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traduit automatiquement",
+            "originalResponse": "Thank you very much Axel!"
+          },
+          {
+            "id": "1430381802816820112",
+            "comments": "Nous avons adoré notre séjour ici. La propriété était magnifique et l'hôte était très attentif et réactif à toutes nos questions. Le quartier était incroyable, à distance de marche de nombreux restaurants (l'hôte a également laissé une excellente liste de recommandations !) Je recommanderais vivement cette propriété.",
+            "originalComments": "We loved our stay here.  Property was beautiful and the host was very attentive and responsive to any questions.  the neighborhood was amazing, walkable to many restaurants (also the host left a great list of recommendations!) I would recommend this property highly.",
+            "language": "en",
+            "createdAt": "2025-05-27T13:13:18Z",
+            "localizedDate": "May 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Sheila",
+              "location": "New York, New York",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/02c972f1-d52b-4c1b-bf38-150b8b257217.jpg",
+              "isSuperhost": false
+            },
+            "response": "Merci Sheila",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traduit automatiquement",
+            "originalResponse": "Thank you Sheila"
+          },
+          {
+            "id": "1378201106292838080",
+            "comments": "Endroit fabuleux où séjourner, juste à l'écart des parties très animées de Trastevere mais proche des restaurants et de tout ce qui est accessible à pied. L'hôte était génial, communications proactives et excellentes recommandations pour les restaurants et le stockage des bagages. Il a organisé un service de chauffeur pour nous depuis l'aéroport donc pas d'attente. Nous reviendrons certainement, espérons pour plus qu'un week-end.",
+            "originalComments": "Fabulous place to stay, just off the really busy parts of Trastevere but close to restaurants and everything walkable. Host was great, proactive communications and great recommendations for restaurants and luggage storage. Set up driver service for us from airport so no waiting. <br/>We will definitely be back , hopefully for longer than a weekend.",
+            "language": "en",
+            "createdAt": "2025-03-16T13:19:34Z",
+            "localizedDate": "March 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Claire",
+              "location": "Houston, Texas",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/6a7a3595-e6c1-461f-be7a-fec86bdd2b28.jpg",
+              "isSuperhost": false
+            },
+            "response": "Merci beaucoup pour votre merveilleux commentaire Claire!",
+            "collectionTag": "WEEKEND TRIP",
+            "needsTranslation": false,
+            "disclaimer": "Traduit automatiquement",
+            "originalResponse": "Thank you so much for your wonderful review Claire!"
+          },
+          {
+            "id": "1473179561844173522",
+            "comments": "Nous avons absolument adoré notre séjour dans cet appartement situé dans le quartier de Trastevere, au cœur de Rome. Proche de toutes les attractions et de superbes restaurants. L'espace avait tout ce dont nous pourrions avoir besoin - des équipements complets qui nous ont fait nous sentir chez nous tout en nous donnant cette ambiance italienne authentique que nous espérions. C'était impeccable, décoré avec soin et parfaitement situé pour explorer la ville. La communication avec l'hôte était exceptionnelle - amicale, attentive et toujours rapide à répondre, ce qui a rendu toute l'expérience fluide et sans stress. Nous nous sommes vraiment sentis accueillis et pris en charge. Si vous cherchez un endroit qui allie confort, propreté et charme romain authentique, c'est ici. Nous avons hâte de revenir!",
+            "originalComments": "We absolutely loved our stay at this apartment in Trastevere area in the heart of Rome. Close to every attraction and great Resturant’s. <br/>The space had everything we could possibly need — full amenities that made it feel like home while still giving us that authentic Italian vibe we were hoping for. It was spotless, thoughtfully decorated, and perfectly located to explore the city.<br/>Communication with the host was exceptional — friendly, attentive, and always quick to respond, which made the whole experience seamless and stress-free. We truly felt welcomed and cared for.<br/>If you’re looking for a place that combines comfort, cleanliness, and a real Roman charm, this is it. We can’t wait to come back!",
+            "language": "en",
+            "createdAt": "2025-07-25T14:24:48Z",
+            "localizedDate": "5 days ago",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Yasser",
+              "location": "Burlington, Canada",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/05dc83de-ba3b-4af5-9dc5-003ed9199864.jpg",
+              "isSuperhost": false
+            },
+            "response": "Merci beaucoup Yasser!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traduit automatiquement",
+            "originalResponse": "Thank you very much Yasser!"
+          },
+          {
+            "id": "1408589603673083296",
+            "comments": "Super emplacement à Trastevere ! Beaucoup de restaurants et de bars à proximité. L'appartement était très facile à trouver et l'application a facilité l'entrée et la sortie. Toutes les chambres étaient très propres et correspondaient exactement aux photos.",
+            "originalComments": "Great location in Trastevere! Lots of restaurants and bars nearby. The apartment was very easy to find and the app made it easy to get in/out of. All the rooms were very clean and looked exactly as pictured",
+            "language": "en",
+            "createdAt": "2025-04-27T11:36:05Z",
+            "localizedDate": "April 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Jessica",
+              "location": "",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/a661e3d8-a9af-4f18-bd04-b88202fd1c95.jpeg",
+              "isSuperhost": false
+            },
+            "response": "Merci beaucoup",
+            "collectionTag": "WEEKEND TRIP",
+            "needsTranslation": false,
+            "disclaimer": "Traduit automatiquement",
+            "originalResponse": "Thank you very much"
+          },
+          {
+            "id": "1403616519883670174",
+            "comments": "L'emplacement de cet appartement est excellent, cependant, comparé à d'autres endroits dans cette gamme de prix, cet appartement est trop cher. L'appartement est propre et bien rangé, cependant, il a besoin de mises à jour au niveau de l'ameublement, en particulier les lits. Le canapé est également recouvert de couvertures pour cacher l'usure, ce qui ne semble pas approprié pour un logement \"de luxe\". Les terrasses extérieures sont super, mais les meubles de chacune d'entre elles sont également cassés. Dans l'ensemble, nous avons apprécié notre séjour mais avons été un peu déçus par les logements.",
+            "originalComments": "The location of this apartment is great however compared to other places in this price range this apartment is overpriced. The apartment is clean and tidy however it is in need of furnishing upgrades especially the beds. The couch is also covered with blankets to hide wear which doesn’t seem fitting for a “luxury” accommodation. The outside terraces are great but the furniture in each of those is also broken. Overall we enjoyed our stay but were a little disappointed in the accommodations.",
+            "language": "en",
+            "createdAt": "2025-04-20T14:55:28Z",
+            "localizedDate": "April 2025",
+            "rating": 4,
+            "reviewer": {
+              "firstName": "Megan",
+              "location": "Wilmington, North Carolina",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/d8d45d51-f7aa-4ad1-abd6-05c939f709eb.jpeg",
+              "isSuperhost": false
+            },
+            "response": "Salut Megan, c'est étrange car l'appartement a été récemment rénové, en particulier la salle de bain est toute neuve et tous nos invités sont agréablement surpris par la décoration et les terrasses ! Nous allons essayer de nous améliorer, merci.",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traduit automatiquement",
+            "originalResponse": "Hi Megan, that's strange because the apartment has been recently renovated, especially the bathroom is brand new and all our guests are pleasantly surprised by the decor and the terraces! But we will try to improve, thank you"
+          },
+          {
+            "id": "1303533680701434511",
+            "comments": "Nous avons adoré notre séjour ! En plein centre de Trastevere, à environ 5 minutes à pied du Tibre et de nombreuses attractions clés. Un excellent point de départ pour tout ce que vous voulez faire à Rome. L'appartement était propre et bien équipé - exactement comme annoncé. La communication était toujours rapide et réactive. Je recommande vivement !",
+            "originalComments": "Loved our stay!  Right in the center of Trastevere and about 5 minute walk from the Tiber and so many key attractions. Such a great home base for anything and everything you’d want to do while in Rome. The apartment was clean and well appointed - exactly as advertised. Communication was always prompt and responsive. Cannot recommend enough!",
+            "language": "en",
+            "createdAt": "2024-12-03T12:48:43Z",
+            "localizedDate": "December 2024",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Scott",
+              "location": "Chicago, Illinois",
+              "pictureUrl": "https://a0.muscache.com/im/users/5235956/profile_pic/1361890953/original.jpg",
+              "isSuperhost": false
+            },
+            "response": "Merci beaucoup Scott!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traduit automatiquement",
+            "originalResponse": "Thank you very much Scott!"
+          },
+          {
+            "id": "1239080522196780994",
+            "comments": "Notre séjour avec Roman Holidays à Trastevere était parfait ! Trastevere est un endroit très animé la nuit avec tellement de gens, de bars et de restaurants. Nous étions au cœur de tout cela dans un appartement calme, paisible, confortable et récemment rénové. Cette maison était pratique pour tous les principaux sites, bien aménagée et confortable. Nous aimerions beaucoup séjourner à nouveau avec Roman Holidays !",
+            "originalComments": "Our stay with Roman Holidays in Trastevere was perfect! Trastevere is a very lively night spot with so many people, bars, and restaurants. We were in the heart of all that in a quiet, peaceful, comfortable, recently renovated apartment. This home was convenient to all the major sites, well appointed, and comfortable. We would love to stay with Roman Holidays again!",
+            "language": "en",
+            "createdAt": "2024-09-05T14:31:48Z",
+            "localizedDate": "September 2024",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Hank",
+              "location": "California, United States",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/91e74741-4ee8-46b1-a09f-040ac263b961.jpg",
+              "isSuperhost": false
+            },
+            "response": "Merci beaucoup Hank!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traduit automatiquement",
+            "originalResponse": "Thank you very much Hank!"
+          },
+          {
+            "id": "1228137268190807307",
+            "comments": "Bien situé dans une partie calme de Trastevere, mais à seulement quelques pas de la place principale et d'une excellente sélection de restaurants, du supermarché Conad et de la station de TAXI. Un appartement très spacieux et bien équipé. Salles de bains et cuisine élégantes et avec le plafond en poutres de bois ancien - cela en fait un espace très confortable. Les chambres sont grandes.",
+            "originalComments": "Well located in a quiet part of Trastevere, but still only steps from the main piazza and a great selection of restaurants, the Conad supermarket and TAXI rank.  A very spacious apartment that is well equipped.  Stylish bathrooms and kitchen and with the old wooden beam ceiling - it makes for a very comfortable space.  The bedrooms are large.",
+            "language": "en",
+            "createdAt": "2024-08-21T12:09:31Z",
+            "localizedDate": "August 2024",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Ross",
+              "location": "",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/35d0495b-2ae1-4d2a-9692-89292fabebd9.jpg",
+              "isSuperhost": false
+            },
+            "response": "Merci beaucoup Ross!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traduit automatiquement",
+            "originalResponse": "Thank you very much Ross!"
+          },
+          {
+            "id": "1415851242350117286",
+            "comments": "Emplacement fantastique, lit confortable et superbes salles de bains avec des douches très puissantes.",
+            "originalComments": "Fantastic location, comfortable bed and great bathrooms with very powerful showers",
+            "language": "en",
+            "createdAt": "2025-05-07T12:03:40Z",
+            "localizedDate": "May 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Annabel",
+              "location": "",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/b2fa24ab-7dbc-4c1a-9adc-00cd4fedc74c.jpg",
+              "isSuperhost": false
+            },
+            "response": "Merci beaucoup Annabel!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traduit automatiquement",
+            "originalResponse": "Thank you very much Annabel!"
+          }
+        ],
+        "totalCount": 12,
+        "propertySlug": "fienaroli",
+        "airbnbUrl": "https://www.airbnb.it/rooms/20247826",
+        "fetchedAt": "2025-07-31T00:18:34.423Z"
+      },
+      "de": {
+        "reviews": [
+          {
+            "id": "1474644919525631539",
+            "comments": "Die Wohnung ist größer als es auf den Bildern aussieht. Schöne moderne Küche und 2 volle Schlafzimmer und Badezimmer. Der Zugang war einfach und sobald man die Tür verlässt, findet man allerlei Nachtleben nur einen Block entfernt.",
+            "originalComments": "The apartment is larger than the pictures suggest.  Nice modern kitchen, and 2 full bedrooms and bathrooms.  Access was easy and just walk out your door and there is all sorts of nightlife just a block away.",
+            "language": "en",
+            "createdAt": "2025-07-27T14:56:13Z",
+            "localizedDate": "3 days ago",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Nathan",
+              "location": "Ann Arbor, Michigan",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/aff2480d-e2a5-43ad-ab3e-69854162434d.jpg",
+              "isSuperhost": false
+            },
+            "response": "Vielen Dank Nathan!",
+            "collectionTag": "WEEKEND TRIP",
+            "needsTranslation": false,
+            "disclaimer": "Automatisch übersetzt",
+            "originalResponse": "Thank you very much Nathan!"
+          },
+          {
+            "id": "1418109483734409829",
+            "comments": "Wir haben unseren 3-tägigen Aufenthalt hier genossen. Die Wohnung befindet sich in einem lebendigen, besonderen Viertel mit spätabendlichen Bars/Restaurants usw., aber es war toll, Essen und Trinken leicht zugänglich zu haben. Das Recycling auf der Straße war früh am Morgen, aber das ist überall in der Stadt zu finden. Die Inneneinrichtung der Wohnung war eklektisch und spaßig. Es gab viel Stauraum zum Aufhängen von Kleidung. Werden auf jeden Fall wieder hier übernachten.",
+            "originalComments": "Enjoyed our 3 night stay here. Apartment is located in a very lively, niche neighborhood, late night bars/restaurants etc., but having food and drink easily accessible was great. Recycling on street was early morning, but that is found anywhere in the city. <br/>Apartment interior was eclectic and fun. Great storage for hanging clothes. Will definitely stay again.",
+            "language": "en",
+            "createdAt": "2025-05-10T14:50:24Z",
+            "localizedDate": "May 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "I",
+              "location": "New Jersey, United States",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/fd8f6c33-fa7e-43fb-bc65-ecbc4989593f.jpg",
+              "isSuperhost": false
+            },
+            "response": "Vielen Dank!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Automatisch übersetzt",
+            "originalResponse": "Thank you very much!"
+          },
+          {
+            "id": "1460776198132690690",
+            "comments": "Fantastische Wohnung in unserem Lieblingsviertel. Das Layout ist funktional und komfortabel. Riccardo war sehr reaktionsschnell - als wir ein Problem mit der Klimaanlage hatten, schickte er noch am selben Nachmittag einen Techniker vorbei.",
+            "originalComments": "Fantastic apartment in our favorite neighborhood. The layout is functional and comfortable. Riccardo was very responsive—when we had an AC issue, he had a technician there that same afternoon.",
+            "language": "en",
+            "createdAt": "2025-07-08T11:41:32Z",
+            "localizedDate": "3 weeks ago",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Axel",
+              "location": "New York, New York",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/17b24de3-d847-490b-81aa-4412c64ce5d5.jpg",
+              "isSuperhost": false
+            },
+            "response": "Vielen Dank Axel!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Automatisch übersetzt",
+            "originalResponse": "Thank you very much Axel!"
+          },
+          {
+            "id": "1430381802816820112",
+            "comments": "Wir haben unseren Aufenthalt hier geliebt. Die Unterkunft war wunderschön und der Gastgeber war sehr aufmerksam und reagierte schnell auf alle Fragen. Die Nachbarschaft war fantastisch, viele Restaurants waren zu Fuß erreichbar (der Gastgeber hat auch eine tolle Liste mit Empfehlungen hinterlassen!) Ich würde diese Unterkunft wärmstens empfehlen.",
+            "originalComments": "We loved our stay here.  Property was beautiful and the host was very attentive and responsive to any questions.  the neighborhood was amazing, walkable to many restaurants (also the host left a great list of recommendations!) I would recommend this property highly.",
+            "language": "en",
+            "createdAt": "2025-05-27T13:13:18Z",
+            "localizedDate": "May 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Sheila",
+              "location": "New York, New York",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/02c972f1-d52b-4c1b-bf38-150b8b257217.jpg",
+              "isSuperhost": false
+            },
+            "response": "Grazie Sheila",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Automatisch übersetzt",
+            "originalResponse": "Thank you Sheila"
+          },
+          {
+            "id": "1378201106292838080",
+            "comments": "Fantastischer Ort zum Übernachten, etwas abseits der wirklich belebten Teile von Trastevere, aber in der Nähe von Restaurants und alles ist zu Fuß erreichbar. Der Gastgeber war großartig, proaktive Kommunikation und tolle Empfehlungen für Restaurants und Gepäckaufbewahrung. Hat einen Fahrservice für uns vom Flughafen organisiert, sodass wir nicht warten mussten. Wir kommen auf jeden Fall wieder, hoffentlich für länger als ein Wochenende.",
+            "originalComments": "Fabulous place to stay, just off the really busy parts of Trastevere but close to restaurants and everything walkable. Host was great, proactive communications and great recommendations for restaurants and luggage storage. Set up driver service for us from airport so no waiting. <br/>We will definitely be back , hopefully for longer than a weekend.",
+            "language": "en",
+            "createdAt": "2025-03-16T13:19:34Z",
+            "localizedDate": "March 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Claire",
+              "location": "Houston, Texas",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/6a7a3595-e6c1-461f-be7a-fec86bdd2b28.jpg",
+              "isSuperhost": false
+            },
+            "response": "Vielen Dank für Ihre wundervolle Bewertung, Claire!",
+            "collectionTag": "WEEKEND TRIP",
+            "needsTranslation": false,
+            "disclaimer": "Automatisch übersetzt",
+            "originalResponse": "Thank you so much for your wonderful review Claire!"
+          },
+          {
+            "id": "1473179561844173522",
+            "comments": "Wir haben unseren Aufenthalt in diesem Apartment im Viertel Trastevere im Herzen Roms absolut geliebt. In der Nähe jeder Sehenswürdigkeit und tollen Restaurants. Die Unterkunft hatte alles, was wir brauchten - voll ausgestattet, sodass es sich wie zu Hause anfühlte und uns dennoch das authentische italienische Flair verlieh, das wir uns erhofft hatten. Es war makellos, liebevoll eingerichtet und perfekt gelegen, um die Stadt zu erkunden. Die Kommunikation mit dem Gastgeber war außergewöhnlich - freundlich, aufmerksam und immer schnell in der Antwort, was das gesamte Erlebnis reibungslos und stressfrei machte. Wir fühlten uns wirklich willkommen und gut aufgehoben. Wenn Sie nach einem Ort suchen, der Komfort, Sauberkeit und echten römischen Charme vereint, dann sind Sie hier richtig. Wir können es kaum erwarten, wiederzukommen!",
+            "originalComments": "We absolutely loved our stay at this apartment in Trastevere area in the heart of Rome. Close to every attraction and great Resturant’s. <br/>The space had everything we could possibly need — full amenities that made it feel like home while still giving us that authentic Italian vibe we were hoping for. It was spotless, thoughtfully decorated, and perfectly located to explore the city.<br/>Communication with the host was exceptional — friendly, attentive, and always quick to respond, which made the whole experience seamless and stress-free. We truly felt welcomed and cared for.<br/>If you’re looking for a place that combines comfort, cleanliness, and a real Roman charm, this is it. We can’t wait to come back!",
+            "language": "en",
+            "createdAt": "2025-07-25T14:24:48Z",
+            "localizedDate": "5 days ago",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Yasser",
+              "location": "Burlington, Canada",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/05dc83de-ba3b-4af5-9dc5-003ed9199864.jpg",
+              "isSuperhost": false
+            },
+            "response": "Vielen Dank Yasser!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Automatisch übersetzt",
+            "originalResponse": "Thank you very much Yasser!"
+          },
+          {
+            "id": "1408589603673083296",
+            "comments": "Tolle Lage in Trastevere! Viele Restaurants und Bars in der Nähe. Die Wohnung war sehr einfach zu finden und die App hat es leicht gemacht, rein- und rauszukommen. Alle Zimmer waren sehr sauber und sahen genau so aus wie auf den Bildern.",
+            "originalComments": "Great location in Trastevere! Lots of restaurants and bars nearby. The apartment was very easy to find and the app made it easy to get in/out of. All the rooms were very clean and looked exactly as pictured",
+            "language": "en",
+            "createdAt": "2025-04-27T11:36:05Z",
+            "localizedDate": "April 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Jessica",
+              "location": "",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/a661e3d8-a9af-4f18-bd04-b88202fd1c95.jpeg",
+              "isSuperhost": false
+            },
+            "response": "Vielen Dank!",
+            "collectionTag": "WEEKEND TRIP",
+            "needsTranslation": false,
+            "disclaimer": "Automatisch übersetzt",
+            "originalResponse": "Thank you very much"
+          },
+          {
+            "id": "1403616519883670174",
+            "comments": "Die Lage dieser Wohnung ist großartig, aber im Vergleich zu anderen Unterkünften in dieser Preisklasse ist diese Wohnung überteuert. Die Wohnung ist sauber und ordentlich, aber sie könnte eine Renovierung der Einrichtung gebrauchen, besonders bei den Betten. Das Sofa ist mit Decken bedeckt, um Abnutzungserscheinungen zu verbergen, was nicht ganz angemessen für eine \"Luxus\"-Unterkunft erscheint. Die Außenterrassen sind toll, aber die Möbel dort sind auch kaputt. Insgesamt haben wir unseren Aufenthalt genossen, waren aber etwas enttäuscht von der Unterkunft.",
+            "originalComments": "The location of this apartment is great however compared to other places in this price range this apartment is overpriced. The apartment is clean and tidy however it is in need of furnishing upgrades especially the beds. The couch is also covered with blankets to hide wear which doesn’t seem fitting for a “luxury” accommodation. The outside terraces are great but the furniture in each of those is also broken. Overall we enjoyed our stay but were a little disappointed in the accommodations.",
+            "language": "en",
+            "createdAt": "2025-04-20T14:55:28Z",
+            "localizedDate": "April 2025",
+            "rating": 4,
+            "reviewer": {
+              "firstName": "Megan",
+              "location": "Wilmington, North Carolina",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/d8d45d51-f7aa-4ad1-abd6-05c939f709eb.jpeg",
+              "isSuperhost": false
+            },
+            "response": "Hallo Megan, das ist seltsam, denn die Wohnung wurde vor kurzem renoviert, insbesondere das Badezimmer ist ganz neu und alle unsere Gäste sind angenehm überrascht von der Einrichtung und den Terrassen! Wir werden jedoch versuchen, uns zu verbessern. Vielen Dank.",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Automatisch übersetzt",
+            "originalResponse": "Hi Megan, that's strange because the apartment has been recently renovated, especially the bathroom is brand new and all our guests are pleasantly surprised by the decor and the terraces! But we will try to improve, thank you"
+          },
+          {
+            "id": "1303533680701434511",
+            "comments": "Wir haben unseren Aufenthalt geliebt! Direkt im Zentrum von Trastevere und etwa 5 Minuten zu Fuß vom Tiber und vielen wichtigen Sehenswürdigkeiten entfernt. Ein großartiger Ausgangspunkt für alles, was man in Rom tun möchte. Die Wohnung war sauber und gut ausgestattet - genau wie angekündigt. Die Kommunikation war immer prompt und zuverlässig. Kann es nicht genug empfehlen!",
+            "originalComments": "Loved our stay!  Right in the center of Trastevere and about 5 minute walk from the Tiber and so many key attractions. Such a great home base for anything and everything you’d want to do while in Rome. The apartment was clean and well appointed - exactly as advertised. Communication was always prompt and responsive. Cannot recommend enough!",
+            "language": "en",
+            "createdAt": "2024-12-03T12:48:43Z",
+            "localizedDate": "December 2024",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Scott",
+              "location": "Chicago, Illinois",
+              "pictureUrl": "https://a0.muscache.com/im/users/5235956/profile_pic/1361890953/original.jpg",
+              "isSuperhost": false
+            },
+            "response": "Vielen Dank, Scott!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Automatisch übersetzt",
+            "originalResponse": "Thank you very much Scott!"
+          },
+          {
+            "id": "1239080522196780994",
+            "comments": "Unser Aufenthalt bei Roman Holidays in Trastevere war perfekt! Trastevere ist ein sehr lebendiger Ort mit vielen Menschen, Bars und Restaurants. Wir waren mitten im Geschehen in einem ruhigen, friedlichen, komfortablen und kürzlich renovierten Apartment. Dieses Zuhause war bequem zu allen wichtigen Sehenswürdigkeiten, gut ausgestattet und gemütlich. Wir würden gerne wieder bei Roman Holidays übernachten!",
+            "originalComments": "Our stay with Roman Holidays in Trastevere was perfect! Trastevere is a very lively night spot with so many people, bars, and restaurants. We were in the heart of all that in a quiet, peaceful, comfortable, recently renovated apartment. This home was convenient to all the major sites, well appointed, and comfortable. We would love to stay with Roman Holidays again!",
+            "language": "en",
+            "createdAt": "2024-09-05T14:31:48Z",
+            "localizedDate": "September 2024",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Hank",
+              "location": "California, United States",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/91e74741-4ee8-46b1-a09f-040ac263b961.jpg",
+              "isSuperhost": false
+            },
+            "response": "Vielen Dank, Hank!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Automatisch übersetzt",
+            "originalResponse": "Thank you very much Hank!"
+          },
+          {
+            "id": "1228137268190807307",
+            "comments": "Gut gelegen in einem ruhigen Teil von Trastevere, aber dennoch nur wenige Schritte vom Hauptplatz entfernt und einer tollen Auswahl an Restaurants, dem Conad-Supermarkt und dem Taxistand. Eine sehr geräumige Wohnung, die gut ausgestattet ist. Stilvolle Badezimmer und Küche und mit der alten Holzbalkendecke - es schafft einen sehr gemütlichen Raum. Die Schlafzimmer sind groß.",
+            "originalComments": "Well located in a quiet part of Trastevere, but still only steps from the main piazza and a great selection of restaurants, the Conad supermarket and TAXI rank.  A very spacious apartment that is well equipped.  Stylish bathrooms and kitchen and with the old wooden beam ceiling - it makes for a very comfortable space.  The bedrooms are large.",
+            "language": "en",
+            "createdAt": "2024-08-21T12:09:31Z",
+            "localizedDate": "August 2024",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Ross",
+              "location": "",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/35d0495b-2ae1-4d2a-9692-89292fabebd9.jpg",
+              "isSuperhost": false
+            },
+            "response": "Vielen Dank, Ross!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Automatisch übersetzt",
+            "originalResponse": "Thank you very much Ross!"
+          },
+          {
+            "id": "1415851242350117286",
+            "comments": "Fantastische Lage, bequemes Bett und tolle Badezimmer mit sehr kraftvollen Duschen.",
+            "originalComments": "Fantastic location, comfortable bed and great bathrooms with very powerful showers",
+            "language": "en",
+            "createdAt": "2025-05-07T12:03:40Z",
+            "localizedDate": "May 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Annabel",
+              "location": "",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/b2fa24ab-7dbc-4c1a-9adc-00cd4fedc74c.jpg",
+              "isSuperhost": false
+            },
+            "response": "Vielen Dank Annabel!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Automatisch übersetzt",
+            "originalResponse": "Thank you very much Annabel!"
+          }
+        ],
+        "totalCount": 12,
+        "propertySlug": "fienaroli",
+        "airbnbUrl": "https://www.airbnb.it/rooms/20247826",
+        "fetchedAt": "2025-07-31T00:18:34.423Z"
+      },
+      "es": {
+        "reviews": [
+          {
+            "id": "1474644919525631539",
+            "comments": "El apartamento es más grande de lo que sugieren las fotos. Bonita cocina moderna, y 2 habitaciones y baños completos. El acceso fue fácil y al salir por la puerta, hay todo tipo de vida nocturna a solo una cuadra de distancia.",
+            "originalComments": "The apartment is larger than the pictures suggest.  Nice modern kitchen, and 2 full bedrooms and bathrooms.  Access was easy and just walk out your door and there is all sorts of nightlife just a block away.",
+            "language": "en",
+            "createdAt": "2025-07-27T14:56:13Z",
+            "localizedDate": "3 days ago",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Nathan",
+              "location": "Ann Arbor, Michigan",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/aff2480d-e2a5-43ad-ab3e-69854162434d.jpg",
+              "isSuperhost": false
+            },
+            "response": "¡Muchas gracias Nathan!",
+            "collectionTag": "WEEKEND TRIP",
+            "needsTranslation": false,
+            "disclaimer": "Traducido automáticamente",
+            "originalResponse": "Thank you very much Nathan!"
+          },
+          {
+            "id": "1418109483734409829",
+            "comments": "Disfrutamos de nuestra estancia de 3 noches aquí. El apartamento está ubicado en un barrio muy animado y especializado, con bares y restaurantes abiertos hasta tarde, pero tener comida y bebida fácilmente accesibles fue genial. La recolección de reciclaje en la calle era temprano por la mañana, pero eso se encuentra en cualquier lugar de la ciudad. El interior del apartamento era ecléctico y divertido. Buen almacenamiento para colgar la ropa. Definitivamente volveremos a hospedarnos aquí.",
+            "originalComments": "Enjoyed our 3 night stay here. Apartment is located in a very lively, niche neighborhood, late night bars/restaurants etc., but having food and drink easily accessible was great. Recycling on street was early morning, but that is found anywhere in the city. <br/>Apartment interior was eclectic and fun. Great storage for hanging clothes. Will definitely stay again.",
+            "language": "en",
+            "createdAt": "2025-05-10T14:50:24Z",
+            "localizedDate": "May 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "I",
+              "location": "New Jersey, United States",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/fd8f6c33-fa7e-43fb-bc65-ecbc4989593f.jpg",
+              "isSuperhost": false
+            },
+            "response": "¡Muchas gracias!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traducido automáticamente",
+            "originalResponse": "Thank you very much!"
+          },
+          {
+            "id": "1460776198132690690",
+            "comments": "Fantástico apartamento en nuestro barrio favorito. La distribución es funcional y cómoda. Riccardo fue muy receptivo, cuando tuvimos un problema con el aire acondicionado, envió a un técnico esa misma tarde.",
+            "originalComments": "Fantastic apartment in our favorite neighborhood. The layout is functional and comfortable. Riccardo was very responsive—when we had an AC issue, he had a technician there that same afternoon.",
+            "language": "en",
+            "createdAt": "2025-07-08T11:41:32Z",
+            "localizedDate": "3 weeks ago",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Axel",
+              "location": "New York, New York",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/17b24de3-d847-490b-81aa-4412c64ce5d5.jpg",
+              "isSuperhost": false
+            },
+            "response": "¡Muchas gracias Axel!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traducido automáticamente",
+            "originalResponse": "Thank you very much Axel!"
+          },
+          {
+            "id": "1430381802816820112",
+            "comments": "Nos encantó nuestra estancia aquí. La propiedad era hermosa y el anfitrión fue muy atento y receptivo a cualquier pregunta. El vecindario era increíble, se podía ir caminando a muchos restaurantes (¡también el anfitrión dejó una gran lista de recomendaciones!) Recomendaría esta propiedad altamente.",
+            "originalComments": "We loved our stay here.  Property was beautiful and the host was very attentive and responsive to any questions.  the neighborhood was amazing, walkable to many restaurants (also the host left a great list of recommendations!) I would recommend this property highly.",
+            "language": "en",
+            "createdAt": "2025-05-27T13:13:18Z",
+            "localizedDate": "May 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Sheila",
+              "location": "New York, New York",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/02c972f1-d52b-4c1b-bf38-150b8b257217.jpg",
+              "isSuperhost": false
+            },
+            "response": "Gracias, Sheila.",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traducido automáticamente",
+            "originalResponse": "Thank you Sheila"
+          },
+          {
+            "id": "1378201106292838080",
+            "comments": "Fabuloso lugar para alojarse, justo a las afueras de las partes muy concurridas de Trastevere pero cerca de restaurantes y todo accesible a pie. El anfitrión fue genial, con comunicaciones proactivas y excelentes recomendaciones para restaurantes y almacenamiento de equipaje. Organizó un servicio de conductor para nosotros desde el aeropuerto, por lo que no tuvimos que esperar. Definitivamente volveremos, ¡esperamos que por más tiempo que un fin de semana!",
+            "originalComments": "Fabulous place to stay, just off the really busy parts of Trastevere but close to restaurants and everything walkable. Host was great, proactive communications and great recommendations for restaurants and luggage storage. Set up driver service for us from airport so no waiting. <br/>We will definitely be back , hopefully for longer than a weekend.",
+            "language": "en",
+            "createdAt": "2025-03-16T13:19:34Z",
+            "localizedDate": "March 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Claire",
+              "location": "Houston, Texas",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/6a7a3595-e6c1-461f-be7a-fec86bdd2b28.jpg",
+              "isSuperhost": false
+            },
+            "response": "¡Muchas gracias por tu maravillosa reseña, Claire!",
+            "collectionTag": "WEEKEND TRIP",
+            "needsTranslation": false,
+            "disclaimer": "Traducido automáticamente",
+            "originalResponse": "Thank you so much for your wonderful review Claire!"
+          },
+          {
+            "id": "1473179561844173522",
+            "comments": "Nos encantó absolutamente nuestra estancia en este apartamento en la zona de Trastevere, en el corazón de Roma. Cerca de todas las atracciones y excelentes restaurantes. El espacio tenía todo lo que podríamos necesitar, con todas las comodidades que nos hicieron sentir como en casa y aún así nos dieron esa auténtica vibra italiana que esperábamos. Estaba impecable, decorado con atención y perfectamente ubicado para explorar la ciudad. La comunicación con el anfitrión fue excepcional, amable, atenta y siempre rápida en responder, lo que hizo que toda la experiencia fuera fluida y sin estrés. Realmente nos sentimos bienvenidos y cuidados. Si buscas un lugar que combine comodidad, limpieza y un verdadero encanto romano, este es el lugar. ¡No podemos esperar a volver!",
+            "originalComments": "We absolutely loved our stay at this apartment in Trastevere area in the heart of Rome. Close to every attraction and great Resturant’s. <br/>The space had everything we could possibly need — full amenities that made it feel like home while still giving us that authentic Italian vibe we were hoping for. It was spotless, thoughtfully decorated, and perfectly located to explore the city.<br/>Communication with the host was exceptional — friendly, attentive, and always quick to respond, which made the whole experience seamless and stress-free. We truly felt welcomed and cared for.<br/>If you’re looking for a place that combines comfort, cleanliness, and a real Roman charm, this is it. We can’t wait to come back!",
+            "language": "en",
+            "createdAt": "2025-07-25T14:24:48Z",
+            "localizedDate": "5 days ago",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Yasser",
+              "location": "Burlington, Canada",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/05dc83de-ba3b-4af5-9dc5-003ed9199864.jpg",
+              "isSuperhost": false
+            },
+            "response": "¡Muchas gracias Yasser!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traducido automáticamente",
+            "originalResponse": "Thank you very much Yasser!"
+          },
+          {
+            "id": "1408589603673083296",
+            "comments": "¡Excelente ubicación en Trastevere! Muchos restaurantes y bares cercanos. El apartamento era muy fácil de encontrar y la aplicación facilitó entrar y salir. Todas las habitaciones estaban muy limpias y se veían exactamente como en las fotos.",
+            "originalComments": "Great location in Trastevere! Lots of restaurants and bars nearby. The apartment was very easy to find and the app made it easy to get in/out of. All the rooms were very clean and looked exactly as pictured",
+            "language": "en",
+            "createdAt": "2025-04-27T11:36:05Z",
+            "localizedDate": "April 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Jessica",
+              "location": "",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/a661e3d8-a9af-4f18-bd04-b88202fd1c95.jpeg",
+              "isSuperhost": false
+            },
+            "response": "Muchas gracias",
+            "collectionTag": "WEEKEND TRIP",
+            "needsTranslation": false,
+            "disclaimer": "Traducido automáticamente",
+            "originalResponse": "Thank you very much"
+          },
+          {
+            "id": "1403616519883670174",
+            "comments": "La ubicación de este apartamento es genial, sin embargo, en comparación con otros lugares en este rango de precios, este apartamento está sobrevalorado. El apartamento está limpio y ordenado, sin embargo, necesita mejoras en los muebles, especialmente las camas. El sofá también está cubierto con mantas para ocultar el desgaste, lo cual no parece apropiado para un alojamiento de \"lujo\". Las terrazas exteriores son geniales, pero los muebles en cada una de ellas también están rotos. En general, disfrutamos de nuestra estancia, pero nos sentimos un poco decepcionados con el alojamiento.",
+            "originalComments": "The location of this apartment is great however compared to other places in this price range this apartment is overpriced. The apartment is clean and tidy however it is in need of furnishing upgrades especially the beds. The couch is also covered with blankets to hide wear which doesn’t seem fitting for a “luxury” accommodation. The outside terraces are great but the furniture in each of those is also broken. Overall we enjoyed our stay but were a little disappointed in the accommodations.",
+            "language": "en",
+            "createdAt": "2025-04-20T14:55:28Z",
+            "localizedDate": "April 2025",
+            "rating": 4,
+            "reviewer": {
+              "firstName": "Megan",
+              "location": "Wilmington, North Carolina",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/d8d45d51-f7aa-4ad1-abd6-05c939f709eb.jpeg",
+              "isSuperhost": false
+            },
+            "response": "Hola Megan, eso es extraño porque el apartamento ha sido renovado recientemente, especialmente el baño que es completamente nuevo, ¡y todos nuestros huéspedes suelen quedar gratamente sorprendidos por la decoración y las terrazas! De todas formas, intentaremos mejorar. Gracias.",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traducido automáticamente",
+            "originalResponse": "Hi Megan, that's strange because the apartment has been recently renovated, especially the bathroom is brand new and all our guests are pleasantly surprised by the decor and the terraces! But we will try to improve, thank you"
+          },
+          {
+            "id": "1303533680701434511",
+            "comments": "¡Nos encantó nuestra estancia! Justo en el centro de Trastevere y a unos 5 minutos a pie del Tíber y de tantas atracciones clave. Un excelente punto de partida para todo lo que quieras hacer mientras estés en Roma. El apartamento estaba limpio y bien equipado, exactamente como se anunciaba. La comunicación siempre fue rápida y receptiva. ¡No podemos recomendarlo lo suficiente!",
+            "originalComments": "Loved our stay!  Right in the center of Trastevere and about 5 minute walk from the Tiber and so many key attractions. Such a great home base for anything and everything you’d want to do while in Rome. The apartment was clean and well appointed - exactly as advertised. Communication was always prompt and responsive. Cannot recommend enough!",
+            "language": "en",
+            "createdAt": "2024-12-03T12:48:43Z",
+            "localizedDate": "December 2024",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Scott",
+              "location": "Chicago, Illinois",
+              "pictureUrl": "https://a0.muscache.com/im/users/5235956/profile_pic/1361890953/original.jpg",
+              "isSuperhost": false
+            },
+            "response": "¡Muchas gracias Scott!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traducido automáticamente",
+            "originalResponse": "Thank you very much Scott!"
+          },
+          {
+            "id": "1239080522196780994",
+            "comments": "¡Nuestra estancia con Roman Holidays en Trastevere fue perfecta! Trastevere es un lugar muy animado por la noche con mucha gente, bares y restaurantes. Estábamos en el corazón de todo eso en un apartamento tranquilo, pacífico, cómodo y recientemente renovado. Esta casa era conveniente para todos los sitios principales, bien equipada y cómoda. ¡Nos encantaría quedarnos de nuevo con Roman Holidays!",
+            "originalComments": "Our stay with Roman Holidays in Trastevere was perfect! Trastevere is a very lively night spot with so many people, bars, and restaurants. We were in the heart of all that in a quiet, peaceful, comfortable, recently renovated apartment. This home was convenient to all the major sites, well appointed, and comfortable. We would love to stay with Roman Holidays again!",
+            "language": "en",
+            "createdAt": "2024-09-05T14:31:48Z",
+            "localizedDate": "September 2024",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Hank",
+              "location": "California, United States",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/91e74741-4ee8-46b1-a09f-040ac263b961.jpg",
+              "isSuperhost": false
+            },
+            "response": "¡Muchas gracias Hank!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traducido automáticamente",
+            "originalResponse": "Thank you very much Hank!"
+          },
+          {
+            "id": "1228137268190807307",
+            "comments": "Bien ubicado en una parte tranquila de Trastevere, pero aún a solo unos pasos de la plaza principal y una excelente selección de restaurantes, el supermercado Conad y la parada de taxis. Un apartamento muy espacioso y bien equipado. Baños y cocina elegantes y con el antiguo techo de vigas de madera, lo que lo convierte en un espacio muy cómodo. Las habitaciones son amplias.",
+            "originalComments": "Well located in a quiet part of Trastevere, but still only steps from the main piazza and a great selection of restaurants, the Conad supermarket and TAXI rank.  A very spacious apartment that is well equipped.  Stylish bathrooms and kitchen and with the old wooden beam ceiling - it makes for a very comfortable space.  The bedrooms are large.",
+            "language": "en",
+            "createdAt": "2024-08-21T12:09:31Z",
+            "localizedDate": "August 2024",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Ross",
+              "location": "",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/35d0495b-2ae1-4d2a-9692-89292fabebd9.jpg",
+              "isSuperhost": false
+            },
+            "response": "¡Muchas gracias Ross!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traducido automáticamente",
+            "originalResponse": "Thank you very much Ross!"
+          },
+          {
+            "id": "1415851242350117286",
+            "comments": "Ubicación fantástica, cama cómoda y baños geniales con duchas muy potentes.",
+            "originalComments": "Fantastic location, comfortable bed and great bathrooms with very powerful showers",
+            "language": "en",
+            "createdAt": "2025-05-07T12:03:40Z",
+            "localizedDate": "May 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Annabel",
+              "location": "",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/b2fa24ab-7dbc-4c1a-9adc-00cd4fedc74c.jpg",
+              "isSuperhost": false
+            },
+            "response": "¡Muchas gracias Annabel!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traducido automáticamente",
+            "originalResponse": "Thank you very much Annabel!"
+          }
+        ],
+        "totalCount": 12,
+        "propertySlug": "fienaroli",
+        "airbnbUrl": "https://www.airbnb.it/rooms/20247826",
+        "fetchedAt": "2025-07-31T00:18:34.423Z"
+      }
+    },
+    "moro": {
+      "en": {
+        "reviews": [
+          {
+            "id": "1384684869771838033",
+            "comments": "We loved our stay! The location is perfect and the apartment had everything we needed. The entire apartment was spotless and very clean. Our host, Riccardo, was very responsive, arranged a driver, and gave excellent restaurant recommendations. While the apartment is in an area of town that is lively and festive at night, it didn't bother us at all. We would gladly stay there again. Thanks again, Riccardo!",
+            "originalComments": "We loved our stay! The location is perfect and the apartment had everything we needed. The entire apartment was spotless and very clean. Our host, Riccardo, was very responsive, arranged a driver, and gave excellent restaurant recommendations. While the apartment is in an area of town that is lively and festive at night, it didn't bother us at all. We would gladly stay there again. Thanks again, Riccardo!",
+            "language": "en",
+            "createdAt": "2025-03-25T12:01:39Z",
+            "localizedDate": "March 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Beth",
+              "location": "Atlanta, Georgia",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/57a26678-c63e-425e-b1ad-be6fe3d2e435.jpg",
+              "isSuperhost": false
+            },
+            "response": "Thank you so much Beth!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": ""
+          },
+          {
+            "id": "1460133606681188004",
+            "comments": "A fantastic stay in Trastevere, if you want to be in the hustle and bustle this is the spot.<br/>The apartment is curated beautifully and designed extremely well, it is very spacious and comfortable, the fixtures and fittings are all modern and functional.<br/>The WiFi struggled to get to the bedroom occasionally perhaps the extension needs to be added to the overall instructions.<br/>We would absolutely book again and the host was very polite and helpful.",
+            "originalComments": "A fantastic stay in Trastevere, if you want to be in the hustle and bustle this is the spot.<br/>The apartment is curated beautifully and designed extremely well, it is very spacious and comfortable, the fixtures and fittings are all modern and functional.<br/>The WiFi struggled to get to the bedroom occasionally perhaps the extension needs to be added to the overall instructions.<br/>We would absolutely book again and the host was very polite and helpful.",
+            "language": "en",
+            "createdAt": "2025-07-07T14:24:49Z",
+            "localizedDate": "3 weeks ago",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Sam",
+              "location": "",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/75b230f3-879a-41a3-812d-d7fa8edbb462.jpeg",
+              "isSuperhost": false
+            },
+            "response": "Thank you so much Sam, it was a great pleasure to have you as guests. As you could see, the smart TV works perfectly in the bedroom so this issue with the WIFI is totally new to me, but I will make the necessary checks and will definitely consider the possibility of installing a repeater! Thank you for the very appreciated note, I hope to have you back as guests in Rome soon!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": ""
+          },
+          {
+            "id": "1454247717628234749",
+            "comments": "Delight! The apartment in the heart of Trastevere is the best location! Clean, spacious— everything is as in the photo.<br/>The main advantage: you opened the door and you were already in the midst of Roman life! Bars, restaurants, atmosphere — everything is right on the doorstep. At the same time, all the main attractions (Colosseum, Pantheon, etc.) are within easy walking distance.<br/>An ideal base for those who want to be in the center of events and walk. 10/10, I recommend it!",
+            "originalComments": "Delight! The apartment in the heart of Trastevere is the best location! Clean, spacious— everything is as in the photo.<br/>The main advantage: you opened the door and you were already in the midst of Roman life! Bars, restaurants, atmosphere — everything is right on the doorstep. At the same time, all the main attractions (Colosseum, Pantheon, etc.) are within easy walking distance.<br/>An ideal base for those who want to be in the center of events and walk. 10/10, I recommend it!",
+            "language": "en",
+            "createdAt": "2025-06-29T11:30:37Z",
+            "localizedDate": "June 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Alla",
+              "location": "",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/8506c745-5ae3-41c9-888a-690832efd9fd.jpeg",
+              "isSuperhost": false
+            },
+            "response": "Thank you so much Alla!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": ""
+          },
+          {
+            "id": "1427436677158333189",
+            "comments": "Great modern apartment in the heart of Trastevere. I’m not sure if it was unique to the time we were there, but a few nights there was loud music playing til 12am that made it difficult to sleep. But if you want to be right in the middle of the action, this is a great place to be.",
+            "originalComments": "Great modern apartment in the heart of Trastevere. I’m not sure if it was unique to the time we were there, but a few nights there was loud music playing til 12am that made it difficult to sleep. But if you want to be right in the middle of the action, this is a great place to be.",
+            "language": "en",
+            "createdAt": "2025-05-23T11:41:52Z",
+            "localizedDate": "May 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Katelyn",
+              "location": "Denver, Colorado",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/ffc922bd-8911-43ca-a38f-beae82fe028c.jpg",
+              "isSuperhost": false
+            },
+            "response": "Thank you very much Katelyn!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": ""
+          },
+          {
+            "id": "1392689205490638739",
+            "comments": "Loved our stay at the Luxury Trastevere Airbnb! Charming, spacious, felt like I was staying in a museum. It was in the heart of everything. Not the quietest, but if you like action this is where it’s at. We will definitely be coming back again. Also the host was very responsive and just overall really nice.",
+            "originalComments": "Loved our stay at the Luxury Trastevere Airbnb! Charming, spacious, felt like I was staying in a museum. It was in the heart of everything. Not the quietest, but if you like action this is where it’s at. We will definitely be coming back again. Also the host was very responsive and just overall really nice.",
+            "language": "en",
+            "createdAt": "2025-04-05T13:04:50Z",
+            "localizedDate": "April 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Leetal",
+              "location": "Los Angeles, California",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/71e3c2e2-330b-48ec-b8a5-c697ffc0ba7e.jpg",
+              "isSuperhost": false
+            },
+            "response": "Thank you so much Leetal!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": ""
+          },
+          {
+            "id": "1361576562779874362",
+            "comments": "Location was great for what we wanted, fantastic food, cafe, restaurants and very walkable! We had a great time and the host was responsive and very helpful. Would definitely recommend and would stay here again!",
+            "originalComments": "Location was great for what we wanted, fantastic food, cafe, restaurants and very walkable! We had a great time and the host was responsive and very helpful. Would definitely recommend and would stay here again!",
+            "language": "en",
+            "createdAt": "2025-02-21T14:49:34Z",
+            "localizedDate": "February 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Janae",
+              "location": "Philadelphia, Pennsylvania",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/1616b6b9-48e3-4e80-9d99-13adbccf753f.jpg",
+              "isSuperhost": false
+            },
+            "response": "Thank you so much for this review!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": ""
+          }
+        ],
+        "totalCount": 6,
+        "propertySlug": "moro",
+        "airbnbUrl": "https://www.airbnb.it/rooms/998346242016693375",
+        "fetchedAt": "2025-07-31T00:18:22.720Z"
+      },
+      "it": {
+        "reviews": [
+          {
+            "id": "1384684869771838033",
+            "comments": "Abbiamo adorato il nostro soggiorno! La posizione è perfetta e l'appartamento aveva tutto ciò di cui avevamo bisogno. L'intero appartamento era impeccabile e molto pulito. Il nostro host, Riccardo, è stato molto reattivo, ha organizzato un autista e ci ha dato ottime raccomandazioni per ristoranti. Anche se l'appartamento si trova in una zona della città vivace e festosa di notte, non ci ha infastidito affatto. Ci piacerebbe tornarci volentieri. Grazie ancora, Riccardo!",
+            "originalComments": "We loved our stay! The location is perfect and the apartment had everything we needed. The entire apartment was spotless and very clean. Our host, Riccardo, was very responsive, arranged a driver, and gave excellent restaurant recommendations. While the apartment is in an area of town that is lively and festive at night, it didn't bother us at all. We would gladly stay there again. Thanks again, Riccardo!",
+            "language": "en",
+            "createdAt": "2025-03-25T12:01:39Z",
+            "localizedDate": "marzo 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Beth",
+              "location": "Atlanta, Georgia",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/57a26678-c63e-425e-b1ad-be6fe3d2e435.jpg",
+              "isSuperhost": false
+            },
+            "response": "Grazie mille Beth!",
+            "collectionTag": null,
+            "needsTranslation": true,
+            "disclaimer": "Tradotto automaticamente"
+          },
+          {
+            "id": "1460133606681188004",
+            "comments": "Un soggiorno fantastico a Trastevere, se vuoi essere nel caos e nella frenesia questo è il posto giusto. L'appartamento è arredato in modo splendido e progettato estremamente bene, è molto spazioso e confortevole, gli arredi sono tutti moderni e funzionali. Il WiFi aveva qualche difficoltà ad arrivare alla camera da letto occasionalmente, forse è necessario aggiungere un ripetitore alle istruzioni generali. Prenoteremmo assolutamente di nuovo e l'host è stato molto educato e disponibile.",
+            "originalComments": "A fantastic stay in Trastevere, if you want to be in the hustle and bustle this is the spot.<br/>The apartment is curated beautifully and designed extremely well, it is very spacious and comfortable, the fixtures and fittings are all modern and functional.<br/>The WiFi struggled to get to the bedroom occasionally perhaps the extension needs to be added to the overall instructions.<br/>We would absolutely book again and the host was very polite and helpful.",
+            "language": "en",
+            "createdAt": "2025-07-07T14:24:49Z",
+            "localizedDate": "3 settimane fa",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Sam",
+              "location": "",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/75b230f3-879a-41a3-812d-d7fa8edbb462.jpeg",
+              "isSuperhost": false
+            },
+            "response": "Grazie mille Sam, è stato un grande piacere avervi come ospiti. Come hai potuto vedere anche tu, la smart TV prende perfettamente in camera da letto, quindi questo problema del WIFI mi giunge totalmente nuovo. Farò le necessarie verifiche e prenderò sicuramente in considerazione la possibilità di installare un ripetitore! Grazie dell'annotazione molto apprezzata, spero di avervi presto di nuovo come ospiti a Roma!",
+            "collectionTag": null,
+            "needsTranslation": true,
+            "disclaimer": "Tradotto automaticamente"
+          },
+          {
+            "id": "1454247717628234749",
+            "comments": "Delizia! L'appartamento nel cuore di Trastevere è la migliore posizione! Pulito, spazioso, tutto è come in foto. Il principale vantaggio: apri la porta e sei già nel bel mezzo della vita romana! Bar, ristoranti, atmosfera, tutto è proprio dietro l'angolo. Allo stesso tempo, tutte le principali attrazioni (Colosseo, Pantheon, ecc.) sono facilmente raggiungibili a piedi. Una base ideale per chi vuole essere al centro degli eventi e camminare. 10/10, lo consiglio!",
+            "originalComments": "Delight! The apartment in the heart of Trastevere is the best location! Clean, spacious— everything is as in the photo.<br/>The main advantage: you opened the door and you were already in the midst of Roman life! Bars, restaurants, atmosphere — everything is right on the doorstep. At the same time, all the main attractions (Colosseum, Pantheon, etc.) are within easy walking distance.<br/>An ideal base for those who want to be in the center of events and walk. 10/10, I recommend it!",
+            "language": "en",
+            "createdAt": "2025-06-29T11:30:37Z",
+            "localizedDate": "giugno 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Alla",
+              "location": "1 anno su Airbnb",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/8506c745-5ae3-41c9-888a-690832efd9fd.jpeg",
+              "isSuperhost": false
+            },
+            "response": "Grazie mille Alla!",
+            "collectionTag": null,
+            "needsTranslation": true,
+            "disclaimer": "Tradotto automaticamente"
+          },
+          {
+            "id": "1427436677158333189",
+            "comments": "Fantastico appartamento moderno nel cuore di Trastevere. Non sono sicuro se fosse una cosa unica per il periodo in cui eravamo lì, ma alcune notti c'era della musica ad alto volume fino alle 12 che rendeva difficile dormire. Ma se vuoi essere proprio nel bel mezzo dell'azione, questo è il posto perfetto.",
+            "originalComments": "Great modern apartment in the heart of Trastevere. I’m not sure if it was unique to the time we were there, but a few nights there was loud music playing til 12am that made it difficult to sleep. But if you want to be right in the middle of the action, this is a great place to be.",
+            "language": "en",
+            "createdAt": "2025-05-23T11:41:52Z",
+            "localizedDate": "maggio 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Katelyn",
+              "location": "Denver, Colorado",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/ffc922bd-8911-43ca-a38f-beae82fe028c.jpg",
+              "isSuperhost": false
+            },
+            "response": "Grazie mille Katelyn!",
+            "collectionTag": null,
+            "needsTranslation": true,
+            "disclaimer": "Tradotto automaticamente"
+          },
+          {
+            "id": "1392689205490638739",
+            "comments": "Abbiamo adorato il nostro soggiorno nel lussuoso Airbnb di Trastevere! Affascinante, spazioso, sembrava di stare in un museo. Era nel cuore di tutto. Non il posto più silenzioso, ma se ti piace l'azione, è il posto giusto. Torneremo sicuramente. Inoltre, l'host è stato molto reattivo e davvero gentile.",
+            "originalComments": "Loved our stay at the Luxury Trastevere Airbnb! Charming, spacious, felt like I was staying in a museum. It was in the heart of everything. Not the quietest, but if you like action this is where it’s at. We will definitely be coming back again. Also the host was very responsive and just overall really nice.",
+            "language": "en",
+            "createdAt": "2025-04-05T13:04:50Z",
+            "localizedDate": "aprile 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Leetal",
+              "location": "Los Angeles, California",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/71e3c2e2-330b-48ec-b8a5-c697ffc0ba7e.jpg",
+              "isSuperhost": false
+            },
+            "response": "Grazie mille Leetal!",
+            "collectionTag": null,
+            "needsTranslation": true,
+            "disclaimer": "Tradotto automaticamente"
+          },
+          {
+            "id": "1361576562779874362",
+            "comments": "La posizione era ottima per quello che volevamo, cibo fantastico, caffè, ristoranti e molto comoda da raggiungere a piedi! Ci siamo divertiti molto e l'host è stato reattivo e molto disponibile. Sicuramente consigliato e ci tornerei volentieri!",
+            "originalComments": "Location was great for what we wanted, fantastic food, cafe, restaurants and very walkable! We had a great time and the host was responsive and very helpful. Would definitely recommend and would stay here again!",
+            "language": "en",
+            "createdAt": "2025-02-21T14:49:34Z",
+            "localizedDate": "febbraio 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Janae",
+              "location": "Filadelfia, Pennsylvania",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/1616b6b9-48e3-4e80-9d99-13adbccf753f.jpg",
+              "isSuperhost": false
+            },
+            "response": "Grazie mille per questa recensione!",
+            "collectionTag": null,
+            "needsTranslation": true,
+            "disclaimer": "Tradotto automaticamente"
+          },
+          {
+            "id": "1411549487214148385",
+            "comments": "L'appartamento è bellissimo e si trova in una zona davvero divertente e carina. Tutto era pulito e l'azione è proprio fuori dalla porta. Altamente raccomandato. Anche gli host erano adorabili, abbiamo avuto un paio di fraintendimenti e cambiamenti ai nostri piani e sono stati davvero disponibili e gentili al riguardo :)",
+            "originalComments": "The apartment is beautiful and in a really fun and pretty area. Everything was clean and the action is right outside the door. Highly recommend. The hosts were lovely too, we had a couple misunderstandings and changes to our plans and they were really helpful and sweet about it :)",
+            "language": "en",
+            "createdAt": "2025-05-01T13:36:51Z",
+            "localizedDate": "maggio 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Charlotte",
+              "location": "",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/b5c7f439-315d-4098-a239-4e00b11a8cdd.jpg",
+              "isSuperhost": false
+            },
+            "response": "Grazie Charlotte",
+            "collectionTag": null,
+            "needsTranslation": true,
+            "disclaimer": "Tradotto automaticamente"
+          },
+          {
+            "id": "1314388312334845898",
+            "comments": "Consiglio al 100%! Host molto reattivo e disponibile. L'appartamento è davvero stupendo - bellissimo design, interni moderni con tutto il necessario per il soggiorno. Il quartiere è perfetto - vicino a tutto e con ottimi ristoranti e bar entro un raggio di 3 minuti a piedi (senza parlare dell'ottima amatriciana dall'altra parte della strada). Tornerò sicuramente!",
+            "originalComments": "10/10 recommend! Very responsive and helpful host. The apartment itself is a real stunner - beautifully designed, modern interior with everything you need for your stay. The neighborhood is perfect - close to everything and with excellent restaurants and bars within a 3 min walk radius (not to speak of the excellent amatriciana across the street). I’ll definitely be back!",
+            "language": "en",
+            "createdAt": "2024-12-18T12:14:56Z",
+            "localizedDate": "dicembre 2024",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Anna",
+              "location": "Austin, Texas",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/348a8534-1329-48af-a789-bf9b9d39d0f4.png",
+              "isSuperhost": false
+            },
+            "response": "Grazie Anna!",
+            "collectionTag": null,
+            "needsTranslation": true,
+            "disclaimer": "Tradotto automaticamente"
+          },
+          {
+            "id": "1286882265889160133",
+            "comments": "Che posto incantevole e che host meraviglioso! L'host è incredibilmente comunicativo e reattivo a tutte le domande, anche se alcune delle mie erano un po' sciocche. L'appartamento stesso è confortevole e pulito. Si trova in un quartiere vivace con molte cose da fare e ho trovato facile raggiungere a piedi la maggior parte dei luoghi. Sicuramente tornerò a soggiornare in uno degli appartamenti di questo host.",
+            "originalComments": "What a lovely place and a wonderful host! The host is incredibly communicative and responsive to all questions, however silly some of mine were. The apartment itself is comfortable and clean. It’s in a busy neighborhood with a lot to do and i found it easy to walk to most places. I will definitely stay in one of this hosts apartments again.",
+            "language": "en",
+            "createdAt": "2024-11-10T13:25:20Z",
+            "localizedDate": "novembre 2024",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Amanda",
+              "location": "Alexandria, Virginia",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/384fa70c-5de2-4baa-a112-f8f21dbaaf63.jpg",
+              "isSuperhost": false
+            },
+            "response": "Grazie mille Amanda!",
+            "collectionTag": null,
+            "needsTranslation": true,
+            "disclaimer": "Tradotto automaticamente"
+          },
+          {
+            "id": "1278161232604331540",
+            "comments": "È stato un appartamento così bello. Così bello. È ancora meglio di come appare nelle foto. Tutto è di buona qualità, persino coltelli e forchette. Tutto è pulito. Ci sono bei cuscini, materasso e asciugamani. Ma sii pronto che questa zona è molto rumorosa di notte, soprattutto nei fine settimana, quindi potrebbe essere troppo rumorosa se hai il sonno sensibile.",
+            "originalComments": "It’s was such a nice apartment. So beautiful. It’s even better than I see on the pictures. Everything is good quality, even knives and forks. Everything is clean. There are nice pillows, mattress and towels. But be ready that this region is very of Rome at night especially on weekends so it can be too loud if you have sensitive sleep.",
+            "language": "en",
+            "createdAt": "2024-10-29T12:38:12Z",
+            "localizedDate": "ottobre 2024",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Oksana",
+              "location": "",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-160866794/original/231691c2-0b91-4ae7-8d20-44245b0856a3.jpeg",
+              "isSuperhost": false
+            },
+            "response": "Grazie mille Oksana!",
+            "collectionTag": null,
+            "needsTranslation": true,
+            "disclaimer": "Tradotto automaticamente"
+          },
+          {
+            "id": "1468003701008052435",
+            "comments": "Questa proprietà è meravigliosa! Assolutamente impeccabile. Ogni dettaglio meritava un 10/10, dalla pulizia al design alla funzionalità. Non potrei essere più ossessionato da questa proprietà rispetto a tutti i posti in cui sono mai stato. È stato un posto così incredibile dove trovare riposo dopo le intense giornate di esplorazione delle rovine affascinanti e affollate di Roma. Molto chic. L'armadio merita un post tutto suo. Era enorme e ben organizzato per nascondere i bagagli.<br/>Questa proprietà si trova nel cuore di una zona vivace, quindi c'è così tanto da fare proprio fuori dalla porta, ma questo significa anche che può essere rumoroso di notte. I miei figli, di 9 e 13 anni, usavano il rumore bianco dal loro iPad e riuscivano a dormire bene. Le mattine e i giorni erano tranquilli e incantevoli. <br/>Abbiamo tutti amato questa proprietà, l'host si prende davvero cura e si vanta di uno spazio così unico e speciale. Resteremo solo qui nei nostri futuri viaggi. Grazie mille all'adorabile host reattivo. È stato un viaggio da sogno per noi, non sarebbe stato lo stesso senza un posto così accogliente e lussuoso.",
+            "originalComments": "This property is glorious! Absolutely pristine. Every detail met 10/10 from cleanliness to design to function. I could not be more obsessed with this property out of all the places I have  ever traveled. It was such a incredible place to find reprieve from the busy days exploring the beautiful and busy ruins of Rome. Very chic. The closet deserves a post of its own. It was huge and laid out beautifully to hide luggage.<br/>This property is in the heart of a hoping area so there is so much to do at your door step-this also makes for it to be noisy at night. My kids, 9 and 13, used white noise from their ipad and were able to sleep fine. Mornings and days were peaceful and lovely. <br/>We all loved this property, the host really takes pride and care of such a unique special space. We will only ever stay here on our future visits. Thank you so much to the lovely responsive host. It was a dream trip for us, it would not have been the same without such a place to feel like home and also luxurious.",
+            "language": "en",
+            "createdAt": "2025-07-18T11:01:18Z",
+            "localizedDate": "1 settimana fa",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Elizabeth",
+              "location": "Regno Unito",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/c258b1ce-3e8d-4a8b-bcd9-c811a0ee017b.jpg",
+              "isSuperhost": false
+            },
+            "response": "Grazie per questa bella recensione!",
+            "collectionTag": null,
+            "needsTranslation": true,
+            "disclaimer": "Tradotto automaticamente"
+          },
+          {
+            "id": "1389030850556015277",
+            "comments": "Abbiamo avuto un soggiorno fantastico in questa sistemazione. Lo spazio è esattamente come mostrato nell'annuncio ed era perfettamente pulito. Le istruzioni su come accedere all'unità erano molto chiare e il nostro host, Riccardo, è stato estremamente reattivo e disponibile per qualsiasi domanda avessimo. Se sei sensibile al rumore, sappi che questa unità si trova proprio nel cuore del quartiere della vita notturna, tuttavia era esattamente ciò che io e i miei amici cercavamo, quindi eravamo contenti di essere così vicini a tutti i bar e feste. Mi piacerebbe assolutamente tornare a soggiornare qui la prossima volta che veniamo a Roma e consiglierei vivamente questo posto a chiunque venga qui!",
+            "originalComments": "We had such an amazing stay at this accommodation. The space is exactly as pictured in the listing and was totally spotless. Instructions on how to access the unit were very clear and our host, Riccardo, was extremely responsive and helpful with any questions we had. If you’re sensitive to noise, be advised that this unit is located right at the heart of the nightlife district, however it was exactly what my friends and I were looking for so we were glad to be so close to all the bars and parties. I would absolutely love to stay here again next time we come to Rome and would highly recommend this place to anyone coming here!",
+            "language": "en",
+            "createdAt": "2025-03-31T11:56:20Z",
+            "localizedDate": "marzo 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Nicole",
+              "location": "San Jose, California",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/d475923c-1037-4529-8fe9-59853b99714c.jpg",
+              "isSuperhost": false
+            },
+            "response": "Grazie mille Nicole!",
+            "collectionTag": null,
+            "needsTranslation": true,
+            "disclaimer": "Tradotto automaticamente"
+          }
+        ],
+        "totalCount": 12,
+        "propertySlug": "moro",
+        "airbnbUrl": "https://www.airbnb.it/rooms/998346242016693375",
+        "fetchedAt": "2025-07-31T00:18:51.524Z"
+      },
+      "fr": {
+        "reviews": [
+          {
+            "id": "1384684869771838033",
+            "comments": "Nous avons adoré notre séjour ! L'emplacement est parfait et l'appartement avait tout ce dont nous avions besoin. L'ensemble de l'appartement était impeccable et très propre. Notre hôte, Riccardo, était très réactif, a organisé un chauffeur et nous a donné d'excellentes recommandations de restaurants. Bien que l'appartement soit situé dans un quartier animé et festif la nuit, cela ne nous a pas du tout dérangés. Nous y retournerions avec plaisir. Merci encore, Riccardo !",
+            "originalComments": "We loved our stay! The location is perfect and the apartment had everything we needed. The entire apartment was spotless and very clean. Our host, Riccardo, was very responsive, arranged a driver, and gave excellent restaurant recommendations. While the apartment is in an area of town that is lively and festive at night, it didn't bother us at all. We would gladly stay there again. Thanks again, Riccardo!",
+            "language": "en",
+            "createdAt": "2025-03-25T12:01:39Z",
+            "localizedDate": "March 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Beth",
+              "location": "Atlanta, Georgia",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/57a26678-c63e-425e-b1ad-be6fe3d2e435.jpg",
+              "isSuperhost": false
+            },
+            "response": "Merci beaucoup Beth!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traduit automatiquement",
+            "originalResponse": "Thank you so much Beth!"
+          },
+          {
+            "id": "1460133606681188004",
+            "comments": "Un séjour fantastique à Trastevere, si vous voulez être au cœur de l'animation, c'est l'endroit idéal. L'appartement est magnifiquement aménagé et très bien conçu, il est très spacieux et confortable, les équipements sont modernes et fonctionnels. La connexion WiFi avait parfois du mal à atteindre la chambre, peut-être faudrait-il ajouter un répéteur selon les instructions générales. Nous réserverions absolument à nouveau et l'hôte était très poli et serviable.",
+            "originalComments": "A fantastic stay in Trastevere, if you want to be in the hustle and bustle this is the spot.<br/>The apartment is curated beautifully and designed extremely well, it is very spacious and comfortable, the fixtures and fittings are all modern and functional.<br/>The WiFi struggled to get to the bedroom occasionally perhaps the extension needs to be added to the overall instructions.<br/>We would absolutely book again and the host was very polite and helpful.",
+            "language": "en",
+            "createdAt": "2025-07-07T14:24:49Z",
+            "localizedDate": "3 weeks ago",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Sam",
+              "location": "",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/75b230f3-879a-41a3-812d-d7fa8edbb462.jpeg",
+              "isSuperhost": false
+            },
+            "response": "Merci beaucoup Sam, ce fut un grand plaisir de vous avoir comme invités. Comme vous avez pu le constater, la smart TV fonctionne parfaitement dans la chambre, donc ce problème avec le WIFI m'est totalement nouveau, mais je ferai les vérifications nécessaires et envisagerai certainement la possibilité d'installer un répéteur ! Merci pour la note très appréciée, j'espère vous revoir bientôt comme invités à Rome !",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traduit automatiquement",
+            "originalResponse": "Thank you so much Sam, it was a great pleasure to have you as guests. As you could see, the smart TV works perfectly in the bedroom so this issue with the WIFI is totally new to me, but I will make the necessary checks and will definitely consider the possibility of installing a repeater! Thank you for the very appreciated note, I hope to have you back as guests in Rome soon!"
+          },
+          {
+            "id": "1454247717628234749",
+            "comments": "Délice ! L'appartement au cœur de Trastevere est l'emplacement idéal ! Propre, spacieux - tout est comme sur la photo. Le principal avantage : vous ouvrez la porte et vous êtes déjà au cœur de la vie romaine ! Bars, restaurants, atmosphère - tout est à portée de main. En même temps, toutes les principales attractions (Colisée, Panthéon, etc.) sont facilement accessibles à pied. Une base idéale pour ceux qui veulent être au centre des événements et se promener. 10/10, je le recommande !",
+            "originalComments": "Delight! The apartment in the heart of Trastevere is the best location! Clean, spacious— everything is as in the photo.<br/>The main advantage: you opened the door and you were already in the midst of Roman life! Bars, restaurants, atmosphere — everything is right on the doorstep. At the same time, all the main attractions (Colosseum, Pantheon, etc.) are within easy walking distance.<br/>An ideal base for those who want to be in the center of events and walk. 10/10, I recommend it!",
+            "language": "en",
+            "createdAt": "2025-06-29T11:30:37Z",
+            "localizedDate": "June 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Alla",
+              "location": "",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/8506c745-5ae3-41c9-888a-690832efd9fd.jpeg",
+              "isSuperhost": false
+            },
+            "response": "Merci beaucoup Alla!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traduit automatiquement",
+            "originalResponse": "Thank you so much Alla!"
+          },
+          {
+            "id": "1427436677158333189",
+            "comments": "Superbe appartement moderne au cœur de Trastevere. Je ne suis pas sûr si c'était spécifique à notre séjour, mais quelques nuits, il y avait de la musique forte jusqu'à minuit, ce qui rendait difficile de dormir. Mais si vous voulez être en plein cœur de l'action, c'est un super endroit où séjourner.",
+            "originalComments": "Great modern apartment in the heart of Trastevere. I’m not sure if it was unique to the time we were there, but a few nights there was loud music playing til 12am that made it difficult to sleep. But if you want to be right in the middle of the action, this is a great place to be.",
+            "language": "en",
+            "createdAt": "2025-05-23T11:41:52Z",
+            "localizedDate": "May 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Katelyn",
+              "location": "Denver, Colorado",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/ffc922bd-8911-43ca-a38f-beae82fe028c.jpg",
+              "isSuperhost": false
+            },
+            "response": "Merci beaucoup Katelyn!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traduit automatiquement",
+            "originalResponse": "Thank you very much Katelyn!"
+          },
+          {
+            "id": "1392689205490638739",
+            "comments": "Nous avons adoré notre séjour au luxueux Airbnb de Trastevere ! Charmant, spacieux, j'avais l'impression de séjourner dans un musée. Il était au cœur de tout. Ce n'était pas le plus calme, mais si vous aimez l'animation, c'est l'endroit où il faut être. Nous reviendrons certainement. De plus, l'hôte était très réactif et vraiment gentil dans l'ensemble.",
+            "originalComments": "Loved our stay at the Luxury Trastevere Airbnb! Charming, spacious, felt like I was staying in a museum. It was in the heart of everything. Not the quietest, but if you like action this is where it’s at. We will definitely be coming back again. Also the host was very responsive and just overall really nice.",
+            "language": "en",
+            "createdAt": "2025-04-05T13:04:50Z",
+            "localizedDate": "April 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Leetal",
+              "location": "Los Angeles, California",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/71e3c2e2-330b-48ec-b8a5-c697ffc0ba7e.jpg",
+              "isSuperhost": false
+            },
+            "response": "Merci beaucoup Leetal!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traduit automatiquement",
+            "originalResponse": "Thank you so much Leetal!"
+          },
+          {
+            "id": "1361576562779874362",
+            "comments": "L'emplacement était parfait pour ce que nous recherchions, avec de la nourriture fantastique, des cafés, des restaurants et facilement accessible à pied ! Nous avons passé un excellent séjour et l'hôte était réactif et très serviable. Je recommande vivement et j'y retournerais sans hésiter !",
+            "originalComments": "Location was great for what we wanted, fantastic food, cafe, restaurants and very walkable! We had a great time and the host was responsive and very helpful. Would definitely recommend and would stay here again!",
+            "language": "en",
+            "createdAt": "2025-02-21T14:49:34Z",
+            "localizedDate": "February 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Janae",
+              "location": "Philadelphia, Pennsylvania",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/1616b6b9-48e3-4e80-9d99-13adbccf753f.jpg",
+              "isSuperhost": false
+            },
+            "response": "Merci beaucoup pour cette évaluation !",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traduit automatiquement",
+            "originalResponse": "Thank you so much for this review!"
+          }
+        ],
+        "totalCount": 6,
+        "propertySlug": "moro",
+        "airbnbUrl": "https://www.airbnb.it/rooms/998346242016693375",
+        "fetchedAt": "2025-07-31T00:18:22.720Z"
+      },
+      "de": {
+        "reviews": [
+          {
+            "id": "1384684869771838033",
+            "comments": "Wir haben unseren Aufenthalt geliebt! Die Lage ist perfekt und die Wohnung hatte alles, was wir brauchten. Die gesamte Wohnung war makellos und sehr sauber. Unser Gastgeber, Riccardo, war sehr reaktionsschnell, organisierte einen Fahrer und gab ausgezeichnete Restaurantempfehlungen. Obwohl die Wohnung in einem lebhaften und festlichen Viertel liegt, hat uns das überhaupt nicht gestört. Wir würden gerne wieder dort übernachten. Nochmals vielen Dank, Riccardo!",
+            "originalComments": "We loved our stay! The location is perfect and the apartment had everything we needed. The entire apartment was spotless and very clean. Our host, Riccardo, was very responsive, arranged a driver, and gave excellent restaurant recommendations. While the apartment is in an area of town that is lively and festive at night, it didn't bother us at all. We would gladly stay there again. Thanks again, Riccardo!",
+            "language": "en",
+            "createdAt": "2025-03-25T12:01:39Z",
+            "localizedDate": "March 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Beth",
+              "location": "Atlanta, Georgia",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/57a26678-c63e-425e-b1ad-be6fe3d2e435.jpg",
+              "isSuperhost": false
+            },
+            "response": "Vielen Dank, Beth!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Automatisch übersetzt",
+            "originalResponse": "Thank you so much Beth!"
+          },
+          {
+            "id": "1460133606681188004",
+            "comments": "Ein fantastischer Aufenthalt in Trastevere, wenn Sie mitten im Trubel sein möchten, ist dies der richtige Ort. Die Wohnung ist wunderschön eingerichtet und extrem gut gestaltet, sie ist sehr geräumig und komfortabel, die Armaturen und Ausstattungen sind alle modern und funktional. Das WLAN hatte gelegentlich Schwierigkeiten, ins Schlafzimmer zu gelangen, vielleicht muss die Reichweite in den Gesamtanweisungen hinzugefügt werden. Wir würden auf jeden Fall wieder buchen und der Gastgeber war sehr höflich und hilfsbereit.",
+            "originalComments": "A fantastic stay in Trastevere, if you want to be in the hustle and bustle this is the spot.<br/>The apartment is curated beautifully and designed extremely well, it is very spacious and comfortable, the fixtures and fittings are all modern and functional.<br/>The WiFi struggled to get to the bedroom occasionally perhaps the extension needs to be added to the overall instructions.<br/>We would absolutely book again and the host was very polite and helpful.",
+            "language": "en",
+            "createdAt": "2025-07-07T14:24:49Z",
+            "localizedDate": "3 weeks ago",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Sam",
+              "location": "",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/75b230f3-879a-41a3-812d-d7fa8edbb462.jpeg",
+              "isSuperhost": false
+            },
+            "response": "Vielen Dank, Sam, es war mir eine große Freude, Sie als Gäste zu haben. Wie Sie sehen konnten, funktioniert der Smart-TV im Schlafzimmer einwandfrei, daher ist dieses Problem mit dem WLAN für mich völlig neu. Ich werde die notwendigen Überprüfungen durchführen und auf jeden Fall die Möglichkeit in Betracht ziehen, einen Repeater zu installieren! Vielen Dank für die sehr geschätzte Notiz, ich hoffe, Sie bald wieder als Gäste in Rom begrüßen zu dürfen!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Automatisch übersetzt",
+            "originalResponse": "Thank you so much Sam, it was a great pleasure to have you as guests. As you could see, the smart TV works perfectly in the bedroom so this issue with the WIFI is totally new to me, but I will make the necessary checks and will definitely consider the possibility of installing a repeater! Thank you for the very appreciated note, I hope to have you back as guests in Rome soon!"
+          },
+          {
+            "id": "1454247717628234749",
+            "comments": "Freude! Die Wohnung im Herzen von Trastevere hat die beste Lage! Sauber, geräumig - alles ist wie auf den Fotos. Der Hauptvorteil: Man öffnet die Tür und ist bereits mitten im römischen Leben! Bars, Restaurants, Atmosphäre - alles ist direkt vor der Haustür. Gleichzeitig sind alle Hauptattraktionen (Kolosseum, Pantheon usw.) bequem zu Fuß erreichbar. Ein idealer Ausgangspunkt für diejenigen, die im Zentrum des Geschehens sein und spazieren gehen möchten. 10/10, ich empfehle es!",
+            "originalComments": "Delight! The apartment in the heart of Trastevere is the best location! Clean, spacious— everything is as in the photo.<br/>The main advantage: you opened the door and you were already in the midst of Roman life! Bars, restaurants, atmosphere — everything is right on the doorstep. At the same time, all the main attractions (Colosseum, Pantheon, etc.) are within easy walking distance.<br/>An ideal base for those who want to be in the center of events and walk. 10/10, I recommend it!",
+            "language": "en",
+            "createdAt": "2025-06-29T11:30:37Z",
+            "localizedDate": "June 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Alla",
+              "location": "",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/8506c745-5ae3-41c9-888a-690832efd9fd.jpeg",
+              "isSuperhost": false
+            },
+            "response": "Vielen Dank, Alla!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Automatisch übersetzt",
+            "originalResponse": "Thank you so much Alla!"
+          },
+          {
+            "id": "1427436677158333189",
+            "comments": "Tolle moderne Wohnung im Herzen von Trastevere. Ich bin mir nicht sicher, ob es spezifisch für die Zeit war, als wir dort waren, aber an ein paar Abenden lief laute Musik bis 12 Uhr, was es schwer machte zu schlafen. Aber wenn man mitten im Geschehen sein will, ist dies ein großartiger Ort.",
+            "originalComments": "Great modern apartment in the heart of Trastevere. I’m not sure if it was unique to the time we were there, but a few nights there was loud music playing til 12am that made it difficult to sleep. But if you want to be right in the middle of the action, this is a great place to be.",
+            "language": "en",
+            "createdAt": "2025-05-23T11:41:52Z",
+            "localizedDate": "May 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Katelyn",
+              "location": "Denver, Colorado",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/ffc922bd-8911-43ca-a38f-beae82fe028c.jpg",
+              "isSuperhost": false
+            },
+            "response": "Vielen Dank, Katelyn!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Automatisch übersetzt",
+            "originalResponse": "Thank you very much Katelyn!"
+          },
+          {
+            "id": "1392689205490638739",
+            "comments": "Wir haben unseren Aufenthalt im Luxury Trastevere Airbnb geliebt! Charmant, geräumig, fühlte sich an wie in einem Museum zu übernachten. Es war mitten im Geschehen. Nicht das ruhigste, aber wenn man Action mag, ist man hier genau richtig. Wir werden auf jeden Fall wiederkommen. Der Gastgeber war auch sehr reaktionsschnell und insgesamt wirklich nett.",
+            "originalComments": "Loved our stay at the Luxury Trastevere Airbnb! Charming, spacious, felt like I was staying in a museum. It was in the heart of everything. Not the quietest, but if you like action this is where it’s at. We will definitely be coming back again. Also the host was very responsive and just overall really nice.",
+            "language": "en",
+            "createdAt": "2025-04-05T13:04:50Z",
+            "localizedDate": "April 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Leetal",
+              "location": "Los Angeles, California",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/71e3c2e2-330b-48ec-b8a5-c697ffc0ba7e.jpg",
+              "isSuperhost": false
+            },
+            "response": "Vielen Dank, Leetal!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Automatisch übersetzt",
+            "originalResponse": "Thank you so much Leetal!"
+          },
+          {
+            "id": "1361576562779874362",
+            "comments": "Die Lage war perfekt für das, was wir wollten, fantastisches Essen, Cafés, Restaurants und alles gut zu Fuß erreichbar! Wir hatten eine tolle Zeit und der Gastgeber war aufmerksam und sehr hilfsbereit. Würde es auf jeden Fall weiterempfehlen und würde hier wieder übernachten!",
+            "originalComments": "Location was great for what we wanted, fantastic food, cafe, restaurants and very walkable! We had a great time and the host was responsive and very helpful. Would definitely recommend and would stay here again!",
+            "language": "en",
+            "createdAt": "2025-02-21T14:49:34Z",
+            "localizedDate": "February 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Janae",
+              "location": "Philadelphia, Pennsylvania",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/1616b6b9-48e3-4e80-9d99-13adbccf753f.jpg",
+              "isSuperhost": false
+            },
+            "response": "Vielen Dank für diese Bewertung!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Automatisch übersetzt",
+            "originalResponse": "Thank you so much for this review!"
+          }
+        ],
+        "totalCount": 6,
+        "propertySlug": "moro",
+        "airbnbUrl": "https://www.airbnb.it/rooms/998346242016693375",
+        "fetchedAt": "2025-07-31T00:18:22.720Z"
+      },
+      "es": {
+        "reviews": [
+          {
+            "id": "1384684869771838033",
+            "comments": "¡Nos encantó nuestra estancia! La ubicación es perfecta y el apartamento tenía todo lo que necesitábamos. Todo el apartamento estaba impecable y muy limpio. Nuestro anfitrión, Riccardo, fue muy receptivo, organizó un conductor y dio excelentes recomendaciones de restaurantes. Aunque el apartamento está en una zona de la ciudad que es animada y festiva por la noche, no nos molestó en absoluto. Nos encantaría quedarnos allí de nuevo. ¡Gracias de nuevo, Riccardo!",
+            "originalComments": "We loved our stay! The location is perfect and the apartment had everything we needed. The entire apartment was spotless and very clean. Our host, Riccardo, was very responsive, arranged a driver, and gave excellent restaurant recommendations. While the apartment is in an area of town that is lively and festive at night, it didn't bother us at all. We would gladly stay there again. Thanks again, Riccardo!",
+            "language": "en",
+            "createdAt": "2025-03-25T12:01:39Z",
+            "localizedDate": "March 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Beth",
+              "location": "Atlanta, Georgia",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/57a26678-c63e-425e-b1ad-be6fe3d2e435.jpg",
+              "isSuperhost": false
+            },
+            "response": "¡Muchas gracias Beth!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traducido automáticamente",
+            "originalResponse": "Thank you so much Beth!"
+          },
+          {
+            "id": "1460133606681188004",
+            "comments": "Una estancia fantástica en Trastevere, si quieres estar en medio del bullicio, este es el lugar ideal. El apartamento está decorado de forma hermosa y diseñado de manera excelente, es muy espacioso y cómodo, los accesorios y muebles son todos modernos y funcionales. El WiFi a veces tenía problemas para llegar al dormitorio, quizás se necesite agregar un extensor según las instrucciones generales. Definitivamente reservaríamos de nuevo y el anfitrión fue muy amable y servicial.",
+            "originalComments": "A fantastic stay in Trastevere, if you want to be in the hustle and bustle this is the spot.<br/>The apartment is curated beautifully and designed extremely well, it is very spacious and comfortable, the fixtures and fittings are all modern and functional.<br/>The WiFi struggled to get to the bedroom occasionally perhaps the extension needs to be added to the overall instructions.<br/>We would absolutely book again and the host was very polite and helpful.",
+            "language": "en",
+            "createdAt": "2025-07-07T14:24:49Z",
+            "localizedDate": "3 weeks ago",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Sam",
+              "location": "",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/75b230f3-879a-41a3-812d-d7fa8edbb462.jpeg",
+              "isSuperhost": false
+            },
+            "response": "Muchas gracias Sam, fue un gran placer tenerlos como huéspedes. Como pudieron ver, la smart TV funciona perfectamente en el dormitorio, por lo que este problema con el WIFI es totalmente nuevo para mí, ¡pero realizaré las verificaciones necesarias y definitivamente consideraré la posibilidad de instalar un repetidor! Gracias por la nota muy apreciada, ¡espero tenerlos de vuelta como huéspedes en Roma pronto!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traducido automáticamente",
+            "originalResponse": "Thank you so much Sam, it was a great pleasure to have you as guests. As you could see, the smart TV works perfectly in the bedroom so this issue with the WIFI is totally new to me, but I will make the necessary checks and will definitely consider the possibility of installing a repeater! Thank you for the very appreciated note, I hope to have you back as guests in Rome soon!"
+          },
+          {
+            "id": "1454247717628234749",
+            "comments": "¡Encantador! ¡El apartamento en el corazón de Trastevere tiene la mejor ubicación! Limpio, espacioso, todo es tal como en la foto. La principal ventaja: ¡abres la puerta y ya estás en medio de la vida romana! Bares, restaurantes, ambiente, todo está justo en la puerta. Al mismo tiempo, todas las principales atracciones (Coliseo, Panteón, etc.) están a poca distancia a pie. Una base ideal para aquellos que quieren estar en el centro de los eventos y caminar. ¡10/10, lo recomiendo!",
+            "originalComments": "Delight! The apartment in the heart of Trastevere is the best location! Clean, spacious— everything is as in the photo.<br/>The main advantage: you opened the door and you were already in the midst of Roman life! Bars, restaurants, atmosphere — everything is right on the doorstep. At the same time, all the main attractions (Colosseum, Pantheon, etc.) are within easy walking distance.<br/>An ideal base for those who want to be in the center of events and walk. 10/10, I recommend it!",
+            "language": "en",
+            "createdAt": "2025-06-29T11:30:37Z",
+            "localizedDate": "June 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Alla",
+              "location": "",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/8506c745-5ae3-41c9-888a-690832efd9fd.jpeg",
+              "isSuperhost": false
+            },
+            "response": "¡Muchas gracias Alla!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traducido automáticamente",
+            "originalResponse": "Thank you so much Alla!"
+          },
+          {
+            "id": "1427436677158333189",
+            "comments": "Excelente apartamento moderno en el corazón de Trastevere. No estoy seguro si fue algo único durante nuestra estancia, pero algunas noches hubo música alta hasta las 12 am que dificultó el sueño. Sin embargo, si quieres estar en medio de la acción, este es un gran lugar para estar.",
+            "originalComments": "Great modern apartment in the heart of Trastevere. I’m not sure if it was unique to the time we were there, but a few nights there was loud music playing til 12am that made it difficult to sleep. But if you want to be right in the middle of the action, this is a great place to be.",
+            "language": "en",
+            "createdAt": "2025-05-23T11:41:52Z",
+            "localizedDate": "May 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Katelyn",
+              "location": "Denver, Colorado",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/ffc922bd-8911-43ca-a38f-beae82fe028c.jpg",
+              "isSuperhost": false
+            },
+            "response": "¡Muchas gracias Katelyn!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traducido automáticamente",
+            "originalResponse": "Thank you very much Katelyn!"
+          },
+          {
+            "id": "1392689205490638739",
+            "comments": "¡Nos encantó nuestra estancia en el Airbnb de lujo en Trastevere! Encantador, espacioso, se sentía como si estuviera alojándome en un museo. Estaba en el corazón de todo. No era el lugar más tranquilo, pero si te gusta la acción, aquí es donde está. Definitivamente volveremos de nuevo. Además, el anfitrión fue muy receptivo y en general muy amable.",
+            "originalComments": "Loved our stay at the Luxury Trastevere Airbnb! Charming, spacious, felt like I was staying in a museum. It was in the heart of everything. Not the quietest, but if you like action this is where it’s at. We will definitely be coming back again. Also the host was very responsive and just overall really nice.",
+            "language": "en",
+            "createdAt": "2025-04-05T13:04:50Z",
+            "localizedDate": "April 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Leetal",
+              "location": "Los Angeles, California",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/71e3c2e2-330b-48ec-b8a5-c697ffc0ba7e.jpg",
+              "isSuperhost": false
+            },
+            "response": "¡Muchas gracias Leetal!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traducido automáticamente",
+            "originalResponse": "Thank you so much Leetal!"
+          },
+          {
+            "id": "1361576562779874362",
+            "comments": "La ubicación era perfecta para lo que queríamos, con comida fantástica, cafeterías, restaurantes y muy accesible a pie. Nos lo pasamos genial y el anfitrión fue receptivo y muy servicial. ¡Definitivamente lo recomendaría y me quedaría aquí de nuevo!",
+            "originalComments": "Location was great for what we wanted, fantastic food, cafe, restaurants and very walkable! We had a great time and the host was responsive and very helpful. Would definitely recommend and would stay here again!",
+            "language": "en",
+            "createdAt": "2025-02-21T14:49:34Z",
+            "localizedDate": "February 2025",
+            "rating": 5,
+            "reviewer": {
+              "firstName": "Janae",
+              "location": "Philadelphia, Pennsylvania",
+              "pictureUrl": "https://a0.muscache.com/im/pictures/user/1616b6b9-48e3-4e80-9d99-13adbccf753f.jpg",
+              "isSuperhost": false
+            },
+            "response": "¡Muchas gracias por esta reseña!",
+            "collectionTag": null,
+            "needsTranslation": false,
+            "disclaimer": "Traducido automáticamente",
+            "originalResponse": "Thank you so much for this review!"
+          }
+        ],
+        "totalCount": 6,
+        "propertySlug": "moro",
+        "airbnbUrl": "https://www.airbnb.it/rooms/998346242016693375",
+        "fetchedAt": "2025-07-31T00:18:22.720Z"
+      }
+    }
+  }
+}

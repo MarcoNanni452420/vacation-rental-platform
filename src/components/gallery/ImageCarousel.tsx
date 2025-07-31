@@ -180,7 +180,7 @@ export function ImageCarousel({
         
         {/* Progress Indicators - Inside container for alignment */}
         {images.length > imagesPerView && (
-          <div className="absolute bottom-4 3xl:bottom-6 left-1/2 -translate-x-1/2 flex gap-1 sm:gap-2 px-4 hidden sm:flex">
+          <div className="absolute bottom-4 md:bottom-6 lg:bottom-8 3xl:bottom-8 left-1/2 -translate-x-1/2 flex gap-1 sm:gap-2 px-4 hidden sm:flex">
           {Array.from({ length: Math.floor(images.length / imagesPerView) }, (_, i) => (
             <button
               key={i}
