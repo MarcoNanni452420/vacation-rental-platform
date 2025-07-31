@@ -130,12 +130,9 @@ export function ImageCarousel({
                 src={image.src}
                 alt={`${propertyName} - Immagine ${image.index + 1}`}
                 fill
-                priority={image.index < 12} // Further increased for 3xl screens
+                priority={image.index < 3} // Priority for first 3 visible images
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, (max-width: 1920px) 33vw, 25vw"
-                quality={90}
                 className="object-cover transition-transform duration-700 group-hover/image:scale-110 rounded-2xl"
-                placeholder="blur"
-                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAfEAACAQMFAQAAAAAAAAAAAAABAgMABAUGEhMhMUH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AiqOp0kAAAAASUVORK5CYII="
               />
               
               {/* Zoom overlay */}
@@ -183,7 +180,7 @@ export function ImageCarousel({
         
         {/* Progress Indicators - Inside container for alignment */}
         {images.length > imagesPerView && (
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1 sm:gap-2 px-4 hidden sm:flex">
+          <div className="absolute bottom-4 3xl:bottom-6 left-1/2 -translate-x-1/2 flex gap-1 sm:gap-2 px-4 hidden sm:flex">
           {Array.from({ length: Math.floor(images.length / imagesPerView) }, (_, i) => (
             <button
               key={i}
@@ -201,14 +198,14 @@ export function ImageCarousel({
           ))}
         </div>
       )}
-      </div>
-
-      {/* Image Counter */}
-      <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-black/30 backdrop-blur-sm text-white text-sm font-medium">
+      
+      {/* Image Counter - Inside container for proper alignment */}
+      <div className="absolute top-4 right-4 3xl:right-6 px-3 py-1 rounded-full bg-black/30 backdrop-blur-sm text-white text-sm font-medium">
         {imagesPerView === 1 
           ? `${currentIndex + 1} ${t('of')} ${images.length}`
           : `${currentIndex + 1}-${Math.min(currentIndex + imagesPerView, images.length)} ${t('of')} ${images.length}`
         }
+      </div>
       </div>
     </div>
   );
