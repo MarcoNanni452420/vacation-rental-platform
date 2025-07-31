@@ -43,8 +43,8 @@ export default function HomePage() {
           </p>
         </div>
         
-        {/* Enhanced Animated Scroll Prompt - Replaces simple indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+        {/* Enhanced Animated Scroll Prompt - Mobile Safari safe positioning */}
+        <div className="absolute bottom-16 md:bottom-8 left-1/2 -translate-x-1/2">
           <AnimatedScrollPrompt />
         </div>
       </section>

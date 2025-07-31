@@ -26,7 +26,7 @@ export function PropertyHero({
   const t = useTranslations('property');
 
   return (
-    <section className={`relative h-screen ${className}`}>
+    <section className={`relative h-[90vh] md:h-screen ${className}`}>
       {/* Main Image - Clean on Mobile */}
       <div className="absolute inset-0">
         <Image 

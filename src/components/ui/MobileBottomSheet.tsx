@@ -38,11 +38,11 @@ export function MobileBottomSheet({
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
       
       {/* Content Container */}
-      <div className="relative p-6 pb-8">
+      <div className="relative p-6 pb-12">
         {/* Property Info */}
         <div className="mb-4">
           <div 
-            className="bg-black/50 rounded-lg p-3 mb-3"
+            className="bg-black/30 -mx-6 px-6 py-3 mb-3"
             style={{ backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}
           >
             <h2 className="text-2xl font-bold text-white mb-2 leading-tight">
