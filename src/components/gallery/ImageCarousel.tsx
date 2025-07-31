@@ -23,6 +23,7 @@ export function ImageCarousel({
 }: ImageCarouselProps) {
   const t = useTranslations('gallery');
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [indicatorBottomPosition, setIndicatorBottomPosition] = useState(16);
 
   // Theme colors based on property
   const themeColors = {
@@ -51,18 +52,55 @@ export function ImageCarousel({
 
   const [imagesPerView, setImagesPerView] = useState(3);
 
-  // Update images per view on resize
+  // Calculate dynamic bottom position for indicators
+  const calculateIndicatorPosition = () => {
+    if (typeof window === 'undefined') return 16;
+    
+    const screenWidth = window.innerWidth;
+    const containerPadding = screenWidth >= 1920 ? 24 : 16; // 3xl:p-6 vs p-4
+    
+    // Get container height based on breakpoints
+    let containerHeight;
+    if (screenWidth < 640) {
+      containerHeight = 320; // h-[320px]
+    } else if (screenWidth < 1920) {
+      containerHeight = 400; // sm:h-[400px]
+    } else {
+      containerHeight = 550; // 3xl:h-[550px]
+    }
+    
+    // Calculate available height for images (container - padding)
+    const availableHeight = containerHeight - (containerPadding * 2);
+    
+    // Calculate image height based on aspect ratio [4/3] and available width
+    const availableWidth = screenWidth >= 1920 ? 1800 - (containerPadding * 2) : 
+                          screenWidth >= 1024 ? 1400 - (containerPadding * 2) : 
+                          screenWidth - (containerPadding * 2);
+    
+    const imageWidth = availableWidth / imagesPerView;
+    const imageHeight = (imageWidth * 3) / 4; // aspect-[4/3]
+    
+    // Calculate bottom position: container padding + remaining space + fixed 16px gap
+    const remainingSpace = availableHeight - imageHeight;
+    const bottomPosition = containerPadding + (remainingSpace / 2) + 16;
+    
+    return Math.max(16, bottomPosition); // Minimum 16px
+  };
+
+  // Update images per view and indicator position on resize
   useEffect(() => {
     const handleResize = () => {
       setImagesPerView(getImagesPerView());
+      setIndicatorBottomPosition(calculateIndicatorPosition());
     };
     
     if (typeof window !== 'undefined') {
       setImagesPerView(getImagesPerView());
+      setIndicatorBottomPosition(calculateIndicatorPosition());
       window.addEventListener('resize', handleResize);
       return () => window.removeEventListener('resize', handleResize);
     }
-  }, []);
+  }, [imagesPerView]); // Add imagesPerView as dependency for recalculation
 
   const goToPrevious = useCallback(() => {
     setCurrentIndex((prevIndex) => 
@@ -180,7 +218,10 @@ export function ImageCarousel({
         
         {/* Progress Indicators - Inside container for alignment */}
         {images.length > imagesPerView && (
-          <div className="absolute bottom-4 md:bottom-6 lg:bottom-8 3xl:bottom-4 left-1/2 -translate-x-1/2 flex gap-1 sm:gap-2 px-4 hidden sm:flex">
+          <div 
+            className="absolute left-1/2 -translate-x-1/2 flex gap-1 sm:gap-2 px-4 hidden sm:flex"
+            style={{ bottom: `${indicatorBottomPosition}px` }}
+          >
           {Array.from({ length: Math.floor(images.length / imagesPerView) }, (_, i) => (
             <button
               key={i}
