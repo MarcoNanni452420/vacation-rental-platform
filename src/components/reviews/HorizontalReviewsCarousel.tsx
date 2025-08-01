@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { ExternalLink, Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { track } from '@vercel/analytics';
 import { ReviewCard } from './ReviewCard';
 import { getPropertyReviewStats } from '@/lib/reviews-api';
 import { cn } from '@/lib/utils';
@@ -207,6 +208,14 @@ export function HorizontalReviewsCarousel({
           href={airbnbUrl}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => {
+            // Track external reviews link clicks - mobile carousel
+            track('Reviews Read All Clicked', {
+              property: propertySlug,
+              total_reviews: reviews.length,
+              context: 'mobile_carousel'
+            });
+          }}
           className={cn(
             "inline-flex items-center gap-2 px-6 py-3 rounded-xl text-white font-semibold",
             "transition-all duration-300 hover:scale-[1.01] shadow-md hover:shadow-lg",

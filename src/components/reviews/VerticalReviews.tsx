@@ -123,6 +123,14 @@ export function VerticalReviews({ propertySlug, className, preloadedReviews, isP
             href={airbnbUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => {
+              // Track external reviews link clicks - error state
+              track('Reviews Read All Clicked', {
+                property: propertySlug,
+                total_reviews: 0,
+                context: 'error'
+              });
+            }}
             className={cn(
               "inline-flex items-center gap-2 px-4 py-2 rounded-lg text-white text-sm font-medium transition-all duration-300 hover:scale-105",
               colors.button
@@ -241,6 +249,14 @@ export function VerticalReviews({ propertySlug, className, preloadedReviews, isP
                 href={airbnbUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => {
+                  // Track external reviews link clicks - showAll state
+                  track('Reviews Read All Clicked', {
+                    property: propertySlug,
+                    total_reviews: reviews.length,
+                    context: 'showAll'
+                  });
+                }}
                 className={cn(
                   "inline-flex items-center gap-2 px-6 py-3 rounded-xl text-white font-semibold transition-all duration-300 hover:scale-[1.01] shadow-md hover:shadow-lg",
                   colors.button
