@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Star, ChevronDown, ChevronUp } from 'lucide-react';
+import { track } from '@vercel/analytics';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
@@ -165,7 +166,15 @@ export function ReviewCard({
           {/* Read more/less button for mobile - always visible when needed */}
           {shouldTruncate && (
             <button
-              onClick={() => setIsExpanded(!isExpanded)}
+              onClick={() => {
+                // Track individual review expansion/collapse
+                track('Review Expanded', {
+                  property: propertySlug,
+                  review_author: reviewer.firstName,
+                  action: isExpanded ? 'collapse' : 'expand'
+                });
+                setIsExpanded(!isExpanded);
+              }}
               className={cn(
                 "flex items-center gap-1 mt-2 text-sm font-medium transition-colors duration-300 md:hidden",
                 colors.accent

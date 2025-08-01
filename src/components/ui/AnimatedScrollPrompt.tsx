@@ -12,19 +12,7 @@ interface AnimatedScrollPromptProps {
 
 export function AnimatedScrollPrompt({ className = "" }: AnimatedScrollPromptProps) {
   const t = useTranslations('home');
-  const [hasTracked, setHasTracked] = useState(false);
-
-  // Track when component becomes visible (bounce rate improvement metric)
-  useEffect(() => {
-    if (!hasTracked) {
-      track('Scroll Prompt Viewed', {
-        location: 'homepage_hero',
-        device: typeof window !== 'undefined' ? 
-          (window.innerWidth < 768 ? 'mobile' : window.innerWidth < 1024 ? 'tablet' : 'desktop') : 'unknown'
-      });
-      setHasTracked(true);
-    }
-  }, [hasTracked]);
+  // Removed redundant "Scroll Prompt Viewed" tracking - was duplicate of page views
 
   const handleClick = () => {
     // Track click engagement

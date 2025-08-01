@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { ExternalLink, Star, Loader2 } from 'lucide-react';
+import { track } from '@vercel/analytics';
 import { ReviewCard } from './ReviewCard';
 import { getPropertyReviewStats } from '@/lib/reviews-api';
 import { cn } from '@/lib/utils';
@@ -182,7 +183,15 @@ export function VerticalReviews({ propertySlug, className, preloadedReviews, isP
           <div className="text-center py-4">
             <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">
               <button
-                onClick={() => setShowAll(true)}
+                onClick={() => {
+                  // Track show more engagement
+                  track('Reviews Show More', {
+                    property: propertySlug,
+                    total_reviews: reviews.length,
+                    shown_before: 3
+                  });
+                  setShowAll(true);
+                }}
                 className={cn(
                   "px-6 py-3 rounded-xl border-2 font-semibold transition-all duration-300 hover:scale-[1.01] shadow-sm hover:shadow-md",
                   colors.expandButton,
@@ -195,6 +204,13 @@ export function VerticalReviews({ propertySlug, className, preloadedReviews, isP
                 href={airbnbUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => {
+                  // Track external reviews link clicks - potential conversion
+                  track('Reviews Read All Clicked', {
+                    property: propertySlug,
+                    total_reviews: reviews.length
+                  });
+                }}
                 className={cn(
                   "inline-flex items-center gap-2 px-6 py-3 rounded-xl text-white font-semibold transition-all duration-300 hover:scale-[1.01] shadow-md hover:shadow-lg",
                   colors.button
