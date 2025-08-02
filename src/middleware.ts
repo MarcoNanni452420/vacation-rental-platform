@@ -42,6 +42,7 @@ export default withAuth(
       'secbeiinfo.com', 'fzap.secbeiinfo.com', // Nuovo spam domain
       'elmpeesapk.xyz', // Nuovo spam domain
       'inchcalculator.com', 'gameswan.pro', 'baingp.top', 'radio-ao-vivo.com', // Nuovi spam domains
+      'greenhealthy.top', // Aggiunto nuovo spam domain
       
       // SEO spam sites
       'semalt.com', 'buttons-for-website.com', 'darodar.com',
