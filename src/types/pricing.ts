@@ -22,7 +22,7 @@ export interface DisplayPriceItem {
   localizedTitle: string;
   nestedPriceItems: DisplayPriceItem[];
   total: CurrencyAmountFormatted;
-  type: "ACCOMMODATION" | "CLEANING_FEE" | "TAXES" | "SERVICE_FEE" | "OTHER";
+  type: "ACCOMMODATION" | "CLEANING_FEE" | "TAXES" | "SERVICE_FEE" | "OTHER" | "PRICING_RULE_EARLY_BIRD_DISCOUNT" | "PRICING_RULE_DISCOUNT" | "DISCOUNT" | "PAY_NOW" | "TOTAL";
   supplementaryLabel?: string | null;
 }
 
