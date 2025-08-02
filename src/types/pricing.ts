@@ -89,6 +89,7 @@ export interface PricingCalculation {
   cleaningFee: number;
   taxes: number;
   serviceFeesTotal: number;
+  discounts: number;
   grandTotal: number;
   nights: number;
   currency: string;

@@ -42,6 +42,7 @@ function processPriceBreakdown(
   let cleaningFee = 0;
   let taxes = 0;
   let serviceFeesTotal = 0;
+  let discounts = 0;
 
   for (const item of priceItems) {
     const amount = parsePriceAmount(item.total.amountMicros);
@@ -59,13 +60,18 @@ function processPriceBreakdown(
       case 'SERVICE_FEE':
         serviceFeesTotal += amount;
         break;
+      case 'PRICING_RULE_EARLY_BIRD_DISCOUNT':
+      case 'PRICING_RULE_DISCOUNT':
+      case 'DISCOUNT':
+        discounts += amount; // Will be negative
+        break;
       default:
         // Handle other fees as service fees
         serviceFeesTotal += amount;
     }
   }
 
-  const grandTotal = accommodationTotal + cleaningFee + taxes + serviceFeesTotal;
+  const grandTotal = accommodationTotal + cleaningFee + taxes + serviceFeesTotal + discounts;
   const accommodationPerNight = accommodationTotal / nights;
 
   return {
@@ -74,6 +80,7 @@ function processPriceBreakdown(
     cleaningFee,
     taxes,
     serviceFeesTotal,
+    discounts,
     grandTotal,
     nights,
     currency: priceItems[0]?.total.currency || 'EUR',

@@ -272,6 +272,8 @@
     "cleaningFee": "Cleaning fee",
     "taxes": "Taxes",
     "serviceFees": "Service fees",
+    "earlyBirdDiscount": "Early bird discount",
+    "discount": "Discount",
     "total": "Total",
     "calculating": "Calculating price..."
   },

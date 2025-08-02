@@ -131,21 +131,24 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
     const validDates: Date[] = [];
     const minStay = getMinimumStay(checkinDate);
     
-    for (let i = minStay; i <= 30; i++) {
-      const checkoutDate = new Date(checkinDate.getTime() + i * 24 * 60 * 60 * 1000);
+    // Start from checkin date and find consecutive available nights
+    let consecutiveNights = 0;
+    let currentDate = new Date(checkinDate);
+    
+    // Check up to 30 days ahead
+    for (let i = 0; i <= 30; i++) {
+      const checkDate = new Date(checkinDate.getTime() + i * 24 * 60 * 60 * 1000);
       
-      let allNightsAvailable = true;
-      for (let j = 0; j < i; j++) {
-        const nightDate = new Date(checkinDate.getTime() + j * 24 * 60 * 60 * 1000);
-        if (!isDateAvailable(nightDate)) {
-          allNightsAvailable = false;
-          break;
+      if (isDateAvailable(checkDate)) {
+        consecutiveNights++;
+        
+        // If we've reached minimum stay, this is a valid checkout date
+        if (consecutiveNights >= minStay) {
+          const checkoutDate = new Date(checkinDate.getTime() + consecutiveNights * 24 * 60 * 60 * 1000);
+          validDates.push(checkoutDate);
         }
-      }
-      
-      if (allNightsAvailable) {
-        validDates.push(checkoutDate);
       } else {
+        // Found unavailable date, stop checking
         break;
       }
     }

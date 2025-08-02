@@ -272,6 +272,8 @@
     "cleaningFee": "Reinigungsgebühr",
     "taxes": "Steuern",
     "serviceFees": "Servicegebühren",
+    "earlyBirdDiscount": "Frühbucherrabatt",
+    "discount": "Rabatt",
     "total": "Gesamt",
     "calculating": "Preis wird berechnet..."
   },

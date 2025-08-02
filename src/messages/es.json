@@ -272,6 +272,8 @@
     "cleaningFee": "Tarifa de limpieza",
     "taxes": "Impuestos",
     "serviceFees": "Tarifas de servicio",
+    "earlyBirdDiscount": "Descuento reserva anticipada",
+    "discount": "Descuento",
     "total": "Total",
     "calculating": "Calculando precio..."
   },

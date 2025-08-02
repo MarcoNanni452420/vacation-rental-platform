@@ -75,6 +75,13 @@ export function PriceBreakdown({ pricing, propertySlug, className }: PriceBreakd
           </div>
         )}
 
+        {pricing.discounts < 0 && (
+          <div className="flex justify-between items-center py-2 text-green-600">
+            <span>{t('earlyBirdDiscount')}</span>
+            <span className="font-semibold">{formatPrice(pricing.discounts)}</span>
+          </div>
+        )}
+
         {/* Total line - more prominent */}
         <div className={cn(
           "flex justify-between items-center py-4 border-t mt-4",
