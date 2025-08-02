@@ -1,4 +1,55 @@
+# Trastevere Luxury Homes Robots.txt
+# Allow legitimate search engines to crawl the site
+
 User-agent: *
 Allow: /
+Crawl-delay: 1
 
+# Block spam and abusive bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: SEMrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: LinkpadBot
+Disallow: /
+
+User-agent: MauiBot
+Disallow: /
+
+User-agent: serpstatbot
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: Qwantify
+Disallow: /
+
+User-agent: megaindex.ru
+Disallow: /
+
+User-agent: AlphaBot
+Disallow: /
+
+User-agent: Xenu
+Disallow: /
+
+# Sitemap location
 Sitemap: https://trastevere-luxury.com/sitemap.xml

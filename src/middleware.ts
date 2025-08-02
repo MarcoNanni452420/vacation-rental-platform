@@ -6,6 +6,77 @@ export default withAuth(
     const { pathname } = req.nextUrl
     const { token } = req.nextauth
 
+    // Bot and spam referrer blocking
+    const referer = req.headers.get('referer') || '';
+    const userAgent = req.headers.get('user-agent') || '';
+
+    // Block patterns for spam referrers
+    const blockedPatterns = [
+      // Game-related spam patterns
+      /game\.(top|xyz|com|vip|work|fun|online)/i,
+      /\w+game\.top/i,
+      /play.*\.(xyz|com|top|vip)/i,
+      /h5\.(com|top)/i,
+      
+      // Specific spam domains from Vercel Analytics
+      'pilegame.top', 'jollyreef.com', 'metagame.top', 
+      'newstop10.xyz', 'macxcsecplay.xyz', 'gattbi.site',
+      'ganped.top', 'f9game.top', 'quickracingh5.com',
+      'qczpxd.com', 'sdfgame.com', 'susuh5.com',
+      'fkery.top', 'blackbison.shop', 'hushenjio.top',
+      'magicclub72.com', 'tasuvspy.work', 'epicgaminghub.one',
+      'flavorvoyage.net', 'immomovip.com', 'freeaolgames.com',
+      'freemixgames.com', 'funsupergames.fun', 'aiioalo.com',
+      'gamekilo.com', 'gameroomie.com', 'gamerunman.com',
+      'hzdqnj.xyz', 'gragragame.com', 'conquertj.com',
+      'h5joybox.com', 'heeval.space', 'helldiversgame.xyz',
+      'finsafely.com', 'gamexnet.com', 'funngame.vip',
+      'tapminifun.com', 'joymv.top', 'minigame.vip',
+      'laughcraze.com', 'youngbattle.com', 'myzone9.com',
+      'infopathwaypage.com', 'goallocity.com', 'kanziggame.work',
+      'xgcrypto.xyz', 'karwia.xyz', 'playmystic.com',
+      'pawneygame.com', 'varoxigame.com', 'resumetrud.com',
+      'vpzfp.top', 'dbankcloud.com', 'ppgbu.top',
+      'taikangdasha.com', 'gamevitas.com', 'dievengame.online',
+      
+      // SEO spam sites
+      'semalt.com', 'buttons-for-website.com', 'darodar.com',
+      'best-seo-offer.com', '7makemoneyonline.com',
+      'videos-for-your-business.com', 'success-seo.com',
+      'get-free-traffic-now.com', 'free-social-buttons.com'
+    ];
+
+    // Blocked user agents
+    const blockedUserAgents = [
+      'AhrefsBot', 'MJ12bot', 'SEMrushBot', 'DotBot', 
+      'BLEXBot', 'LinkpadBot', 'MauiBot', 'serpstatbot',
+      'PetalBot', 'Bytespider', 'python-requests', 
+      'Go-http-client', 'Java/', 'curl/', 'wget/'
+    ];
+
+    // Check if referrer matches any blocked pattern
+    const isBlockedReferrer = blockedPatterns.some(pattern => {
+      if (typeof pattern === 'string') {
+        return referer.includes(pattern);
+      }
+      return pattern.test(referer);
+    });
+
+    // Check if user agent is blocked
+    const isBlockedBot = blockedUserAgents.some(bot => 
+      userAgent.toLowerCase().includes(bot.toLowerCase())
+    );
+
+    // Block spam traffic
+    if (isBlockedReferrer || isBlockedBot) {
+      return new Response('Access Denied', { 
+        status: 403,
+        headers: {
+          'X-Robots-Tag': 'noindex, nofollow'
+        }
+      });
+    }
+
     // Generate CSP nonce for security using Web Crypto API
     const nonce = crypto.randomUUID().replace(/-/g, '')
     
