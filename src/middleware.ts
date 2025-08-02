@@ -38,6 +38,7 @@ export default withAuth(
       'pawneygame.com', 'varoxigame.com', 'resumetrud.com',
       'vpzfp.top', 'dbankcloud.com', 'ppgbu.top',
       'taikangdasha.com', 'gamevitas.com', 'dievengame.online',
+      'yohogames.top', // Aggiunto per catturare nowifimini.yohogames.top
       
       // SEO spam sites
       'semalt.com', 'buttons-for-website.com', 'darodar.com',
@@ -57,10 +58,22 @@ export default withAuth(
     // Check if referrer matches any blocked pattern
     const isBlockedReferrer = blockedPatterns.some(pattern => {
       if (typeof pattern === 'string') {
-        return referer.includes(pattern);
+        // Check if the referrer contains the pattern or ends with it (for subdomains)
+        return referer.includes(pattern) || 
+               referer.toLowerCase().endsWith(pattern) ||
+               referer.toLowerCase().includes('.' + pattern);
       }
       return pattern.test(referer);
     });
+    
+    // Also check if request has no referer but suspicious user agent
+    const hasNoReferer = !referer || referer === '';
+    const isSuspiciousNoReferer = hasNoReferer && userAgent && (
+      userAgent.includes('bot') || 
+      userAgent.includes('spider') || 
+      userAgent.includes('crawler') ||
+      userAgent.length < 20 // Very short user agents are often bots
+    );
 
     // Check if user agent is blocked
     const isBlockedBot = blockedUserAgents.some(bot => 
@@ -68,11 +81,21 @@ export default withAuth(
     );
 
     // Block spam traffic
-    if (isBlockedReferrer || isBlockedBot) {
+    if (isBlockedReferrer || isBlockedBot || isSuspiciousNoReferer) {
+      // Log blocked attempts in development
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Blocked request:', {
+          referer,
+          userAgent,
+          reason: isBlockedReferrer ? 'blocked_referrer' : isBlockedBot ? 'blocked_bot' : 'suspicious_no_referer'
+        });
+      }
+      
       return new Response('Access Denied', { 
         status: 403,
         headers: {
-          'X-Robots-Tag': 'noindex, nofollow'
+          'X-Robots-Tag': 'noindex, nofollow',
+          'X-Blocked-Reason': isBlockedReferrer ? 'referrer' : isBlockedBot ? 'bot' : 'suspicious'
         }
       });
     }
