@@ -39,6 +39,8 @@ export default withAuth(
       'vpzfp.top', 'dbankcloud.com', 'ppgbu.top',
       'taikangdasha.com', 'gamevitas.com', 'dievengame.online',
       'yohogames.top', // Aggiunto per catturare nowifimini.yohogames.top
+      'secbeiinfo.com', 'fzap.secbeiinfo.com', // Nuovo spam domain
+      'elmpeesapk.xyz', // Nuovo spam domain
       
       // SEO spam sites
       'semalt.com', 'buttons-for-website.com', 'darodar.com',
