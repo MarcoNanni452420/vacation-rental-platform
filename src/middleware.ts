@@ -49,7 +49,11 @@ export default withAuth(
       'magicclub49.com', // Blocca for.magicclub49.com, safe.magicclub49.com e tutti i sottodomini
       'mbgame.bar', // Blocca super.mbgame.bar e tutti i sottodomini
       'xxvptre.today', // Blocca puzzly.xxvptre.today e tutti i sottodomini
-      // NOTE: googleadservices.com NON bloccato - è traffico legittimo Google Ads
+      'dtrsqhubwn.com', 'gfgje.com', 'magiczjc.com', 'magicclub41.com', // Nuovi spam
+      'zrpve.com', 'fgcpve.com', 'puzzgo27.lol', 'gceuh.com', // Altri spam
+      'cashifycity.com', 'itil4hub.com', 'partakemessage.com', 'vetvai.biz', // Altri spam
+      // NOTE: NON bloccare: googleadservices.com, pagead2.googlesyndication.com, youtube.com,
+      // google.com, syndicatedsearch.goog, googleads.g.doubleclick.net, poki.com (tutti legittimi)
       
       // SEO spam sites
       'semalt.com', 'buttons-for-website.com', 'darodar.com',
