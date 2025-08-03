@@ -47,6 +47,8 @@ export default withAuth(
       'gameforclick.com', 'macxdvd.com', 'sportzbonanza.com', 'topfreegamebox.com', // Nuovi spam domains
       'yojanalive.online', // Blocca play300.yojanalive.online e tutti i sottodomini
       'magicclub49.com', // Blocca for.magicclub49.com, safe.magicclub49.com e tutti i sottodomini
+      'mbgame.bar', // Blocca super.mbgame.bar e tutti i sottodomini
+      'xxvptre.today', // Blocca puzzly.xxvptre.today e tutti i sottodomini
       // NOTE: googleadservices.com NON bloccato - è traffico legittimo Google Ads
       
       // SEO spam sites
