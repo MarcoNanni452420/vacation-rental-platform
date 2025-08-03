@@ -44,6 +44,8 @@ export default withAuth(
       'inchcalculator.com', 'gameswan.pro', 'baingp.top', 'radio-ao-vivo.com', // Nuovi spam domains
       'greenhealthy.top', 'eyebuydirect.com', 'urbangamex.top', 'forever21.ca', // Nuovi spam domains
       'gamethundernovax.top', 'gfuel.com', 'newzo.top', // Altri spam domains
+      'gameforclick.com', 'macxdvd.com', 'sportzbonanza.com', 'topfreegamebox.com', // Nuovi spam domains
+      // NOTE: googleadservices.com NON bloccato - è traffico legittimo Google Ads
       
       // SEO spam sites
       'semalt.com', 'buttons-for-website.com', 'darodar.com',
