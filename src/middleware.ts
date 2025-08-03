@@ -45,6 +45,7 @@ export default withAuth(
       'greenhealthy.top', 'eyebuydirect.com', 'urbangamex.top', 'forever21.ca', // Nuovi spam domains
       'gamethundernovax.top', 'gfuel.com', 'newzo.top', // Altri spam domains
       'gameforclick.com', 'macxdvd.com', 'sportzbonanza.com', 'topfreegamebox.com', // Nuovi spam domains
+      'yojanalive.online', // Blocca play300.yojanalive.online e tutti i sottodomini
       // NOTE: googleadservices.com NON bloccato - è traffico legittimo Google Ads
       
       // SEO spam sites
