@@ -275,7 +275,9 @@
     "earlyBirdDiscount": "Early bird discount",
     "discount": "Discount",
     "total": "Total",
-    "calculating": "Calculating price..."
+    "calculating": "Calculating price...",
+    "pricingError": "Unable to load prices",
+    "pricingErrorMessage": "Please try again in a moment"
   },
   "admin": {
     "guests": "Guests",

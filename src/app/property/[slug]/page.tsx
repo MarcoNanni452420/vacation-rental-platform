@@ -211,6 +211,7 @@ export default function PropertyPage() {
   const [preloadedReviews, setPreloadedReviews] = useState<ReviewsResponse | null>(null)
   const [isPreloadingReviews, setIsPreloadingReviews] = useState(true)
   const [totalPrice, setTotalPrice] = useState<number | null>(null)
+  const [isPricingError, setIsPricingError] = useState(false)
 
   useEffect(() => {
     if (property) {
@@ -418,6 +419,7 @@ export default function PropertyPage() {
                     guests={guests}
                     className="mt-6"
                     onPriceCalculated={setTotalPrice}
+                    onPricingError={setIsPricingError}
                   />
 
                   <button 
@@ -426,13 +428,13 @@ export default function PropertyPage() {
                       "transition-all duration-300 transform hover:scale-[1.01] active:scale-[0.99]",
                       "text-white shadow-md hover:shadow-lg",
                       "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100",
-                      !dateRange?.from || !dateRange?.to 
+                      !dateRange?.from || !dateRange?.to || isPricingError
                         ? "bg-gray-400" 
                         : slug === 'fienaroli'
                           ? "bg-[hsl(20,50%,45%)] hover:bg-[hsl(20,50%,42%)]"
                           : "bg-[hsl(345,40%,40%)] hover:bg-[hsl(345,40%,37%)]"
                     )}
-                    disabled={!dateRange?.from || !dateRange?.to}
+                    disabled={!dateRange?.from || !dateRange?.to || isPricingError}
                     onClick={() => {
                       if (dateRange?.from && dateRange?.to) {
                         // CRITICAL FIX: Validate dates with Italian timezone before tracking

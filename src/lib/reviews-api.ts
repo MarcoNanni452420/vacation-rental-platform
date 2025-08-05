@@ -5,8 +5,8 @@ const QUERY_HASH = 'dec1c8061483e78373602047450322fd474e79ba9afa8d3dbbc27f504030
 
 // Base URLs per diversi domini reviews
 const REVIEWS_BASE_URLS = {
-  it: 'https://www.airbnb.it/api/v3/StaysPdpReviewsQuery',
-  en: 'https://www.airbnb.co.uk/api/v3/StaysPdpReviewsQuery'
+  it: 'https://www.airbnb.com/api/v3/StaysPdpReviewsQuery',
+  en: 'https://www.airbnb.com/api/v3/StaysPdpReviewsQuery'
 };
 
 // Mapping delle proprietà ai listing delle recensioni

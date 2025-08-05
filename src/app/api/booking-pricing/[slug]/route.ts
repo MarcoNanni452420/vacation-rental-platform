@@ -6,9 +6,58 @@ import {
 } from '@/types/pricing';
 
 // Airbnb API configuration
-const AIRBNB_API_BASE = 'https://www.airbnb.it/api/v3/stayCheckout';
+const AIRBNB_API_BASE = 'https://www.airbnb.com/api/v3/stayCheckout';
 const AIRBNB_API_KEY = 'd306zoyjsyarp7ifhu67rjxn52tv0t20';
 const QUERY_HASH = '1d5d9e5bb125650782f405fde26a21a3882f1027327eb7b57ffc7adc4a05e618';
+
+// Currency mapping by country code
+const CURRENCY_MAPPING: Record<string, string> = {
+  // USD countries
+  'US': 'USD', 'PR': 'USD', 'EC': 'USD', 'SV': 'USD',
+  'ZW': 'USD', 'TL': 'USD', 'MH': 'USD', 'PW': 'USD',
+  'FM': 'USD', 'TC': 'USD', 'VI': 'USD', 'GU': 'USD',
+  
+  // CAD
+  'CA': 'CAD',
+  
+  // GBP
+  'GB': 'GBP', 'GI': 'GBP', 'IM': 'GBP', 
+  'JE': 'GBP', 'GG': 'GBP',
+  
+  // CHF
+  'CH': 'CHF', 'LI': 'CHF',
+  
+  // JPY
+  'JP': 'JPY',
+  
+  // AUD
+  'AU': 'AUD', 'CX': 'AUD', 'CC': 'AUD', 'NF': 'AUD',
+  'NR': 'AUD', 'TV': 'AUD', 'KI': 'AUD',
+  
+  // INR
+  'IN': 'INR', 'BT': 'INR',
+  
+  // Default EUR for all EU countries and others
+};
+
+// Determine user's currency from Accept-Language header
+function getUserCurrency(request: NextRequest): string {
+  const acceptLanguage = request.headers.get('accept-language') || '';
+  
+  // Extract country codes from Accept-Language header
+  // Examples: en-US, en-GB, it-IT, de-CH, etc.
+  const matches = acceptLanguage.match(/[a-z]{2}-([A-Z]{2})/g) || [];
+  
+  for (const match of matches) {
+    const countryCode = match.split('-')[1];
+    if (CURRENCY_MAPPING[countryCode]) {
+      return CURRENCY_MAPPING[countryCode];
+    }
+  }
+  
+  // Default to EUR
+  return 'EUR';
+}
 
 // Property mapping for productId (Base64 encoded listing IDs)
 const PROPERTY_MAPPING = {
@@ -30,7 +79,7 @@ function calculateNights(checkinDate: string, checkoutDate: string): number {
 }
 
 function parsePriceAmount(amountMicros: string): number {
-  return parseInt(amountMicros) / 1000000; // Convert micros to euros
+  return parseInt(amountMicros) / 1000000; // Convert micros to currency units
 }
 
 
@@ -83,7 +132,7 @@ function processPriceBreakdown(
     discounts,
     grandTotal,
     nights,
-    currency: priceItems[0]?.total.currency || 'EUR',
+    currency: priceItems[0]?.total.currency || 'EUR', // Fallback to EUR if no items
     breakdown: priceItems
   };
 }
@@ -99,6 +148,9 @@ export async function GET(
     const checkinDate = searchParams.get('checkinDate');
     const checkoutDate = searchParams.get('checkoutDate');
     const guests = parseInt(searchParams.get('guests') || '1');
+    
+    // Get user's preferred currency
+    const userCurrency = getUserCurrency(request);
 
     // Validation
     if (!checkinDate || !checkoutDate) {
@@ -139,7 +191,7 @@ export async function GET(
           numberOfInfants: 0,
           numberOfPets: 0
         },
-        guestCurrencyOverride: 'EUR',
+        guestCurrencyOverride: userCurrency,
         listingDetail: {},
         lux: {},
         metadata: {
@@ -166,7 +218,7 @@ export async function GET(
     const params_obj = new URLSearchParams({
       operationName: 'stayCheckout',
       locale: 'it',
-      currency: 'EUR',
+      currency: userCurrency,
       variables: JSON.stringify(variables),
       extensions: JSON.stringify(extensions)
     });

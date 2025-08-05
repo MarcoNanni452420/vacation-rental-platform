@@ -35,15 +35,6 @@ export function BookingCalendar({ propertySlug, onDateChange, className, selecte
   const [isHovered, setIsHovered] = useState(false);
 
   const handleDateConfirm = (range: { from: Date | undefined; to: Date | undefined } | undefined) => {
-    // Track date selection
-    if (range?.from && range?.to) {
-      track('Dates Selected', {
-        property: propertySlug,
-        nights: differenceInDays(range.to, range.from),
-        checkin_date: format(range.from, 'yyyy-MM-dd'),
-        checkout_date: format(range.to, 'yyyy-MM-dd')
-      });
-    }
     onDateChange(range);
   };
 

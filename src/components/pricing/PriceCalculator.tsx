@@ -6,6 +6,7 @@ import { PriceBreakdown } from './PriceBreakdown';
 import { PricingCalculation } from '@/types/pricing';
 import { format } from 'date-fns';
 import { useTranslations } from 'next-intl';
+import { track } from '@vercel/analytics';
 
 interface PriceCalculatorProps {
   propertySlug: 'fienaroli' | 'moro';
@@ -14,6 +15,7 @@ interface PriceCalculatorProps {
   guests: number;
   className?: string;
   onPriceCalculated?: (totalPrice: number | null) => void;
+  onPricingError?: (hasError: boolean) => void;
 }
 
 export function PriceCalculator({
@@ -22,7 +24,8 @@ export function PriceCalculator({
   checkoutDate,
   guests,
   className,
-  onPriceCalculated
+  onPriceCalculated,
+  onPricingError
 }: PriceCalculatorProps) {
   const t = useTranslations('pricing');
   const [pricing, setPricing] = useState<PricingCalculation | null>(null);
@@ -57,9 +60,36 @@ export function PriceCalculator({
 
         const pricingData: PricingCalculation = await response.json();
         setPricing(pricingData);
+        
+        // Track successful price calculation
+        track('Price Calculated', {
+          property: propertySlug,
+          checkin_date: format(checkinDate, 'yyyy-MM-dd'),
+          checkout_date: format(checkoutDate, 'yyyy-MM-dd'),
+          nights: pricingData.nights,
+          guests: guests,
+          total_price: pricingData.grandTotal,
+          currency: pricingData.currency,
+          accommodation_price: pricingData.accommodationTotal,
+          cleaning_fee: pricingData.cleaningFee,
+          taxes: pricingData.taxes,
+          service_fees: pricingData.serviceFeesTotal,
+          discounts: pricingData.discounts
+        });
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load pricing');
         setPricing(null);
+        
+        // Track pricing error to Vercel Analytics
+        track('Pricing Error', {
+          property: propertySlug,
+          checkin_date: format(checkinDate, 'yyyy-MM-dd'),
+          checkout_date: format(checkoutDate, 'yyyy-MM-dd'),
+          guests: guests,
+          error_message: err instanceof Error ? err.message : 'Unknown error',
+          user_agent: typeof window !== 'undefined' ? navigator.userAgent : 'unknown',
+          url: typeof window !== 'undefined' ? window.location.href : 'unknown'
+        });
       } finally {
         setLoading(false);
       }
@@ -80,6 +110,13 @@ export function PriceCalculator({
       }
     }
   }, [pricing, onPriceCalculated, checkinDate, checkoutDate]);
+
+  // Notify parent about error state
+  useEffect(() => {
+    if (onPricingError) {
+      onPricingError(!!error);
+    }
+  }, [error, onPricingError]);
 
   // Don't render anything if no dates selected
   if (!checkinDate || !checkoutDate) {
@@ -105,9 +142,9 @@ export function PriceCalculator({
         <div className="flex items-center gap-3 text-destructive">
           <AlertCircle className="w-5 h-5" />
           <div>
-            <div className="font-medium">Errore nel calcolo del prezzo</div>
+            <div className="font-medium">{t('pricingError')}</div>
             <div className="text-sm text-muted-foreground mt-1">
-              Prezzi disponibili su Airbnb dopo la prenotazione
+              {t('pricingErrorMessage')}
             </div>
           </div>
         </div>

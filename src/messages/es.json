@@ -275,7 +275,9 @@
     "earlyBirdDiscount": "Descuento reserva anticipada",
     "discount": "Descuento",
     "total": "Total",
-    "calculating": "Calculando precio..."
+    "calculating": "Calculando precio...",
+    "pricingError": "No se pueden cargar los precios",
+    "pricingErrorMessage": "Por favor, inténtelo de nuevo en un momento"
   },
   "admin": {
     "guests": "Huéspedes",

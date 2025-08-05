@@ -275,7 +275,9 @@
     "earlyBirdDiscount": "Frühbucherrabatt",
     "discount": "Rabatt",
     "total": "Gesamt",
-    "calculating": "Preis wird berechnet..."
+    "calculating": "Preis wird berechnet...",
+    "pricingError": "Preise können nicht geladen werden",
+    "pricingErrorMessage": "Bitte versuchen Sie es gleich noch einmal"
   },
   "admin": {
     "guests": "Gäste",
