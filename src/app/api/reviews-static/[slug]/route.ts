@@ -57,7 +57,7 @@ function loadStaticReviews(): StaticReviewsData {
       staticDataCache = JSON.parse(rawData);
       cacheLastModified = fileModified;
       
-      console.log(`✅ Loaded static reviews: ${Object.keys(staticDataCache.reviews || {}).length} properties`);
+      console.log(`✅ Loaded static reviews: ${Object.keys(staticDataCache?.reviews || {}).length} properties`);
     }
     
     return staticDataCache;
