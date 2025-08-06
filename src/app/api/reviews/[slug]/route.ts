@@ -60,7 +60,7 @@ function loadStaticReviews(): StaticReviewsData {
       console.log(`✅ Loaded static reviews: ${Object.keys(staticDataCache?.reviews || {}).length} properties`);
     }
     
-    return staticDataCache;
+    return staticDataCache!; // We know it's not null here because we just assigned it
     
   } catch (error) {
     console.error('❌ Error loading static reviews:', error);
