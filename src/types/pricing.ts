@@ -94,6 +94,7 @@ export interface PricingCalculation {
   nights: number;
   currency: string;
   breakdown: DisplayPriceItem[];
+  detectedCountry?: string | null;
 }
 
 export interface PricingRequest {

@@ -192,12 +192,6 @@ export function VerticalReviews({ propertySlug, className, preloadedReviews, isP
             <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">
               <button
                 onClick={() => {
-                  // Track show more engagement
-                  track('Reviews Show More', {
-                    property: propertySlug,
-                    total_reviews: reviews.length,
-                    shown_before: 3
-                  });
                   setShowAll(true);
                 }}
                 className={cn(

@@ -167,12 +167,6 @@ export function ReviewCard({
           {shouldTruncate && (
             <button
               onClick={() => {
-                // Track individual review expansion/collapse
-                track('Review Expanded', {
-                  property: propertySlug,
-                  review_author: reviewer.firstName,
-                  action: isExpanded ? 'collapse' : 'expand'
-                });
                 setIsExpanded(!isExpanded);
               }}
               className={cn(

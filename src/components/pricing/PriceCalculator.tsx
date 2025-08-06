@@ -65,7 +65,8 @@ export function PriceCalculator({
         track('Price Calculated', {
           property: propertySlug,
           details: `${format(checkinDate, 'dd/MM/yyyy')}-${format(checkoutDate, 'dd/MM/yyyy')} (${pricingData.nights} ${pricingData.nights === 1 ? 'night' : 'nights'}) · ${guests} ${guests === 1 ? 'guest' : 'guests'}`,
-          price: `${Math.round(pricingData.grandTotal)} ${pricingData.currency}`
+          price: `${Math.round(pricingData.grandTotal)} ${pricingData.currency}`,
+          country: pricingData.detectedCountry || 'unknown'
         });
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load pricing');

@@ -40,23 +40,22 @@ const CURRENCY_MAPPING: Record<string, string> = {
   // Default EUR for all EU countries and others
 };
 
-// Determine user's currency from Accept-Language header
-function getUserCurrency(request: NextRequest): string {
-  const acceptLanguage = request.headers.get('accept-language') || '';
+// Determine user's currency from Vercel IP country header
+function getUserCurrency(request: NextRequest): { currency: string; country: string | null } {
+  const ipCountry = request.headers.get('x-vercel-ip-country');
   
-  // Extract country codes from Accept-Language header
-  // Examples: en-US, en-GB, it-IT, de-CH, etc.
-  const matches = acceptLanguage.match(/[a-z]{2}-([A-Z]{2})/g) || [];
-  
-  for (const match of matches) {
-    const countryCode = match.split('-')[1];
-    if (CURRENCY_MAPPING[countryCode]) {
-      return CURRENCY_MAPPING[countryCode];
-    }
+  if (ipCountry && CURRENCY_MAPPING[ipCountry]) {
+    return {
+      currency: CURRENCY_MAPPING[ipCountry],
+      country: ipCountry
+    };
   }
   
-  // Default to EUR
-  return 'EUR';
+  // Default to EUR if no header or country not mapped
+  return {
+    currency: 'EUR',
+    country: ipCountry || null
+  };
 }
 
 // Property mapping for productId (Base64 encoded listing IDs)
@@ -85,7 +84,8 @@ function parsePriceAmount(amountMicros: string): number {
 
 function processPriceBreakdown(
   priceItems: DisplayPriceItem[], 
-  nights: number
+  nights: number,
+  detectedCountry: string | null
 ): PricingCalculation {
   let accommodationTotal = 0;
   let cleaningFee = 0;
@@ -133,7 +133,8 @@ function processPriceBreakdown(
     grandTotal,
     nights,
     currency: priceItems[0]?.total.currency || 'EUR', // Fallback to EUR if no items
-    breakdown: priceItems
+    breakdown: priceItems,
+    detectedCountry
   };
 }
 
@@ -149,8 +150,8 @@ export async function GET(
     const checkoutDate = searchParams.get('checkoutDate');
     const guests = parseInt(searchParams.get('guests') || '1');
     
-    // Get user's preferred currency
-    const userCurrency = getUserCurrency(request);
+    // Get user's preferred currency and detected country
+    const { currency: userCurrency, country: detectedCountry } = getUserCurrency(request);
 
     // Validation
     if (!checkinDate || !checkoutDate) {
@@ -311,7 +312,7 @@ export async function GET(
 
     // Process the real pricing data
     const nights = calculateNights(checkinDate, checkoutDate);
-    const calculation = processPriceBreakdown(priceItems, nights);
+    const calculation = processPriceBreakdown(priceItems, nights, detectedCountry);
 
     return NextResponse.json(calculation);
 
