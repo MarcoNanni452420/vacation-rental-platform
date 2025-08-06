@@ -4,7 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Menu, X } from "lucide-react"
 import { useState, useEffect, useRef } from "react"
-import { usePathname, useRouter } from "next/navigation"
+import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { LanguageSwitcher } from "@/components/LanguageSwitcher"
 import { useTranslations } from 'next-intl'
@@ -17,7 +17,7 @@ export function Navbar() {
   const mobileDropdownRef = useRef<HTMLDivElement>(null)
   const [isNavigating, setIsNavigating] = useState(false)
   const pathname = usePathname()
-  const router = useRouter()
+  // const router = useRouter() // Currently unused
   const isHomepage = pathname === '/'
   const isContactPage = pathname === '/contact'
   const isPropertyPage = pathname.startsWith('/property/')

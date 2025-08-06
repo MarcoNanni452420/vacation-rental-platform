@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { MobileBottomSheet } from './MobileBottomSheet';
-import { useTranslations } from 'next-intl';
+// import { useTranslations } from 'next-intl'; // Currently unused
 
 interface PropertyHeroProps {
   imageSrc: string;
@@ -23,7 +23,7 @@ export function PropertyHero({
   onCtaClick,
   className = ""
 }: PropertyHeroProps) {
-  const t = useTranslations('property');
+  // const t = useTranslations('property'); // Currently unused
 
   return (
     <section className={`relative h-[90vh] md:h-screen ${className}`}>

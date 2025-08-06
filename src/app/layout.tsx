@@ -6,7 +6,7 @@ import { Footer } from "@/components/public/footer";
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages, getLocale} from 'next-intl/server';
 import { Toaster } from 'react-hot-toast';
-import { headers } from 'next/headers';
+// import { headers } from 'next/headers'; // Currently unused
 import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -74,8 +74,8 @@ export default async function RootLayout({
   const locale = await getLocale();
   
   // Get nonce from middleware
-  const headersList = await headers();
-  const nonce = headersList.get('x-nonce') || '';
+  // const headersList = await headers();
+  // const nonce = headersList.get('x-nonce') || ''; // Currently unused
   
   return (
     <html lang={locale} suppressHydrationWarning={true}>

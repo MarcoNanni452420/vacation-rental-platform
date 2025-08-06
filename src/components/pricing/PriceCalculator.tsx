@@ -14,7 +14,7 @@ interface PriceCalculatorProps {
   checkoutDate?: Date;
   guests: number;
   className?: string;
-  onPriceCalculated?: (totalPrice: number | null) => void;
+  onPriceCalculated?: (totalPrice: number | null, currency?: string) => void;
   onPricingError?: (hasError: boolean) => void;
 }
 
@@ -93,8 +93,8 @@ export function PriceCalculator({
         // Clear price when no dates selected
         onPriceCalculated(null);
       } else {
-        // Set price when available
-        onPriceCalculated(pricing?.grandTotal || null);
+        // Set price and currency when available
+        onPriceCalculated(pricing?.grandTotal || null, pricing?.currency);
       }
     }
   }, [pricing, onPriceCalculated, checkinDate, checkoutDate]);

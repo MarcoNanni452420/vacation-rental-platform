@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Star, ChevronDown, ChevronUp } from 'lucide-react';
-import { track } from '@vercel/analytics';
+// import { track } from '@vercel/analytics'; // Currently unused
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';

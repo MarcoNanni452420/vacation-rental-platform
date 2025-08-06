@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { format, differenceInDays, addMonths, startOfMonth, endOfMonth, eachDayOfInterval, getDay } from 'date-fns';
-import { isBeforeTodayInItaly, startOfTodayInItaly, formatDateForAPI, isValidDateRangeInItaly, getTimezoneDebugInfo } from '@/lib/date-utils';
+import { isBeforeTodayInItaly, formatDateForAPI } from '@/lib/date-utils';
 import { it, enUS, fr, de, es } from 'date-fns/locale';
 import { fetchAvailability } from '@/lib/octorate-api';
 import { OctorateCalendarResponse } from '@/types/octorate';
@@ -133,7 +133,6 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
     
     // Start from checkin date and find consecutive available nights
     let consecutiveNights = 0;
-    let currentDate = new Date(checkinDate);
     
     // Check up to 30 days ahead
     for (let i = 0; i <= 30; i++) {
@@ -380,29 +379,21 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
           
           <button
             onClick={onClose}
-            className="p-2 rounded-xl transition-all duration-200 hover:scale-105 min-h-[44px] min-w-[44px] flex items-center justify-center md:bg-transparent md:border-0"
-            style={{ 
-              backgroundColor: window.innerWidth < 768 ? '#F3F4F6' : `${colors.primary}10`,
-              border: window.innerWidth < 768 ? '1px solid #D1D5DB' : 'none'
-            }}
-            onMouseEnter={(e) => {
-              if (window.innerWidth >= 768) {
-                e.currentTarget.style.backgroundColor = `${colors.primary}20`
-              } else {
-                e.currentTarget.style.backgroundColor = '#E5E7EB'
-                e.currentTarget.style.borderColor = '#9CA3AF'
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (window.innerWidth >= 768) {
-                e.currentTarget.style.backgroundColor = `${colors.primary}10`
-              } else {
-                e.currentTarget.style.backgroundColor = '#F3F4F6'
-                e.currentTarget.style.borderColor = '#D1D5DB'
-              }
-            }}
+            className={cn(
+              "p-2 rounded-xl transition-all duration-200 hover:scale-105 min-h-[44px] min-w-[44px] flex items-center justify-center",
+              "bg-gray-100 border border-gray-300 hover:bg-gray-200 hover:border-gray-400",
+              "md:bg-transparent md:border-0",
+              propertySlug === 'fienaroli' 
+                ? "md:bg-[hsl(20,65%,95%)] md:hover:bg-[hsl(20,65%,88%)]" 
+                : "md:bg-[hsl(345,55%,95%)] md:hover:bg-[hsl(345,55%,88%)]"
+            )}
           >
-            <X className="w-6 h-6" style={{ color: window.innerWidth < 768 ? '#374151' : colors.primary }} />
+            <X className={cn(
+              "w-6 h-6 text-gray-700",
+              propertySlug === 'fienaroli'
+                ? "md:text-[hsl(20,65%,48%)]"
+                : "md:text-[hsl(345,55%,42%)]"
+            )} />
           </button>
         </div>
 
@@ -426,29 +417,21 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
               <div className="flex items-center justify-between mb-6">
                 <button
                   onClick={() => setCurrentMonth(addMonths(currentMonth, -1))}
-                  className="p-3 rounded-xl transition-all duration-200 hover:scale-105 min-h-[44px] min-w-[44px] flex items-center justify-center"
-                  style={{ 
-                    backgroundColor: window.innerWidth < 768 ? '#F3F4F6' : `${colors.primary}10`,
-                    border: window.innerWidth < 768 ? '1px solid #D1D5DB' : 'none'
-                  }}
-                  onMouseEnter={(e) => {
-                    if (window.innerWidth >= 768) {
-                      e.currentTarget.style.backgroundColor = `${colors.primary}20`
-                    } else {
-                      e.currentTarget.style.backgroundColor = '#E5E7EB'
-                      e.currentTarget.style.borderColor = '#9CA3AF'
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (window.innerWidth >= 768) {
-                      e.currentTarget.style.backgroundColor = `${colors.primary}10`
-                    } else {
-                      e.currentTarget.style.backgroundColor = '#F3F4F6'
-                      e.currentTarget.style.borderColor = '#D1D5DB'
-                    }
-                  }}
+                  className={cn(
+                    "p-3 rounded-xl transition-all duration-200 hover:scale-105 min-h-[44px] min-w-[44px] flex items-center justify-center",
+                    "bg-gray-100 border border-gray-300 hover:bg-gray-200 hover:border-gray-400",
+                    "md:bg-transparent md:border-0",
+                    propertySlug === 'fienaroli' 
+                      ? "md:bg-[hsl(20,65%,95%)] md:hover:bg-[hsl(20,65%,88%)]" 
+                      : "md:bg-[hsl(345,55%,95%)] md:hover:bg-[hsl(345,55%,88%)]"
+                  )}
                 >
-                  <ChevronLeft className="w-6 h-6" style={{ color: window.innerWidth < 768 ? '#374151' : colors.primary }} />
+                  <ChevronLeft className={cn(
+                    "w-6 h-6 text-gray-700",
+                    propertySlug === 'fienaroli'
+                      ? "md:text-[hsl(20,65%,48%)]"
+                      : "md:text-[hsl(345,55%,42%)]"
+                  )} />
                 </button>
                 
                 <div className="text-lg font-semibold" style={{ color: colors.text }}>
@@ -457,29 +440,21 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
                 
                 <button
                   onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
-                  className="p-3 rounded-xl transition-all duration-200 hover:scale-105 min-h-[44px] min-w-[44px] flex items-center justify-center"
-                  style={{ 
-                    backgroundColor: window.innerWidth < 768 ? '#F3F4F6' : `${colors.primary}10`,
-                    border: window.innerWidth < 768 ? '1px solid #D1D5DB' : 'none'
-                  }}
-                  onMouseEnter={(e) => {
-                    if (window.innerWidth >= 768) {
-                      e.currentTarget.style.backgroundColor = `${colors.primary}20`
-                    } else {
-                      e.currentTarget.style.backgroundColor = '#E5E7EB'
-                      e.currentTarget.style.borderColor = '#9CA3AF'
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (window.innerWidth >= 768) {
-                      e.currentTarget.style.backgroundColor = `${colors.primary}10`
-                    } else {
-                      e.currentTarget.style.backgroundColor = '#F3F4F6'
-                      e.currentTarget.style.borderColor = '#D1D5DB'
-                    }
-                  }}
+                  className={cn(
+                    "p-3 rounded-xl transition-all duration-200 hover:scale-105 min-h-[44px] min-w-[44px] flex items-center justify-center",
+                    "bg-gray-100 border border-gray-300 hover:bg-gray-200 hover:border-gray-400",
+                    "md:bg-transparent md:border-0",
+                    propertySlug === 'fienaroli' 
+                      ? "md:bg-[hsl(20,65%,95%)] md:hover:bg-[hsl(20,65%,88%)]" 
+                      : "md:bg-[hsl(345,55%,95%)] md:hover:bg-[hsl(345,55%,88%)]"
+                  )}
                 >
-                  <ChevronRight className="w-6 h-6" style={{ color: window.innerWidth < 768 ? '#374151' : colors.primary }} />
+                  <ChevronRight className={cn(
+                    "w-6 h-6 text-gray-700",
+                    propertySlug === 'fienaroli'
+                      ? "md:text-[hsl(20,65%,48%)]"
+                      : "md:text-[hsl(345,55%,42%)]"
+                  )} />
                 </button>
               </div>
 
@@ -502,28 +477,14 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
              style={{ borderColor: `${colors.primary}20` }}>
           <button
             onClick={handleClear}
-            className="px-4 py-2 text-sm font-medium border rounded-xl transition-all duration-200 hover:scale-105 order-2 sm:order-1 min-h-[44px]"
-            style={{ 
-              color: window.innerWidth < 768 ? '#374151' : colors.text,
-              borderColor: window.innerWidth < 768 ? '#D1D5DB' : `${colors.primary}30`,
-              backgroundColor: 'white'
-            }}
-            onMouseEnter={(e) => {
-              if (window.innerWidth >= 768) {
-                e.currentTarget.style.backgroundColor = `${colors.primary}10`
-              } else {
-                e.currentTarget.style.backgroundColor = '#F3F4F6'
-                e.currentTarget.style.borderColor = '#9CA3AF'
-              }
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'white'
-              if (window.innerWidth >= 768) {
-                e.currentTarget.style.borderColor = `${colors.primary}30`
-              } else {
-                e.currentTarget.style.borderColor = '#D1D5DB'
-              }
-            }}
+            className={cn(
+              "px-4 py-2 text-sm font-medium border rounded-xl transition-all duration-200 hover:scale-105 order-2 sm:order-1 min-h-[44px]",
+              "text-gray-700 border-gray-300 bg-white hover:bg-gray-100 hover:border-gray-400",
+              propertySlug === 'fienaroli'
+                ? "md:border-[hsl(20,65%,85%)] md:hover:bg-[hsl(20,65%,95%)]"
+                : "md:border-[hsl(345,55%,85%)] md:hover:bg-[hsl(345,55%,95%)]"
+            )}
+            style={{ color: colors.text }}
           >
 {t('clearDates')}
           </button>
@@ -531,44 +492,28 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
           <div className="flex gap-3 order-1 sm:order-2">
             <button
               onClick={onClose}
-              className="px-6 py-2 text-sm font-medium border rounded-xl transition-all duration-200 hover:scale-105 min-h-[44px]"
-              style={{ 
-                color: window.innerWidth < 768 ? '#374151' : colors.text,
-                borderColor: window.innerWidth < 768 ? '#D1D5DB' : `${colors.primary}30`,
-                backgroundColor: 'white'
-              }}
-              onMouseEnter={(e) => {
-                if (window.innerWidth >= 768) {
-                  e.currentTarget.style.backgroundColor = `${colors.primary}10`
-                } else {
-                  e.currentTarget.style.backgroundColor = '#F3F4F6'
-                  e.currentTarget.style.borderColor = '#9CA3AF'
-                }
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'white'
-                if (window.innerWidth >= 768) {
-                  e.currentTarget.style.borderColor = `${colors.primary}30`
-                } else {
-                  e.currentTarget.style.borderColor = '#D1D5DB'
-                }
-              }}
+              className={cn(
+                "px-6 py-2 text-sm font-medium border rounded-xl transition-all duration-200 hover:scale-105 min-h-[44px]",
+                "text-gray-700 border-gray-300 bg-white hover:bg-gray-100 hover:border-gray-400",
+                propertySlug === 'fienaroli'
+                  ? "md:border-[hsl(20,65%,85%)] md:hover:bg-[hsl(20,65%,95%)]"
+                  : "md:border-[hsl(345,55%,85%)] md:hover:bg-[hsl(345,55%,95%)]"
+              )}
+              style={{ color: colors.text }}
             >
 {t('cancel')}
             </button>
             <button
               onClick={handleConfirm}
               disabled={!range?.from || !range?.to}
-              className="px-6 py-2 text-sm font-medium text-white rounded-xl transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg min-h-[44px] font-semibold"
-              style={{ 
-                background: !range?.from || !range?.to 
-                  ? '#9CA3AF' 
-                  : window.innerWidth < 768 
-                    ? (propertySlug === 'fienaroli'
-                        ? 'linear-gradient(135deg, #B7794B, #A0632C)' // Fixed Fienaroli mobile
-                        : 'linear-gradient(135deg, #A8344C, #8E2B3E)') // Fixed Moro mobile - more burgundy
-                    : `linear-gradient(135deg, ${colors.primary}, ${colors.accent})` // Dynamic desktop
-              }}
+              className={cn(
+                "px-6 py-2 text-sm font-medium text-white rounded-xl transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg min-h-[44px] font-semibold",
+                !range?.from || !range?.to
+                  ? "bg-gray-400"
+                  : propertySlug === 'fienaroli'
+                    ? "bg-gradient-to-br from-[#B7794B] to-[#A0632C] md:from-[hsl(20,65%,48%)] md:to-[hsl(35,75%,55%)]"
+                    : "bg-gradient-to-br from-[#A8344C] to-[#8E2B3E] md:from-[hsl(345,55%,42%)] md:to-[hsl(340,60%,38%)]"
+              )}
             >
               {t('confirm')}
             </button>

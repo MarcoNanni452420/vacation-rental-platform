@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from 'react'
-import { Globe } from 'lucide-react'
+// import { Globe } from 'lucide-react' // Currently unused
 import { ItalyFlag } from '@/components/ui/flags/ItalyFlag'
 import { USFlag } from '@/components/ui/flags/USFlag'
 import { FranceFlag } from '@/components/ui/flags/FranceFlag'

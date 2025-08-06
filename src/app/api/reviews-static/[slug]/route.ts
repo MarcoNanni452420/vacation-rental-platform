@@ -8,13 +8,28 @@ const SUPPORTED_LOCALES = ['en', 'it', 'fr', 'de', 'es'];
 const SUPPORTED_PROPERTIES = ['fienaroli', 'moro'];
 
 // Cache per i dati statici (in memoria per performance)
-let staticDataCache: any = null;
+interface StaticReviewsData {
+  metadata: {
+    createdAt: string;
+    source: string;
+    languages: string[];
+    properties: string[];
+  };
+  reviews: Record<string, Record<string, {
+    reviews: unknown[];
+    totalCount: number;
+    airbnbUrl: string;
+    fetchedAt: string;
+  }>>;
+}
+
+let staticDataCache: StaticReviewsData | null = null;
 let cacheLastModified: number = 0;
 
 /**
  * Carica i dati statici dal file
  */
-function loadStaticReviews(): any {
+function loadStaticReviews(): StaticReviewsData {
   try {
     const dataPath = path.join(process.cwd(), 'src/data/static-reviews.json');
     
@@ -68,7 +83,14 @@ function validateRequest(slug: string, locale: string) {
 /**
  * Formatta la risposta per mantenere compatibilità con il vecchio API
  */
-function formatResponse(propertyData: any, slug: string, locale: string) {
+interface PropertyData {
+  reviews: unknown[];
+  totalCount?: number;
+  airbnbUrl?: string;
+  fetchedAt?: string;
+}
+
+function formatResponse(propertyData: PropertyData | undefined, slug: string, _locale: string) { // eslint-disable-line @typescript-eslint/no-unused-vars
   if (!propertyData) {
     return {
       reviews: [],
@@ -130,7 +152,7 @@ export async function GET(
     }
     
     // Applica limit se specificato
-    let responseData = formatResponse(propertyData, validSlug, validLocale);
+    const responseData = formatResponse(propertyData, validSlug, validLocale);
     
     if (limit && responseData.reviews.length > limit) {
       responseData.reviews = responseData.reviews.slice(0, limit);
@@ -163,8 +185,8 @@ export async function GET(
  * POST endpoint - Trigger reload dei dati statici (per admin)
  */
 export async function POST(
-  request: NextRequest,
-  { params }: { params: Promise<{ slug: string }> }
+  _request: NextRequest, // eslint-disable-line @typescript-eslint/no-unused-vars
+  _params: { params: Promise<{ slug: string }> } // eslint-disable-line @typescript-eslint/no-unused-vars
 ) {
   try {
     // Clear cache to force reload

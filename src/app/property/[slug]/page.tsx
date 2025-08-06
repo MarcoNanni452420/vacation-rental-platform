@@ -18,7 +18,7 @@ const ReviewsMapSection = dynamic(() => import('@/components/reviews/ReviewsMapS
 import { TruncatedDescription } from "@/components/ui/truncated-description"
 import { PriceCalculator } from "@/components/pricing/PriceCalculator"
 import Link from "next/link"
-import Image from "next/image"
+// import Image from "next/image" // Currently unused
 import { useRef, useEffect, useState, useMemo } from "react"
 import { useParams } from "next/navigation"
 import { getPropertyBySlug } from "@/lib/properties-data"
@@ -41,7 +41,7 @@ import {
   Users, 
   Bed, 
   Bath, 
-  MapPin, 
+  // MapPin, // Currently unused 
   Wifi, 
   Car, 
   CheckCircle,
@@ -211,6 +211,7 @@ export default function PropertyPage() {
   const [preloadedReviews, setPreloadedReviews] = useState<ReviewsResponse | null>(null)
   const [isPreloadingReviews, setIsPreloadingReviews] = useState(true)
   const [totalPrice, setTotalPrice] = useState<number | null>(null)
+  const [priceCurrency, setPriceCurrency] = useState<string>('EUR')
   const [isPricingError, setIsPricingError] = useState(false)
 
   useEffect(() => {
@@ -234,7 +235,7 @@ export default function PropertyPage() {
           (window.innerWidth < 768 ? 'mobile' : window.innerWidth < 1024 ? 'tablet' : 'desktop') : 'unknown'
       });
     }
-  }, []); // Empty dependency array - runs only once on mount
+  }, [slug, property]); // Include dependencies to satisfy React hooks rules
 
   // Handle hash routing for booking section
   useEffect(() => {
@@ -418,7 +419,10 @@ export default function PropertyPage() {
                     checkoutDate={dateRange?.to}
                     guests={guests}
                     className="mt-6"
-                    onPriceCalculated={setTotalPrice}
+                    onPriceCalculated={(price, currency) => {
+                      setTotalPrice(price);
+                      if (currency) setPriceCurrency(currency);
+                    }}
                     onPricingError={setIsPricingError}
                   />
 
@@ -443,24 +447,19 @@ export default function PropertyPage() {
                         
                         if (isValidRange) {
                           // Track Vercel Analytics - Booking Confirmed (Main Conversion)
+                          const nights = Math.ceil((dateRange.to.getTime() - dateRange.from.getTime()) / (1000 * 60 * 60 * 24));
                           track('Booking Confirmed', {
                             property: slug,
-                            guests: guests,
-                            nights: Math.ceil((dateRange.to.getTime() - dateRange.from.getTime()) / (1000 * 60 * 60 * 24)),
-                            total_price: totalPrice || 0,
-                            checkin_date: format(dateRange.from, 'yyyy-MM-dd'),
-                            checkout_date: format(dateRange.to, 'yyyy-MM-dd'),
-                            // Enhanced debugging metadata
-                            user_timezone: debugInfo.userTimezone,
-                            validation_passed: true
+                            details: `${format(dateRange.from, 'dd/MM/yyyy')}-${format(dateRange.to, 'dd/MM/yyyy')} (${nights} ${nights === 1 ? 'night' : 'nights'}) · ${guests} ${guests === 1 ? 'guest' : 'guests'}`,
+                            price: totalPrice ? `${Math.round(totalPrice)} ${priceCurrency}` : 'Price not available'
                           });
 
-                          // Track Google Ads conversion
-                          if (typeof window !== 'undefined' && (window as any).gtag) {
-                            (window as any).gtag('event', 'conversion', {
+                          // Track Google Ads conversion with dynamic currency
+                          if (typeof window !== 'undefined' && (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag) {
+                            (window as unknown as { gtag: (...args: unknown[]) => void }).gtag('event', 'conversion', {
                               'send_to': 'AW-17411939860/p_kOCN-PmvwaEJS81O5A',
                               'value': totalPrice || 0,
-                              'currency': 'EUR',
+                              'currency': priceCurrency,
                               'transaction_id': `${slug}-${Date.now()}`, // Unique transaction ID
                             });
                           }

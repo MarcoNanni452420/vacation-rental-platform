@@ -54,7 +54,7 @@ export function ImageCarousel({
   const [imagesPerView, setImagesPerView] = useState(3);
 
   // Calculate dynamic bottom position for indicators
-  const calculateIndicatorPosition = () => {
+  const calculateIndicatorPosition = useCallback(() => {
     if (typeof window === 'undefined') return 16;
     
     const screenWidth = window.innerWidth;
@@ -86,7 +86,7 @@ export function ImageCarousel({
     const bottomPosition = containerPadding + (remainingSpace / 2) + 16;
     
     return Math.max(16, bottomPosition); // Minimum 16px
-  };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Update images per view and indicator position on resize
   useEffect(() => {
@@ -101,7 +101,7 @@ export function ImageCarousel({
       window.addEventListener('resize', handleResize);
       return () => window.removeEventListener('resize', handleResize);
     }
-  }, [imagesPerView]); // Add imagesPerView as dependency for recalculation
+  }, [calculateIndicatorPosition]); // Add calculateIndicatorPosition as dependency
 
   const goToPrevious = useCallback(() => {
     setCurrentIndex((prevIndex) => 
