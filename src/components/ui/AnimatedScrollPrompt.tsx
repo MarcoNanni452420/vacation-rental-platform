@@ -3,8 +3,6 @@
 import { ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
-import { track } from '@vercel/analytics';
-import { useEffect, useState } from 'react';
 
 interface AnimatedScrollPromptProps {
   className?: string;
@@ -15,13 +13,6 @@ export function AnimatedScrollPrompt({ className = "" }: AnimatedScrollPromptPro
   // Removed redundant "Scroll Prompt Viewed" tracking - was duplicate of page views
 
   const handleClick = () => {
-    // Track click engagement
-    track('Scroll Prompt Clicked', {
-      location: 'homepage_hero',
-      device: typeof window !== 'undefined' ? 
-        (window.innerWidth < 768 ? 'mobile' : window.innerWidth < 1024 ? 'tablet' : 'desktop') : 'unknown'
-    });
-
     // Smooth scroll to properties section - precisely at top of Casa Fienaroli
     const propertiesSection = document.querySelector('#properties-section');
     if (propertiesSection) {

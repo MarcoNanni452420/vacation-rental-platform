@@ -206,7 +206,7 @@ export default function PropertyPage() {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false)
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
   const [dateRange, setDateRange] = useState<{ from: Date | undefined; to: Date | undefined } | undefined>()
-  const [guests, setGuests] = useState(1)
+  const [guests, setGuests] = useState(2)
   const [preloadedAvailability, setPreloadedAvailability] = useState<OctorateCalendarResponse | null>(null)
   const [preloadedReviews, setPreloadedReviews] = useState<ReviewsResponse | null>(null)
   const [isPreloadingReviews, setIsPreloadingReviews] = useState(true)

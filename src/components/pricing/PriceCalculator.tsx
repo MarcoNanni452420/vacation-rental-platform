@@ -61,34 +61,21 @@ export function PriceCalculator({
         const pricingData: PricingCalculation = await response.json();
         setPricing(pricingData);
         
-        // Track successful price calculation
+        // Track successful price calculation with simplified format
         track('Price Calculated', {
           property: propertySlug,
-          checkin_date: format(checkinDate, 'yyyy-MM-dd'),
-          checkout_date: format(checkoutDate, 'yyyy-MM-dd'),
-          nights: pricingData.nights,
-          guests: guests,
-          total_price: pricingData.grandTotal,
-          currency: pricingData.currency,
-          accommodation_price: pricingData.accommodationTotal,
-          cleaning_fee: pricingData.cleaningFee,
-          taxes: pricingData.taxes,
-          service_fees: pricingData.serviceFeesTotal,
-          discounts: pricingData.discounts
+          details: `${format(checkinDate, 'dd/MM/yyyy')}-${format(checkoutDate, 'dd/MM/yyyy')} (${pricingData.nights} ${pricingData.nights === 1 ? 'night' : 'nights'}) · ${guests} ${guests === 1 ? 'guest' : 'guests'}`,
+          price: `${Math.round(pricingData.grandTotal)} ${pricingData.currency}`
         });
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load pricing');
         setPricing(null);
         
-        // Track pricing error to Vercel Analytics
+        // Track pricing error with simplified format
         track('Pricing Error', {
           property: propertySlug,
-          checkin_date: format(checkinDate, 'yyyy-MM-dd'),
-          checkout_date: format(checkoutDate, 'yyyy-MM-dd'),
-          guests: guests,
-          error_message: err instanceof Error ? err.message : 'Unknown error',
-          user_agent: typeof window !== 'undefined' ? navigator.userAgent : 'unknown',
-          url: typeof window !== 'undefined' ? window.location.href : 'unknown'
+          details: `${format(checkinDate, 'dd/MM/yyyy')}-${format(checkoutDate, 'dd/MM/yyyy')} · ${guests} ${guests === 1 ? 'guest' : 'guests'}`,
+          error: err instanceof Error ? err.message : 'Unknown error'
         });
       } finally {
         setLoading(false);

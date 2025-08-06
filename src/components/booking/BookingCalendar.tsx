@@ -7,7 +7,6 @@ import { format, differenceInDays } from 'date-fns';
 import { it, enUS, fr, de, es } from 'date-fns/locale';
 import { cn } from '@/lib/utils';
 import { useTranslations, useLocale } from 'next-intl';
-import { track } from '@vercel/analytics';
 
 interface BookingCalendarProps {
   propertySlug: 'fienaroli' | 'moro';
@@ -78,11 +77,6 @@ export function BookingCalendar({ propertySlug, onDateChange, className, selecte
     <>
       <button
         onClick={() => {
-          // Track calendar opening
-          track('Calendar Opened', {
-            property: propertySlug,
-            has_existing_selection: !!(selectedRange?.from && selectedRange?.to)
-          });
           setIsModalOpen(true);
         }}
         onMouseEnter={() => setIsHovered(true)}
