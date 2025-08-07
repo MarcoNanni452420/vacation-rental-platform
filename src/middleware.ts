@@ -64,9 +64,10 @@ export default withAuth(
 
     // Allowed search engine bots (whitelist)
     const allowedBots = [
-      'Googlebot', 'Bingbot', 'Slurp', 'DuckDuckBot', 
+      'Googlebot', 'AdsBot-Google', 'Bingbot', 'Slurp', 'DuckDuckBot', 
       'facebookexternalhit', 'LinkedInBot', 'WhatsApp',
-      'Twitterbot', 'Applebot', 'YandexBot'
+      'Twitterbot', 'Applebot', 'YandexBot', 'Google-AdWords',
+      'Mediapartners-Google' // Google AdSense bot
     ];
 
     // Blocked user agents
