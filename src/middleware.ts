@@ -62,6 +62,13 @@ export default withAuth(
       'get-free-traffic-now.com', 'free-social-buttons.com'
     ];
 
+    // Allowed search engine bots (whitelist)
+    const allowedBots = [
+      'Googlebot', 'Bingbot', 'Slurp', 'DuckDuckBot', 
+      'facebookexternalhit', 'LinkedInBot', 'WhatsApp',
+      'Twitterbot', 'Applebot', 'YandexBot'
+    ];
+
     // Blocked user agents
     const blockedUserAgents = [
       'AhrefsBot', 'MJ12bot', 'SEMrushBot', 'DotBot', 
@@ -81,9 +88,14 @@ export default withAuth(
       return pattern.test(referer);
     });
     
+    // Check if it's an allowed bot first
+    const isAllowedBot = allowedBots.some(bot => 
+      userAgent.includes(bot)
+    );
+
     // Also check if request has no referer but suspicious user agent
     const hasNoReferer = !referer || referer === '';
-    const isSuspiciousNoReferer = hasNoReferer && userAgent && (
+    const isSuspiciousNoReferer = hasNoReferer && userAgent && !isAllowedBot && (
       userAgent.includes('bot') || 
       userAgent.includes('spider') || 
       userAgent.includes('crawler') ||
@@ -95,8 +107,8 @@ export default withAuth(
       userAgent.toLowerCase().includes(bot.toLowerCase())
     );
 
-    // Block spam traffic
-    if (isBlockedReferrer || isBlockedBot || isSuspiciousNoReferer) {
+    // Block spam traffic (but not allowed bots)
+    if (!isAllowedBot && (isBlockedReferrer || isBlockedBot || isSuspiciousNoReferer)) {
       // Log blocked attempts in development
       if (process.env.NODE_ENV === 'development') {
         console.log('Blocked request:', {
