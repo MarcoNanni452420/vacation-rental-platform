@@ -57,6 +57,8 @@ export default withAuth(
       'proshiftzy.com', 'heqinbiao.top', 'zimbombah.codedelaroute', // Nuovi spam
       'laiqzone.com', 'nhfind.com', 'blockpuzzle', // Altri spam domains
       'attnel.space', 'postcrossing.com', 'remirea.com', // Altri spam domains
+      'nix.watese.fun', 'watese.fun', 'pgame.wealthyf.com', 'wealthyf.com', // Nuovi spam domains
+      'xiaolifps.com', 'zv.lonets.com', 'lonets.com', // Altri nuovi spam domains
       // NOTE: NON bloccare: googleadservices.com, pagead2.googlesyndication.com, youtube.com,
       // google.com, syndicatedsearch.goog, googleads.g.doubleclick.net, poki.com (tutti legittimi)
       
