@@ -54,6 +54,9 @@ export default withAuth(
       'cashifycity.com', 'itil4hub.com', 'partakemessage.com', 'vetvai.biz', // Altri spam
       'ordzougame.cloud', 'pegbuy.xyz', // Nuovi spam domains
       'ineeb.com', 'yjtxv.com', // Altri spam domains
+      'proshiftzy.com', 'heqinbiao.top', 'zimbombah.codedelaroute', // Nuovi spam
+      'laiqzone.com', 'nhfind.com', 'blockpuzzle', // Altri spam domains
+      'attnel.space', 'postcrossing.com', 'remirea.com', // Altri spam domains
       // NOTE: NON bloccare: googleadservices.com, pagead2.googlesyndication.com, youtube.com,
       // google.com, syndicatedsearch.goog, googleads.g.doubleclick.net, poki.com (tutti legittimi)
       
