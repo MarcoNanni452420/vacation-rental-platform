@@ -52,6 +52,7 @@ export default withAuth(
       'dtrsqhubwn.com', 'gfgje.com', 'magiczjc.com', 'magicclub41.com', // Nuovi spam
       'zrpve.com', 'fgcpve.com', 'puzzgo27.lol', 'gceuh.com', // Altri spam
       'cashifycity.com', 'itil4hub.com', 'partakemessage.com', 'vetvai.biz', // Altri spam
+      'ordzougame.cloud', 'pegbuy.xyz', // Nuovi spam domains
       // NOTE: NON bloccare: googleadservices.com, pagead2.googlesyndication.com, youtube.com,
       // google.com, syndicatedsearch.goog, googleads.g.doubleclick.net, poki.com (tutti legittimi)
       
