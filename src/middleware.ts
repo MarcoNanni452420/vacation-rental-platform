@@ -59,6 +59,18 @@ export default withAuth(
       'attnel.space', 'postcrossing.com', 'remirea.com', // Altri spam domains
       'nix.watese.fun', 'watese.fun', 'pgame.wealthyf.com', 'wealthyf.com', // Nuovi spam domains
       'xiaolifps.com', 'zv.lonets.com', 'lonets.com', // Altri nuovi spam domains
+      // Nuovi spam domains dicembre 2025
+      'clnk.bonochqv.work', 'bonochqv.work', 'doodle.eus501.com', 'eus501.com',
+      'lsland.questnexuser.com', 'questnexuser.com', 'mythos.visfeurgame.space', 'visfeurgame.space',
+      'usdwillcome.com', 'bgamer.site', 'cloud.dashijiekankan.com', 'dashijiekankan.com',
+      'deep.fkplrpg.com', 'fkplrpg.com', 'dice.yinbospace.com', 'yinbospace.com',
+      'dryn.yermtubgame.today', 'yermtubgame.today', 'eye.cnglasswares.com', 'cnglasswares.com',
+      'fithealthylife.top', 'gem.baytogame.space', 'baytogame.space',
+      'iddybrushkg.tapgamejoy.com', 'tapgamejoy.com', 'iddycar.minitapbox.com', 'minitapbox.com',
+      'jqkx.yermtubgame.today', 'may.mobanche4.com', 'mobanche4.com',
+      'oubb.feedfinderz.com', 'feedfinderz.com', 'petpeak.top',
+      'sks.mrcork.com', 'mrcork.com', 'tire.questnexuser.com', 'vox.visfeurgame.space',
+      'well.questnexuser.com', 'yuanzhubi88.com',
       // NOTE: NON bloccare: googleadservices.com, pagead2.googlesyndication.com, youtube.com,
       // google.com, syndicatedsearch.goog, googleads.g.doubleclick.net, poki.com (tutti legittimi)
       
