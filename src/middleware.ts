@@ -71,6 +71,15 @@ export default withAuth(
       'oubb.feedfinderz.com', 'feedfinderz.com', 'petpeak.top',
       'sks.mrcork.com', 'mrcork.com', 'tire.questnexuser.com', 'vox.visfeurgame.space',
       'well.questnexuser.com', 'yuanzhubi88.com',
+      // Nuovi spam domains - gennaio 2025
+      'catch.neddvdimplay.cloud', 'neddvdimplay.cloud', 'a46games.minigameam.com', 'minigameam.com',
+      'bj3.puzzgo29.lol', 'puzzgo29.lol', 'bj5.puzzgo25.lol', 'puzzgo25.lol',
+      'clash.foiqxdas.xyz', 'foiqxdas.xyz', 'druex.esqhrs.info', 'esqhrs.info',
+      'dusk.8170.top', '8170.top', 'echo.rueir.top', 'rueir.top',
+      'get.crusherstar.com', 'her.crusherstar.com', 'crusherstar.com',
+      'jam.jiashubing.com', 'jiashubing.com', 'jvxn.veloff.work', 'veloff.work',
+      'kami.8170.top', 'pixelu.etcwhaigame.space', 'etcwhaigame.space',
+      'sow.2708.top', '2708.top',
       // NOTE: NON bloccare: googleadservices.com, pagead2.googlesyndication.com, youtube.com,
       // google.com, syndicatedsearch.goog, googleads.g.doubleclick.net, poki.com (tutti legittimi)
       
