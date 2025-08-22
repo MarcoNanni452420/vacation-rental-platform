@@ -20,6 +20,39 @@ export function Footer() {
           >
             {t('contactUs')}
           </Link>
+          
+          {/* Legal Links */}
+          <div className="border-t border-gray-800 mt-4 pt-4">
+            <div className="flex flex-wrap justify-center gap-4 text-sm mb-4">
+              <a 
+                href="https://www.iubenda.com/privacy-policy/35337688" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors duration-200"
+              >
+                {t('privacyPolicy')}
+              </a>
+              <span className="text-gray-600">•</span>
+              <a 
+                href="https://www.iubenda.com/privacy-policy/35337688/cookie-policy" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors duration-200"
+              >
+                {t('cookiePolicy')}
+              </a>
+              <span className="text-gray-600">•</span>
+              <a 
+                href="https://www.iubenda.com/terms-and-conditions/35337688" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors duration-200"
+              >
+                {t('termsConditions')}
+              </a>
+            </div>
+          </div>
+          
           <p className="text-gray-400 text-sm">
             {t('copyright')}
           </p>

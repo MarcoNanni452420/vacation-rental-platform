@@ -139,6 +139,13 @@ export default async function RootLayout({
           <Analytics />
           <SpeedInsights />
         </NextIntlClientProvider>
+        
+        {/* Iubenda Cookie Solution - Load after hydration */}
+        <Script 
+          id="iubenda-cs"
+          src="//embeds.iubenda.com/widgets/ed407eb0-2359-4c3a-8cd4-53ccbe043016.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

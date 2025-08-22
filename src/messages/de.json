@@ -167,8 +167,9 @@
     "phone": "+39 06 123 4567",
     "address": "Trastevere, Rom",
     "copyright": "© 2025 Trastevere Luxury Homes. Alle Rechte vorbehalten.",
-    "privacyPolicy": "Datenschutzrichtlinie",
-    "termsOfService": "Nutzungsbedingungen"
+    "privacyPolicy": "Datenschutzerklärung",
+    "cookiePolicy": "Cookie-Richtlinie",
+    "termsConditions": "Allgemeine Geschäftsbedingungen"
   },
   "gallery": {
     "title": "Galerie",
