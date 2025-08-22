@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST || 'smtp.gmail.com',
       port: parseInt(process.env.SMTP_PORT || '587'),
-      secure: false, // use false for port 587, true for port 465
+      secure: process.env.SMTP_PORT === '465', // true for 465, false for other ports
       auth: {
         user: process.env.SMTP_USER || '',
         pass: process.env.SMTP_PASSWORD || ''
@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
     // Send email
     const mailOptions = {
       from: `"Trastevere Luxury Homes" <${process.env.SMTP_FROM || process.env.SMTP_USER || 'noreply@trastivereiluxury.com'}>`,
-      to: 'marco.nanni92@gmail.com',
+      to: process.env.CONTACT_EMAIL_TO || '',
       subject: `Nuova richiesta da ${validatedData.name}`,
       text: `Nome: ${validatedData.name}\nEmail: ${validatedData.email}\n\nMessaggio:\n${validatedData.message}`,
       html: htmlContent,
