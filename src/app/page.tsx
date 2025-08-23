@@ -63,7 +63,7 @@ export default function HomePage() {
               {/* Background Image - Clean on Mobile */}
               <div className="absolute inset-0" style={{ aspectRatio: 'unset' }} suppressHydrationWarning={true}>
                 <Image 
-                  src={property.slug === 'moro' ? property.images[1] : property.images[0]}
+                  src={property.images[0]}
                   alt={property.name}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"

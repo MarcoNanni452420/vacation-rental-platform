@@ -318,7 +318,7 @@ export default function PropertyPage() {
 
       {/* Hero Section with PropertyHero Component */}
       <PropertyHero
-        imageSrc={slug === 'moro' ? property.images[1] : property.images[0]}
+        imageSrc={property.images[0]}
         title={property.name}
         location={property.location}
         description={tHome.has(`propertyDescriptions.${slug}`) 

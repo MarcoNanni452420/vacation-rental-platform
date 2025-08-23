@@ -10,6 +10,7 @@ import { Toaster } from 'react-hot-toast';
 import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import IubendaScript from "@/components/IubendaScript";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://trastevere-luxury.com'),
@@ -103,6 +104,7 @@ export default async function RootLayout({
         </Script>
       </head>
       <body className="antialiased" suppressHydrationWarning={true}>
+        <IubendaScript />
         <NextIntlClientProvider messages={messages}>
           <Providers>
             <Toaster 
@@ -139,13 +141,6 @@ export default async function RootLayout({
           <Analytics />
           <SpeedInsights />
         </NextIntlClientProvider>
-        
-        {/* Iubenda Cookie Solution - Load after hydration */}
-        <Script 
-          id="iubenda-cs"
-          src="//embeds.iubenda.com/widgets/ed407eb0-2359-4c3a-8cd4-53ccbe043016.js"
-          strategy="afterInteractive"
-        />
       </body>
     </html>
   );
