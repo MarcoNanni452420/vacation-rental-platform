@@ -34,6 +34,7 @@ export function PropertyHero({
           alt={`${title} Interior`}
           fill
           priority
+          fetchPriority="high"
           sizes="100vw"
           className="object-cover image-bright"
         />
@@ -46,7 +47,10 @@ export function PropertyHero({
         <div className="max-w-7xl mx-auto">
           <div className="text-white">
             <div className="bg-black/40 backdrop-blur-sm rounded-lg p-6 max-w-4xl">
-              <h1 className="text-6xl md:text-7xl font-bold mb-4 text-white drop-shadow-lg">
+              <h1 
+                className="text-6xl md:text-7xl font-bold mb-4 text-white drop-shadow-lg"
+                style={{ fontSize: 'clamp(3rem, 8vw, 4.5rem)' }}
+              >
                 {title}
               </h1>
               

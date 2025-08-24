@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+// Removed framer-motion for performance
 import { ClientOnly } from "@/components/ui/client-only"
 import { PropertyHero } from "@/components/ui/PropertyHero"
 import dynamic from 'next/dynamic'
@@ -18,169 +18,34 @@ const ReviewsMapSection = dynamic(() => import('@/components/reviews/ReviewsMapS
 import { TruncatedDescription } from "@/components/ui/truncated-description"
 import { PriceCalculator } from "@/components/pricing/PriceCalculator"
 import Link from "next/link"
+import { HeadMetadata } from "@/components/HeadMetadata"
 // import Image from "next/image" // Currently unused
-import { useRef, useEffect, useState, useMemo } from "react"
+import { useEffect, useState, useMemo } from "react"
 import { useParams } from "next/navigation"
 import { getPropertyBySlug } from "@/lib/properties-data"
 import { notFound } from "next/navigation"
 import { useTranslations, useLocale } from 'next-intl'
 // DateRange type is now handled internally by AirbnbCalendar
 import { getBookingUrl } from "@/lib/booking-redirect"
-import { fetchAvailability } from "@/lib/octorate-api"
-import { OctorateCalendarResponse } from "@/types/octorate"
-import { ReviewsResponse } from "@/types/reviews"
+// Removed unused imports for performance
 import { cn } from "@/lib/utils"
 import { track } from '@vercel/analytics';
 import { isValidDateRangeInItaly, getTimezoneDebugInfo } from '@/lib/date-utils';
 import { format } from 'date-fns';
 
-// Icons from react-icons
-// Lucide icons for modern amenity display
+// Icons - optimized imports
 import { 
-  Star, 
   Users, 
   Bed, 
   Bath, 
-  // MapPin, // Currently unused 
-  Wifi, 
-  Car, 
-  CheckCircle,
   Home,
-  Utensils,
-  Tv,
-  Wind,
-  Coffee,
-  Eye,
-  Shirt,
-  Baby,
-  Clock,
-  Trash2,
-  Sun,
-  ShowerHead,
-  Snowflake,
-  Flame,
-  Lock,
-  ParkingCircle,
-  Zap,
-  Package
+  ArrowRight
 } from "lucide-react"
 
-// Keep FA icons only where absolutely needed
-import { FaArrowRight } from "react-icons/fa"
+// Optimized amenity icons
+import { amenityIcons, defaultAmenityIcon } from "@/lib/amenity-icons"
 
-// Lucide replacements for MD icons
-import {
-  Bath as Bathtub,
-  ChefHat as Kitchen,
-  WashingMachine,
-  Shield,
-  Cross,
-  UtensilsCrossed,
-  Wine,
-  Car as Parking,
-  Microwave,
-  Shirt as Iron
-} from "lucide-react"
-
-const amenityIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  // Viste panoramiche
-  "Vista sul panorama urbano": Eye,
-  
-  // Bagno
-  "Asciugacapelli": Wind,
-  "Prodotti per la pulizia": CheckCircle,
-  "Shampoo": Bath,
-  "Balsamo": Bath,
-  "Sapone per il corpo": Bath,
-  "Bidet": Bathtub,
-  "Acqua calda": Bath,
-  "Gel doccia": Bath,
-  
-  // Camera da letto e lavanderia
-  "Lavatrice": WashingMachine,
-  "Asciugatrice": WashingMachine,
-  "Essenziali": CheckCircle,
-  "Grucce": Shirt,
-  "Biancheria da letto": Bed,
-  "Cuscini e coperte extra": Bed,
-  "Tende oscuranti": Sun,
-  "Ferro da stiro": Iron,
-  "Stendibiancheria per abiti": Shirt,
-  "Spazio per conservare l'abbigliamento": Package,
-  
-  // Intrattenimento
-  "TV via cavo standard": Tv,
-  "HDTV da 55 pollici con Netflix": Tv,
-  
-  // Famiglia
-  "Culla": Baby,
-  "Box bebè portatile": Baby,
-  "Seggiolone": Baby,
-  
-  // Riscaldamento e climatizzazione
-  "Aria condizionata": Snowflake,
-  "Climatizzatore centralizzato": Snowflake,
-  "Riscaldamento": Flame,
-  "Riscaldamento a pannelli radianti": Flame,
-  
-  // Sicurezza domestica
-  "Allarme antincendio": Flame,
-  "Rilevatore di monossido di carbonio": Shield,
-  "Estintore": Flame,
-  "Kit di pronto soccorso": Cross,
-  
-  // Internet e ufficio
-  "Wi-fi": Wifi,
-  "WiFi": Wifi,
-  
-  // Cucina e zona pranzo
-  "Cucina": Kitchen,
-  "Frigorifero": Package,
-  "Servizi di base per cucinare": Utensils,
-  "Piatti e posate": Utensils,
-  "Freezer": Package,
-  "Lavastoviglie": Utensils,
-  "Piano cottura a induzione": Zap,
-  "Forno": Microwave,
-  "Bollitore": Coffee,
-  "Macchina del caffè": Coffee,
-  "Macchina del caffè Nespresso": Coffee,
-  "Calici da vino": Wine,
-  "Teglia da forno": Kitchen,
-  "Compattatore di rifiuti": Trash2,
-  "Tavolo da pranzo": UtensilsCrossed,
-  "Caffè": Coffee,
-  
-  // Caratteristiche dell'alloggio
-  "Lavanderia a gettoni nelle vicinanze": WashingMachine,
-  
-  // Parcheggi e strutture
-  "Parcheggio gratuito in strada": ParkingCircle,
-  "Parcheggio a pagamento in loco": Parking,
-  "Garage a pagamento non in loco": Car,
-  "Casa su un solo piano": Home,
-  
-  // Servizi
-  "Sono permessi soggiorni a lungo termine": Clock,
-  "Self check-in": Lock,
-  "Smart Lock": Lock,
-  
-  // Legacy amenities (for backward compatibility)
-  "Cucina Attrezzata": Kitchen,
-  "Cucina di design": Kitchen,
-  "TV in ogni stanza": Tv,
-  "Macchina caffè Nespresso": Coffee,
-  "Lavatrice/Asciugatrice": WashingMachine,
-  "Design esclusivo": Star,
-  "Travi a vista": Home,
-  "Pareti in vetro": Home,
-  "Soffitti storici": Star,
-  "Marmi pregiati": Star,
-  "Opere d'arte": Star,
-  "Doccia walk-in": ShowerHead,
-  "TV": Tv,
-  "Forno moderno": Microwave
-}
+// Icon mapping handled by amenity-icons.ts
 
 export default function PropertyPage() {
   const params = useParams()
@@ -207,9 +72,7 @@ export default function PropertyPage() {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
   const [dateRange, setDateRange] = useState<{ from: Date | undefined; to: Date | undefined } | undefined>()
   const [guests, setGuests] = useState(2)
-  const [preloadedAvailability, setPreloadedAvailability] = useState<OctorateCalendarResponse | null>(null)
-  const [preloadedReviews, setPreloadedReviews] = useState<ReviewsResponse | null>(null)
-  const [isPreloadingReviews, setIsPreloadingReviews] = useState(true)
+  // Removed preloading states for performance - components handle their own data fetching
   const [totalPrice, setTotalPrice] = useState<number | null>(null)
   const [priceCurrency, setPriceCurrency] = useState<string>('EUR')
   const [isPricingError, setIsPricingError] = useState(false)
@@ -276,48 +139,24 @@ export default function PropertyPage() {
     return () => window.removeEventListener('hashchange', handleHashChange)
   }, [])
 
-  // Preload availability and reviews data on page load and locale change
-  useEffect(() => {
-    const preloadData = async () => {
-      if (!slug) return;
-      
-      try {
-        setIsPreloadingReviews(true);
-        
-        // Reset preloaded reviews when locale changes
-        setPreloadedReviews(null);
-        
-        // Preload availability data (only on initial load)
-        if (!preloadedAvailability) {
-          const availabilityData = await fetchAvailability(slug as 'fienaroli' | 'moro');
-          setPreloadedAvailability(availabilityData);
-        }
-
-        // Preload reviews data (always when locale changes)
-        const reviewsResponse = await fetch(`/api/reviews/${slug}?limit=12&locale=${locale}`);
-        if (reviewsResponse.ok) {
-          const reviewsData = await reviewsResponse.json();
-          setPreloadedReviews(reviewsData);
-        }
-      } catch {
-        // Silently handle preloading errors
-      } finally {
-        setIsPreloadingReviews(false);
-      }
-    };
-
-    preloadData();
-  }, [slug, locale, preloadedAvailability])
+  // Data fetching moved to individual components for better performance
 
   if (!property) {
     notFound()
   }
 
   return (
-    <main className="bg-background overflow-hidden transition-colors duration-700">{/* Navbar is in the main layout */}
+    <>
+      {/* Preload hero image for better LCP */}
+      <HeadMetadata 
+        heroImageUrl={property.images[0]} 
+        propertyName={property.name} 
+      />
+      
+      <main className="bg-background overflow-hidden transition-colors duration-700">{/* Navbar is in the main layout */}
 
-      {/* Hero Section with PropertyHero Component */}
-      <PropertyHero
+        {/* Hero Section with PropertyHero Component */}
+        <PropertyHero
         imageSrc={property.images[0]}
         title={property.name}
         location={property.location}
@@ -400,7 +239,7 @@ export default function PropertyPage() {
                         propertySlug={slug as 'fienaroli' | 'moro'}
                         onDateChange={setDateRange}
                         selectedRange={dateRange}
-                        preloadedAvailability={preloadedAvailability}
+                        // Availability data loaded internally
                       />
                     </div>
                     
@@ -506,7 +345,7 @@ export default function PropertyPage() {
                   <h3 className="text-xl font-semibold text-center">{t('servicesTitle')}</h3>
                   <div className="grid grid-cols-1 gap-4">
                     {property.amenities.slice(0, 12).map((amenity, index) => {
-                      const Icon = amenityIcons[amenity] || CheckCircle
+                      const Icon = amenityIcons[amenity] || defaultAmenityIcon
                       return (
                         <div 
                           key={index} 
@@ -562,8 +401,7 @@ export default function PropertyPage() {
             propertySlug={slug as 'fienaroli' | 'moro'}
             propertyName={property.name}
             location={property.location}
-            preloadedReviews={preloadedReviews}
-            isPreloadingReviews={isPreloadingReviews}
+            // Reviews data loaded internally
           />
         </div>
       </Section>
@@ -588,7 +426,7 @@ export default function PropertyPage() {
                 className="inline-flex items-center justify-center gap-2 px-4 sm:px-8 py-4 text-lg font-semibold text-background border-2 border-background hover:bg-background hover:text-foreground transition-all duration-300 h-14 w-full sm:w-auto max-w-xs"
               >
                 {t('seeOtherProperties')}
-                <FaArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-5 h-5" />
               </Link>
             </div>
           </RevealOnScroll>
@@ -603,7 +441,8 @@ export default function PropertyPage() {
         initialIndex={selectedImageIndex}
         propertyName={property.name}
       />
-    </main>
+      </main>
+    </>
   )
 }
 
@@ -618,22 +457,11 @@ function Section({ children, className = "", ...props }: { children: React.React
   )
 }
 
-// Reveal on Scroll Component  
-function RevealOnScroll({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
-  const ref = useRef(null)
-
+// Simple fade-in animation with CSS
+function RevealOnScroll({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <ClientOnly>
-      <motion.div 
-        ref={ref}
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay, ease: "easeOut" }}
-        viewport={{ once: true, margin: "-100px" }}
-        className={className}
-      >
-        {children}
-      </motion.div>
-    </ClientOnly>
+    <div className={`animate-fade-up ${className}`}>
+      {children}
+    </div>
   )
 }

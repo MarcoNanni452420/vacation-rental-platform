@@ -13,10 +13,9 @@ interface BookingCalendarProps {
   onDateChange: (range: { from: Date | undefined; to: Date | undefined } | undefined) => void;
   className?: string;
   selectedRange?: { from: Date | undefined; to: Date | undefined };
-  preloadedAvailability?: import('@/types/octorate').OctorateCalendarResponse | null;
 }
 
-export function BookingCalendar({ propertySlug, onDateChange, className, selectedRange, preloadedAvailability }: BookingCalendarProps) {
+export function BookingCalendar({ propertySlug, onDateChange, className, selectedRange }: BookingCalendarProps) {
   const t = useTranslations('property');
   const tBooking = useTranslations('booking');
   const locale = useLocale();
@@ -158,7 +157,7 @@ export function BookingCalendar({ propertySlug, onDateChange, className, selecte
         onClose={() => setIsModalOpen(false)}
         onDateConfirm={handleDateConfirm}
         initialRange={selectedRange}
-        preloadedAvailability={preloadedAvailability}
+        // Availability loaded internally
       />
     </>
   );

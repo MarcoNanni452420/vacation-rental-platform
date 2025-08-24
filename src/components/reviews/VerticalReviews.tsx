@@ -14,11 +14,9 @@ import { HorizontalReviewsCarousel } from './HorizontalReviewsCarousel';
 interface VerticalReviewsProps {
   propertySlug: 'fienaroli' | 'moro';
   className?: string;
-  preloadedReviews?: ReviewsResponse | null;
-  isPreloadingReviews?: boolean;
 }
 
-export function VerticalReviews({ propertySlug, className, preloadedReviews, isPreloadingReviews = false }: VerticalReviewsProps) {
+export function VerticalReviews({ propertySlug, className }: VerticalReviewsProps) {
   const t = useTranslations('reviews');
   const locale = useLocale();
   const [reviews, setReviews] = useState<ReviewData[]>([]);
@@ -59,28 +57,30 @@ export function VerticalReviews({ propertySlug, className, preloadedReviews, isP
   }, []);
 
   useEffect(() => {
-    // If we're still preloading, show loading state
-    if (isPreloadingReviews) {
+    const fetchReviews = async () => {
       setLoading(true);
-      setReviews([]); // Clear old reviews while loading
-      return;
-    }
-
-    // Use preloaded data if available
-    if (preloadedReviews) {
-      const sortedReviews = (preloadedReviews.reviews || []).sort((a, b) => 
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-      );
-      setReviews(sortedReviews);
-      setAirbnbUrl(preloadedReviews.airbnbUrl || '#');
-      setLoading(false);
       setError(null);
-    } else if (!isPreloadingReviews) {
-      // If preloading is complete but no data, show error
-      setError(t('error'));
-      setLoading(false);
-    }
-  }, [propertySlug, preloadedReviews, isPreloadingReviews, locale, t]);
+      
+      try {
+        const response = await fetch(`/api/reviews/${propertySlug}?limit=12&locale=${locale}`);
+        if (!response.ok) throw new Error('Failed to fetch reviews');
+        
+        const data: ReviewsResponse = await response.json();
+        const sortedReviews = (data.reviews || []).sort((a, b) => 
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+        setReviews(sortedReviews);
+        setAirbnbUrl(data.airbnbUrl || '#');
+      } catch (err) {
+        setError(t('error'));
+        console.error('Failed to fetch reviews:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchReviews();
+  }, [propertySlug, locale, t]);
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (

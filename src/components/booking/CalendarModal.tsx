@@ -17,7 +17,6 @@ interface CalendarModalProps {
   onClose: () => void;
   onDateConfirm: (range: { from: Date | undefined; to: Date | undefined } | undefined) => void;
   initialRange?: { from: Date | undefined; to: Date | undefined };
-  preloadedAvailability?: OctorateCalendarResponse | null;
 }
 
 interface DateRange {
@@ -25,7 +24,7 @@ interface DateRange {
   to: Date | undefined;
 }
 
-export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, initialRange, preloadedAvailability }: CalendarModalProps) {
+export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, initialRange }: CalendarModalProps) {
   const t = useTranslations('property');
   const locale = useLocale();
   
@@ -82,16 +81,10 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
 
   useEffect(() => {
     const loadData = async () => {
-      // Use preloaded data if available, otherwise fetch
-      if (preloadedAvailability) {
-        setAvailability(preloadedAvailability);
-        setLoading(false);
-      } else {
-        setLoading(true);
-        const data = await fetchAvailability(propertySlug);
-        setAvailability(data);
-        setLoading(false);
-      }
+      setLoading(true);
+      const data = await fetchAvailability(propertySlug);
+      setAvailability(data);
+      setLoading(false);
     };
 
     if (isOpen) {
@@ -108,7 +101,7 @@ export function CalendarModal({ propertySlug, isOpen, onClose, onDateConfirm, in
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [isOpen, propertySlug, initialRange, preloadedAvailability]);
+  }, [isOpen, propertySlug, initialRange]);
 
 
   const isDateAvailable = (date: Date): boolean => {

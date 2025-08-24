@@ -83,7 +83,11 @@ export default async function RootLayout({
       <head>
         <link rel="preconnect" href="https://maps.googleapis.com" />
         <link rel="preconnect" href="https://a0.muscache.com" />
+        <link rel="preconnect" href="https://embeds.iubenda.com" />
+        <link rel="preconnect" href="https://cdn.iubenda.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+        <link rel="dns-prefetch" href="//maps.gstatic.com" />
         <link rel="preload" as="fetch" href="/api/availability/fienaroli" crossOrigin="anonymous" />
         <link rel="preload" as="fetch" href="/api/availability/moro" crossOrigin="anonymous" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />

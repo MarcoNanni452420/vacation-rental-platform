@@ -11,17 +11,13 @@ interface ReviewsMapSectionProps {
   propertyName: string;
   location: string;
   className?: string;
-  preloadedReviews?: ReviewsResponse | null;
-  isPreloadingReviews?: boolean;
 }
 
 export function ReviewsMapSection({ 
   propertySlug, 
   propertyName, 
   location, 
-  className,
-  preloadedReviews,
-  isPreloadingReviews = false
+  className
 }: ReviewsMapSectionProps) {
   const t = useTranslations('location');
   
@@ -45,8 +41,6 @@ export function ReviewsMapSection({
       <div className="lg:col-span-2">
         <VerticalReviews 
           propertySlug={propertySlug} 
-          preloadedReviews={preloadedReviews}
-          isPreloadingReviews={isPreloadingReviews}
         />
       </div>
 
