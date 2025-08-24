@@ -334,6 +334,41 @@
   .animate-fade-in {
     animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
+  
+  /* Gentle animations for scroll prompt */
+  @keyframes gentlePulse {
+    0%, 100% { opacity: 0.9; }
+    50% { opacity: 1; }
+  }
+  
+  @keyframes gentleBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
+  }
+  
+  .animate-pulse-gentle {
+    animation: gentlePulse 2s ease-in-out infinite;
+  }
+  
+  .animate-bounce-gentle {
+    animation: gentleBounce 1.5s ease-in-out infinite;
+  }
+  
+  /* Logo animation */
+  @keyframes logoAppear {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-logo-appear {
+    animation: logoAppear 1s ease-out forwards;
+  }
 
   /* Clean text overlay without shadows for minimal design */
   .text-overlay-clean {

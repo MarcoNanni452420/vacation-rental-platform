@@ -1,18 +1,22 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import dynamic from 'next/dynamic'
 import { getAllProperties } from "@/lib/properties-data"
 import { ArrowRight, MapPin, Users, Bed, Bath } from "lucide-react"
 import { useTranslations } from 'next-intl'
 import { LazySection } from "@/components/ui/LazySection"
 import { AnimatedScrollPrompt } from "@/components/ui/AnimatedScrollPrompt"
-import { MobileBottomSheet } from "@/components/ui/MobileBottomSheet"
+
+// Lazy load MobileBottomSheet - only needed on mobile
+const MobileBottomSheet = dynamic(() => import('@/components/ui/MobileBottomSheet').then(mod => ({ default: mod.MobileBottomSheet })), {
+  ssr: false
+})
 
 export default function HomePage() {
   const properties = getAllProperties()
-  const [hoveredProperty, setHoveredProperty] = useState<string | null>(null)
   const t = useTranslations('home')
 
   // Reset theme on homepage
@@ -33,7 +37,7 @@ export default function HomePage() {
               alt="Trastevere Luxury"
               width={500}
               height={167}
-              className="max-w-[18rem] sm:max-w-sm md:max-w-lg lg:max-w-xl h-auto -mt-16 md:-mt-20 -mb-8"
+              className="max-w-[18rem] sm:max-w-sm md:max-w-lg lg:max-w-xl h-auto -mt-16 md:-mt-20 -mb-8 animate-logo-appear"
               priority
               fetchPriority="high"
             />
@@ -56,9 +60,7 @@ export default function HomePage() {
             <Link
               key={property.slug}
               href={`/property/${property.slug}`}
-              className="relative group overflow-hidden"
-              onMouseEnter={() => setHoveredProperty(property.slug)}
-              onMouseLeave={() => setHoveredProperty(null)}
+              className="relative group overflow-hidden property-card"
             >
               {/* Background Image - Clean on Mobile */}
               <div className="absolute inset-0" style={{ aspectRatio: 'unset' }} suppressHydrationWarning={true}>
@@ -68,21 +70,19 @@ export default function HomePage() {
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   priority={index < 2}
+                  fetchPriority={index < 2 ? "high" : "auto"}
+                  loading={index < 2 ? "eager" : "lazy"}
                   quality={90}
                   placeholder="blur"
                   blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bz6rt3/Z"
-                  className={`object-cover w-full h-full transition-all duration-300 md:duration-500 transform-gpu ${
-                    hoveredProperty === property.slug ? 'scale-105 md:scale-110' : 'scale-100'
-                  }`}
+                  className="object-cover w-full h-full transition-all duration-300 md:duration-500 transform-gpu scale-100 group-hover:scale-105 md:group-hover:scale-110"
                   style={{ 
                     objectFit: 'cover',
                     objectPosition: 'center center'
                   }}
                 />
                 {/* Mobile: Minimal overlay, Desktop: Interactive overlay */}
-                <div className={`absolute inset-0 bg-black transition-opacity duration-700 ${
-                  hoveredProperty === property.slug ? 'opacity-40 md:opacity-40' : 'opacity-10 md:opacity-20'
-                }`} />
+                <div className="absolute inset-0 bg-black transition-opacity duration-700 opacity-10 md:opacity-20 group-hover:opacity-40 md:group-hover:opacity-40" />
               </div>
 
               {/* Desktop Property Info - Hidden on Mobile */}
@@ -119,9 +119,7 @@ export default function HomePage() {
 
                   {/* Desktop CTA */}
                   <div className="flex items-center justify-end">
-                    <div className={`inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider transition-all duration-300 text-white drop-shadow-lg ${
-                      hoveredProperty === property.slug ? 'translate-x-2' : ''
-                    }`}>
+                    <div className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider transition-all duration-300 text-white drop-shadow-lg group-hover:translate-x-2">
                       {t('explore')}
                       <ArrowRight className="w-4 h-4" />
                     </div>
@@ -148,9 +146,7 @@ export default function HomePage() {
 
               {/* Theme Preview Line */}
               <div 
-                className={`absolute bottom-0 left-0 right-0 h-1 transition-all duration-700 ${
-                  hoveredProperty === property.slug ? 'h-2' : 'h-1'
-                }`}
+                className="absolute bottom-0 left-0 right-0 h-1 transition-all duration-700 group-hover:h-2"
                 style={{
                   backgroundColor: property.theme === 'fienaroli' 
                     ? '#C17A5B' // Soft Terracotta for Fienaroli
