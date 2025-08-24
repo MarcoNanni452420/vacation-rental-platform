@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from 'react'
-import { cn } from '@/lib/utils'
+import { cn, debounce } from '@/lib/utils'
 import { useTranslations } from 'next-intl'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 
@@ -54,8 +54,11 @@ export function TruncatedDescription({
       setIsMobile(window.innerWidth < 768)
     }
     
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
+    // Debounce resize events to reduce forced reflows
+    const debouncedHandleResize = debounce(handleResize, 150)
+    
+    window.addEventListener('resize', debouncedHandleResize)
+    return () => window.removeEventListener('resize', debouncedHandleResize)
   }, [])
   
   // Only truncate on mobile

@@ -9,7 +9,7 @@ interface HeadMetadataProps {
 
 export function HeadMetadata({ heroImageUrl, propertyName }: HeadMetadataProps) {
   // Next.js image optimization URL
-  const optimizedImageUrl = `/_next/image?url=${encodeURIComponent(heroImageUrl)}&w=1920&q=75`;
+  const optimizedImageUrl = `/_next/image?url=${encodeURIComponent(heroImageUrl)}&w=1920&q=65`;
   
   return (
     <Head>
@@ -25,7 +25,7 @@ export function HeadMetadata({ heroImageUrl, propertyName }: HeadMetadataProps) 
       <link
         rel="preload"
         as="image"
-        href={`/_next/image?url=${encodeURIComponent(heroImageUrl)}&w=1920&q=75`}
+        href={`/_next/image?url=${encodeURIComponent(heroImageUrl)}&w=1920&q=65`}
         type="image/webp"
       />
     </Head>

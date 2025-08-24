@@ -5,7 +5,7 @@ import { ExternalLink, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { track } from '@vercel/analytics';
 import { ReviewCard } from './ReviewCard';
 import { getPropertyReviewStats } from '@/lib/reviews-api';
-import { cn } from '@/lib/utils';
+import { cn, debounce } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
 import { ReviewData } from '@/types/reviews';
 
@@ -55,22 +55,32 @@ export function HorizontalReviewsCarousel({
     requestAnimationFrame(() => {
       if (!scrollContainerRef.current) return;
       
-      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
-      setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
+      // Read all DOM properties at once to minimize reflows
+      const container = scrollContainerRef.current;
+      const measurements = {
+        scrollLeft: container.scrollLeft,
+        scrollWidth: container.scrollWidth,
+        clientWidth: container.clientWidth,
+        cardWidth: container.firstElementChild?.clientWidth || 300
+      };
       
-      // Calculate current index based on scroll position
-      const cardWidth = scrollContainerRef.current.firstElementChild?.clientWidth || 300;
+      // Then do all state updates together
       const gap = 16; // 1rem gap
-      const newIndex = Math.round(scrollLeft / (cardWidth + gap));
+      const newIndex = Math.round(measurements.scrollLeft / (measurements.cardWidth + gap));
+      
+      setCanScrollLeft(measurements.scrollLeft > 0);
+      setCanScrollRight(measurements.scrollLeft < measurements.scrollWidth - measurements.clientWidth - 1);
       setCurrentIndex(newIndex);
     });
   };
 
+  // Debounced version of checkScroll for resize events
+  const debouncedCheckScroll = debounce(checkScroll, 150);
+
   useEffect(() => {
     checkScroll();
-    window.addEventListener('resize', checkScroll);
-    return () => window.removeEventListener('resize', checkScroll);
+    window.addEventListener('resize', debouncedCheckScroll);
+    return () => window.removeEventListener('resize', debouncedCheckScroll);
   }, []);
 
   const scrollToIndex = (index: number) => {

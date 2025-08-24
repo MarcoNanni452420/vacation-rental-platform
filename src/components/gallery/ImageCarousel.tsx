@@ -176,7 +176,7 @@ export function ImageCarousel({
                 alt={`${propertyName} - Immagine ${image.index + 1}`}
                 fill
                 priority={image.index < 3} // Priority for first 3 visible images
-                sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1024px) calc(50vw - 32px), (max-width: 1920px) calc(33vw - 32px), 400px"
+                sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1024px) calc(50vw - 24px), (max-width: 1920px) 456px, 438px"
                 className="object-cover transition-transform duration-700 group-hover/image:scale-110 rounded-2xl"
                 loading={image.index < imagesPerView ? "eager" : "lazy"}
               />

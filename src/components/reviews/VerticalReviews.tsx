@@ -5,7 +5,7 @@ import { ExternalLink, Star, Loader2 } from 'lucide-react';
 import { track } from '@vercel/analytics';
 import { ReviewCard } from './ReviewCard';
 import { getPropertyReviewStats } from '@/lib/reviews-api';
-import { cn } from '@/lib/utils';
+import { cn, debounce } from '@/lib/utils';
 import { useTranslations, useLocale } from 'next-intl';
 import { ReviewData, ReviewsResponse } from '@/types/reviews';
 import { HorizontalReviewsCarousel } from './HorizontalReviewsCarousel';
@@ -51,9 +51,12 @@ export function VerticalReviews({ propertySlug, className }: VerticalReviewsProp
       setIsMobile(window.innerWidth < 768);
     };
     
+    // Debounced version for resize events
+    const debouncedCheckMobile = debounce(checkMobile, 150);
+    
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener('resize', debouncedCheckMobile);
+    return () => window.removeEventListener('resize', debouncedCheckMobile);
   }, []);
 
   useEffect(() => {

@@ -72,7 +72,7 @@ export default function HomePage() {
                   priority={index < 2}
                   fetchPriority={index < 2 ? "high" : "auto"}
                   loading={index < 2 ? "eager" : "lazy"}
-                  quality={90}
+                  quality={75}
                   placeholder="blur"
                   blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bz6rt3/Z"
                   className="object-cover w-full h-full transition-all duration-300 md:duration-500 transform-gpu scale-100 group-hover:scale-105 md:group-hover:scale-110"
@@ -242,7 +242,7 @@ export default function HomePage() {
                   alt="Mappa Trastevere - Casa Fienaroli (F) e Casa Moro (M)"
                   fill
                   sizes="(max-width: 640px) 95vw, (max-width: 1024px) 80vw, 50vw"
-                  quality={90}
+                  quality={75}
                   className="object-cover"
                   loading="lazy"
                 />
