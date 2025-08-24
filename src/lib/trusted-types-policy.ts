@@ -67,7 +67,7 @@ export function initializeTrustedTypePolicies() {
             string.includes('setTimeout(') ||
             string.includes('setInterval(')
           ) {
-            console.warn('Blocked potentially dangerous script:', string.substring(0, 100));
+            // console.warn('Blocked potentially dangerous script:', string.substring(0, 100));
             return '';
           }
           
@@ -163,10 +163,10 @@ export function initializeTrustedTypePolicies() {
       });
     }
 
-    console.log('✅ Trusted Types policies initialized successfully');
+    // console.log('✅ Trusted Types policies initialized successfully');
     
   } catch (error) {
-    console.error('❌ Failed to initialize Trusted Types policies:', error);
+    // console.error('❌ Failed to initialize Trusted Types policies:', error);
     // Don't throw - allow app to continue with reduced security
   }
 }

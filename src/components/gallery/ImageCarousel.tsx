@@ -24,7 +24,7 @@ export function ImageCarousel({
 }: ImageCarouselProps) {
   const t = useTranslations('gallery');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [indicatorBottomPosition, setIndicatorBottomPosition] = useState(16);
+  const [indicatorBottomPosition, setIndicatorBottomPosition] = useState(() => 16);
 
   // Theme colors based on property
   const themeColors = {
@@ -43,21 +43,19 @@ export function ImageCarousel({
   const colors = themeColors[propertySlug];
 
   // Responsive image count with ultra-wide support
-  const getImagesPerView = () => {
-    if (typeof window === 'undefined') return 3; // SSR default
-    if (window.innerWidth < 768) return 1; // Mobile
-    if (window.innerWidth < 1024) return 2; // Tablet
-    if (window.innerWidth < 1920) return 3; // Desktop
+  const getImagesPerView = (width?: number) => {
+    const w = width || (typeof window !== 'undefined' ? window.innerWidth : 1024);
+    if (w < 768) return 1; // Mobile
+    if (w < 1024) return 2; // Tablet
+    if (w < 1920) return 3; // Desktop
     return 4; // Ultra-wide (3xl)
   };
 
-  const [imagesPerView, setImagesPerView] = useState(3);
+  const [imagesPerView, setImagesPerView] = useState(() => getImagesPerView());
 
   // Calculate dynamic bottom position for indicators
-  const calculateIndicatorPosition = useCallback(() => {
-    if (typeof window === 'undefined') return 16;
-    
-    const screenWidth = window.innerWidth;
+  const calculateIndicatorPosition = useCallback((width?: number) => {
+    const screenWidth = width || (typeof window !== 'undefined' ? window.innerWidth : 1024);
     const containerPadding = screenWidth >= 1920 ? 24 : 16; // 3xl:p-6 vs p-4
     
     // Get container height based on breakpoints
@@ -86,22 +84,22 @@ export function ImageCarousel({
     const bottomPosition = containerPadding + (remainingSpace / 2) + 16;
     
     return Math.max(16, bottomPosition); // Minimum 16px
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [imagesPerView]);
 
   // Update images per view and indicator position on resize
   useEffect(() => {
     const handleResize = () => {
-      setImagesPerView(getImagesPerView());
-      setIndicatorBottomPosition(calculateIndicatorPosition());
+      const width = window.innerWidth;
+      setImagesPerView(getImagesPerView(width));
+      setIndicatorBottomPosition(calculateIndicatorPosition(width));
     };
     
-    if (typeof window !== 'undefined') {
-      setImagesPerView(getImagesPerView());
-      setIndicatorBottomPosition(calculateIndicatorPosition());
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }
-  }, [calculateIndicatorPosition]); // Add calculateIndicatorPosition as dependency
+    // Initial calculation after mount
+    handleResize();
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [calculateIndicatorPosition]);
 
   const goToPrevious = useCallback(() => {
     setCurrentIndex((prevIndex) => 

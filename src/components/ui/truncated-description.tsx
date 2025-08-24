@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
 import { useTranslations } from 'next-intl'
 import { ChevronDown, ChevronUp } from 'lucide-react'
@@ -32,6 +32,7 @@ export function TruncatedDescription({
 }: TruncatedDescriptionProps) {
   const t = useTranslations('property')
   const [isExpanded, setIsExpanded] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   
   // Theme colors based on property
   const themeColors = {
@@ -45,8 +46,17 @@ export function TruncatedDescription({
   
   const colors = themeColors[propertySlug]
   
-  // Check if we're on mobile (will be false during SSR)
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+  // Check for mobile after mount to avoid hydration mismatch
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768)
+    
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
   
   // Only truncate on mobile
   const shouldTruncate = isMobile && text.length > mobileCharLimit

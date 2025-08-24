@@ -35,7 +35,7 @@ function loadStaticReviews(): StaticReviewsData {
     
     // Check if file exists
     if (!fs.existsSync(dataPath)) {
-      console.warn('⚠️ Static reviews file not found, falling back to empty data');
+      // console.warn('⚠️ Static reviews file not found, falling back to empty data');
       return {
         metadata: {
           createdAt: new Date().toISOString(),
@@ -52,18 +52,18 @@ function loadStaticReviews(): StaticReviewsData {
     const fileModified = stats.mtimeMs;
     
     if (!staticDataCache || fileModified > cacheLastModified) {
-      console.log('📖 Loading static reviews data...');
+      // console.log('📖 Loading static reviews data...');
       const rawData = fs.readFileSync(dataPath, 'utf8');
       staticDataCache = JSON.parse(rawData);
       cacheLastModified = fileModified;
       
-      console.log(`✅ Loaded static reviews: ${Object.keys(staticDataCache?.reviews || {}).length} properties`);
+      // console.log(`✅ Loaded static reviews: ${Object.keys(staticDataCache?.reviews || {}).length} properties`);
     }
     
     return staticDataCache!; // We know it's not null here because we just assigned it
     
   } catch (error) {
-    console.error('❌ Error loading static reviews:', error);
+    // console.error('❌ Error loading static reviews:', error);
     throw new Error('Failed to load static reviews data');
   }
 }
@@ -148,7 +148,7 @@ export async function GET(
     const propertyData = staticData.reviews?.[validSlug]?.[validLocale];
     
     if (!propertyData) {
-      console.warn(`⚠️ No static data found for ${validSlug}/${validLocale}`);
+      // console.warn(`⚠️ No static data found for ${validSlug}/${validLocale}`);
     }
     
     // Applica limit se specificato
@@ -169,7 +169,7 @@ export async function GET(
     return response;
     
   } catch (error) {
-    console.error('❌ Static reviews API error:', error);
+    // console.error('❌ Static reviews API error:', error);
     
     const errorResponse: ReviewApiError = {
       error: 'Failed to fetch static reviews',

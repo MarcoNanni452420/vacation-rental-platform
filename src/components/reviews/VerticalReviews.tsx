@@ -73,7 +73,7 @@ export function VerticalReviews({ propertySlug, className }: VerticalReviewsProp
         setAirbnbUrl(data.airbnbUrl || '#');
       } catch (err) {
         setError(t('error'));
-        console.error('Failed to fetch reviews:', err);
+        // console.error('Failed to fetch reviews:', err);
       } finally {
         setLoading(false);
       }

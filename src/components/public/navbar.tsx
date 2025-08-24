@@ -183,7 +183,7 @@ export function Navbar() {
                         setIsBookingDropdownOpen(false)
                         setIsMenuOpen(false)
                         
-                        if (typeof window !== 'undefined' && window.location.pathname === '/property/fienaroli') {
+                        if (pathname === '/property/fienaroli') {
                           e.preventDefault()
                           // Use requestAnimationFrame to avoid forced reflow during click handler
                           requestAnimationFrame(() => {
@@ -206,7 +206,7 @@ export function Navbar() {
                         setIsBookingDropdownOpen(false)
                         setIsMenuOpen(false)
                         
-                        if (typeof window !== 'undefined' && window.location.pathname === '/property/moro') {
+                        if (pathname === '/property/moro') {
                           e.preventDefault()
                           // Use requestAnimationFrame to avoid forced reflow during click handler
                           requestAnimationFrame(() => {

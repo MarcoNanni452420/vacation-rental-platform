@@ -324,10 +324,10 @@ export default function PropertyPage() {
                           });
                           
                           // Show error to user
-                          console.error('Invalid date range for Italian timezone:', {
-                            dateRange,
-                            debugInfo
-                          });
+                          // console.error('Invalid date range for Italian timezone:', {
+                          //   dateRange,
+                          //   debugInfo
+                          // });
                         }
                       }
                     }}
