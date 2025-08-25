@@ -24,7 +24,7 @@ export function ImageCarousel({
 }: ImageCarouselProps) {
   const t = useTranslations('gallery');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [indicatorBottomPosition, setIndicatorBottomPosition] = useState(() => 16);
+  const [indicatorBottomPosition, setIndicatorBottomPosition] = useState(16); // Fixed initial value
 
   // Theme colors based on property
   const themeColors = {
@@ -51,7 +51,7 @@ export function ImageCarousel({
     return 4; // Ultra-wide (3xl)
   };
 
-  const [imagesPerView, setImagesPerView] = useState(() => getImagesPerView());
+  const [imagesPerView, setImagesPerView] = useState(3); // Default to desktop view to avoid hydration mismatch
 
   // Calculate dynamic bottom position for indicators
   const calculateIndicatorPosition = useCallback((width?: number) => {
@@ -175,10 +175,11 @@ export function ImageCarousel({
                 src={image.src}
                 alt={`${propertyName} - Immagine ${image.index + 1}`}
                 fill
-                priority={image.index < 3} // Priority for first 3 visible images
-                sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1024px) calc(50vw - 24px), (max-width: 1920px) 456px, 438px"
+                priority={displayIndex === 0 && currentIndex === 0} // Solo la prima immagine visibile al caricamento
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, (max-width: 1920px) 33vw, 25vw"
                 className="object-cover transition-transform duration-700 group-hover/image:scale-110 rounded-2xl"
-                loading={image.index < imagesPerView ? "eager" : "lazy"}
+                loading={displayIndex === 0 ? "eager" : "lazy"}
+                quality={displayIndex === 0 ? 90 : 75}
               />
               
               {/* Zoom overlay */}

@@ -3,7 +3,7 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
-// Bundle analyzer setup
+// Bundle analyzer setup - già configurato
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
@@ -21,30 +21,6 @@ const nextConfig: NextConfig = {
   },
   // Bundle analysis
   bundlePagesRouterDependencies: true,
-  // Webpack configuration to exclude unnecessary polyfills
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      // Replace automatic polyfilling with manual polyfills only when needed
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        // Remove core-js polyfills for modern features
-        'core-js/modules/es.array.at': false,
-        'core-js/modules/es.array.flat': false,
-        'core-js/modules/es.array.flat-map': false,
-        'core-js/modules/es.object.from-entries': false,
-        'core-js/modules/es.object.has-own': false,
-        'core-js/modules/es.string.trim-end': false,
-        'core-js/modules/es.string.trim-start': false,
-      };
-      
-      // Exclude polyfills from being bundled
-      config.externals = {
-        ...config.externals,
-        'core-js': 'null',
-      };
-    }
-    return config;
-  },
   // Image optimization with quality settings
   images: {
     formats: ['image/avif', 'image/webp'],
